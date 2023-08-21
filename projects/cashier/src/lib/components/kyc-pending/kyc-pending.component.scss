@@ -1,0 +1,22 @@
+@import '../../../assets/abstract/utilities';
+@import "../../../assets/components/buttons";
+
+// Custom CDK Dialog Styles
+:host {
+  display: block;
+  animation: custom-dialog-enter 1s ease;
+}
+
+@keyframes custom-dialog-enter {
+  from {
+    transform: translate(0, 1500px);
+  }
+
+  to {
+    transform: translate(0, 0);
+  }
+}
+
+.circle {
+  top: 0;
+}

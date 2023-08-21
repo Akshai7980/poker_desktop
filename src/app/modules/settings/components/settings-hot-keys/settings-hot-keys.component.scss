@@ -1,0 +1,48 @@
+@import '../../../../../assets/abstract/core';
+
+.form-hot-key-group {
+  width: 172px;
+
+  .form-input[disabled] {
+    background-color: $bg-light;
+    opacity: 1;
+  }
+}
+
+.table-action-wrapper {
+  .table-action {
+    border-collapse: collapse;
+
+    thead th {
+      &:first-child {
+        border-radius: $br8 0 0 $br8;
+      }
+
+      &:last-child {
+        border-radius: 0 $br8 $br8 0;
+      }
+    }
+
+    tbody {
+      tr {
+        td {
+          padding: 8px 0 0;
+
+          &:first-child .td-item {
+            border-radius: $br8 0 0 $br8;
+          }
+
+          &:last-child .td-item {
+            border-radius: 0 $br8 $br8 0;
+          }
+        }
+
+        &:last-child {
+          td {
+            padding: 8px 0;
+          }
+        }
+      }
+    }
+  }
+}

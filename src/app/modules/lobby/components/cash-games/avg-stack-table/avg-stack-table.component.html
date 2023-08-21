@@ -1,0 +1,212 @@
+<div
+  class="avg-stacks-table d-flex flex-col align-start p-2 gap10 wp100 bg-grey100 border-1 border-solid border-grey200 br8"
+  *ngIf="tables.length"
+>
+  <div
+    class="stack-upper d-flex flex-col align-start p-2 gap16 wp100 bg-light border-1 border-solid border-grey100 br8"
+  >
+    <div class="stack-upper-title fs14 ft-primary-b $grey900">{{ selectedGame.remarks }}</div>
+    <div class="stack-upper-context d-flex jst-space align-center wp100">
+      <div class="stack-upper-content d-flex flex-col align-start gap8">
+        <label
+          class="label-title d-flex align-start fs12 ft-primary-b grey500 text-uppercase mb-0 text-nopwrap"
+          i18n
+          >Min Buy-in</label
+        >
+        <div class="stack-upper-value d-flex align-center fs14 ft-primary-b grey900 gap4">
+          <span class="rupee-icon fs14 ft-primary-b grey900">₹</span>
+          {{ selectedGame.minBuyIn }}
+        </div>
+      </div>
+      <div class="stack-upper-content d-flex flex-col align-start gap8">
+        <label
+          class="label-title d-flex align-start fs12 ft-primary-b grey500 text-uppercase mb-0 text-nopwrap"
+          i18n
+          >Blinds</label
+        >
+        <div class="stack-upper-value d-flex align-center fs14 ft-primary-b grey900 gap4">
+          {{ selectedGame.blinds }}
+        </div>
+      </div>
+      <div class="stack-upper-content d-flex flex-col align-end gap8">
+        <label
+          class="label-title d-flex align-start fs12 ft-primary-b grey500 text-uppercase mb-0 text-nopwrap"
+          i18n
+          >Tables/Players</label
+        >
+        <div class="stack-upper-value d-flex align-center fs14 ft-primary-b grey900 gap4">
+          {{ selectedGame.tableCount }}/{{ tableRingList.userCount }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <table class="table d-flex flex-col wp100 gap10" aria-label="Stack Table" i18n-aria-label>
+    <thead>
+      <tr class="table2-header d-flex jst-space align-center p-2 wp100 bg-grey500 br8 h30">
+        <th class="avg-stack-header-text d-flex align-start gap4" i18n>
+          <div class="sorting-text fs12 ft-primary-b text-uppercase cursor light">Avg. Stacks</div>
+          <div class="sorting-icon d-flex jst-center align-center p-rel wh12 ovf-hide cursor">
+            <div
+              class="sort-icon sort-up top-right wh12"
+              (click)="sortByParameter('avgStack', 'number')"
+              *ngIf="!avgStackAscend; else avgElse"
+            ></div>
+            <ng-template #avgElse>
+              <div
+                class="sort-icon sort-down top-right wh12"
+                (click)="sortByParameter('avgStack', 'number')"
+              ></div>
+            </ng-template>
+          </div>
+        </th>
+        <th class="avg-stack-header-text d-flex align-start gap4" i18n>
+          <div class="sorting-text fs12 ft-primary-b text-uppercase cursor light">Buy-in</div>
+          <div class="sorting-icon d-flex jst-center align-center p-rel wh12 ovf-hide cursor">
+            <div
+              class="sort-icon sort-up top-right wh12"
+              (click)="sortByParameter('fee', 'string')"
+              *ngIf="!feeAscend; else feeElse"
+            ></div>
+            <ng-template #feeElse>
+              <div
+                class="sort-icon sort-down top-right wh12"
+                (click)="sortByParameter('fee', 'string')"
+              ></div>
+            </ng-template>
+          </div>
+        </th>
+        <th class="avg-stack-header-text d-flex align-start gap4" i18n>
+          <div class="sorting-text fs12 ft-primary-b text-uppercase cursor light">Players</div>
+          <div class="sorting-icon d-flex jst-center align-center p-rel wh12 ovf-hide cursor">
+            <div
+              class="sort-icon sort-up top-right wh12"
+              (click)="sortByParameter('userCount', 'number')"
+              *ngIf="!userCountAscend; else userCountElse"
+            ></div>
+            <ng-template #userCountElse>
+              <div
+                class="sort-icon sort-down top-right wh12"
+                (click)="sortByParameter('userCount', 'number')"
+              ></div>
+            </ng-template>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      class="table2-body-container d-flex flex-col align-start wp100 bg-grey000 border-1 border-solid border-grey200 br8 ove-y-scroll"
+    >
+      <tr
+        class="table2-data d-flex jst-space align-center py-3 px-2 gap8 wp100 h40 cursor trans-03"
+        *ngFor="let table of tables"
+        [ngClass]="table.isSelected ? 'table2-data-clicked p-rel bg-grey200' : 'table2-data'"
+        (click)="showSelectedTableInfo(table)"
+        (mouseover)="onTableDataHover(table)"
+      >
+        <td class="table2-data-text h17 gap2 d-flex align-start">
+          <div class="coins-stack-icon w14 h15 p-rel ovf-hide">
+            <img
+              class="p-abs wp100 hp100 obj-con"
+              [src]="assetsImagePath + 'lobby/coins-stack.svg'"
+              alt="coins-stack"
+              i18n
+              i18n-alt
+            />
+          </div>
+          <div class="data-text d-flex align-center fs14 ft-primary-b grey900 gap4">
+            {{ table.avgStack }}
+          </div>
+          <div
+            class="straddle-icon wh12 p-rel ovf-hide"
+            *ngIf="table.isStraddle"
+            (click)="openIconsLegendDialog()"
+          >
+            <img
+              class="p-abs wp100 hp100 obj-con"
+              [src]="assetsImagePath + 'lobby/straddle.svg'"
+              alt="straddle"
+              i18n
+              i18n-alt
+            />
+          </div>
+          <div
+            class="fast-fold-icon wh12 p-rel ovf-hide"
+            *ngIf="table.isFF"
+            (click)="openIconsLegendDialog()"
+          >
+            <img
+              class="p-abs wp100 hp100 obj-con"
+              [src]="assetsImagePath + 'lobby/fast-fold.svg'"
+              alt="fast-fold"
+              i18n
+              i18n-alt
+            />
+          </div>
+          <div
+            class="rit-icon w28 h12 p-rel ovf-hide"
+            *ngIf="table.isMR"
+            (click)="openIconsLegendDialog()"
+          >
+            <img
+              class="p-abs wp100 hp100 obj-con"
+              [src]="assetsImagePath + 'lobby/rit.svg'"
+              alt="rit"
+              i18n
+              i18n-alt
+            />
+          </div>
+        </td>
+        <td class="table2-data-text h17 gap2 d-flex align-start">
+          <div class="data-text d-flex align-center fs14 ft-primary-b grey900 gap4">
+            <span class="rupee-icon fs14 ft-primary-b grey900">₹</span>
+            {{ table.fee }}
+          </div>
+        </td>
+        <td class="table2-data-text h17 gap2 d-flex align-center">
+          <div
+            *ngIf="!table.isSelected"
+            class="data-text d-flex align-center fs14 ft-primary-b grey900 gap4"
+          >
+            {{ table.userCount }}/{{ table.maxPlayers }}
+          </div>
+          <button
+            type="button"
+            mat-button
+            trackEvents
+            id="lobby-cash-avgStackTable-join-btn"
+            *ngIf="table.isSelected"
+            class="btn btn-text-primary"
+            (click)="getTableDetails(table)"
+            i18n
+          >
+            <span class="gradient-text">Join</span>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- When No Table is Selected Below will be shown -->
+<div
+  *ngIf="tables.length <= 0"
+  class="avg-stacks-table p-rel d-flex jst-center align-center p-2 gap10 wp100 bg-grey100 border-1 border-solid border-grey200 br8 empty"
+>
+  <div class="empty-stack-table d-flex flex-col jst-center align-center gap16 wp100">
+    <div class="empty-table-image p-rel ovf-hide w198 h100">
+      <img
+        class="p-abs wp100 hp100 obj-con"
+        alt="hello"
+        [src]="assetsImagePath + 'lobby/NoTable.png'"
+        i18n
+        i18n-alt
+      />
+    </div>
+    <div class="d-flex flex-col jst-center align-center gap6">
+      <span class="fs16 ft-primary-b grey600" i18n>No Tables Available</span>
+      <span class="fs14 ft-primary-rg grey500 text-center" i18n
+        >Please change your filter settings to see the tables.</span
+      >
+    </div>
+  </div>
+</div>

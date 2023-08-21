@@ -1,0 +1,106 @@
+@import '../../abstract/core';
+
+.custom-dialog {
+  width: 100%;
+  height: 100%;
+
+  @include flex($direction: column);
+
+  background: $bg-light;
+
+  &.custom-dialog-half {
+    width: 50%;
+  }
+
+  .custom-dialog-header {
+    @include card(
+      $height: 56px,
+      $background: $bg-light,
+      $borderLength: 0,
+      $borderRadius: 0,
+      $padding: 1rem,
+      $margin: 0
+    );
+
+    box-shadow: 0 2px 16px rgba(0 0 0 / 8%);
+
+    @include flex($justifyContent: space-between, $alignItems: center);
+
+    span.header-title {
+      @include text-styles($fontSize: 20px, $fontWeight: 700, $color: $grey900, $lineHeight: 24px);
+
+      i {
+        cursor: pointer;
+      }
+
+      .to-back-icon {
+        width: 24px;
+        height: 24px;
+        display: inline-block;
+        text-align: center;
+        border-radius: 8px;
+
+        &:hover {
+          background: $grey100;
+        }
+      }
+    }
+  }
+
+  .custom-dialog-body {
+    @include flex($direction: column, $gap: 0.75rem);
+    @include card(
+      $background: transparent,
+      $borderLength: 0,
+      $borderRadius: 0,
+      $padding: 1rem,
+      $margin: 0
+    );
+  }
+}
+
+// Lobby Common Form
+.lobby-from-group {
+  @include flex($direction: column, $gap: 0.75rem);
+
+  label {
+    @include text-styles($fontSize: 16px, $fontWeight: 800, $color: $grey900, $lineHeight: 19.2px);
+  }
+
+  .lobby-form-control {
+    width: 350px;
+    height: 48px;
+    border: 1.5px solid $grey300;
+    border-radius: $br8;
+    padding: 12px;
+
+    &.create-table {
+      width: 182px;
+    }
+
+    @include text-styles($fontSize: 16px, $fontWeight: 700, $color: $grey700, $lineHeight: 24px);
+
+    &:hover,
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+// Dialog Container
+.pd-dialog-container {
+  .mat-dialog-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    border-radius: 0;
+    overflow: auto;
+  }
+}
+
+// Confirmation Dialog
+.pd-confirmation-dialog {
+  .dialog-header {
+    box-shadow: 0 2px 16px 0 rgba($color: $bg-dark, $alpha: 8%);
+  }
+}

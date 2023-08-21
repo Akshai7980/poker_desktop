@@ -1,0 +1,255 @@
+<div class="tournament-reg d-flex align-start gap16">
+  <!-- Prizes -->
+  <div
+    class="prizes-item d-flex flex-column jst-start align-start gap16 flex-1 bg-grey100 border-1 border-solid border-grey300 br16 p-4 shadow"
+  >
+    <div class="fs16 ft-primary-b grey900" i18n>Prizes</div>
+
+    <div class="prize-pool-buyin-container wp100 d-flex align-center">
+      <div
+        class="prize-pool-container p-rel wh104 d-flex jst-center align-center bg-orange500 br-left-16"
+      >
+        <div class="prize-image-widget-right-bg w52 top-right h104 bg-orange200"></div>
+        <div class="prize-image-body wh68 d-flex jst-center align-center bg-orange000 br50">
+          <div class="prize-image-icon wh44"></div>
+        </div>
+      </div>
+      <div
+        class="buyin-container prizes p-rel d-flex jst-around align-center h104 bg-grey900 br-right-16 pl-4"
+      >
+        <div class="prize-text-item d-flex flex-column align-start gap8">
+          <div
+            class="text-item-title d-flex align-center fs12 ft-primary-b grey400 text-upppercase"
+            i18n
+          >
+            Prize Pool
+          </div>
+          <div class="d-flex flex-column gap4">
+            <div
+              class="prize-value d-flex align-center gap6 fs14 ft-primary-md grey000 text-uppercase"
+              i18n
+            >
+              ₹ 10,00,000 + IB 2,000
+            </div>
+            <div
+              class="prize-value d-flex align-center gap6 fs14 ft-primary-md grey000 text-uppercase"
+              i18n
+            >
+              <span class="prize-ticket tool-tip bottom prize-bottom-money">
+                5
+                <span class="tooltip-inner-text">
+                  <div class="ticket-data">
+                    <div class="ticket-data-text fs12 ft-primary-rg grey000">2 SPARTTKT</div>
+                    <div class="ticket-data-text fs12 ft-primary-rg grey000">3 SPARTICKET</div>
+                  </div>
+                </span>
+              </span>
+              Tickets
+              <span class="info-icon"> </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="item-inner-box wp100 d-flex flex-column gap24 bg-light border-0.5 border-solid border-grey300 p-4 br12"
+    >
+      <div class="d-flex align-start gap20 flex-1">
+        <div class="d-flex flex-column align-start gap10 flex-1">
+          <div class="fs12 ft-primary-b grey500 text-uppercase" i18n>Places PAid</div>
+          <div class="d-flex flex-column align-start gap4">
+            <div class="fs14 ft-primary-b grey900" i18n>10</div>
+          </div>
+        </div>
+        <div class="d-flex flex-column align-start gap10 flex-1">
+          <div class="fs12 ft-primary-b grey500 text-uppercase" i18n>NEXT PAYOUT</div>
+          <div class="d-flex flex-column align-start gap4">
+            <div class="fs14 ft-primary-b grey900" i18n>₹ 3,000</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="wp100 d-flex flex-column gap12 bg-light br16 p-2">
+      <table class="d-flex flex-column gap8 flex-1" aria-label="Prize Table" i18n-aria-label>
+        <thead class="d-flex flex-column flex-1">
+          <tr class="h38 d-flex align-center flex-1 bg-grey100 br8 px-4 py-3">
+            <th
+              class="wp20 d-flex jst-start align-center gap8 fs12 ft-primary-b grey600 text-uppercase"
+              i18n
+            >
+              rank
+            </th>
+            <th
+              class="wp80 d-flex jst-start align-center gap8 fs12 ft-primary-b grey600 text-uppercase"
+              i18n
+            >
+              prize
+            </th>
+          </tr>
+        </thead>
+        <tbody class="d-flex flex-column gap8 flex-1">
+          <tr
+            class="h40 d-flex align-center flex-1 bg-grey000 br8 py-3 px-4"
+            *ngFor="let prizeTable of prizeTableData.slice(0, 6); let i = index"
+          >
+            <td class="wp20 d-flex jst-start align-center fs14 ft-primary-b grey900" i18n>
+              {{ prizeTable.rank }}
+            </td>
+            <td
+              class="wp80 d-flex jst-start align-center gap4 fs14 ft-primary-b grey900"
+              [ngClass]="{ 'grad-orange-text': i == 0 }"
+              i18n
+            >
+              {{ equivalentAmountToINR(prizeTable.prize) }}
+              <span *ngIf="prizeTable.bonus">+ {{ prizeTable.bonus }}</span>
+              <div *ngIf="prizeTable.tickets" class="d-flex align-center gap4">
+                <span class="ticket-number prizes p-rel wh20 d-flex"
+                  ><span class="tsf-center fs10 ft-primary-b grey000">{{
+                    prizeTable.tickets
+                  }}</span></span
+                >
+                Tickets
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Rank -->
+  <div
+    class="prizes-item d-flex flex-column jst-start align-start gap16 flex-1 bg-grey100 border-1 border-solid border-grey300 br16 p-4 shadow"
+  >
+    <div class="fs16 ft-primary-b grey900" i18n>Rank</div>
+
+    <div class="wp100 d-flex flex-column gap12 flex-1 bg-light br12 p-2">
+      <div class="d-flex flex-column gap8 flex-1">
+        <table class="d-flex flex-column gap8 flex-1" aria-label="Prize Table" i18n-aria-label>
+          <thead class="d-flex flex-column flex-1">
+            <tr class="h38 d-flex jst-space align-center flex-1 bg-grey100 br8 px-4 py-3">
+              <th
+                class="d-flex jst-start align-center gap8 flex-1 fs12 ft-primary-b grey600 text-uppercase"
+                i18n
+              >
+                Table ID
+              </th>
+              <th
+                class="d-flex jst-start align-center flex-1 gap8 fs12 ft-primary-b grey600 text-uppercase"
+                i18n
+              >
+                Players
+              </th>
+              <th
+                class="d-flex jst-start align-center flex-1 gap8 fs12 ft-primary-b grey600 text-uppercase"
+                i18n
+              >
+                Min.&nbsp;&nbsp;Chips
+              </th>
+              <th
+                class="d-flex jst-start align-center flex-1 gap8 fs12 ft-primary-b grey600 text-uppercase"
+                i18n
+              >
+                Max.&nbsp;&nbsp;Chips
+              </th>
+            </tr>
+          </thead>
+          <tbody class="d-flex flex-column gap8 flex-1">
+            <!-- List Row -->
+            <tr
+              class="d-flex jst-space align-center flex-1 grey900 br8 py-2 px-4"
+              *ngFor="let tableData of tablesData; let i = index"
+              [ngClass]="i == 2 ? 'bg-orange000' : 'bg-grey000'"
+            >
+              <td class="d-flex jst-start align-center flex-1 fs14 ft-primary-b" i18n>
+                {{
+                  tableData.tableId.toLocaleString('en-IN', {
+                    currency: 'INR',
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 2
+                  }) || 0
+                }}
+              </td>
+              <td class="d-flex jst-start align-center flex-1 fs14 ft-primary-b" i18n>
+                {{ tableData.players }}
+              </td>
+              <td class="d-flex jst-start align-center flex-1 fs14 ft-primary-b" i18n>
+                {{
+                  tableData.minChips.toLocaleString('en-IN', {
+                    currency: 'INR',
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 2
+                  }) || 0
+                }}
+              </td>
+              <td class="d-flex jst-space align-center flex-1 fs14 ft-primary-b" i18n>
+                {{
+                  tableData.maxChips.toLocaleString('en-IN', {
+                    currency: 'INR',
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 2
+                  }) || 0
+                }}
+                <img
+                  class="cursor"
+                  [src]="assetsImagePath + 'tournaments/right-chevron.svg'"
+                  alt="right-chevron"
+                  i18n-alt
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rules  -->
+
+  <div
+    class="prizes-item d-flex flex-column jst-start align-start gap16 flex-1 bg-grey100 border-1 border-solid border-grey300 br16 p-4 shadow"
+  >
+    <div class="fs16 ft-primary-b grey900" i18n>Rules</div>
+
+    <div
+      class="item-inner-box wp100 d-flex flex-column gap24 bg-light border-0.5 border-solid border-grey300 p-4 br12"
+    >
+      <div class="d-flex align-start gap20 flex-1">
+        <div class="d-flex flex-column align-start gap10 flex-1">
+          <div class="fs12 ft-primary-b grey500 text-uppercase" i18n>Turn Time</div>
+          <div class="d-flex flex-column align-start gap4">
+            <div class="fs14 ft-primary-b grey900" i18n>15 Seconds</div>
+          </div>
+        </div>
+        <div class="d-flex flex-column align-start gap10 flex-1">
+          <div class="fs12 ft-primary-b grey500 text-uppercase" i18n>Time Bank</div>
+          <div class="d-flex flex-column align-start gap4">
+            <div class="fs14 ft-primary-b grey900" i18n>40 Seconds</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="item-inner-box wp100 d-flex flex-column gap24 bg-light border-0.5 border-solid border-grey300 p-4 br12"
+    >
+      <div class="d-flex flex-column align-start gap20 flex-1">
+        <div class="fs12 ft-primary-b grey500 text-uppercase" i18n>Rules</div>
+        <div class="fs14 ft-primary-md grey800" i18n>
+          This Tournament,you can play either or all of the
+          <span class="ft-primary-b">day A/B/C/D/E 9th Sep.</span>
+        </div>
+        <div class="fs14 ft-primary-md grey800" i18n>
+          Players are automatically seated on <span class="ft-primary-b">random tables</span> at the
+          start of the game. Again while mending the tables, players are
+          <span class="ft-primary-b">picked in random order.</span>
+        </div>
+        <div class="fs14 ft-primary-md grey800" i18n>
+          In case of <span class="ft-primary-b">disconnection</span> in paid tournaments,players can
+          <span class="ft-primary-b">join any time.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

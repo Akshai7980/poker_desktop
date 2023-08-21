@@ -1,0 +1,24 @@
+@import '../../../../../../assets/abstract/core';
+
+.sub-header {
+  backdrop-filter: blur(1.7241px);
+
+  .sub-header-menu {
+    width: calc(100% - 8%);
+
+    .sub-header-items {
+      width: max-content;
+      transition: color, $transition;
+
+      &:hover,
+      &.sub-menu-active {
+        background: $grey900; // on active and hover states
+        color: $grey100; // on active and hover states
+      }
+    }
+  }
+
+  .sub-header-icons {
+    width: 8%;
+  }
+}

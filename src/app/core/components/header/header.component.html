@@ -1,0 +1,163 @@
+<div
+  class="main-header d-flex jst-space align-center wp100 py-3 px-6 bg-dark border-1 border-solid border-grey800"
+>
+  <div class="logo-image p-rel ovf-hide cursor" [routerLink]="['lobby']">
+    <img
+      class="p-abs wp100 hp100 obj-con"
+      [src]="assetsThemePath + 'logo.svg'"
+      alt="logo"
+      i18n
+      i18n-alt
+    />
+  </div>
+  <div class="header-options d-flex jst-end align-center gap32 h40">
+    <div class="header-options-icon-container p-rel d-flex jst-end align-center gap24">
+      <div class="header-option-icons p-rel ovf-hide cursor trans-03">
+        <img
+          class="p-abs wp100 hp100 obj-con"
+          [src]="assetsImagePath + 'header/ios.svg'"
+          alt="ios"
+          i18n
+          i18n-alt
+        />
+      </div>
+      <div class="header-option-icons p-rel ovf-hide cursor trans-03">
+        <img
+          class="p-abs wp100 hp100 obj-con"
+          [src]="assetsImagePath + 'header/wifi.svg'"
+          alt="wifi"
+          i18n
+          i18n-alt
+        />
+      </div>
+      <div class="header-option-icons p-rel ovf-hide cursor trans-03">
+        <img
+          class="p-abs wp100 hp100 obj-con"
+          [src]="assetsImagePath + 'header/bell.svg'"
+          alt="bell"
+          i18n
+          i18n-alt
+        />
+      </div>
+      <div
+        class="header-option-icons p-rel ovf-hide cursor trans-03"
+        (click)="openSettingsWindow()"
+      >
+        <img
+          class="p-abs wp100 hp100 obj-con"
+          [src]="assetsImagePath + 'header/gear.svg'"
+          alt="gear"
+          i18n
+          i18n-alt
+        />
+      </div>
+    </div>
+    <div class="line-vert bg-grey800"></div>
+    <ng-container *ngIf="userLoggedIn">
+      <div class="header-options-cash-container p-rel d-flex jst-end align-center gap12">
+        <div class="header-option-cash d-flex jst-start align-center bg-grey800 br20 cursor">
+          <div class="header-option-cash-eye d-flex jst-center align-center gap4">
+            <div class="header-eye-icon p-rel wh20 ovf-hide">
+              <img
+                class="p-abs wp100 hp100 obj-con"
+                [src]="assetsImagePath + 'menu/Eye.svg'"
+                alt="eye"
+                i18n
+                i18n-alt
+              />
+            </div>
+          </div>
+          <div
+            class="header-option-cash-total-icon d-flex jst-center align-center gap4 grad-green-bg br20"
+          >
+            <div
+              class="header-option-cash-total-value d-flex align-center fs14 ft-primary-b light text-nowrap"
+              i18n
+            >
+              ₹ 1,20,344
+            </div>
+            <div class="header-option-total-icon p-rel wh20 ovf-hide">
+              <img
+                class="p-abs wp100 hp100 obj-con"
+                [src]="assetsImagePath + 'menu/addWallet.svg'"
+                alt="add wallet"
+                i18n
+                i18n-alt
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="header-option-wallet-cash d-flex jst-center align-center py-3 px-4 gap4 bg-grey800 br20 cursor"
+          (click)="openCashier()"
+          id="cashier-header-btn"
+          trackEvents
+        >
+          <div
+            class="header-option-wallet-cash-title d-flex align-center fs14 ft-primary-b light"
+            i18n
+          >
+            Cashier
+          </div>
+          <div class="header-option-wallet-cash-icon p-rel wh20 ovf-hide">
+            <img
+              class="p-abs wp100 hp100 obj-con"
+              [src]="assetsImagePath + 'menu/Wallet.svg'"
+              alt="wallet"
+              i18n
+              i18n-alt
+            />
+          </div>
+        </div>
+        <div class="header-option-wallet-info d-flex jst-center align-center">
+          <div class="icons-24 info-outer-white wh24"></div>
+        </div>
+      </div>
+      <div class="line-vert bg-grey800"></div>
+      <div
+        class="header-options-user-container d-flex align-center gap8 cursor"
+        (click)="openProfileDialog()"
+      >
+        <div class="user-profile-image d-flex jst-center align-center w40 h40 br12 bg-light cursor">
+          <div class="user-avatar" [ngClass]="selectedAvatar"></div>
+        </div>
+        <div class="user-profile-details d-flex flex-col gap4">
+          <div
+            class="user-profile-title fs16 ft-primary-b light text-ellipse text-nowrap ovf-hide"
+            i18n
+          >
+            {{ userName }}
+          </div>
+          <div class="user-profile-member d-flex align-center gap4">
+            <div class="user-profile-member-image p-rel ovf-hide">
+              <img
+                class="p-abs wp100 hp100 obj-con"
+                [src]="assetsImagePath + 'menu/Rookie.svg'"
+                alt="rookie"
+                i18n
+                i18-alt
+              />
+            </div>
+            <div class="user-profile-member-title fs12 ft-primary-sb purple500 text-nowrap" i18n>
+              Rookie Club
+            </div>
+          </div>
+        </div>
+        <div class="user-profile-icon d-flex jst-center align-center">
+          <div class="triangle"></div>
+        </div>
+      </div>
+    </ng-container>
+    <button
+      mat-button
+      class="btn btn-primary-login"
+      (click)="openLogin()"
+      *ngIf="!userLoggedIn"
+      trackEvents
+      id="header-loginsignup-btn"
+      i18n
+    >
+      Login/Signup
+    </button>
+  </div>
+</div>

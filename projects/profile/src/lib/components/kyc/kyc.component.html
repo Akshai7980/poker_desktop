@@ -1,0 +1,171 @@
+<form class="kyc-form wp100 d-flex flex-column align-center" [formGroup]="kycForm" (ngSubmit)="onSubmitKyc()" *ngIf="!showDocDetails">
+
+  <div class="kyc-input wp100 d-flex flex-column gap16 bg-light border-0.5 border-solid border-grey300 br16 p-4 mb-4 ovf-y-scroll" [ngClass]="{'content-height-n2':!isProfileAlreadyComplete && !showAadhaar}">
+
+    <div class="input-field wp100 d-flex flex-column gap4">
+      <label class="fs14 ft-primary-b grey900" i18n>Document Type</label>
+      <p-dropdown [options]="documents" [(ngModel)]="selectedDocument" formControlName="documents" ngDefaultControl
+        (onChange)="onSelectDocument()" optionLabel="name" scrollHeight="250" styleClass="personal-details"
+        placeholder="Select Document" appendTo="body" name="gender" width="350px"></p-dropdown>
+    </div>
+
+    <div class="input-field only-info d-flex flex-column gap4 fs12" *ngIf="showAadhaar">
+      <span class="ft-primary-b grey500" i18n>NOTE:</span>
+      <span class="ft-primary-md grey600" i18n>Now you can verify your Aadhar through OTP</span>
+    </div>
+
+    <ng-container *ngIf="showDL">
+
+      <div class="input-field wp100 d-flex flex-column gap4">
+        <label class="fs14 ft-primary-b grey900" i18n>Document ID</label>
+        <input type="text" autocompleteOff formControlName="documentId" placeholder="Enter ID" autocomplete="off" alphanumericOnly (paste)="handlePaste($event)"
+        class=" wp100 h48 d-flex align-center gap8 bg-light br12 p-3 border-1.5 border-solid fs14 ft-primary-b grey900"
+        [ngClass]="kycForm.controls['documentId'].invalid && (kycForm.controls['documentId'].dirty || kycForm.controls['documentId'].touched) && kycForm.controls['documentId'].value.length > 0 ? 'input-error' : 'border-grey300'"
+          i18n-placeholder />
+
+
+        <span class="alert-text fs12 ft-primary-sb primary-error"
+          *ngIf="kycForm.controls['documentId'].invalid && (kycForm.controls['documentId'].dirty || kycForm.controls['documentId'].touched) && kycForm.controls['documentId'].value.length > 0 "
+          i18n> Entered document number is not valid.</span>
+
+      </div>
+
+      <div class="kyc-upload wp100 d-flex flex-column gap12">
+        <span class="fs12 ft-primary-b grey600" i18n>Please upload both sides of the document</span>
+        <div class="ensure-box wp100 d-flex flex-column gap8 bg-grey100 br12 p-3">
+          <span class="fs10 ft-primary-sb grey600" i18n>Please Ensure</span>
+          <div class="ensure d-flex align-center">
+            <div class="d-flex align-center gap4 flex-1" i18n>
+              <div class="dot wh5 br50 bg-grey900"></div>
+              <div class="text fs10 ft-primary-sb grey900">File size is below 5MB</div>              
+            </div>
+            <div class="d-flex align-center gap4 flex-1" i18n>
+              <div class="dot wh5 br50 bg-grey900"></div>
+              <div class="text fs10 ft-primary-sb grey900">No obstructing objects</div>              
+            </div>
+          </div>
+          <div class="ensure d-flex align-center">
+            <div class="d-flex align-center gap4 flex-1" i18n>
+              <div class="dot wh5 br50 bg-grey900"></div>
+              <div class="text fs10 ft-primary-sb grey900">Image is clear</div> 
+            </div>
+            <div class="d-flex align-center gap4 flex-1" i18n>
+              <div class="dot wh5 br50 bg-grey900"></div>
+              <div class="text fs10 ft-primary-sb grey900">Format: PDF, JPG, PNG</div> 
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="!imageSrcFront" class="upload-file-container p-rel wp100 h156 d-flex flex-column jst-center align-center gap12 bg-red000 br12 py-8 border-1.5 border-dashed border-primary-red">
+        <img [src]="assetsImagePath + 'upload.svg'" alt="upload" class="mt-2" i18n i18n-alt>
+        <span class="mb-2 fs12 ft-primary-sb primary-red" i18n>Upload Front Side</span>
+        <input class="wp100 hp100 tsf-center opacity-0 cursor" type="file" autocompleteOff (change)="onFileChange($event, 'Front')" formControlName="fileInput1"
+          #fileInput1 accept="image/pdf, image/png, image/jpeg">
+      </div>
+
+      <div class="doc-image-container wp100 h156 d-flex jst-center gap12 bg-red000 br12 p-3 border-1.5 border-dashed border-primary-red" *ngIf="imageSrcFront">
+        <img [src]="imageSrcFront" alt="image" class="preview-img h132 br12 obj-cov" i18n i18n-alt *ngIf="!isPdfFront">
+        <pdf-viewer
+        [src]="imageSrcFront"
+        [rotation]="0"
+        [original-size]="false"
+        [show-all]="true"
+        [fit-to-page]="false"
+        [zoom]="1"
+        [zoom-scale]="'page-width'"
+        [stick-to-page]="false"
+        [render-text]="true"
+        [external-link-target]="'blank'"
+        [autoresize]="true"
+        [show-borders]="false"
+        class="preview-img h132 br12 obj-cov"
+        *ngIf="isPdfFront"
+      ></pdf-viewer>
+        <button type="button" class="delete-btn wh32 d-flex jst-center align-center gap6 bg-light br8 p-2 border-1.5 border-solid border-primary-red cursor" (click)="onDelete('Front')">
+          <div class="icons-16 trash-icon wh16"></div>
+        </button>
+      </div>
+
+      <div *ngIf="!imageSrcBack" class="upload-file-container p-rel wp100 h156 d-flex flex-column jst-center align-center gap12 bg-red000 br12 py-8 border-1.5 border-dashed border-primary-red">
+        <img [src]="assetsImagePath + 'upload.svg'" alt="upload" class="mt-2" i18n i18n-alt>
+        <span class="mb-2 fs12 ft-primary-sb primary-red" i18n>Upload Back Side</span>
+        <input class="wp100 hp100 tsf-center opacity-0 cursor" type="file" (change)="onFileChange($event, 'Back')" autocompleteOff formControlName="fileInput2"
+          #fileInput2 accept="image/pdf, image/png, image/jpeg">
+      </div>
+      <div class="doc-image-container wp100 h156 d-flex jst-center gap12 bg-red000 br12 p-3 border-1.5 border-dashed border-primary-red"*ngIf="imageSrcBack">
+        <img [src]="imageSrcBack" alt="preview" class="preview-img h132 br12 obj-cov" i18n i18n-alt *ngIf="!isPdfBack">
+        <pdf-viewer
+        [src]="imageSrcBack"
+        [rotation]="0"
+        [original-size]="false"
+        [show-all]="true"
+        [fit-to-page]="false"
+        [zoom]="1"
+        [zoom-scale]="'page-width'"
+        [stick-to-page]="false"
+        [render-text]="true"
+        [external-link-target]="'blank'"
+        [autoresize]="true"
+        [show-borders]="false"
+        class="preview-img h132 br12 obj-cov"
+        *ngIf="isPdfBack"
+
+      ></pdf-viewer>
+        <button type="button" class="delete-btn wh32 d-flex jst-center align-center gap6 bg-light br8 p-2 border-1.5 border-solid border-primary-red cursor" (click)="onDelete('Back')">
+          <div class="icons-16 trash-icon wh16"></div>
+        </button>
+      </div>
+
+    </ng-container>
+
+  </div>
+
+  <button type="submit" mat-button class="btn btn-primary wp100 mb-4"
+    [disabled]="!kycForm.valid || !kycForm.get('fileInput1')?.value|| !kycForm.get('fileInput2')?.value" *ngIf="showDL" i18n>
+    Verify
+  </button>
+
+
+  <button type="button" mat-button class="btn btn-primary wp100 mb-4" *ngIf="showAadhaar" (click)="onStartVerification()">
+    Start Verification
+  </button>
+
+  <div *ngIf="isShowToast">
+    <app-toast [toastValue]="toastValue" [(isShowToast)]="isShowToast" [ngClass]="{'bottom-0':!isProfileAlreadyComplete}"></app-toast>
+  </div>
+
+</form>
+
+<div *ngIf="showDocDetails && kycDetails.list.length > 0" class="doc-status wp100 br16 border-0.5 border-solid"
+  [ngClass]="kycDetails.list[0].status === 'verified' ? 'verified' : 'pending' ">
+
+  <div class="doc-status-top d-flex jst-space align-center p-4">
+    <div class="d-flex flex-column gap4">
+      <span class="fs10 ft-primary-md grey500" i18n>Document Type</span>
+      <span class="fs14 ft-primary-b grey900" i18n> {{ kycDetails.list[0].docType }} </span>
+    </div>
+    <div class="d-flex flex-column align-end gap4">
+      <span class="fs10 ft-primary-md grey500" i18n>Document ID</span>
+      <span class="fs14 ft-primary-b grey900" i18n> {{ kycDetails.list[0].docNumber ? kycDetails.list[0].docNumber : '--' }} </span>
+    </div>
+  </div>
+
+  <div class="line wp100"></div>
+
+  <div class="doc-status-bottom d-flex jst-center align-center p-4">
+    <div class="d-flex flex-column align-center gap4">
+      <span class="fs10 ft-primary-md grey500" i18n>Verification Status</span>
+      <span class="doc-status-text fs16 ft-primary-b grey500" i18n> {{ kycDetails.list[0].status === 'verified' ? 'Verified' : 'Pending' }} </span>
+    </div>
+  </div>
+
+</div>
+
+<div class="mt-4" *ngIf="showDocDetails">
+
+  <button class="btn btn-primary wp100" (click)="onSubmitNext()">
+    <span class="primary-btn-text" i18n>Next</span>
+  </button>
+
+</div>

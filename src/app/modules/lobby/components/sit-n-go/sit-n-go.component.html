@@ -1,0 +1,702 @@
+<div class="sit-n-go d-flex flex-col align-center gap12 wp100">
+  <div class="menubar d-flex jst-end align-center wp100 bg-grey000 py-2 px-4 gap16 br16">
+    <div class="ticket-btn" *ngIf="isShowMyTiketsAndOffers">
+      <button
+        type="button"
+        class="btn btn-my-ticket"
+        (click)="openMyTicketsAndOffersDialog()"
+        trackEvents
+        id="lobby-sitNgo-myTicketsNOffers-btn"
+      >
+        <span class="my-tickets-text" i18n>My Tickets & Offers</span>
+      </button>
+    </div>
+    <div class="funnel p-rel wh20 ovf-hide cursor">
+      <div
+        class="funnel-icon funnel-fill p-rel wh20 trans-03"
+        [ngClass]="{ filter_applied: filters !== 'reset' && filters?.length > 0 }"
+        *ngIf="isFilterSelected; else filledFilter"
+        (click)="openFilterDialog()"
+      ></div>
+      <ng-template #filledFilter>
+        <div
+          class="funnel-icon funnel-border p-rel wh20 trans-03"
+          [ngClass]="{ filter_applied: filters !== 'reset' && filters?.length > 0 }"
+          (click)="openFilterDialog()"
+        >
+          <span class="top-right opacity-0 trans-03"></span>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+  <div
+    class="table-container wp100 d-flex flex-col bg-light p-2 br16 ovf-y-scroll"
+    *ngIf="!isTablesNotAvailable"
+  >
+    <table class="table d-flex wp100 flex-col gap10" aria-label="SNG Table" i18n-aria-label>
+      <thead>
+        <tr class="table1-header d-flex jst-space align-center p-2 wp100 bg-grey100 grey600 br8">
+          <th class="table-header-sitout-text d-flex align-center p-2 gap4">
+            <div class="sorting-text fs12 ft-primary-b text-uppercase cursor grey600">SNG Name</div>
+            <div class="sorting-icon d-flex jst-center align-center p-rel wh12 ovf-hide cursor">
+              <div
+                class="sort-icon sort-up top-right p-rel wh12"
+                (click)="sortSngStringList('name')"
+                *ngIf="!nameAscend; else nameElse"
+              ></div>
+              <ng-template #nameElse>
+                <div class="sort-icon top-right wh12" (click)="sortSngStringList('name')"></div>
+              </ng-template>
+            </div>
+          </th>
+          <th class="table-header-sitout-text d-flex align-center p-2 gap4">
+            <div class="sorting-text fs12 ft-primary-b text-uppercase cursor grey600">Players</div>
+            <div class="sorting-icon d-flex jst-center align-center p-rel wh12 ovf-hide cursor">
+              <div
+                class="sort-icon sort-up top-right p-rel wh12"
+                (click)="sortSngList('joinedPlayers')"
+                *ngIf="!joinedPlayersAscend; else joinedPlayersAscendElse"
+              ></div>
+              <ng-template #joinedPlayersAscendElse>
+                <div class="sort-icon top-right wh12" (click)="sortSngList('joinedPlayers')"></div>
+              </ng-template>
+            </div>
+          </th>
+          <th class="table-header-sitout-text d-flex align-center p-2 gap4">
+            <div class="sorting-text fs12 ft-primary-b text-uppercase cursor grey600">Prizes</div>
+            <div class="sorting-icon d-flex jst-center align-center p-rel wh12 ovf-hide cursor">
+              <div
+                class="sort-icon sort-up top-right p-rel wh12"
+                (click)="sortSngList('prizes')"
+                *ngIf="!prizesAscend; else prizesAscendElse"
+              ></div>
+              <ng-template #prizesAscendElse>
+                <div class="sort-icon top-right wh12" (click)="sortSngList('prizes')"></div>
+              </ng-template>
+            </div>
+          </th>
+          <th class="table-header-sitout-text d-flex align-center p-2 gap4">
+            <div class="sorting-text fs12 ft-primary-b text-uppercase cursor grey600">Buy-In</div>
+            <div class="sorting-icon d-flex jst-center align-center p-rel wh12 ovf-hide cursor">
+              <div
+                class="sort-icon sort-up top-right p-rel wh12"
+                (click)="sortSngList('fee')"
+                *ngIf="!feeAscend; else feeAscendElse"
+              ></div>
+              <ng-template #feeAscendElse>
+                <div class="sort-icon top-right wh12" (click)="sortSngList('fee')"></div>
+              </ng-template>
+            </div>
+          </th>
+          <th class="table-header-sitout-text d-flex align-center p-2 gap4">
+            <div class="sorting-text fs12 ft-primary-b text-uppercase cursor grey600">Status</div>
+          </th>
+        </tr>
+      </thead>
+      <tbody
+        class="sitout-table d-flex flex-col br8"
+        *ngIf="sngViewModel.joinedSNGTable.length > 0"
+      >
+        <tr class="recommendations d-flex align-center wp100 p-2 bg-orange000">
+          <td colspan="5" class="recommendation-text fs12 ft-primary-b orange900 text-capital" i18n>
+            Joined SNG's
+          </td>
+        </tr>
+        <ng-container class="table1-data-container wp100">
+          <tr
+            class="table1-sitout-data p-rel d-flex align-center wp100 bg-light cursor trans-03"
+            *ngFor="let jSNG of sngViewModel.joinedSNGTable"
+            (click)="onClickSng(jSNG)"
+          >
+            <td class="table-sitout-data-text p-2 d-flex align-center">
+              <div
+                class="sitout-data-text d-flex align-center gap4 fs14 ft-primary-b grey900 text-nowrap"
+              >
+                <span
+                  class="d-flex jst-center align-center br20 py-1 px-3 bg-purple000 fs10 ft-primary-sb purple600"
+                  i18n
+                  >{{ jSNG.RingVariant }}</span
+                >
+                {{ jSNG.name }}
+              </div>
+            </td>
+            <td class="table-sitout-data-text p-2 d-flex align-center">
+              <div class="sitout-data-text d-flex align-center gap4">
+                <ng-container *ngFor="let fP of Array(getSub(jSNG.joinedPlayers, 0))">
+                  <div class="user-joined-icon p-rel ovf-hide">
+                    <img
+                      class="p-abs wp100 hp100 obj-con"
+                      [src]="assetsImagePath + 'lobby/userJoined.svg'"
+                      alt="joined"
+                      i18n
+                      i18n-alt
+                    />
+                  </div>
+                </ng-container>
+                <ng-container
+                  *ngFor="let tp of Array(getSub(jSNG.totalPlayers, jSNG.joinedPlayers))"
+                >
+                  <div class="user-not-joined-icon p-rel ovf-hide">
+                    <img
+                      class="p-abs wp100 hp100 obj-con"
+                      [src]="assetsImagePath + 'lobby/userNotJoined.svg'"
+                      alt="not-joined"
+                      i18n
+                      i18n-alt
+                    />
+                  </div>
+                </ng-container>
+              </div>
+            </td>
+            <td class="table-sitout-data-text p-2 d-flex align-center">
+              <div class="sitout-data-text d-flex align-center gap4">
+                <div class="trophy-icon p-rel ovf-hide">
+                  <img
+                    class="p-abs wp100 hp100 obj-con"
+                    [src]="assetsImagePath + 'lobby/prizeCup.svg'"
+                    alt="prize"
+                    i18n
+                    i18n-alt
+                  />
+                </div>
+                <div class="text fs14 ft-primary-b grad-orange-text">₹ {{ jSNG.prizes }}</div>
+              </div>
+            </td>
+            <td class="table-sitout-data-text p-2 d-flex align-center">
+              <div class="sitout-data-text d-flex align-center">
+                <button
+                  type="button"
+                  mat-button
+                  class="btn btn-text-primary lobby-btn"
+                  trackEvents
+                  id="lobby-sitNgo-ticket-btn"
+                  (click)="openRegistrationDialog(jSNG)"
+                >
+                  <span class="gradient-text" i18n>Ticket</span>
+                </button>
+              </div>
+            </td>
+            <td class="table-sitout-data-text p-2 d-flex align-center">
+              <div class="sitout-data-text d-flex align-center">
+                <button
+                  type="button"
+                  mat-button
+                  class="btn btn-status regestring"
+                  *ngIf="jSNG.status === 'registering'"
+                  trackEvents
+                  id="lobby-sitNgo-registering-btn"
+                  i18n
+                >
+                  Registering
+                </button>
+                <button
+                  type="button"
+                  mat-button
+                  class="btn btn-status playing"
+                  *ngIf="jSNG.status === 'playing'"
+                  trackEvents
+                  id="lobby-sitNgo-playing-btn"
+                  i18n
+                >
+                  Playing
+                </button>
+                <button
+                  type="button"
+                  mat-button
+                  class="btn btn-status running"
+                  *ngIf="jSNG.status === 'running'"
+                  trackEvents
+                  id="lobby-sitNgo-playing-btn"
+                  i18n
+                >
+                  Running
+                </button>
+                <button
+                  type="button"
+                  mat-button
+                  class="btn btn-status finished"
+                  *ngIf="jSNG.status === 'finished'"
+                  trackEvents
+                  id="lobby-sitNgo-playing-btn"
+                  i18n
+                >
+                  Finished
+                </button>
+                <button
+                  type="button"
+                  mat-button
+                  class="btn btn-status registered"
+                  *ngIf="jSNG.status === 'registered'"
+                  trackEvents
+                  id="lobby-sitNgo-registered-btn"
+                >
+                  <span class="d" i18n>Registered</span>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+      <tbody
+        class="sitout-table d-flex flex-col br8"
+        *ngIf="sngViewModel.joinTicketSNGTable.length > 0"
+      >
+        <tr class="recommendations d-flex align-center wp100 p-2 bg-orange000">
+          <td colspan="5" class="recommendation-text fs12 ft-primary-b orange900 text-capital" i18n>
+            Join with Ticket
+          </td>
+        </tr>
+        <ng-container class="table1-data-container wp100">
+          <tr
+            class="table1-sitout-data p-rel d-flex align-center wp100 bg-light cursor trans-03"
+            *ngFor="let jSNG of sngViewModel.joinTicketSNGTable"
+            (click)="onClickSng(jSNG)"
+          >
+            <td class="table-sitout-data-text p-2 d-flex align-center">
+              <div
+                class="sitout-data-text d-flex align-center gap4 fs14 ft-primary-b grey900 text-nowrap"
+              >
+                <span
+                  class="d-flex jst-center align-center br20 py-1 px-3 bg-purple000 fs10 ft-primary-sb purple600"
+                  i18n
+                  >{{ jSNG.RingVariant }}</span
+                >
+                {{ jSNG.name }}
+              </div>
+            </td>
+            <td class="table-sitout-data-text p-2 d-flex align-center">
+              <div class="sitout-data-text d-flex align-center gap4">
+                <ng-container *ngFor="let fP of Array(getSub(jSNG.joinedPlayers, 0))">
+                  <div class="user-joined-icon p-rel ovf-hide">
+                    <img
+                      class="p-abs wp100 hp100 obj-con"
+                      [src]="assetsImagePath + 'lobby/userJoined.svg'"
+                      alt="joined"
+                      i18n
+                      i18n-alt
+                    />
+                  </div>
+                </ng-container>
+                <ng-container
+                  *ngFor="let tp of Array(getSub(jSNG.totalPlayers, jSNG.joinedPlayers))"
+                >
+                  <div class="user-not-joined-icon p-rel ovf-hide">
+                    <img
+                      class="p-abs wp100 hp100 obj-con"
+                      [src]="assetsImagePath + 'lobby/userNotJoined.svg'"
+                      alt="not-joined"
+                      i18n
+                      i18n-alt
+                    />
+                  </div>
+                </ng-container>
+              </div>
+            </td>
+            <td class="table-sitout-data-text p-2 d-flex align-center">
+              <div class="sitout-data-text d-flex align-center gap4">
+                <div class="trophy-icon p-rel ovf-hide">
+                  <img
+                    class="p-abs wp100 hp100 obj-con"
+                    [src]="assetsImagePath + 'lobby/prizeCup.svg'"
+                    alt="prize"
+                    i18n
+                    i18n-alt
+                  />
+                </div>
+                <div class="text fs14 ft-primary-b grad-orange-text">₹ {{ jSNG.prizes }}</div>
+              </div>
+            </td>
+            <td class="table-sitout-data-text p-2 d-flex align-center">
+              <div class="sitout-data-text d-flex align-center">
+                <button
+                  type="button"
+                  mat-button
+                  class="btn btn-text-primary lobby-btn"
+                  trackEvents
+                  id="lobby-sitNgo-ticket-btn"
+                  (click)="openRegistrationDialog(jSNG)"
+                >
+                  <span class="gradient-text" i18n>Ticket</span>
+                </button>
+              </div>
+            </td>
+            <td class="table-sitout-data-text p-2 d-flex align-center">
+              <div class="sitout-data-text d-flex align-center">
+                <button
+                  type="button"
+                  mat-button
+                  class="btn btn-status registering"
+                  *ngIf="jSNG.status === 'registering'"
+                  trackEvents
+                  id="lobby-sitNgo-registering-btn"
+                  i18n
+                >
+                  Registering
+                </button>
+                <button
+                  type="button"
+                  mat-button
+                  class="btn btn-status playing"
+                  *ngIf="jSNG.status === 'playing'"
+                  trackEvents
+                  id="lobby-sitNgo-playing-btn"
+                  i18n
+                >
+                  Playing
+                </button>
+                <button
+                  type="button"
+                  mat-button
+                  class="btn btn-status running"
+                  *ngIf="jSNG.status === 'running'"
+                  trackEvents
+                  id="lobby-sitNgo-playing-btn"
+                  i18n
+                >
+                  Running
+                </button>
+                <button
+                  type="button"
+                  mat-button
+                  class="btn btn-status finished"
+                  *ngIf="jSNG.status === 'finished'"
+                  trackEvents
+                  id="lobby-sitNgo-playing-btn"
+                  i18n
+                >
+                  Finished
+                </button>
+                <button
+                  type="button"
+                  mat-button
+                  class="btn btn-status registered"
+                  *ngIf="jSNG.status === 'registered'"
+                  trackEvents
+                  id="lobby-sitNgo-registered-btn"
+                >
+                  <span class="status-text" i18n>Registered</span>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+      <tbody class="sitout-table d-flex flex-col br8" *ngIf="sngViewModel.registering.length > 0">
+        <tr class="recommendations d-flex align-center wp100 p-2 bg-orange000">
+          <td colspan="5" class="recommendation-text fs12 ft-primary-b orange900 text-capital" i18n>
+            Registering
+          </td>
+        </tr>
+        <ng-container class="table1-data-container wp100">
+          <tr
+            class="table1-sitout-data p-rel d-flex align-center wp100 bg-light cursor trans-03"
+            *ngFor="let jSNG of sngViewModel.registering"
+            (click)="onClickSng(jSNG)"
+          >
+            <td class="table-sitout-data-text p-2 d-flex align-center">
+              <div
+                class="sitout-data-text d-flex align-center gap4 fs14 ft-primary-b grey900 text-nowrap"
+              >
+                <span
+                  class="d-flex jst-center align-center br20 py-1 px-3 bg-purple000 fs10 ft-primary-sb purple600"
+                  i18n
+                >
+                  {{ jSNG.RingVariant }}</span
+                >
+                {{ jSNG.name }}
+              </div>
+            </td>
+            <td class="table-sitout-data-text p-2 d-flex align-center">
+              <div class="sitout-data-text d-flex align-center gap4">
+                <ng-container *ngIf="jSNG.joinedPlayers > 0">
+                  <div
+                    class="user-joined-icon p-rel ovf-hide"
+                    *ngFor="let fP of Array(getSub(jSNG.joinedPlayers, 0))"
+                  >
+                    <img
+                      class="p-abs wp100 hp100 obj-con"
+                      [src]="assetsImagePath + 'lobby/userJoined.svg'"
+                      alt="joined"
+                      i18n
+                      i18n-alt
+                    />
+                  </div>
+                </ng-container>
+                <ng-container
+                  *ngFor="let tp of Array(getSub(jSNG.totalPlayers, jSNG.joinedPlayers))"
+                >
+                  <div class="user-not-joined-icon p-rel ovf-hide">
+                    <img
+                      class="p-abs wp100 hp100 obj-con"
+                      [src]="assetsImagePath + 'lobby/userNotJoined.svg'"
+                      alt="not-joined"
+                      i18n
+                      i18n-alt
+                    />
+                  </div>
+                </ng-container>
+              </div>
+            </td>
+            <td class="table-sitout-data-text p-2 d-flex align-center">
+              <div class="sitout-data-text d-flex align-center gap4">
+                <div class="trophy-icon p-rel ovf-hide">
+                  <img
+                    class="p-abs wp100 hp100 obj-con"
+                    [src]="assetsImagePath + 'lobby/prizeCup.svg'"
+                    alt="prize"
+                    i18n
+                    i18n-alt
+                  />
+                </div>
+                <div class="text fs14 ft-primary-b grad-orange-text">₹ {{ jSNG.prizes }}</div>
+              </div>
+            </td>
+            <td class="table-sitout-data-text p-2 d-flex align-center">
+              <div class="sitout-data-text d-flex align-center">
+                <button
+                  type="button"
+                  mat-button
+                  class="btn btn-text-primary lobby-btn"
+                  trackEvents
+                  id="lobby-sitNgo-ticket-btn"
+                  (click)="openRegistrationDialog(jSNG)"
+                >
+                  <span class="gradient-text" i18n>₹ {{ jSNG.fee }}</span>
+                </button>
+              </div>
+            </td>
+            <td class="table-sitout-data-text p-2 d-flex align-center">
+              <div class="sitout-data-text d-flex align-center">
+                <button
+                  type="button"
+                  mat-button
+                  class="btn btn-status registering"
+                  *ngIf="jSNG.status === 'registering'"
+                  trackEvents
+                  id="lobby-sitNgo-registering-btn"
+                  i18n
+                >
+                  Registering
+                </button>
+                <button
+                  type="button"
+                  mat-button
+                  class="btn btn-status running"
+                  *ngIf="jSNG.status === 'running'"
+                  trackEvents
+                  id="lobby-sitNgo-playing-btn"
+                  i18n
+                >
+                  Running
+                </button>
+                <button
+                  type="button"
+                  mat-button
+                  class="btn btn-status finished"
+                  *ngIf="jSNG.status === 'finished'"
+                  trackEvents
+                  id="lobby-sitNgo-playing-btn"
+                  i18n
+                >
+                  Finished
+                </button>
+                <button
+                  type="button"
+                  mat-button
+                  class="btn btn-status playing"
+                  *ngIf="jSNG.status === 'playing'"
+                  trackEvents
+                  id="lobby-sitNgo-playing-btn"
+                  i18n
+                >
+                  Playing
+                </button>
+                <button
+                  type="button"
+                  mat-button
+                  class="btn btn-status registered"
+                  *ngIf="jSNG.status === 'registered'"
+                  trackEvents
+                  id="lobby-sitNgo-registered-btn"
+                >
+                  <span class="status-text" i18n>Registered</span>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+      <tbody
+        class="sitout-table d-flex flex-col br8"
+        *ngIf="sngViewModel.runningOrFinishedSNGTable.length > 0"
+      >
+        <tr class="recommendations d-flex align-center wp100 p-2 bg-orange000">
+          <td colspan="5" class="recommendation-text fs12 ft-primary-b orange900 text-capital" i18n>
+            Running/Finished
+          </td>
+        </tr>
+        <ng-container class="table1-data-container wp100">
+          <tr
+            class="table1-sitout-data p-rel d-flex align-center wp100 bg-light cursor trans-03"
+            *ngFor="let jSNG of sngViewModel.runningOrFinishedSNGTable"
+            (click)="onClickSng(jSNG)"
+          >
+            <td class="table-sitout-data-text p-2 d-flex align-center">
+              <div
+                class="sitout-data-text d-flex align-center gap4 fs14 ft-primary-b grey900 text-nowrap"
+              >
+                <span
+                  class="d-flex jst-center align-center br20 py-1 px-3 bg-purple000 fs10 ft-primary-sb purple600"
+                  i18n
+                >
+                  {{ jSNG.RingVariant }}</span
+                >
+                {{ jSNG.name }}
+              </div>
+            </td>
+            <td class="table-sitout-data-text p-2 d-flex align-center">
+              <div class="sitout-data-text d-flex align-center gap4">
+                <ng-container *ngFor="let fP of Array(getSub(jSNG.joinedPlayers, 0))">
+                  <div class="user-joined-icon p-rel ovf-hide">
+                    <img
+                      class="p-abs wp100 hp100 obj-con"
+                      [src]="assetsImagePath + 'lobby/userJoined.svg'"
+                      alt="joined"
+                      i18n
+                      i18n-alt
+                    />
+                  </div>
+                </ng-container>
+                <ng-container
+                  *ngFor="let tp of Array(getSub(jSNG.totalPlayers, jSNG.joinedPlayers))"
+                >
+                  <div class="user-not-joined-icon p-rel ovf-hide">
+                    <img
+                      class="p-abs wp100 hp100 obj-con"
+                      [src]="assetsImagePath + 'lobby/userNotJoined.svg'"
+                      alt="not-joined"
+                      i18n
+                      i18n-alt
+                    />
+                  </div>
+                </ng-container>
+              </div>
+            </td>
+            <td class="table-sitout-data-text p-2 d-flex align-center">
+              <div class="sitout-data-text d-flex align-center gap4">
+                <div class="trophy-icon p-rel ovf-hide">
+                  <img
+                    class="p-abs wp100 hp100 obj-con"
+                    [src]="assetsImagePath + 'lobby/prizeCup.svg'"
+                    alt="prize"
+                    i18n
+                    i18n-alt
+                  />
+                </div>
+                <div class="text fs14 ft-primary-b grad-orange-text">₹ {{ jSNG.prizes }}</div>
+              </div>
+            </td>
+            <td class="table-sitout-data-text p-2 d-flex align-center">
+              <div class="sitout-data-text d-flex align-center">
+                <button
+                  type="button"
+                  mat-button
+                  class="btn btn-text-primary lobby-btn"
+                  trackEvents
+                  id="lobby-sitNgo-ticket-btn"
+                  (click)="openRegistrationDialog(jSNG)"
+                >
+                  <span class="gradient-text" i18n>₹ {{ jSNG.fee }}</span>
+                </button>
+              </div>
+            </td>
+            <td class="table-sitout-data-text p-2 d-flex align-center">
+              <div class="sitout-data-text d-flex align-center">
+                <button
+                  type="button"
+                  mat-button
+                  class="btn btn-status running"
+                  *ngIf="jSNG.status === 'running'"
+                  trackEvents
+                  id="lobby-sitNgo-registering-btn"
+                  i18n
+                >
+                  Running
+                </button>
+                <button
+                  type="button"
+                  mat-button
+                  class="btn btn-status finished"
+                  *ngIf="jSNG.status === 'finished'"
+                  trackEvents
+                  id="lobby-sitNgo-playing-btn"
+                  i18n
+                >
+                  Finished
+                </button>
+                <button
+                  type="button"
+                  mat-button
+                  class="btn btn-status registering"
+                  *ngIf="jSNG.status === 'registering'"
+                  trackEvents
+                  id="lobby-sitNgo-registering-btn"
+                  i18n
+                >
+                  Registering
+                </button>
+                <button
+                  type="button"
+                  mat-button
+                  class="btn btn-status playing"
+                  *ngIf="jSNG.status === 'playing'"
+                  trackEvents
+                  id="lobby-sitNgo-playing-btn"
+                  i18n
+                >
+                  Playing
+                </button>
+                <button
+                  type="button"
+                  mat-button
+                  class="btn btn-status registered"
+                  *ngIf="jSNG.status === 'registered'"
+                  trackEvents
+                  id="lobby-sitNgo-registered-btn"
+                >
+                  <span class="status-text" i18n>Registered</span>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+  <!-- For Empty Table -->
+  <div
+    class="table-container empty wp100 d-flex flex-col jst-center align-center bg-light p-2 br16"
+    *ngIf="isTablesNotAvailable"
+  >
+    <div class="ring-table-empty d-flex flex-col align-center gap16">
+      <div class="no-data-table-image p-rel w198 h100 ovf-hide">
+        <img
+          class="p-abs wp100 hp100 obj-con"
+          alt="NoTable"
+          [src]="assetsImagePath + 'lobby/NoTable.png'"
+          alt="lobby"
+          i18n
+          i18n-alt
+        />
+      </div>
+      <div class="fs16 ft-primary-d grey600" i18n>No SNGs Currently Available.</div>
+      <div
+        class="fs14 ft-primary-md grey500"
+        i18n
+        *ngIf="isFilterSelected && filters && filters.length > 0"
+      >
+        Please change your filter settings to see the list of SNGs.
+      </div>
+    </div>
+  </div>
+</div>

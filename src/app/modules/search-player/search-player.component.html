@@ -1,0 +1,118 @@
+<div class="search-player flex-only-col gap24 wp100 h100 bg-grey200 ovf-y-scroll">
+  <div class="top-info-text grad-red-text fs14 ft-primary-sb ml-4 py-2" i18n>
+    (Only For Tournaments)
+  </div>
+
+  <form class="flex-only-col gap12 bg-primary-light br16 p-4" [formGroup]="searchPlayerForm">
+    <div class="flex-start gap12">
+      <div class="flex-start gap16">
+        <label class="fs14 ft-primary-b grey700" i18n>Enter User Name</label>
+        <input type="text" autocompleteOff />
+      </div>
+      <button type="button" mat-button class="btn btn-primary search-btn gap8">
+        <img
+          [src]="assetsImagePath + 'search-player/SearchIcon.svg'"
+          alt="SearchIcon"
+          i18n
+          i18n-alt
+        />
+        <span class="fs14 ft-primary-md primary-light" i18n>Search</span>
+      </button>
+    </div>
+
+    <table class="app-table w100" aria-label="Players Table" i18n-aria-label>
+      <thead class="app-table-head">
+        <tr class="flex-space bg-grey100 br8 px-4 py-3">
+          <th
+            *ngFor="let tH of displayedColumns"
+            class="flex-start gap8 fs12 ft-primary-b grey600 text-uppercase cursor"
+            i18n
+          >
+            <mat-checkbox
+              class="checkbox lobby-filter-check-box"
+              [checked]="false"
+              formControlName="allSelected"
+              *ngIf="tH == 'select all'"
+            ></mat-checkbox>
+            {{ tH }}
+          </th>
+        </tr>
+      </thead>
+      <tbody class="app-table-body">
+        <tr class="flex-space bg-grey000 br8 my-3 p-4" *ngFor="let spD of searchPlayerData">
+          <td class="flex-start">
+            <mat-checkbox
+              class="checkbox lobby-filter-check-box"
+              [checked]="spD.isSelected || searchPlayerForm.get('allSelected')?.value"
+            ></mat-checkbox>
+          </td>
+          <td class="flex-start fs14 ft-primary-b grey900" i18n>{{ spD.tourney }}</td>
+          <td class="flex-start">
+            <div
+              class="spec-div d-flex jst-center align-center br20 py-1 px-3 bg-purple000 fs10 ft-primary-sb purple600"
+              i18n
+            >
+              Holdem
+            </div>
+          </td>
+          <td class="flex-start fs14 ft-primary-b grey900" i18n>{{ spD.players }}</td>
+          <td class="flex-start">
+            <button
+              type="button"
+              mat-button
+              class="btn btn-status running"
+              *ngIf="spD.status === 'running'"
+              trackEvents
+              id="lobby-tournament-running-btn"
+              i18n
+            >
+              Running
+            </button>
+            <button
+              type="button"
+              mat-button
+              class="btn btn-status cancelled"
+              *ngIf="spD.status === 'cancelled'"
+              trackEvents
+              id="lobby-tournament-cancelled-btn"
+              i18n
+            >
+              Cancelled
+            </button>
+            <button
+              type="button"
+              mat-button
+              class="btn btn-status finished"
+              *ngIf="spD.status === 'finished'"
+              trackEvents
+              id="lobby-tournament-finished-btn"
+              i18n
+            >
+              Finished
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+
+  <div class="flex-start gap12" *ngIf="!hideMeChecked">
+    <button
+      type="button"
+      mat-button
+      class="btn btn-primary"
+      [disabled]="!searchPlayerForm.valid"
+      i18n
+    >
+      Open Lobby
+    </button>
+    <div class="flex-start gap8 fs12 ft-primary-sb grey600" i18n>
+      <mat-checkbox
+        class="checkbox lobby-filter-check-box"
+        [checked]="hideMeChecked"
+        (change)="onHideMeChange($event.checked)"
+      ></mat-checkbox>
+      Hide me from search player
+    </div>
+  </div>
+</div>

@@ -1,0 +1,167 @@
+@import '../../../../assets/abstract/core';
+
+.open-tables-container {
+  @include column-start;
+
+  padding: 8px 16px;
+  gap: 8px;
+  margin-left: 80px;
+  width: calc(100% - 80px);
+  height: 64px;
+  background: $grey900;
+
+  .open-tables-widget {
+    @include row;
+
+    padding: 0;
+    gap: $gap12;
+    width: 1254px;
+    height: 48px;
+    overflow-x: auto;
+
+    .open-tables-title {
+      @include row;
+
+      padding: 8px 16px;
+      gap: 6px;
+      width: 152px;
+      height: 48px;
+      background: $bg-dark;
+      border-radius: 8px;
+
+      .open-table-icon {
+        background-image: url('/assets/images/footer/drag.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 24px 24px;
+        padding: 10px;
+      }
+
+      .open-table-text {
+        font-family: $font-semi-bold;
+        font-size: $fs12;
+        color: $bg-light;
+      }
+    }
+
+    .table-widget {
+      position: relative;
+
+      @include center;
+
+      padding: 8px 9px;
+      isolation: isolate;
+      width: 96px;
+      height: 48px;
+      background: $bg-dark;
+      border-radius: 8px;
+      border: 1.5px solid transparent;
+      transition: $transition;
+      cursor: pointer;
+
+      .play-card {
+        background-repeat: no-repeat;
+        background-position: center;
+        background-position-y: -30px;
+        background-size: inherit;
+        border: 1px solid $bg-light;
+        filter: drop-shadow(0 2px 32px rgba(0 0 0 / 40%));
+        border-radius: 4px;
+        width: 22px;
+        height: 32px;
+        transform: translateX(5px);
+
+        &.two-cards {
+          &:nth-child(2n + 1) {
+            background-image: url('../../../../assets/images/footer/cards/ace-black-diamond.svg');
+            z-index: 0;
+            margin: 0 -8px;
+          }
+
+          &:nth-child(2n + 2) {
+            background-image: url('../../../../assets/images/footer/cards/ten-diamond.svg');
+            z-index: 1;
+          }
+        }
+
+        &.five-cards {
+          &:nth-child(5n + 1) {
+            background-image: url('../../../../assets/images/footer/cards/ten-diamond.svg');
+            z-index: 0;
+            margin: 0 -6px;
+          }
+
+          &:nth-child(5n + 2) {
+            background-image: url('../../../../assets/images/footer/cards/ace-black-diamond.svg');
+            z-index: 1;
+            margin: 0 -6px;
+          }
+
+          &:nth-child(5n + 3) {
+            background-image: url('../../../../assets/images/footer/cards/ten-diamond.svg');
+            z-index: 2;
+            margin: 0 -6px;
+          }
+
+          &:nth-child(5n + 4) {
+            background-image: url('../../../../assets/images/footer/cards/ace-black-diamond.svg');
+            z-index: 3;
+            margin: 0 -6px;
+          }
+
+          &:nth-child(5n + 5) {
+            background-image: url('../../../../assets/images/footer/cards/ten-diamond.svg');
+            z-index: 4;
+            margin: 0 -6px;
+          }
+        }
+      }
+
+      .play-status {
+        @include row;
+
+        padding: 0 0 0 6px;
+        gap: $gap4;
+        position: absolute;
+        width: 39px;
+        height: 16px;
+        left: 0;
+        bottom: 0;
+        background: $bg-light;
+        border-radius: $br8;
+        z-index: 10;
+
+        .play-status-text {
+          @include center;
+
+          font-family: $font-semi-bold;
+          font-size: $fs10;
+          color: $bg-dark;
+        }
+
+        .play-status-percent {
+          @include center;
+
+          padding: 2px;
+          gap: 8px;
+          width: 23px;
+          height: 16px;
+          background: $grad-orange;
+          font-family: $font-semi-bold;
+          font-size: $fs10;
+          color: $bg-light;
+          border-top-right-radius: $br8;
+          border-bottom-right-radius: $br8;
+        }
+      }
+
+      &.selected-table {
+        border: 1.5px solid $primary-success;
+      }
+
+      &:hover {
+        border: 1.5px solid $primary-success;
+      }
+    }
+  }
+}

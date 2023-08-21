@@ -1,0 +1,1117 @@
+<div class="game-table-conatiner-background p-rel wp100 hp100 ovf-hide">
+  <img class="p-abs wp100 hp100 obj-cov" [src]="selectedBackground.fullImg" alt="theme" />
+  <div class="game-table-container p-rel d-flex flex-col wp100 hp100 pt-4 pr-4">
+    <div class="game-table-header d-flex jst-space align-center z-2">
+      <div class="game-table-left-options">
+        <div class="game-left-options-container d-flex align-center bg-grey900 gap12 p-4">
+          <div class="game-left-options d-flex align-start gap16">
+            <div
+              class="game-left-option-icons d-flex jst-center align-center br12 bg-grey700 cursor"
+            >
+              <div class="home-icon p-rel ovf-hide">
+                <img
+                  class="p-abs wp100 hp100 obj-con"
+                  src="../../../assets/images/game-table/home.svg"
+                  alt="home"
+                  i18n
+                  i18n-alt
+                />
+              </div>
+            </div>
+            <div
+              class="game-left-option-icons d-flex jst-center align-center br12 bg-grey700 cursor"
+              (click)="table.toggle($event)"
+            >
+              <div class="table-icon p-rel ovf-hide">
+                <img
+                  class="p-abs wp100 hp100 obj-con"
+                  src="../../../assets/images/game-table/OpenTableIcon.svg"
+                  alt="table"
+                  i18n
+                  i18n-alt
+                />
+              </div>
+              <p-overlayPanel #table>
+                <ng-template pTemplate="content">
+                  <div class="open-table-variants-container-widget">
+                    <div class="open-table-variants-container">
+                      <div class="variant-card-container">
+                        <div class="game-cards play-cards-sm s">
+                          <div class="card-face" i18n>A</div>
+                          <div class="card-suite btm"></div>
+                        </div>
+                        <div class="game-cards play-cards-sm h">
+                          <div class="card-face" i18n>A</div>
+                          <div class="card-suite btm"></div>
+                        </div>
+                        <div class="game-cards play-cards-sm c">
+                          <div class="card-face" i18n>10</div>
+                          <div class="card-suite btm"></div>
+                        </div>
+                        <div class="game-cards play-cards-sm s">
+                          <div class="card-face" i18n>A</div>
+                          <div class="card-suite btm"></div>
+                        </div>
+                        <div class="game-cards play-cards-sm d">
+                          <div class="card-face" i18n>Q</div>
+                          <div class="card-suite btm"></div>
+                        </div>
+                        <div class="game-cards play-cards-sm c">
+                          <div class="card-face" i18n>10</div>
+                          <div class="card-suite btm"></div>
+                        </div>
+                      </div>
+                      <div class="option-widget">
+                        <div class="option-widget-text" i18n>R</div>
+                        <div class="option-widget-right-count" i18n>20%</div>
+                      </div>
+                    </div>
+                    <div class="open-table-variants-container">
+                      <div class="variant-card-container">
+                        <div class="game-cards play-cards-sm s">
+                          <div class="card-face" i18n>A</div>
+                          <div class="card-suite btm"></div>
+                        </div>
+                        <div class="game-cards play-cards-sm h">
+                          <div class="card-face" i18n>A</div>
+                          <div class="card-suite btm"></div>
+                        </div>
+                        <div class="game-cards play-cards-sm c">
+                          <div class="card-face" i18n>10</div>
+                          <div class="card-suite btm"></div>
+                        </div>
+                        <div class="game-cards play-cards-sm s">
+                          <div class="card-face" i18n>A</div>
+                          <div class="card-suite btm"></div>
+                        </div>
+                        <div class="game-cards play-cards-sm d">
+                          <div class="card-face" i18n>Q</div>
+                          <div class="card-suite btm"></div>
+                        </div>
+                        <div class="game-cards play-cards-sm c">
+                          <div class="card-face" i18n>10</div>
+                          <div class="card-suite btm"></div>
+                        </div>
+                      </div>
+                      <div class="option-widget">
+                        <div class="option-widget-text" i18n>T</div>
+                        <div class="option-widget-right-count" i18n>70%</div>
+                      </div>
+                    </div>
+                    <div class="open-table-variants-container is-red">
+                      <div class="variant-card-container">
+                        <div class="game-cards play-cards-sm s">
+                          <div class="card-face" i18n>A</div>
+                          <div class="card-suite btm"></div>
+                        </div>
+                        <div class="game-cards play-cards-sm c">
+                          <div class="card-face" i18n>10</div>
+                          <div class="card-suite btm"></div>
+                        </div>
+                      </div>
+                      <div class="option-widget">
+                        <div class="option-widget-text" i18n>R</div>
+                        <div class="option-widget-right-count">60%</div>
+                      </div>
+                    </div>
+                    <div class="open-table-variants-container is-green">
+                      <div class="variant-card-container">
+                        <div class="game-cards play-cards-sm s">
+                          <div class="card-face" i18n>A</div>
+                          <div class="card-suite btm"></div>
+                        </div>
+                        <div class="game-cards play-cards-sm h">
+                          <div class="card-face" i18n>A</div>
+                          <div class="card-suite btm"></div>
+                        </div>
+                        <div class="game-cards play-cards-sm c">
+                          <div class="card-face" i18n>10</div>
+                          <div class="card-suite btm"></div>
+                        </div>
+                        <div class="game-cards play-cards-sm s">
+                          <div class="card-face" i18n>A</div>
+                          <div class="card-suite btm"></div>
+                        </div>
+                        <div class="game-cards play-cards-sm c">
+                          <div class="card-face" i18n>10</div>
+                          <div class="card-suite btm"></div>
+                        </div>
+                      </div>
+                      <div class="option-widget">
+                        <div class="option-widget-text" i18n>T</div>
+                        <div class="option-widget-right-count">70%</div>
+                      </div>
+                    </div>
+                    <div class="open-table-variants-container variant-text-content">
+                      <div class="variant-text" i18n>Holdem</div>
+                      <div class="variant-value" i18n>100/200</div>
+                      <div class="option-widget-circle" i18n>R</div>
+                    </div>
+                    <div class="open-table-variants-container variant-text-content">
+                      <div class="variant-text" i18n>Holdem</div>
+                      <div class="variant-value" i18n>100/200</div>
+                      <div class="option-widget-circle" i18n>R</div>
+                    </div>
+                  </div>
+                </ng-template>
+              </p-overlayPanel>
+            </div>
+            <div
+              class="game-left-option-icons d-flex jst-center align-center br12 bg-grey700 cursor"
+            >
+              <div class="poker-chip-icon p-rel ovf-hide">
+                <img
+                  class="p-abs wp100 hp100 obj-con"
+                  src="../../../assets/images/game-table/poker_chip.svg"
+                  alt="poker-chip"
+                  i18n
+                  i18n-alt
+                />
+              </div>
+            </div>
+            <div
+              class="game-left-option-icons d-flex jst-center align-center br12 bg-grey700 cursor"
+            >
+              <div class="timer-icon p-rel ovf-hide">
+                <img
+                  class="p-abs wp100 hp100 obj-con"
+                  src="../../../assets/images/game-table/timer.svg"
+                  alt="timer"
+                  i18n
+                  i18n-alt
+                />
+              </div>
+            </div>
+            <div
+              class="game-left-option-icons d-flex jst-center align-center br12 bg-grey700 cursor"
+              (click)="openSettingsWindow()"
+            >
+              <div class="settings-icon p-rel ovf-hide">
+                <img
+                  class="p-abs wp100 hp100 obj-con"
+                  src="../../../assets/images/game-table/settings.svg"
+                  alt="settings"
+                  i18n
+                  i18n-alt
+                />
+              </div>
+            </div>
+            <div
+              class="game-left-option-icons d-flex jst-center align-center br12 bg-grey700 cursor"
+            >
+              <div class="wallet-icon p-rel ovf-hide">
+                <img
+                  class="p-abs wp100 hp100 obj-con"
+                  src="../../../assets/images/game-table/wallet-plus.svg"
+                  alt="wallet"
+                  i18n
+                  i18n-alt
+                />
+              </div>
+            </div>
+            <div
+              class="game-left-option-icons d-flex jst-center align-center br12 bg-grey700 cursor tool-tip bottom game-info"
+            >
+              <!-- (click)="infotable.toggle($event)" -->
+              <div class="info-icon p-rel ovf-hide">
+                <img
+                  class="p-abs wp100 hp100 obj-con"
+                  src="../../../assets/images/game-table/info.svg"
+                  alt="info"
+                  i18n
+                  i18n-alt
+                />
+              </div>
+              <div class="tooltip-inner-text">
+                <div class="info-popup-container d-flex flex-col jst-start align-start">
+                  <div class="info-container-widget d-flex flex-col jst-start align-start">
+                    <div class="info-popup-header d-flex flex-col align-start bg-grey900">
+                      <div class="info-top-header d-flex jst-space align-center">
+                        <div class="info-top-title d-flex align-center">
+                          <div
+                            class="info-top-left d-flex jst-center align-center bg-grey800 fs12 ft-primary-b grey400"
+                            i18n
+                          >
+                            {{
+                              currRoomData.ringVariant === 'HOLDEM'
+                                ? 'Hold’em'
+                                : currRoomData.ringVariant === 'OMAHA'
+                                ? 'PL Omaha'
+                                : currRoomData.ringVariant === 'OMAHA_5'
+                                ? 'PLO 5'
+                                : currRoomData.ringVariant === 'OMAHA_6'
+                                ? 'PLO 6'
+                                : currRoomData.ringVariant === 'PINEAPPLE_CZ'
+                                ? 'Crazy Pineapple'
+                                : '-'
+                            }}
+                          </div>
+                          <div class="info-title fs16 ft-primary-b grey000" i18n>
+                            {{ currRoomData.roomName }}
+                          </div>
+                        </div>
+                        <div
+                          class="info-top-options d-flex jst-center align-center bg-grey800 fs12 ft-primary-b light"
+                          i18n
+                          *ngIf="
+                            currRoomData.gameType.toUpperCase() === 'RING' ||
+                            currRoomData.gameType.toUpperCase() === 'REAL'
+                          "
+                        >
+                          {{ currRoomData.isDynamic ? currRoomData.gameType : 'Cash Games' }}
+                        </div>
+                      </div>
+                      <div class="info-header d-flex align-start">
+                        <div class="info-header-content d-flex flex-col align-start">
+                          <div
+                            class="info-header-title d-flex align-start fs12 ft-primary-b text-uppercase grey400"
+                            i18n
+                          >
+                            Blinds
+                          </div>
+                          <div
+                            class="info-header-value d-flex align-start fs14 ft-primary-b text-uppercase light"
+                            i18n
+                          >
+                            {{
+                              currRoomData.isDecimalTable
+                                ? (currRoomData.smallBlind | toFixed : 2)
+                                : (currRoomData.smallBlind | math : 'INR')
+                            }}/{{
+                              currRoomData.isDecimalTable
+                                ? (currRoomData.bigBlind | toFixed : 2)
+                                : (currRoomData.bigBlind | math : 'INR')
+                            }}
+                          </div>
+                        </div>
+                        <div class="info-header-content d-flex flex-col align-start">
+                          <div
+                            class="info-header-title d-flex align-start fs12 ft-primary-b text-uppercase grey400"
+                            i18n
+                          >
+                            Buy IN
+                          </div>
+                          <div
+                            class="info-header-value d-flex align-start fs14 ft-primary-b text-uppercase light"
+                            i18n
+                          >
+                            {{
+                              currRoomData.isDecimalTable
+                                ? (currRoomData.buyInLow | toFixed : 2)
+                                : (currRoomData.buyInLow | math : 'INR')
+                            }}/{{
+                              currRoomData.isDecimalTable
+                                ? (currRoomData.buyInHigh | toFixed : 2)
+                                : (currRoomData.buyInHigh | math : 'INR')
+                            }}
+                          </div>
+                        </div>
+                        <div class="info-header-content d-flex flex-col align-start">
+                          <div
+                            class="info-header-title d-flex align-start fs12 ft-primary-b text-uppercase grey400"
+                            i18n
+                          >
+                            Players
+                          </div>
+                          <div
+                            class="info-header-value d-flex align-start fs14 ft-primary-b text-uppercase light"
+                            i18n
+                          >
+                            {{ playersArray[0].joinedPlayers }}/{{ currRoomData.players }}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="info-popup-body d-flex align-start">
+                      <div class="info-body-content d-flex flex-col align-start">
+                        <div
+                          class="info-body-title d-flex align-start fs12 ft-primary-b text-uppercase grey400"
+                          i18n
+                        >
+                          Turn Time
+                        </div>
+                        <div
+                          class="info-body-value d-flex align-start fs14 ft-primary-b light"
+                          i18n
+                        >
+                          {{ currRoomData.turnTime ? currRoomData.turnTime + ' Seconds' : '-' }}
+                        </div>
+                      </div>
+                      <div class="info-body-content d-flex flex-col align-start">
+                        <div
+                          class="info-body-title d-flex align-start fs12 ft-primary-b text-uppercase grey400"
+                          i18n
+                        >
+                          Time Bank
+                        </div>
+                        <div
+                          class="info-body-value d-flex align-start fs14 ft-primary-b light"
+                          i18n
+                        >
+                          {{ currRoomData.timeBank ? currRoomData.timeBank + ' Seconds' : '-' }}
+                        </div>
+                      </div>
+                      <div class="info-body-content d-flex flex-col align-start">
+                        <div
+                          class="info-body-title d-flex align-start fs12 ft-primary-b text-uppercase grey400"
+                          i18n
+                        >
+                          Anti Banking
+                        </div>
+                        <div
+                          class="info-body-value d-flex align-start fs14 ft-primary-b light"
+                          i18n
+                        >
+                          {{
+                            currRoomData.coolOffTime ? currRoomData.coolOffTime + ' Minute' : '-'
+                          }}
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="info-popup-footer d-flex jst-space align-center bg-grey900"
+                      (click)="
+                        copyToClipBoard(
+                          'Hand ID: ' +
+                            (gameInfo.tableIdInfo ? gameInfo.tableIdInfo : 0) +
+                            ' | Table ID: ' +
+                            (currRoomData.roomName ? currRoomData.roomName.split('#')[1] : 0)
+                        )
+                      "
+                    >
+                      <div
+                        class="info-footer-title d-flex align-center gap6 fs16 ft-primary-b"
+                        i18n
+                      >
+                        <span class="grey200">Hand ID:</span>
+                        <span class="light">
+                          {{ gameInfo.tableIdInfo ? gameInfo.tableIdInfo : 0 }}
+                        </span>
+                        <span class="light"> | </span><span class="grey200">Table ID:</span>
+                        <span class="light">
+                          {{ currRoomData.roomName ? currRoomData.roomName.split('#')[1] : 0 }}
+                        </span>
+                      </div>
+                      <div
+                        class="info-footer-icon d-flex jst-center align-center"
+                        *ngIf="!showCopied"
+                      ></div>
+
+                      <div class="copied" *ngIf="showCopied">
+                        <span i18n>Copied</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="game-left-toggle d-flex jst-center align-center cursor">
+            <div class="toggle-icon"></div>
+          </div>
+        </div>
+      </div>
+      <div class="game-table-right-options">
+        <div class="game-right-options-container d-flex jst-space align-center p1 gap-1 bg-grey900">
+          <div class="game-right-options d-flex align-center gap-1">
+            <div
+              class="game-right-option-icons d-flex jst-center align-center bg-grey700 br12 cursor"
+            >
+              <div class="window-icon p-rel ovf-hide">
+                <img
+                  class="p-abs wp100 hp100 obj-con"
+                  src="../../../assets/images/game-table/window.svg"
+                  alt="window"
+                  i18n
+                  i18n-alt
+                />
+              </div>
+            </div>
+            <div
+              class="game-right-option-icons d-flex jst-center align-center bg-grey700 br12 cursor"
+            >
+              <div class="duplicate-icon p-rel ovf-hide">
+                <img
+                  class="p-abs wp100 hp100 obj-con"
+                  src="../../../assets/images/game-table/duplicate.svg"
+                  alt="duplicate"
+                  i18n
+                  i18n-alt
+                />
+              </div>
+            </div>
+            <div
+              class="game-right-option-icons d-flex jst-center align-center bg-grey700 br12 cursor"
+              (click)="viewLeaderboard()"
+            >
+              <div class="trophy-icon p-rel ovf-hide">
+                <img
+                  class="p-abs wp100 hp100 obj-con"
+                  src="../../../assets/images/game-table/trophy.svg"
+                  alt="trophy"
+                  i18n
+                  i18n-alt
+                />
+              </div>
+            </div>
+          </div>
+          <div class="game-right-button d-flex jst-center align-center" *ngIf="showJoinSimilarBtn">
+            <button type="button" mat-button class="btn btn-join" i18n (click)="joinSimilar()">
+              <i class="pi pi-plus"></i> Join Similar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="game-table-body p-rel d-flex jst-center align-center wp100 hp100">
+      <div class="game-table p-rel">
+        <img
+          class="p-abs wp100 hp100 obj-top obj-cov"
+          [src]="selectedTable.fullImg"
+          alt="game-table"
+        />
+        <div class="game-table-users-container p-rel d-flex jst-center align-center mr-auto">
+          <div class="player-container-widget p-abs d-flex flex-col align-start wp100">
+            <div
+              *ngFor="let player of playersArray"
+              class="players-container p-rel d-flex flex-col jst-center align-center cursor player4"
+              [ngClass]="player.className"
+            >
+              <div
+                *ngIf="player.name !== ''"
+                class="player-profile-image d-flex jst-center align-center circle bg-light"
+              >
+                <div class="player-image" [ngClass]="player.avatar"></div>
+              </div>
+              <div
+                *ngIf="player.name === ''"
+                class="player-position-empty d-flex jst-center align-center circle bg-dark"
+              >
+                <div
+                  class="player-empty p-rel d-flex jst-center align-center bg-grey500 circle"
+                  (click)="openDialog(this.buyInComponent)"
+                >
+                  <div class="vertical p-abs br20 bg-grey900"></div>
+                  <div class="horizontal br20 bg-grey900"></div>
+                </div>
+              </div>
+              <div
+                *ngIf="player.name === ''"
+                (click)="seatMe(player.seatId)"
+                class="player-profile-details d-flex flex-col jst-center align-center bg-dark z12"
+              >
+                <div class="player-profile-name fs12 ft-primary-b grey000" i18n>Sit Here</div>
+              </div>
+              <div
+                *ngIf="player.name !== ''"
+                class="player-profile-details d-flex flex-col align-center bg-dark z12"
+              >
+                <div class="player-profile-name fs12 ft-primary-b grey300" i18n>
+                  {{ player.name }}
+                </div>
+                <div class="player-profile-value fs12 transparent ft-primary-b" i18n>
+                  {{ player.chips }}
+                </div>
+              </div>
+              <div
+                *ngIf="player.name !== ''"
+                class="player-profile-cards-back d-flex align-center z13"
+              >
+                <div class="cards br2"></div>
+                <div class="cards br2"></div>
+              </div>
+              <div *ngIf="player.name !== ''" class="player-cards-container d-flex align-center">
+                <div class="game-cards show-play-cards c">
+                  <div class="card-face" i18n>10</div>
+                  <div class="card-suite mid"></div>
+                  <div class="card-suite btm"></div>
+                </div>
+                <div class="game-cards show-play-cards h">
+                  <div class="card-face" i18n>9</div>
+                  <div class="card-suite mid"></div>
+                  <div class="card-suite btm"></div>
+                </div>
+              </div>
+              <div
+                *ngIf="player.name !== ''"
+                class="small-big-blind-capsule top-right d-flex jst-center align-center br9 grad-pink-bg fs10 ft-primary-sb light p-1"
+              >
+                SB
+              </div>
+              <div
+                *ngIf="player.name !== ''"
+                class="adda-capsule top-left d-flex jst-center align-center grad-red-bg fs10 ft-primary-sb circle light p-1"
+              >
+                52
+              </div>
+            </div>
+          </div>
+          <div class="betting-pot-container d-flex flex-col jst-center align-center gap12">
+            <div class="pot-bet-value-widget-container d-flex jst-center align-center wp80">
+              <div
+                class="pot-bet-value-widget px-2 py-1 d-flex align-center bg-grey900 br20 gap4 w-max"
+              >
+                <div class="pot-text fs14 ft-primary-b grey400" i18n>Pot</div>
+                <div class="pot-poker-chip-icon wh14"></div>
+                <div class="pot-value fs14 ft-primary-b light" i18n>48,00,000</div>
+              </div>
+            </div>
+            <div
+              class="poker-chips-container d-flex flex-col jst-center align-center wp100 gap8 mr-auto flex-wrap"
+            >
+              <div class="poker-chips-coins-widget d-flex align-center gap4">
+                <div class="poker-chip-coins d-flex align-center gap4 py-1 px-2 bg-green900 br20">
+                  <div class="poker-chip-icon"></div>
+                  <div class="poker-chip-value fs10 ft-primary-md grey300" i18n>48,00,000</div>
+                </div>
+                <div class="poker-chip-coins d-flex align-center gap4 py-1 px-2 bg-green900 br20">
+                  <div class="poker-chip-icon"></div>
+                  <div class="poker-chip-value fs10 ft-primary-md grey300" i18n>48,00,000</div>
+                </div>
+                <div class="poker-chip-coins d-flex align-center gap4 py-1 px-2 bg-green900 br20">
+                  <div class="poker-chip-icon"></div>
+                  <div class="poker-chip-value fs10 ft-primary-md grey300" i18n>48,00,000</div>
+                </div>
+                <div class="poker-chip-coins d-flex align-center gap4 py-1 px-2 bg-green900 br20">
+                  <div class="poker-chip-icon"></div>
+                  <div class="poker-chip-value fs10 ft-primary-md grey300" i18n>48,00,000</div>
+                </div>
+              </div>
+              <div class="poker-chips-coins-widget d-flex align-center gap4">
+                <div class="poker-chip-coins d-flex align-center gap4 py-1 px-2 bg-green900 br20">
+                  <div class="poker-chip-icon"></div>
+                  <div class="poker-chip-value fs10 ft-primary-md grey300" i18n>48,00,000</div>
+                </div>
+                <div class="poker-chip-coins d-flex align-center gap4 py-1 px-2 bg-green900 br20">
+                  <div class="poker-chip-icon"></div>
+                  <div class="poker-chip-value fs10 ft-primary-md grey300" i18n>48,00,000</div>
+                </div>
+                <div class="poker-chip-coins d-flex align-center gap4 py-1 px-2 bg-green900 br20">
+                  <div class="poker-chip-icon"></div>
+                  <div class="poker-chip-value fs10 ft-primary-md grey300" i18n>48,00,000</div>
+                </div>
+                <div class="poker-chip-coins d-flex align-center gap4 py-1 px-2 bg-green900 br20">
+                  <div class="poker-chip-icon"></div>
+                  <div class="poker-chip-value fs10 ft-primary-md grey300" i18n>48,00,000</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="cards-deck-container d-flex flex-col jst-center align-center gap12">
+            <div class="card-deck-row d-flex align-center gap2">
+              <!--
+                old code :: class="players-container p-rel d-flex flex-col jst-center align-center cursor pt-1 player4 player-caps2-1" [ngClass]="player.className"
+               -->
+              <ng-container *ngFor="let card of playCards; let i = index">
+                <div class="game-cards play-cards" *ngIf="i <= 4" [ngClass]="card.cardType">
+                  <div class="card-face" i18n>{{ card.cardName }}</div>
+                  <div class="card-suite mid"></div>
+                  <div class="card-suite btm"></div>
+                </div>
+              </ng-container>
+            </div>
+            <div class="card-deck-row d-flex align-center gap2">
+              <ng-container *ngFor="let card of playCards; let i = index">
+                <div class="game-cards play-cards" *ngIf="i >= 5" [ngClass]="card.cardType">
+                  <div class="card-face" i18n>{{ card.cardName }}</div>
+                  <div class="card-suite mid"></div>
+                  <div class="card-suite btm"></div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="game-table-footer bottom-left d-flex jst-space align-end z10 wp100">
+      <div class="game-table-left-footer d-flex jst-start flex-col">
+        <div class="game-table-left-footer-container chat-expanded d-flex align-center">
+          <div class="game-table-chat-left d-flex flex-col align-start bg-dark">
+            <div class="game-table-chat-header d-flex align-center">
+              <div class="game-table-chat-tabs">
+                <ul class="d-flex align-center p-0 m-0">
+                  <li
+                    class="d-flex jst-center align-center w-max bg-dark cursor"
+                    [ngClass]="{ 'chat-tab-active': chatClick == 'dealer' }"
+                    (click)="chatClick = 'dealer'"
+                  >
+                    <div class="tab-text fs12 ft-primary-b grey300" i18n>Dealer Chat</div>
+                  </li>
+                  <li
+                    class="d-flex jst-center align-center w-max bg-dark cursor"
+                    [ngClass]="{ 'chat-tab-active': chatClick == 'hands' }"
+                    (click)="chatClick = 'hands'"
+                  >
+                    <div class="tab-text fs12 ft-primary-b grey300" i18n>Hands</div>
+                  </li>
+                  <li
+                    class="d-flex jst-center align-center w-max bg-dark cursor"
+                    [ngClass]="{ 'chat-tab-active': chatClick == 'notes' }"
+                    (click)="chatClick = 'notes'"
+                  >
+                    <div class="tab-text fs12 ft-primary-b grey300" i18n>Notes</div>
+                  </li>
+                  <!-- <li class="d-flex jst-center align-center w-max bg-dark cursor" [ngClass]="{ 'chat-tab-active': chatClick == 'stats' }"
+                    (click)="chatClick = 'stats'">
+                    <div class="tab-text fs12 ft-primary-b grey300" i18n>My Stats</div>
+                  </li> -->
+                  <li
+                    class="d-flex jst-center align-center w-max bg-dark cursor"
+                    [ngClass]="{ 'chat-tab-active': chatClick == 'info' }"
+                    (click)="chatClick = 'info'"
+                  >
+                    <div class="tab-text fs12 ft-primary-b grey300" i18n>Info</div>
+                  </li>
+                  <li
+                    class="d-flex jst-center align-center w-max bg-dark cursor"
+                    [ngClass]="{ 'chat-tab-active': chatClick == 'chat' }"
+                    (click)="chatClick = 'chat'"
+                  >
+                    <div class="tab-text fs12 ft-primary-b grey300" i18n>Chat</div>
+                  </li>
+                </ul>
+              </div>
+              <div class="game-table-chat-expand d-flex jst-center align-center bg-grey800 cursor">
+                <div class="expand-icon"></div>
+              </div>
+            </div>
+            <div
+              class="game-table-chat-container d-flex flex-col jst-start align-center ovf-y-auto"
+            >
+              <div *ngIf="chatClick == 'dealer'">
+                <div class="game-table-chat-message-container d-flex align-center ctext">
+                  <div
+                    class="game-table-chat-user user-one d-flex jst-center align-center fs-1 ft-primary-b"
+                    i18n
+                  >
+                    reidf7
+                  </div>
+                  <div class="game-table-chat-text fs-1 ft-primary-md grey000" i18n>
+                    Raise to 876BB
+                  </div>
+                </div>
+                <div class="game-table-chat-message-container d-flex align-center ctext">
+                  <div
+                    class="game-table-chat-user user-one d-flex jst-center align-center fs-1 ft-primary-b"
+                    i18n
+                  >
+                    Bidyut007
+                  </div>
+                  <div class="game-table-chat-text fs-1 ft-primary-md grey000" i18n>Check</div>
+                </div>
+                <div
+                  class="game-table-chat-message-container d-flex align-center ctext chat-selected"
+                >
+                  <div
+                    class="game-table-chat-user user-one d-flex jst-center align-center fs-1 ft-primary-b"
+                    i18n
+                  >
+                    Flop
+                  </div>
+                  <div class="game-table-chat-text fs-1 ft-primary-md grey000" i18n>
+                    #Hand 345665657
+                  </div>
+                </div>
+                <div class="game-table-chat-message-container d-flex align-center ctext">
+                  <div
+                    class="game-table-chat-user user-one d-flex jst-center align-center fs-1 ft-primary-b"
+                    i18n
+                  >
+                    reidf7
+                  </div>
+                  <div class="game-table-chat-text fs-1 ft-primary-md grey000" i18n>
+                    Raise to 876BB
+                  </div>
+                </div>
+                <div class="game-table-chat-message-container d-flex align-center ctext">
+                  <div
+                    class="game-table-chat-user user-one d-flex jst-center align-center fs-1 ft-primary-b"
+                    i18n
+                  >
+                    reidf7
+                  </div>
+                  <div class="game-table-chat-text fs-1 ft-primary-md grey000" i18n>
+                    Raise to 876BB
+                  </div>
+                </div>
+                <div class="game-table-chat-message-container d-flex align-center ctext">
+                  <div
+                    class="game-table-chat-user user-one d-flex jst-center align-center fs-1 ft-primary-b"
+                    i18n
+                  >
+                    Bidyut007
+                  </div>
+                  <div class="game-table-chat-text fs-1 ft-primary-md grey000" i18n>Check</div>
+                </div>
+              </div>
+              <div *ngIf="chatClick == 'hands'">
+                <table class="table table-chat" aria-label="Chat Table" i18n-aria-label>
+                  <thead>
+                    <tr>
+                      <th i18n>My Cards</th>
+                      <th i18n>Table Cards</th>
+                      <th i18n>Pot</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="cards-container">
+                          <div class="game-cards play-cards-sm s">
+                            <div class="card-face" i18n>J</div>
+                            <div class="card-suite btm"></div>
+                          </div>
+                          <div class="game-cards play-cards-sm s">
+                            <div class="card-face" i18n>10</div>
+                            <div class="card-suite btm"></div>
+                          </div>
+                          <div class="game-cards play-cards-sm s">
+                            <div class="card-face" i18n>9</div>
+                            <div class="card-suite btm"></div>
+                          </div>
+                          <div class="game-cards play-cards-sm s">
+                            <div class="card-face" i18n>8</div>
+                            <div class="card-suite btm"></div>
+                          </div>
+                          <div class="game-cards play-cards-sm d">
+                            <div class="card-face" i18n>9</div>
+                            <div class="card-suite btm"></div>
+                          </div>
+                          <div class="game-cards play-cards-sm d">
+                            <div class="card-face" i18n>8</div>
+                            <div class="card-suite btm"></div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="cards-container">
+                          <div class="game-cards play-cards-sm s">
+                            <div class="card-face" i18n>A</div>
+                            <div class="card-suite btm"></div>
+                          </div>
+                          <div class="game-cards play-cards-sm s">
+                            <div class="card-face" i18n>K</div>
+                            <div class="card-suite btm"></div>
+                          </div>
+                          <div class="game-cards play-cards-sm d">
+                            <div class="card-face" i18n>10</div>
+                            <div class="card-suite btm"></div>
+                          </div>
+                          <div class="game-cards play-cards-sm s">
+                            <div class="card-face" i18n>9</div>
+                            <div class="card-suite btm"></div>
+                          </div>
+                          <div class="game-cards play-cards-sm d">
+                            <div class="card-face" i18n>9</div>
+                            <div class="card-suite btm"></div>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="td-text" i18n>1.60</td>
+                      <td>
+                        <div class="timer-red-circle">
+                          <div class="timer-red"></div>
+                        </div>
+                      </td>
+                      <td class="td-icon">
+                        <div class="icons-16 chevron-right-white wh16"></div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="cards-container">
+                          <div class="game-cards play-cards-sm s">
+                            <div class="card-face" i18n>A</div>
+                            <div class="card-suite btm"></div>
+                          </div>
+                          <div class="game-cards play-cards-sm h">
+                            <div class="card-face" i18n>10</div>
+                            <div class="card-suite btm"></div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="cards-container">
+                          <div class="game-cards play-cards-sm s">
+                            <div class="card-face" i18n>A</div>
+                            <div class="card-suite btm"></div>
+                          </div>
+                          <div class="game-cards play-cards-sm s">
+                            <div class="card-face" i18n>K</div>
+                            <div class="card-suite btm"></div>
+                          </div>
+                          <div class="game-cards play-cards-sm d">
+                            <div class="card-face" i18n>10</div>
+                            <div class="card-suite btm"></div>
+                          </div>
+                          <div class="game-cards play-cards-sm s">
+                            <div class="card-face" i18n>9</div>
+                            <div class="card-suite btm"></div>
+                          </div>
+                          <div class="game-cards play-cards-sm d">
+                            <div class="card-face" i18n>9</div>
+                            <div class="card-suite btm"></div>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="td-text" i18n>2.60</td>
+                      <td>
+                        <div class="timer-red-circle">
+                          <div class="timer-red"></div>
+                        </div>
+                      </td>
+                      <td class="td-icon">
+                        <div class="icons-16 chevron-right-white wh16"></div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="cards-container">
+                          <div class="game-cards play-cards-sm s">
+                            <div class="card-face" i18n>A</div>
+                            <div class="card-suite btm"></div>
+                          </div>
+                          <div class="game-cards play-cards-sm h">
+                            <div class="card-face" i18n>10</div>
+                            <div class="card-suite btm"></div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="cards-container">
+                          <div class="game-cards play-cards-sm s">
+                            <div class="card-face" i18n>A</div>
+                            <div class="card-suite btm"></div>
+                          </div>
+                          <div class="game-cards play-cards-sm s">
+                            <div class="card-face" i18n>K</div>
+                            <div class="card-suite btm"></div>
+                          </div>
+                          <div class="game-cards play-cards-sm d">
+                            <div class="card-face" i18n>10</div>
+                            <div class="card-suite btm"></div>
+                          </div>
+                          <div class="game-cards play-cards-sm s">
+                            <div class="card-face" i18n>9</div>
+                            <div class="card-suite btm"></div>
+                          </div>
+                          <div class="game-cards play-cards-sm d">
+                            <div class="card-face" i18n>9</div>
+                            <div class="card-suite btm"></div>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="td-text" i18n>2.60</td>
+                      <td>
+                        <div class="timer-red-circle">
+                          <div class="timer-red"></div>
+                        </div>
+                      </td>
+                      <td class="td-icon">
+                        <div class="icons-16 chevron-right-white wh16"></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="wp100" *ngIf="chatClick == 'info'">
+                <div class="info-tab-container d-flex flex-col gap8">
+                  <div class="info-tab-body d-flex flex-col gap8">
+                    <div class="info-tab-body-header d-flex jst-space align-center bg-grey900 br6">
+                      <div class="info-tab-body-left d-flex flex-col gap8">
+                        <div
+                          class="info-tab-body-left-title d-flex align-center gap4 fs12 ft-primary-b grey400 text-uppercase"
+                        >
+                          current blind level
+                          <span class="value-count fs12 ft-primary-b light">13</span>
+                        </div>
+                        <div
+                          class="info-tab-body-left-value d-flex align-center gap4 fs14 ft-primary-b light"
+                        >
+                          10/20 <span class="span-text grey400">ante</span> 0
+                        </div>
+                      </div>
+                      <div class="info-tab-body-right d-flex flex-col gap8">
+                        <div
+                          class="info-tab-body-right-title d-flex align-center gap4 fs12 ft-primary-b grey400 text-uppercase"
+                        >
+                          next level 14 in
+                          <span class="value-count fs12 ft-primary-b grad-orange-text">01:04</span>
+                        </div>
+                        <div
+                          class="info-tab-body-right-value d-flex align-center gap4 fs14 ft-primary-b light"
+                        >
+                          15/30 <span class="span-text grey400">ante</span> 0
+                        </div>
+                      </div>
+                    </div>
+                    <div class="info-tab-body-content d-flex jst-space align-center wp100">
+                      <div class="info-tab-body-context d-flex flex-col gap8">
+                        <div
+                          class="info-body-context-title d-flex align-center gap4 fs12 ft-primary-b grey400 text-uppercase"
+                        >
+                          turn time
+                        </div>
+                        <div class="info-body-context-value fs14 ft-primary-b light text-capital">
+                          15 sec
+                        </div>
+                      </div>
+                      <div class="info-tab-body-context d-flex flex-col gap8">
+                        <div
+                          class="info-body-context-title d-flex align-center gap4 fs12 ft-primary-b grey400 text-uppercase"
+                        >
+                          time bank
+                        </div>
+                        <div class="info-body-context-value fs14 ft-primary-b light text-capital">
+                          disabled
+                        </div>
+                      </div>
+                      <div class="info-tab-body-context d-flex flex-col gap8">
+                        <div
+                          class="info-body-context-title d-flex align-center gap4 fs12 ft-primary-b grey400 text-uppercase"
+                        >
+                          1st prize
+                        </div>
+                        <div class="info-body-context-value fs14 ft-primary-b light text-capital">
+                          ₹ 92
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="info-tab-footer d-flex jst-space align-center wp200 bg-grey900">
+                    <div
+                      class="info-tab-footer-title d-flex align-center gap4 fs14 ft-primary-b grey400"
+                    >
+                      Hand ID:<span class="light">10325657744</span> | Table ID:
+                      <span class="light">74548329</span>
+                    </div>
+                    <div class="info-tab-footer-icon d-flex jst-center align-center"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="game-table-chat-left-toggle d-flex jst-center align-center bg-dark cursor z10"
+            (click)="chatExpand()"
+          >
+            <div class="toggle-icon"></div>
+          </div>
+          <div
+            class="game-table-chat-right-container chat-height-expanded d-flex flex-col align-center bg-grey900"
+          >
+            <div
+              class="game-table-chat-right-toggle d-flex jst-center align-center bg-dark cursor z10"
+              (click)="chatHeightExpand()"
+            >
+              <div class="toggle-icon"></div>
+            </div>
+            <div class="game-table-chat-list-right d-flex flex-col align-start ovf-y-scroll">
+              <div class="game-table-chat-select-list d-flex align-center gap-0-5 w-8-8 h-1-5">
+                <mat-checkbox [checked]="false"></mat-checkbox>
+                <div class="game-table-chat-select-list-text fs-1 ft-primary-b light" i18n>
+                  Sitout
+                </div>
+              </div>
+              <div class="game-table-chat-select-list d-flex align-center gap8 w-8-8 h-1-5">
+                <mat-checkbox [checked]="false"></mat-checkbox>
+                <div class="game-table-chat-select-list-text fs-1 ft-primary-b light" i18n>
+                  Fold To Any Bet
+                </div>
+              </div>
+              <div class="game-table-chat-select-list d-flex align-center gap8 w-8-8 h-1-5">
+                <mat-checkbox [checked]="false"></mat-checkbox>
+                <div class="game-table-chat-select-list-text fs-1 ft-primary-b light" i18n>
+                  Run It Twice
+                </div>
+              </div>
+              <div class="game-table-chat-select-list d-flex align-center gap8 w-8-8 h-1-5">
+                <mat-checkbox [checked]="false"></mat-checkbox>
+                <div class="game-table-chat-select-list-text fs-1 ft-primary-b light" i18n>
+                  Auto Muck
+                </div>
+              </div>
+              <div class="game-table-chat-select-list d-flex align-center gap8 w-8-8 h-1-5">
+                <mat-checkbox [checked]="false"></mat-checkbox>
+                <div class="game-table-chat-select-list-text fs-1 ft-primary-b light" i18n>
+                  Sitout Next BB
+                </div>
+              </div>
+              <div class="game-table-chat-select-list d-flex align-center gap8 w-8-8 h-1-5">
+                <mat-checkbox [checked]="false"></mat-checkbox>
+                <div class="game-table-chat-select-list-text fs-1 ft-primary-b light" i18n>
+                  Sitout All Cash
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="game-table-right-footer">
+        <!-- <div class="game-table-right-panel">
+          <div class="game-table-right-panel-options-container">
+            <div class="game-table-right-panel-options">
+              <div class="game-table-right-panel-option-items">
+                x2
+              </div>
+              <div class="game-table-right-panel-option-items">
+                x3
+              </div>
+              <div class="game-table-right-panel-option-items">
+                x5
+              </div>
+              <div class="game-table-right-panel-option-items">
+                1/2
+              </div>
+              <div class="game-table-right-panel-option-items">
+                3/4
+              </div>
+              <div class="game-table-right-panel-option-items">
+                Pot
+              </div>
+              <div class="game-table-right-panel-option-items">
+                Max
+              </div>
+            </div>
+          </div>
+          <div class="game-table-right-panel-slider-options-container">
+            <div class="game-table-right-panel-slider-options">
+              <div class="game-table-right-panel-slider">
+                <mat-slider>
+                  <input matSliderThumb>
+                </mat-slider>
+              </div>
+              <div class="game-table-right-panel-bet-container">
+                <div class="game-table-right-panel-bet-plus">
+                  <i class="pi pi-plus"></i>
+                </div>
+                <div class="game-table-right-panel-bet-text">
+                  13,200
+                </div>
+                <div class="game-table-right-panel-bet-minus">
+                  <i class="pi pi-minus"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="game-table-buttons-panel">
+          <div class="game-table-buttons-panel-container">
+            <button type="button" mat-button class="btn btn-fold" i18n>
+              Fold
+            </button>
+            <button type="button" mat-button class="btn btn-call" i18n>
+              Call 87,65,432
+            </button>
+            <button type="button" mat-button class="btn btn-raise" i18n>
+              Raise 13,200
+            </button>
+          </div>
+        </div> -->
+
+        <!-- <app-post-bb></app-post-bb> -->
+        <app-wait-list (switch)="joinSimilar()"></app-wait-list>
+      </div>
+    </div>
+  </div>
+</div>

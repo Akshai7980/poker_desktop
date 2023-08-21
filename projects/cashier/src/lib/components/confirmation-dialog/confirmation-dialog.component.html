@@ -1,0 +1,109 @@
+<div class="w430 d-flex flex-column jst-space align-start gap16 p-6">
+  <div class="wp100 flex-space">
+    <div class="fs20 ft-primary-b grey900" i18n>Info</div>
+    <div class="p-rel d-flex jst-end align-center wh24" (click)="dialogClose()">
+      <div class="icons-24 close-icon top-right wh24 cursor"></div>
+    </div>
+  </div>
+
+  <ng-container *ngIf="data.from == 'CANCEL_TRANSACTION'">
+    <div class="wp100 d-flex flex-column jst-space align-start gap16">
+      <span class="fs14 ft-primary-md grey900" *ngIf="yesClicked" i18n
+        >If you cancel this request, all your requests raised after this will be
+        cancelled.
+      </span>
+      <span class="fs14 ft-primary-md grey900" i18n>Are you sure you want to cancel this withdrawal request?</span>
+    </div>
+    <div class="h48 flex-start gap16 mt-4 mb-0 p-0" mat-dialog-actions>
+      <ng-container *ngIf="!yesClicked">
+        <button type="button" class="btn-no w183 h48 bg-light px-4 py-3 border-1.5 border-solid border-secondary-grey br12 cursor trans-03" mat-button (click)="dialogClose()">
+          <span class="btn-text fs16 ft-primary-b" i18n id="confirmationdiolg-no-btn" trackEvents>No</span>
+        </button>
+        <button type="button" class="btn btn-primary w183 h48" mat-button cdkFocusInitial (click)="clickedYes()">
+          <span class="btn-text fs16 ft-primary-b" tabindex="0" i18n
+          id="confirmationdiolg-yes-btn" trackEvents>Yes</span
+          >
+        </button>
+      </ng-container>
+
+      <ng-container *ngIf="yesClicked">
+        <button type="button" class="btn-no w183 h48 bg-light px-4 py-3 border-1.5 border-solid border-secondary-grey br12 cursor trans-03" mat-button mat-dialog-close>
+          <span class="btn-text fs16 ft-primary-b" i18n id="confirmationdiolg-cancel-btn" trackEvents>Cancel</span>
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary w183 h48"
+          mat-button
+          cdkFocusInitial
+          id="confirmationdiolg-proceed-btn" trackEvents
+          (click)="onClickProceed()"
+        >
+          <span class="btn-text fs16 ft-primary-b" tabindex="0" i18n>Proceed</span>
+        </button>
+      </ng-container>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="data.from == 'TICKETS_OFFERS'">
+
+    <div class="wp100 d-flex flex-column jst-space align-start gap16">
+      <div class="wp100 h85 flex-col-jst-center gap16 br16 p-4" [ngClass]="!showInsufficientFlag ? 'bg-blue000' : 'bg-orange000'">
+        <span class="fs12 ft-primary-b grey500 text-uppercase" i18n>REAL BALANCE</span>
+        <span class="amount fs24 ft-primary-sb" [ngClass]="!showInsufficientFlag ? 'blue500' : 'orange500'">₹ {{totalAmount.toLocaleString("en-IN", {
+          currency: "INR",
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 2
+          })}}</span>
+      </div>
+      <ng-template #showSufficientBalanceTemplate>
+      <span class="fs14 ft-primary-sb grey900" i18n>
+        Are you sure you want to buy this ticket for ₹ {{ticketPrice.toLocaleString("en-IN", {
+          currency: "INR",
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 2
+          })}}.
+        </span>
+      </ng-template>
+
+      <ng-container *ngIf="showInsufficientFlag; else showSufficientBalanceTemplate">
+        <span class="fs14 ft-primary-sb grey900" i18n> Insufficient account balance.</span>
+        <span class="fs14 ft-primary-md grey900" i18n>Add more ₹ {{balanceNeeded.toLocaleString("en-IN", {
+          currency: "INR",
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 2
+          })}} to purchase this ticket.</span>
+      </ng-container>
+
+    </div>
+
+    <div class="h48 flex-start gap16 mt-4 mb-0 p-0">
+
+      <ng-container *ngIf="!showInsufficientFlag">
+        <button type="button" class="btn-cancel w183 h48 bg-light px-4 py-3 border-1.5 border-solid border-secondary-grey br12 cursor" mat-button mat-dialog-close>
+          <span class="btn-text fs16 ft-primary-b secondary-grey" i18n id="confirmationdiolg-no2-btn" trackEvents>No</span>
+        </button>
+        <button type="button" class="btn btn-primary w183 h48 bg-light" mat-button cdkFocusInitial (click)="getPurchaseWithSufficientBalance()">
+          <span class="btn-text fs16 ft-primary-b primary-light" i18n id="confirmationdiolg-yes2-btn" trackEvents>Yes</span>
+        </button>
+      </ng-container>
+
+      <ng-container *ngIf="showInsufficientFlag">
+        <button type="button" class="btn-no w183 h48 bg-light px-4 py-3 border-1.5 border-solid border-secondary-grey br12 cursor" mat-button mat-dialog-close>
+          <span class="btn-text fs16 ft-primary-b secondary-grey" i18n id="confirmationdiolg-cancel2-btn" trackEvents>Cancel</span>
+        </button>
+        <button
+          type="button"
+          class="btn btn-success w183 h48"
+          mat-button
+          matRipple
+          mat-dialog-close
+          cdkFocusInitial
+          (click)="openAddCash()"
+          id="confirmationdiolg-addcash-btn" trackEvents
+        >
+          <span class="btn-text fs16 ft-primary-b primary-light" i18n>Add Cash</span>
+        </button>
+      </ng-container>
+    </div>
+  </ng-container>
+</div>

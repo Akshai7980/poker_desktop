@@ -1,0 +1,90 @@
+<div class="custom-dialog d-flex flex-col jst-start align-start bg-light">
+  <div class="custom-dialog-header d-flex jst-space align-center wp100 p-4">
+    <div class="fs20 ft-primary-b grey900" i18n>Create Table</div>
+    <div class="close-btn wh24 p-rel cursor" (click)="onClose()">
+      <div class="icons-24 close-icon wh24 top-right"></div>
+    </div>
+  </div>
+
+  <div
+    class="custom-dialog-body d-flex flex-col jst-start align-start gap12 wp100 border-0 border-solid border-grey300 p-4"
+  >
+    <div
+      class="box-item d-flex flex-col jst-center align-start gap10 wp100 bg-light border-1 border-solid border-grey200 br8 p-2"
+    >
+      <div class="box-title fs16 ft-primary-b grey800" i18n>Game Type</div>
+      <div class="radio-box d-flex jst-start align-center wp100">
+        <div class="p-field-radiobutton wp50" *ngFor="let list of pvtTableParsedArr; let i = index">
+          <p-radioButton
+            [value]="list.rvText"
+            (onClick)="onGameVariantChange(i)"
+            [(ngModel)]="pvtGameType"
+          ></p-radioButton>
+          <label class="fs16 ft-primary-b grey900" i18n>{{
+            list.rvText == "HOLD'EM" ? "Hold'em" : 'PL Omaha'
+          }}</label>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="box-item d-flex flex-col jst-center align-start gap10 wp100 bg-light border-1 border-solid border-grey200 br8 p-2"
+    >
+      <span class="box-title fs16 ft-primary-b grey800" i18n>Players</span>
+      <div class="radio-box d-flex jst-space align-center wp100">
+        <div class="p-field-radiobutton" *ngFor="let size of pvtTableCurrentConfig?.tableSize">
+          <p-radioButton
+            [value]="size"
+            (onClick)="setTableSize(size)"
+            [(ngModel)]="pvtTableSize"
+          ></p-radioButton>
+          <label class="fs16 ft-primary-b grey900" i18n>{{ size }}</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group-box d-flex jst-start align-center gap20">
+      <div class="lobby-from-group d-flex flex-col jst-start align-start gap12 flex-1">
+        <label class="fs16 ft-primary-b grey900" i18n>Blinds</label>
+        <p-dropdown
+          [options]="pvtTableLevel"
+          [(ngModel)]="pvtTableLevel1"
+          styleClass="personal-details create-table-drop-down"
+          optionLabel="blindK"
+          name="blinds"
+          (onChange)="onBlindChange()"
+        ></p-dropdown>
+      </div>
+
+      <div class="lobby-from-group d-flex flex-col jst-start align-start gap12 flex-1">
+        <label class="fs16 ft-primary-b grey900" i18n>Buy IN</label>
+        <input
+          type="text"
+          class="lobby-form-control create-table"
+          [value]="'₹ ' + pvtTableBuyin"
+          placeholder="₹ 10/40"
+          readonly
+          autocompleteOff
+        />
+      </div>
+    </div>
+
+    <div class="btn-box d-flex flex-col jst-start align-start gap16 wp100">
+      <div class="table-info fs16 ft-primary-md grey600 wp100" *ngIf="pvtTableExpiryText">
+        Private Table expires <span class="text-lowercase">{{ pvtTableExpiryText }}</span> of
+        creation.
+      </div>
+      <button
+        type="button"
+        mat-button
+        class="btn btn-primary wp100 text-normal"
+        trackEvents
+        (click)="openInviteDialog()"
+        id="lobby-createTableDrawer-createInvite-btn"
+        i18n
+      >
+        Create and Invite
+      </button>
+    </div>
+  </div>
+</div>

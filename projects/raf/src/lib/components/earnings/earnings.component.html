@@ -1,0 +1,56 @@
+<div class="d-flex flex-column flex-1 gap16 bg-light br16 ovf-y-auto p-4">
+  <div class="d-flex align-center gap24 bg-grey100 br8 p-4">
+    <div class="d-flex jst-space align-center flex-1">
+      <div class="d-flex align-center gap8 fs24 ft-primary-b">
+        <span class="grey600" i18n>Friends Referred:</span>
+        <span class="grey900" i18n>{{referrals}}</span>
+      </div>
+      <button type="button" mat-button class="btn btn-primary w146 h40 gap8" (click)="openDialog(referNow)">
+        <span class="img-icon btn-icon-refer wh20"></span>
+        <span class="fs14 ft-primary-b primary-light" i18n>Refer Now</span>
+      </button>
+    </div>
+
+    <div class="divider w1 h40 bg-grey400"></div>
+
+    <div class="d-flex jst-space align-center flex-1">
+      <div class="d-flex align-center gap8 fs24 ft-primary-b">
+        <span class="grey600" i18n>Lifetime Earnings:</span>
+        <span class="grey900" i18n>{{lifeTimeEarnings ? lifeTimeEarnings : 0 }}</span>
+      </div>
+      <button type="button" (click)="openDialog(viewSummaryComponent)" class="w183 h40 d-flex jst-center align-center gap8 bg-light border-1 border-solid border-grey800 br12 cursor">
+        <span class="img-icon btn-icon-view wh20"></span>
+        <span class="fs14 ft-primary-b grey800" i18n>View Summary</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="d-flex flex-column gap8">
+    <div class="tab-container d-flex align-center gap12">
+      <div
+        class="tab d-flex jst-center align-center gap6 bg-light br8 border-1 border-solid border-grey300 py-2 px-3 cursor trans-03"
+        *ngFor="let eTab of earningTabs"
+        (click)="onSelectTab(eTab.title)"
+        [ngClass]="{ 'tab-active': earningTabsActive === eTab.title }"
+      >
+        <div class="dot br50" [ngClass]="eTab.dotColor"></div>
+        <div class="tab-text fs12 ft-primary-sb grey900 text-capital" i18n>{{ eTab.title }}</div>
+        <div
+          class="chip d-flex jst-center align-center bg-grey500 br14 p-1 p-2 fs10 ft-primary-b primary-light"
+          [ngClass]="eTab.chipCount < 100 ? 'wh16' : 'h16'"
+        >
+          {{ eTab.chipCount }}
+        </div>
+      </div>
+    </div>
+    <div class="fs12 ft-primary-md grey600" i18n>{{shownText}}</div>
+  </div>
+
+  <!-- xxxx -->
+  <ng-container [ngSwitch]="earningTabsActive">
+    <app-active [activeEarningsList]="activeEarningsList" *ngSwitchCase="'active'"></app-active>
+    <app-in-active [inactiveEarningsList]="inactiveEarningsList" *ngSwitchCase="'inactive'"></app-in-active>
+    <app-dropped [droppedEarningsList]="droppedEarningsList" *ngSwitchCase="'dropped'"></app-dropped>
+  </ng-container>
+</div>

@@ -1,0 +1,324 @@
+@import '../../../assets/abstract/core';
+
+// Placeholders
+// Flex Center
+%flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+%transform-center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// Settings Navbar
+.settings-navbar {
+  border: 0;
+
+  .mat-tab-links {
+    gap: $gap8;
+  }
+
+  .settings-navlink {
+    min-width: fit-content;
+    background: linear-gradient(0deg, $bg-light, $bg-light),
+      linear-gradient(0deg, $grey300, $grey300);
+    font-family: $font-bold;
+    font-size: $fs14;
+    line-height: 20px;
+    color: $grey900;
+    padding: 8px 16px;
+    border: 1px solid $grey300;
+    opacity: 1;
+    transition: $trans-15s;
+
+    &.active,
+    &:hover,
+    &:focus {
+      background: linear-gradient(0deg, $bg-dark, $bg-dark),
+        linear-gradient(0deg, $grey500, $grey500);
+      color: $grey000;
+      border-color: $grey500;
+      transition: $trans-15s;
+    }
+  }
+}
+
+.settings-navbar,
+.theme-tab-group {
+  .mat-tab-header-pagination-chevron {
+    border-style: solid;
+    border-width: 7px 0 7px 9px;
+    border-color: transparent transparent transparent $grey400;
+  }
+
+  .mat-tab-header-pagination {
+    box-sizing: border-box;
+    position: absolute;
+    background-color: $bg-light;
+    width: 64px;
+    height: 64px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    padding: 8px 16px;
+
+    &.mat-tab-header-pagination-disabled {
+      display: none;
+    }
+
+    &.mat-tab-header-pagination-before {
+      left: -28px;
+      box-shadow: 0 1px 8px 0 #0000004d;
+      justify-content: flex-end;
+
+      .mat-tab-header-pagination-chevron {
+        transform: rotate(-180deg);
+      }
+    }
+
+    &.mat-tab-header-pagination-after {
+      right: -28px;
+      box-shadow: -2px 0 4px 0 #00000014;
+      justify-content: flex-start;
+
+      .mat-tab-header-pagination-chevron {
+        transform: rotate(0deg);
+      }
+    }
+  }
+}
+
+.theme-tab-group .mat-tab-header-pagination {
+  &.mat-tab-header-pagination-before {
+    left: -32px;
+  }
+
+  &.mat-tab-header-pagination-after {
+    right: -32px;
+  }
+}
+
+// Card Settings
+.card-settings {
+  .card-header {
+    border-radius: 15px 15px 0 0;
+  }
+
+  .card-body {
+    border-radius: 0 0 15px 15px;
+  }
+}
+
+// Disabled State
+[disabled],
+.disabled,
+.mat-button-disabled {
+  opacity: 0.5;
+}
+
+// P Dropdown
+p-dropdown.p-element .p-dropdown.hot-key-dropdown {
+  border-radius: $br8;
+
+  &.p-disabled {
+    opacity: 1;
+  }
+}
+
+.p-dropdown-panel {
+  overflow-y: auto;
+  border-radius: $br12;
+}
+
+// Primary Button
+.btn.btn-primary {
+  width: 248px;
+}
+
+// Add Button
+.btn-add.mat-button {
+  @extend %flex-center;
+
+  gap: $gap8;
+  width: 132px;
+  font-family: $font-bold;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: $grey400;
+  border: 1.5px solid $grey400;
+  border-radius: $br12;
+
+  &.mat-button-disabled.mat-button-disabled {
+    color: $grey400;
+    opacity: 1;
+  }
+
+  &.active {
+    border-color: $primary-red;
+    color: $primary-red;
+  }
+}
+
+// Remove Button
+.btn-remove.mat-button {
+  @extend %flex-center;
+
+  width: 104px;
+  height: 32px;
+  background-color: $secondary-grey;
+  gap: $gap6;
+  padding: 8px 16px;
+  border-radius: $br8;
+
+  &.mat-button-disabled.mat-button-disabled {
+    background-color: $grey400;
+    opacity: 1;
+  }
+}
+
+// Playing Card Preview
+.playing-card-preview {
+  flex-direction: row-reverse;
+
+  @extend %transform-center;
+
+  margin-top: -12px;
+}
+
+// Playing Cards Front/Back
+.playing-card-front,
+.playing-card-back {
+  width: 48px;
+  height: 44px;
+
+  .game-cards,
+  .back-card {
+    top: 50%;
+    left: 50%;
+
+    &.front-first,
+    &.back-first {
+      margin-left: -4px;
+    }
+
+    &.front-second,
+    &.back-second {
+      margin: 1px 0 0 6px;
+    }
+  }
+}
+
+// Playing Cards Front
+.playing-card-front {
+  .game-cards {
+    &.front-first {
+      transform: translate(-50%, -50%) scale(0.56) rotate(-18deg);
+    }
+
+    &.front-second {
+      transform: translate(-50%, -50%) scale(0.56) rotate(12deg);
+    }
+  }
+}
+
+// Playing Cards Back
+.playing-card-back {
+  .back-card {
+    &.back-first {
+      transform: translate(-50%, -50%) scale(0.72) rotate(-18deg);
+    }
+
+    &.back-second {
+      transform: translate(-50%, -50%) scale(0.72) rotate(12deg);
+    }
+  }
+}
+
+// Theme Table Dialog Preview
+.theme-preview-dialog-body {
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: 100% auto;
+
+  .back-btn {
+    top: 24px;
+    left: 16px;
+    transition: background-color, $trans-15s;
+
+    .icons-24 {
+      transition: background-position, $trans-15s;
+    }
+
+    &:hover {
+      background: $bg-light;
+
+      .icons-24 {
+        &.arrow-left {
+          background-position: 87.4% 100%;
+        }
+      }
+    }
+  }
+}
+
+.theme-preview-dialog-footer {
+  span {
+    opacity: 0.8;
+  }
+}
+
+.watermark {
+  @extend %transform-center;
+
+  opacity: 0.32;
+}
+
+.theme-table-dialog-preview {
+  background-repeat: no-repeat;
+  background-size: 90% auto;
+  background-position: center top 60px;
+
+  @extend %transform-center;
+
+  // Playing Card Preview
+  .playing-card-preview {
+    width: 192px;
+  }
+
+  // Playing Cards Front/Back
+  .playing-card-front,
+  .playing-card-back {
+    width: 64px;
+    height: 60px;
+  }
+
+  // Playing Cards Front
+  .playing-card-front {
+    .game-cards {
+      &.front-first {
+        transform: translate(-50%, -50%) rotate(-18deg);
+      }
+
+      &.front-second {
+        transform: translate(-50%, -50%) rotate(12deg);
+      }
+    }
+  }
+
+  // Playing Cards Back
+  .playing-card-back {
+    .back-card {
+      &.back-first {
+        transform: translate(-50%, -50%) scale(1.26) rotate(-18deg);
+      }
+
+      &.back-second {
+        transform: translate(-50%, -50%) scale(1.26) rotate(12deg);
+      }
+    }
+  }
+}

@@ -1,0 +1,804 @@
+@import '../../abstract/core';
+
+.btn {
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  text-transform: capitalize;
+  border: 1px solid transparent;
+  font-size: $fs12;
+  font-family: $font-regular;
+  line-height: 1.5;
+  border-radius: 4px;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  cursor: pointer;
+  filter: brightness(100%);
+  transition: filter 0.15s ease-in-out;
+
+  &:hover {
+    filter: brightness(90%);
+    transition: filter 0.15s ease-in-out;
+  }
+
+  &.btn-primary {
+    @include center;
+
+    background: $grad-red;
+    border-radius: $br12;
+    font-size: $fs16;
+    font-family: $font-bold;
+    padding: 10px 24px;
+    color: $bg-light;
+    width: 368px;
+    height: 48px;
+
+    &:disabled {
+      background: $grey300;
+      color: $bg-light !important;
+      pointer-events: none;
+    }
+
+    &.disabled {
+      background: $grey300;
+      color: $bg-light !important;
+      pointer-events: none;
+    }
+
+    &:focus-visible {
+      outline: none;
+      border: transparent;
+    }
+
+    &.btn-width {
+      width: 159px;
+      height: 40px;
+    }
+
+    &.join-table {
+      width: 73px;
+      height: 44px;
+      border-radius: 0 $br8 $br8 0;
+    }
+  }
+
+  &.btn-primary-outline {
+    @include center;
+
+    background: $bg-light;
+    border: 1.5px solid $secondary-grey;
+    border-radius: $br12;
+    font-size: $fs16;
+    font-family: $font-bold;
+    padding: 10px 24px;
+    color: $secondary-grey;
+    height: 40px;
+
+    &:active {
+      background: $grad-red;
+      color: $bg-light;
+      border: transparent;
+      outline: none;
+    }
+  }
+
+  &.btn-outline-primary {
+    @include center;
+
+    background: $bg-light;
+    border: 1.5px solid transparent;
+    border-radius: $br12;
+    font-size: $fs14;
+    font-family: $font-bold;
+    padding: 10px 24px;
+    color: transparent;
+    background-image: $grad-red;
+    background-clip: text;
+    -webkit-background-clip: text;
+    height: 40px;
+  }
+
+  &.btn-primary-medium {
+    @include center;
+
+    background: $grad-red;
+    border-radius: $br12;
+    font-size: $fs16;
+    font-family: $font-bold;
+    padding: 10px 24px;
+    color: $bg-light;
+    width: 248px;
+    height: 48px;
+
+    &:disabled {
+      background: $grey300;
+      color: $bg-light !important;
+      pointer-events: none;
+    }
+  }
+
+  &.btn-primary-lg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: $grad-red;
+    border-radius: $br12;
+    font-size: $fs16;
+    font-family: $font-bold;
+    padding: 10px 24px;
+    color: $bg-light;
+    width: 382px;
+    height: 40px;
+
+    &:disabled {
+      background: $grey300;
+      pointer-events: none;
+    }
+  }
+
+  &.btn-primary-md {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: $grad-red;
+    border-radius: $br12;
+    font-size: $fs14;
+    font-family: $font-bold;
+    padding: 10px 24px;
+    color: $bg-light;
+    width: 171px;
+    height: 40px;
+  }
+
+  &.btn-primary-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: $grad-red;
+    border-radius: $br12;
+    font-size: $fs14;
+    font-family: $font-bold;
+    padding: 11px 16px;
+    color: $bg-light;
+    width: 115px;
+    height: 49px;
+  }
+
+  &.btn-text-primary {
+    position: relative;
+
+    @include center;
+
+    padding: 8px 16px;
+    width: 48px;
+    height: 24px;
+    background: $bg-light;
+    border: 1px solid $grey300;
+    border-radius: $br6;
+
+    .gradient-text {
+      font-size: $fs12;
+      font-family: $font-semi-bold;
+      color: transparent;
+      background-image: $grad-red;
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    &.lobby-btn {
+      width: 102px;
+
+      .gradient-text {
+        font-size: 14px;
+        font-family: $font-medium;
+      }
+    }
+  }
+
+  &.btn-primary-xs {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    min-width: 24px;
+    height: 24px;
+    background: $grad-red;
+    border-radius: $br8;
+    transform: matrix(-1, 0, 0, 1, 0, 0);
+
+    .pi {
+      font-size: 20px;
+      color: $bg-light;
+    }
+  }
+
+  &.btn-join {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 24px;
+    gap: 8px;
+    width: 160px;
+    height: 38px;
+    background: $bg-dark;
+    border-radius: $br12;
+    font-size: $fs16;
+    font-family: $font-bold;
+    color: $bg-light;
+
+    .pi {
+      font-size: $fs16;
+      color: $bg-light;
+    }
+
+    @include device(smg) {
+      padding: 8px 12px;
+      width: 130px;
+      height: 28px;
+      font-size: 14px;
+
+      .pi {
+        font-size: 12px;
+      }
+    }
+  }
+
+  &.btn-fold {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 24px;
+    width: 174px;
+    height: 52px;
+    background: #ee8b15;
+    border-radius: $br12;
+    font-family: $font-bold;
+    font-size: $fs20;
+    color: $bg-light;
+  }
+
+  &.btn-call {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 24px;
+    width: 238px;
+    height: 52px;
+    background: $grad-green;
+    border-radius: $br12;
+    font-family: $font-bold;
+    font-size: $fs20;
+    color: $bg-light;
+  }
+
+  &.btn-raise {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 24px;
+    width: 238px;
+    height: 52px;
+    background: $primary-red;
+    border-radius: $fs12;
+    font-family: $font-bold;
+    font-size: $fs20;
+    color: $bg-light;
+  }
+
+  &.btn-success {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 24px 12px 20px;
+    height: 48px;
+    background: $primary-success;
+    border-radius: $br12;
+    font-family: $font-bold;
+    font-size: $fs16;
+    color: $bg-light;
+
+    &.success-lg {
+      width: 328px;
+    }
+
+    &:disabled {
+      background: $grey300;
+      color: $bg-light !important;
+      pointer-events: none;
+    }
+  }
+
+  &.btn-dashed-offer {
+    @include center;
+
+    padding: 4px 14px;
+    min-width: 86px;
+    border-radius: $br8;
+    word-break: break-all;
+    white-space: pre-line;
+
+    span {
+      &.span-text {
+        display: flex;
+        align-items: center;
+        font-family: $font-bold;
+        font-size: $fs14;
+      }
+    }
+
+    &.dashed-deposit {
+      background: $orange000;
+      border: 1.5px dashed $orange500;
+
+      span {
+        &.span-text {
+          background: $grad-orange;
+          text-transform: uppercase;
+          color: transparent;
+          -webkit-background-clip: text;
+          background-clip: text;
+        }
+      }
+    }
+
+    &.dashed-alldeposit {
+      background: $blue000;
+      border: 1.5px dashed $blue500;
+
+      span {
+        &.span-text {
+          background: $grad-blue;
+          text-transform: uppercase;
+          color: transparent;
+          -webkit-background-clip: text;
+          background-clip: text;
+        }
+      }
+    }
+  }
+
+  &.btn-apply {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 16px;
+    width: 86.5px;
+    height: 32px;
+    background-color: $bg-light;
+    border: 1px solid $grey300;
+    border-radius: $br8;
+
+    .btn-apply-text {
+      font-family: $font-bold;
+      font-size: $fs12;
+      color: transparent;
+      background: $grad-red;
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+  }
+
+  &.btn-apply-check {
+    @include center;
+
+    min-width: 84px;
+    height: 32px;
+    gap: $gap6;
+    border-radius: $br20;
+    font-family: $font-bold;
+    font-size: 12px;
+    line-height: 16px;
+    color: transparent;
+    background: $green000;
+
+    .applied-check {
+      @include circle;
+
+      width: 16px;
+      height: 16px;
+      background: $primary-success;
+
+      .pi {
+        font-size: $fs8;
+        color: $bg-light;
+      }
+    }
+
+    .btn-apply-text {
+      font-size: 12px;
+      font-family: $font-semi-bold;
+      color: $primary-success;
+    }
+  }
+
+  &.btn-status {
+    @include center;
+
+    padding: 2px 12px;
+    gap: $gap10;
+    width: 86px;
+    height: 24px;
+    border-radius: $br20;
+    font-size: 10px;
+    font-family: $font-bold;
+    text-transform: $text-uppercase;
+
+    span {
+      &.status-text {
+        font-size: fs10;
+        font-family: $font-bold;
+        color: transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
+      }
+    }
+
+    &.playing {
+      color: $green000;
+      background: linear-gradient(0deg, rgba(0 0 0 / 20%), rgba(0 0 0 / 20%)), $primary-success;
+    }
+
+    &.registering {
+      color: $sea-green000;
+      background: $sea-green600;
+    }
+
+    &.late-register {
+      color: $orange000;
+      background: $orange500;
+    }
+
+    &.running {
+      color: $primary-success;
+      background: $green000;
+    }
+
+    &.cancelled {
+      color: $grey000;
+      background: $grey400;
+    }
+
+    &.finished {
+      color: $grey000;
+      background: $grey500;
+    }
+
+    &.registered {
+      background: $sea-green000;
+
+      span {
+        &.status-text {
+          background-image: $grad-sea-green;
+        }
+      }
+    }
+  }
+
+  &.btn-reminder {
+    @include center;
+
+    padding: 8px 24px;
+    gap: $gap6;
+    width: 94px;
+    height: 32px;
+    background: rgba(255 255 255 / 24%);
+    border-radius: 8px;
+    font-size: 12px;
+    font-family: $font-semi-bold;
+    color: $bg-light;
+  }
+
+  &.btn-dark {
+    @include center;
+
+    padding: 8px 24px;
+    gap: 8px;
+    background: $secondary-grey;
+    border-radius: $br8;
+
+    &:disabled {
+      background: $grey400;
+      cursor: not-allowed;
+    }
+  }
+
+  &.btn-my-ticket {
+    position: relative;
+
+    @include center;
+
+    padding: 8px 16px;
+    width: 146px;
+    height: 32px;
+    border: 2px solid $primary-red;
+    border-radius: $br8;
+    background-color: $bg-light;
+
+    .my-tickets-text {
+      font-size: $fs12;
+      font-family: $font-semi-bold;
+      color: transparent;
+      background-image: $grad-red;
+      background-clip: text;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      padding: 10px;
+      background: $grad-red border-box;
+      mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+    }
+  }
+}
+
+.header-btn-selected {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 16px;
+  gap: $gap8;
+  width: max-content;
+  height: 40px;
+  background: $bg-dark;
+  color: $bg-light;
+  border: 1.5px solid $grey500;
+  border-radius: $br12;
+  margin-right: 10px;
+}
+
+.header-btn {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 16px;
+  gap: $gap8;
+  width: max-content;
+  height: 40px;
+  background: $bg-light;
+  border: 1.5px solid $grey300;
+  border-radius: $br12;
+  margin-right: 10px;
+}
+
+.secondary-join-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 16px;
+  width: 48px;
+  height: 24px;
+  background: $bg-light;
+  border: 1px solid $grey300;
+  border-radius: 6px;
+}
+
+.secondary-join-btn-text {
+  width: 21px;
+  height: 16px;
+  font-family: $font-semi-bold;
+  font-size: $fs12;
+  background: $grad-red;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.primary-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 24px;
+  width: 342px;
+  height: 40px;
+  background: $grad-red;
+  border-radius: $br12;
+  border-color: transparent;
+  cursor: pointer;
+  filter: brightness(100%);
+  transition: filter 0.15s ease-in-out;
+
+  &:hover {
+    filter: brightness(90%);
+    transition: filter 0.15s ease-in-out;
+  }
+}
+
+.no-background {
+  background: $grad-red;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.primary-btn:disabled,
+.primary-btn[disabled='disabled'] {
+  background: $grey300;
+  cursor: not-allowed;
+}
+
+.primary-btn-disabled {
+  background: $grey300;
+  cursor: not-allowed;
+}
+
+.primary-btn-text {
+  width: 42px;
+  height: 20px;
+  font-family: $font-bold;
+  font-size: $fs16;
+  color: $bg-light;
+}
+
+.action-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 24px;
+  width: 368px;
+  height: 48px;
+  border-radius: $br12;
+  font-family: $font-bold;
+  font-size: $fs16;
+  margin-bottom: 1rem;
+  gap: 10px;
+  border: 1.5px solid $grey300;
+}
+
+.mat-button.lobby-transparent-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  min-width: 102px;
+  width: 102px;
+  height: 32px;
+  background: $bg-light;
+  border: 1px solid $grey300;
+  border-radius: $br8;
+
+  .lobby-btn-text,
+  span.lobby-btn-text {
+    width: auto;
+    color: transparent;
+    font-family: $font-bold;
+    font-size: $fs14;
+    background: $grad-red;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  &:disabled {
+    .lobby-btn-text,
+    span.lobby-btn-text {
+      color: $grey400;
+    }
+  }
+}
+
+.mat-button.lobby-status-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 2px 12px;
+  min-width: 86px;
+  height: 24px;
+  background: $sea-green600;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+
+  .lobby-btn-text,
+  span.lobby-btn-text {
+    font-weight: 700;
+    font-size: 10px;
+    line-height: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    color: $sea-green000;
+  }
+
+  &.btn-registered {
+    background: $sea-green000;
+
+    .lobby-btn-text,
+    span.lobby-btn-text {
+      color: $sea-green600;
+    }
+  }
+
+  &.btn-playing {
+    background: $primary-success;
+
+    .lobby-btn-text,
+    span.lobby-btn-text {
+      color: #e6f4eb;
+    }
+  }
+
+  &.btn-running {
+    background: #e6f4eb;
+
+    .lobby-btn-text,
+    span.lobby-btn-text {
+      color: $primary-success;
+    }
+  }
+
+  &.btn-finished {
+    background: $grey500;
+    cursor: default;
+
+    .lobby-btn-text,
+    span.lobby-btn-text {
+      color: $grey000;
+    }
+  }
+
+  &.btn-cancelled {
+    background: $grey400;
+    cursor: default;
+
+    .lobby-btn-text,
+    span.lobby-btn-text {
+      color: $grey000;
+    }
+  }
+
+  &.btn-late-reg {
+    background: $orange500;
+
+    .lobby-btn-text,
+    span.lobby-btn-text {
+      color: $orange000;
+    }
+  }
+}
+
+.mat-button.reminder-btn {
+  @include flex($justifyContent: center, $alignItems: center, $gap: 6px);
+
+  padding: 8px 24px;
+  width: 94px;
+  height: 32px;
+  background: rgba(255 255 255 / 24%);
+  border-radius: $br8;
+
+  .reminder-btn-txt {
+    @include text-styles($fontWeight: 600, $color: $bg-light, $lineHeight: 16px);
+  }
+}
+
+.btn-with-timer {
+  height: 40px;
+
+  .timer-cta {
+    width: 54px;
+    height: 100%;
+    background: $green600;
+    border-radius: $br12 0 0 $br12;
+
+    &.cta-disabled {
+      background: $grey500;
+    }
+  }
+}

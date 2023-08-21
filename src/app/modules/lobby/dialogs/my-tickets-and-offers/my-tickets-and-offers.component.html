@@ -1,0 +1,276 @@
+<div class="cashier d-flex flex-col align-start wp100 hp100">
+  <div class="cashier-header d-flex jst-space align-center wp100 bg-light border-0 p-1">
+    <div class="cashier-title d-flex align-center gap8" i18n>
+      <div class="back-icon wh24 p-rel cursor" mat-dialog-close>
+        <div class="icons-24 chevron-left top-right wh24"></div>
+      </div>
+      <div class="text fs20 ft-primary-b grey900">My Tickets & Offers</div>
+    </div>
+    <div class="cashier-options d-flex jst-end align-center">
+      <div class="close-btn wh24 p-rel cursor" mat-dialog-close>
+        <div class="icons-24 close-icon wh24 top-right"></div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="cashier-body p-rel wp100 hp100 bg-grey100 p-4"
+    [ngStyle]="{
+      'min-height': allTickets.length == 0 ? 'calc(100vh - 56px)' : ''
+    }"
+  >
+    <div class="tab-container d-flex align-center h36 p-0">
+      <ul class="d-flex align-center p-0 m-0 gap12">
+        <li
+          class="tab-ui py-2 px-4 br20 bg-light cursor"
+          *ngFor="let sTab of subTab"
+          (click)="onSelectTab(sTab)"
+          [ngClass]="selectedTab == sTab ? 'tab-active' : ''"
+          i18n
+        >
+          <a class="text-tab fs14 ft-primary-b grey800">{{ sTab }}</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="tickets d-flex flex-col gap16 wp100" *ngIf="selectedTab == 'My Tickets'">
+      <div class="ticket-head d-flex jst-center align-center gap16 mb-2 pr-4" *ngIf="false">
+        <div class="ticket-head-left d-flex flex-col gap4">
+          <div class="fs16 ft-primary-b dark" i18n>Rewards Await you</div>
+          <div class="fs14 ft-primary-md grey700" i18n>
+            Let’s join the tournament using free tickets and win.
+          </div>
+        </div>
+        <div class="ticket-head-right p-rel d-flex jst-center align-center wh72 ovf-hide">
+          <img
+            class="p-abs wp100 hp100 obj-con"
+            [src]="assetsImagePath + 'cashier/Gift.svg'"
+            alt="Gift"
+            i18n
+            i18n-alt
+          />
+        </div>
+      </div>
+
+      <div
+        class="empty-ticket-offer-box d-flex flex-col jst-center align-center gap12 wp100"
+        *ngIf="allTickets.length == 0"
+      >
+        <img [src]="assetsImagePath + 'cashier/gift-empty.svg'" alt="GiftEmpty" i18n i18n-alt />
+        <div class="d-flex flex-col jst-center align-center gap8 wp100">
+          <div class="fs16 ft-primary-b grey600" i18n>No tickets available currently</div>
+          <div class="fs14 ft-primary-md grey500" i18n>Let’s play & win more tickets.</div>
+        </div>
+      </div>
+
+      <div class="active-tickets d-flex flex-col gap12 wp100" *ngIf="allTickets.length != 0">
+        <div class="ticket-status-txt fs16 ft-primary-b grey800" i18n>Active Tickets</div>
+        <div
+          class="ticket d-flex flex-col gap16 wp100 bg-light border-0.5 border-solid border-grey300 br16 p-4 m-4"
+          *ngFor="let actTicket of allTickets; let i = index"
+        >
+          <div class="ticket-top d-flex jst-center align-start wp100">
+            <div
+              class="ticket-code d-flex jst-center align-start gap4 py-2 px-3 bg-orange000 br8 border-1 border-dashed border-orange400"
+            >
+              <span class="ticket-code-text fs14 ft-primary-b grad-orange-text">{{
+                actTicket.tkt
+              }}</span>
+              <span class="ticket-box"
+                ><span class="ticket-chip">{{ actTicket.chips }}</span></span
+              >
+            </div>
+            <div class="ticket-expire d-flex jst-center align-center gap4">
+              <span class="exptext fs12 ft-primary-sb grey500" i18n>Expires on:</span>
+              <span class="exp-num s12 ft-primary-sb grey500">
+                {{ actTicket.expiryDate | date : "dd MMM, ''yy" }}</span
+              >
+              <img
+                *ngIf="showEyeIcon"
+                [src]="assetsImagePath + 'profile/info-fill.svg'"
+                class="infoIcon"
+                alt="I-icon"
+                #tooltip="matTooltip"
+                [matTooltip]="tooltipContent"
+                [matTooltipPosition]="'below'"
+                matTooltipHideDelay="1000"
+                i18n
+                i18n-alt
+                i18n-tooltip
+              />
+            </div>
+          </div>
+          <div class="dashed-divider"></div>
+          <div class="ticket-bottom d-flex jst-space align-center wp100">
+            <div
+              class="ticket-time-info d-flex flex-col gap8"
+              *ngFor="let eventTicket of actTicket.tournament"
+            >
+              <div class="fs14 ft-primary-b grey800">{{ eventTicket.tournamentName }}</div>
+              <div
+                class="time-txt d-flex jst-center align-center gap4"
+                *ngIf="eventTicket.startDate"
+              >
+                <span class="d-flex jst-center align-center gap4 grey400">Start: </span
+                ><span class="fs12 ft-primary-sb grey500">{{
+                  eventTicket.startDate | date : "dd MMM, ''yy | hh:mm a"
+                }}</span>
+              </div>
+            </div>
+            <button
+              *ngIf="actTicket.tournament != null"
+              type="button"
+              mat-button
+              class="btn btn-primary w171"
+              i18n
+            >
+              Register
+            </button>
+            <div class="ticket-bottom unused" *ngIf="actTicket.tournament == null">
+              <div class="fs12 ft-primary-sb grey500" i18n>
+                This ticket is not being used in any tournament
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="expired-tickets d-flex flex-col gap12 wp100" *ngIf="allTickets.length != 0">
+        <span class="ticket-status-txt fs16 ft-primary-b grey800" *ngIf="isExpireFlag" i18n>
+          Expired Tickets
+        </span>
+        <div *ngFor="let expTicket of allTickets">
+          <div class="ticket expired" *ngIf="expTicket.isExpire == true">
+            <div class="ticket-top">
+              <div class="ticket-code bg-grey100 border-1 border-dashed border-grey500">
+                <span class="ticket-code-text grey500">{{ expTicket.tkt }}</span>
+                <span class="ticket-box non-colored"
+                  ><span class="ticket-chip">{{ expTicket.chips }}</span></span
+                >
+              </div>
+              <div class="ticket-expire">
+                <span class="exptext">Expired:</span>
+                <span class="expNum">{{ expTicket.expiryDate | date : "dd MMM, ''yy" }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="offers d-flex flex-col gap16 wp100" *ngIf="selectedTab == 'My Offers'">
+      <div
+        class="empty-ticket-offer-box d-flex flex-col jst-center align-center gap12 wp100"
+        *ngIf="allOffers.length == 0"
+      >
+        <img [src]="assetsImagePath + 'cashier/empty-offer.svg'" alt="EmptyOffer" i18n i18n-alt />
+        <div class="d-flex flex-col jst-center align-center gap8 wp100">
+          <div class="fs16 ft-primary-b grey600" i18n>No offers available currently</div>
+          <div class="fs14 ft-primary-md grey500" i18n>We will be back with better offer soon.</div>
+        </div>
+      </div>
+      <div *ngFor="let offr of allOffers; let i = index">
+        <div
+          class="offer d-flex flex-col bg-light wp100 br16"
+          [ngClass]="offr.purchaseStatus == 'approved' ? 'greyout-image' : ''"
+        >
+          <img
+            class="offer-head wp100 bg-light border-0 p-4"
+            [src]="offr.desktopBanner"
+            alt="desktopBanner"
+            i18n
+            i18n-alt
+          />
+          <div class="offer-body d-flex flex-col gap8 wp100 px-4 my-4">
+            <div class="offer-name fs16 ft-primary-b grey800">{{ offr.offerName }}</div>
+            <div class="offer-body-bottom d-flex jst-space align-center wp100">
+              <div class="price-n-off d-flex gap4">
+                <div
+                  class="percent-off d-flex flex-col jst-center align-center h44 grad-orange-bg br8 py-1 px-1"
+                  *ngIf="offr.percentOff"
+                  [ngClass]="offr.purchaseStatus"
+                >
+                  <div class="fs16 ft-primary-b grey000">{{ offr.percentOff }}%</div>
+                  <div class="fs16 ft-primary-b grey000" i18n>OFF</div>
+                </div>
+                <div class="prices d-flex flex-col gap4">
+                  <span class="offer-price fs22 ft-primary-b grey900" *ngIf="offr.offerPrice"
+                    >₹
+                    {{
+                      offr.offerPrice.toLocaleString('en-IN', {
+                        currency: 'INR',
+                        minimumFractionDigits: 0,
+                        maximumFractionDigits: 2
+                      })
+                    }}</span
+                  >
+                  <span
+                    *ngIf="offr.originalPrice == '' || offr.originalPrice == 0"
+                    class="original-price fs12 ft-primary-sb grey500"
+                    >Price</span
+                  >
+                  <span
+                    *ngIf="offr.originalPrice != '' || offr.originalPrice != 0"
+                    class="original-price fs12 ft-primary-sb grey500"
+                    [ngClass]="!offr.offerPrice ? 'offer-price' : ''"
+                  >
+                    Original Price- ₹
+                    <span class="strike-out">{{
+                      offr.originalPrice.toLocaleString('en-IN', {
+                        currency: 'INR',
+                        minimumFractionDigits: 0,
+                        maximumFractionDigits: 2
+                      })
+                    }}</span></span
+                  >
+                  <span
+                    class="only-original-price fs12 ft-primary-sb grey500"
+                    *ngIf="!offr.offerPrice"
+                    >Price</span
+                  >
+                </div>
+              </div>
+              <button
+                type="button"
+                mat-button
+                class="offer-btn"
+                *ngIf="offr.purchaseStatus == 'new'"
+                (click)="openConfirmationDialog(i, offr.offerPrice, offr.offerId, offr.tktId)"
+              >
+                Purchase Now
+              </button>
+              <button
+                type="button"
+                mat-button
+                class="offer-btn"
+                [disabled]="offr.purchaseStatus == 'approved' || (purchased && selectedIndex == i)"
+                *ngIf="offr.purchaseStatus == 'approved'"
+              >
+                Purchased
+              </button>
+              <img
+                [src]="assetsImagePath + 'cashier/sold-out-stamp.svg'"
+                alt="sold-out-stamp"
+                *ngIf="offr.purchaseStatus == 'SOLD_OUT'"
+                i18n
+                i18n-alt
+              />
+            </div>
+          </div>
+          <div
+            class="offer-footer d-flex jst-center align-center br-btm-16 bg-grey000 p-4"
+            *ngIf="offr.status == 'LIVE'"
+          >
+            <span class="fs12 ft-primary-sb grey500" *ngIf="offr.maxUsage == 0" i18n
+              >Hurry, valid till {{ offr.endDate | date : "dd MMM, ''yy" }}.</span
+            >
+            <span class="fs12 ft-primary-sb grey500" *ngIf="offr.maxUsage != 0" i18n
+              >Hurry, valid till {{ offr.endDate | date : "dd MMM, ''yy" }} and only available for
+              first {{ offr.maxUsage }} users.</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-toast [toastValue]="toastValue" [(isShowToast)]="isShowToast"></app-toast>
+</div>

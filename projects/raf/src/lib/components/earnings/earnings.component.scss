@@ -1,0 +1,32 @@
+@import '../../../../../../src/assets/abstract/core';
+@import '../../../assets/styles/shared';
+
+.btn-icon-refer {
+  background-image: url('../../../assets/images/megaphone1.svg');
+}
+
+.btn-icon-view {
+  background-image: url('../../../assets/images/arrow-counter-clockwise.png');
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+}
+
+.tab-container {
+  .tab {
+    &.tab-active {
+      background: $bg-dark;
+      border-color: $grey500;
+
+      .tab-text {
+        color: $bg-light;
+      }
+
+      .chip {
+        background: $grad-red;
+      }
+    }
+  }
+}

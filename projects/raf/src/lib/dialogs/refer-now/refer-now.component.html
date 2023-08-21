@@ -1,0 +1,46 @@
+<div class="d-flex flex-column flex-column flex-1 gap0 ovf-y-auto">
+  <div class="d-flex jst-space align-center bg-light p-4 shadow">
+    <span class="fs20 ft-primary-b grey900" i18n>Refer Now</span>
+    <div class="d-flex jst-end align-center">
+      <div class="d-flex jst-center align-center w24 h24 bg-trans br50 cursor trans-03-in"
+        (click)="onClose()">
+        <span class="img-icon x-icon wh24"></span>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex flex-column flex-1 gap24 p-4 br16">
+    <div class="d-flex jst-space align-center">
+      <p class="ft-primary-b fs16 lh-normal grey700 m-0" i18n>Share in Other Languages</p>
+      <mat-slide-toggle disableRipple="true" (change)="onToggleChange($event)"></mat-slide-toggle>
+      <p-dropdown optionLabel="name" [disabled]="!toggleValue" [(ngModel)]="selectedLanguage"
+        optionLabel="name" placeholder="Select a Language" class="pd-dropdown w125"></p-dropdown>
+    </div>
+    <div class="d-flex align-center bg-grey100 gap10 p-3 br16">
+      <div class="d-flex align-center flex-1 gap16 px-1 py-3">
+        <div class="pd-input-copy d-flex flex-1 p-rel">
+          <input class="pd-input flex-1 w183" type="text" [(ngModel)]="referCode" autocompleteOff />
+          <button type="button" class="pd-btn-link btn-copy ft-primary-b fs14 lh-normal" i18n
+            (click)="copyToClipboard(referCode)">Copy</button>
+        </div>
+        <div class="pd-share-options d-flex jst-center align-center gap16">
+          <button type="button" class="btn-share d-inline-flex p-0 border-0 cursor-pointer"
+            (click)="onClickLink('facebook')">
+            <img [src]="assetsImagePath + 'raf/facebook.png'" alt="Facebook" i18n i18n-alt />
+          </button>
+          <button type="button" class="btn-share d-inline-flex p-0 border-0 cursor-pointer"
+            (click)="onClickLink('whatsapp')">
+            <img [src]="assetsImagePath + 'raf/whatsapp.png'" alt="WhatsApp" i18n i18n-alt />
+          </button>
+          <button type="button" class="btn-share d-inline-flex p-0 border-0 cursor-pointer"
+            (click)="onClickLink('mail')">
+            <img [src]="assetsImagePath + 'raf/mail.png'" alt="Mail" i18n i18n-alt />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isShowToast">
+  <app-toast [toastValue]="toastValue" [(isShowToast)]="isShowToast"></app-toast>
+</div>

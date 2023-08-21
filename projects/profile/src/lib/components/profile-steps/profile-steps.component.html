@@ -1,0 +1,44 @@
+<div class="d-flex jst-space align-center bg-light p-4 shadow">
+  <div class="d-flex align-center gap8 fs20 ft-primary-b grey900" i18n>
+    {{activeTitle}}
+  </div>
+  <div class="options wh24 p-rel cursor" (click)="goBackToProfile()">
+    <div class="icons-24 close-icon wh24 top-right"></div>
+  </div>
+</div>
+<div class="profile-dialog-body flex-1 ovf-hide">
+  <mat-stepper #stepper labelPosition="bottom" class="profile-stepper hp100 p-rel py-4" [disableRipple]="true"
+    (selectionChange)="gotChanged($event)" [linear]="isLinear" [selectedIndex]="this.activeIndexFromServer">
+    <ng-template matStepperIcon="edit" let-index="index">
+      {{ stepper.selectedIndex + 1 }}
+    </ng-template>
+
+    <mat-step [stepControl]="firstFormGroup" [editable]="true" matStepperIcon="phone">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel i18n matStepperIcon="phone">Personal<br />Details</ng-template>
+        <ng-template matStepContent>
+          <app-personal-details (isComplected)="nextClicked()" [userProfileData1]="userData"
+            [matStepperRef]="stepper"></app-personal-details>
+        </ng-template>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="secondFormGroup" [editable]="true">
+      <form [formGroup]="secondFormGroup">
+
+        <ng-template matStepLabel i18n>Document<br />Verification</ng-template>
+        <ng-template matStepContent>
+          <app-document-verification (isComplected)="nextClicked2nd()"
+            [matStepperRef]="stepper"></app-document-verification>
+        </ng-template>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="thirdFromGroup">
+      <ng-template matStepLabel i18n>Bank A/C<br />Details</ng-template>
+      <ng-template matStepContent>
+        <ngx-withdrawal-methods (isComplected)="nextClicked2nd()" [matStepperRef]="stepper" [showHeader]="false" [isAfterProfileUpdate]="false"></ngx-withdrawal-methods>
+      </ng-template>
+    </mat-step>
+  </mat-stepper>
+</div>

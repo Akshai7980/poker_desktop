@@ -1,0 +1,15 @@
+<div class="pd-confirmation-dialog p-rel d-flex flex-column flex-1 ovf-y-auto">
+  <div class="dialog-header d-flex jst-space align-center p-4">
+    <h5 class="dialog-title ft-primary-b fs20 lh-normal grey900 m-0" i18n>Leaderboard Details</h5>
+    <div class="dialog-options wh24 p-rel cursor" (click)="close()">
+      <div class="icons-24 close-icon top-right wh24"></div>
+    </div>
+  </div>
+  <div class="dialog-body d-flex flex-column flex-1 p-4 ovf-y-auto">
+    <div class="rules-title fs16 ft-primary-b grey900 p-3" i18n>
+      Rules
+    </div>
+    <div class="rules-body d-flex flex-col p-3" [innerHTML]="data.knowMoreContent">
+    </div>
+  </div>
+</div>

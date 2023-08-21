@@ -1,0 +1,18 @@
+@import "../../assets/abstract/core";
+@import "../../assets/abstract/utilities";
+@import "../../assets/components/cashier-common";
+
+.error-message {
+  margin-top: -10px;
+}
+
+.slider-card {
+  &.update-card {
+    height: auto;
+  }
+}
+
+.detail-points {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}

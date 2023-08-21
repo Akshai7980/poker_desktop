@@ -1,0 +1,29 @@
+.main-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+
+  .side-bar-content-container {
+    display: flex;
+    flex-direction: row;
+
+    .sidebar {
+      width: 80px;
+      position: relative;
+      height: calc(100vh - 64px - 64px);
+    }
+
+    .content {
+      width: calc(100vw - 80px);
+      height: calc(100vh - 64px - 64px);
+    }
+
+    .content-without-footer {
+      width: calc(100vw - 80px);
+      height: calc(100vh - 64px);
+    }
+  }
+}

@@ -1,0 +1,45 @@
+@import "../../../assets/components/cashier-common";
+@import '../../../assets/abstract/utilities';
+
+// Common classes for the properties are not reflecting due to order of the class written in utilities files
+// This is why background & color properties are written here as inline.
+.data-card {
+  background: $green000;
+
+  .data-card-item {
+    &.item4 {
+        .status-txt {
+          color: $primary-success;
+        }
+    }
+  }
+
+  &.success {
+    background: $secondary-success;
+  }
+  
+  &.pending {
+    background: $orange000;
+
+    .data-card-item {
+      &.item4 {
+        .status-txt {
+          color: $orange400;
+        }
+      }
+    }
+  }
+
+  &.cancelled,
+  &.failed {
+    background: $red000;
+
+    .data-card-item {
+      &.item4 {
+        .status-txt {
+          color: $primary-error;
+        }
+      }
+    }
+  }
+}

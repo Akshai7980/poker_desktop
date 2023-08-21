@@ -1,0 +1,401 @@
+// Placeholder for the background properties
+%bg-properties {
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+// For the Check-mark with grey and green
+.img-check-mark {
+  background-image: url('../../images/sprite-icons/validation-check.svg');
+
+  @extend %bg-properties;
+
+  &.img-active {
+    background-position: 100% 100%;
+  }
+}
+
+// For Sorting icons
+
+.sort-icon {
+  background-image: url('../../images/sprite-icons/sorting-arrows.svg');
+
+  @extend %bg-properties;
+
+  &.sort-up {
+    background-position: 100% 100%;
+  }
+
+  &.sort-down {
+    background-position: 50% 100%;
+  }
+}
+
+// For Fovourites Icon
+
+.fav-star-icon {
+  background-image: url('../../images/sprite-icons/favorite-icon-sprite.svg');
+
+  @extend %bg-properties;
+
+  &.star-icon {
+    background-position: 65% 100%;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      background-image: url('../../images/sprite-icons/favorite-icon-sprite.svg');
+
+      @extend %bg-properties;
+
+      background-position: 33% 100%;
+      transition: $trans-3s;
+    }
+
+    &:hover {
+      &::after {
+        opacity: 1;
+      }
+    }
+  }
+
+  &.star-fill {
+    background-position: 33% 100%;
+  }
+
+  &.star-border {
+    background-position: 0 100%;
+    text-indent: -9999px;
+
+    span {
+      left: 0;
+      bottom: 0;
+      background-image: url('../../images/sprite-icons/favorite-icon-sprite.svg');
+
+      @extend %bg-properties;
+
+      background-position: 33% 100%;
+    }
+
+    &:hover {
+      span {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+// For Funnel Icon
+
+.funnel-icon {
+  background-image: url('../../images/sprite-icons/funnel-sprite.svg');
+
+  &.funnel-transform {
+    transform: translateY(1px);
+  }
+
+  @extend %bg-properties;
+
+  &.funnel-border {
+    background-position: 0 100%;
+
+    span {
+      left: 0;
+      bottom: 0;
+      background-image: url('../../images/sprite-icons/funnel-sprite.svg');
+
+      @extend %bg-properties;
+
+      background-position: 96% 100%;
+    }
+
+    &:hover {
+      span {
+        opacity: 1;
+      }
+    }
+  }
+
+  &.funnel-fill {
+    background-position: 96% 100%;
+  }
+}
+
+.icons-24 {
+  background-image: url('../../images/sprite-icons/icons-24.svg');
+
+  @extend %bg-properties;
+
+  &.chevron-left {
+    background-position: 0 100%;
+  }
+
+  &.chevron-right {
+    background-position: 6.5% 100%;
+  }
+
+  &.close-icon {
+    background-position: 13.4% 100%;
+  }
+
+  &.close-icon-bg {
+    background-position: 20.1% 100%;
+    text-indent: -9999px;
+
+    span {
+      left: 0;
+      bottom: 0;
+      background-image: url('../../images/sprite-icons/icons-24.svg');
+
+      @extend %bg-properties;
+
+      background-position: 26.9% 100%;
+    }
+
+    &:hover {
+      span {
+        opacity: 1;
+      }
+    }
+  }
+
+  &.close-icon-bg-hover {
+    background-position: 26.9% 100%;
+  }
+
+  &.close-icon-red-bg {
+    background-position: 33.7% 100%;
+  }
+
+  &.chevron-right-light-grey {
+    background-position: 40.2% 100%;
+  }
+
+  &.plus-blue {
+    background-position: 47% 100%;
+  }
+
+  &.qr-code {
+    background-position: 53.7% 100%;
+  }
+
+  &.camera-icon {
+    background-position: 60.4% 100%;
+  }
+
+  &.info-outer-white {
+    background-position: 67.2% 100%;
+  }
+
+  &.chevron-right-grey500 {
+    background-position: 74% 100%;
+  }
+
+  &.arrow-left {
+    background-position: 80.6% 100%;
+
+    &:hover {
+      background-position: 87.4% 100%;
+    }
+  }
+
+  &.arrow-left-grey {
+    background-position: 87.4% 100%;
+  }
+
+  &.close-icon-white {
+    background-position: 94.2% 100%;
+  }
+}
+
+.icons-20 {
+  background-image: url('../../images/sprite-icons/icons-20.svg');
+
+  @extend %bg-properties;
+
+  &.clock {
+    background-position: 0 100%;
+  }
+
+  &.close-purple {
+    background-position: 4.2% 100%;
+  }
+
+  &.success {
+    background-position: 8.2% 100%;
+  }
+
+  &.fail {
+    background-position: 12.4% 100%;
+  }
+
+  &.chevron-down {
+    background-position: 16.4% 100%;
+  }
+
+  &.chevron-right-grad-red {
+    background-position: 20.8% 100%;
+  }
+
+  &.close-grey2 {
+    background-position: 24.6% 100%;
+  }
+
+  &.plus-circle {
+    background-position: 28.7% 100%;
+  }
+
+  &.bank-icon {
+    background-position: 32.8% 100%;
+  }
+
+  &.chevron-left-white {
+    background-position: 37% 100%;
+  }
+
+  &.chevron-right-white {
+    background-position: 41.2% 100%;
+  }
+
+  &.home-icon {
+    background-position: 45.2% 100%;
+  }
+
+  &.table-icon {
+    background-position: 49.4% 100%;
+  }
+
+  &.poker-fill-icon {
+    background-position: 53.5% 100%;
+  }
+
+  &.timer-icon {
+    background-position: 57.6% 100%;
+  }
+
+  &.settings-icon {
+    background-position: 61.8% 100%;
+  }
+
+  &.wallet-plus-icon {
+    background-position: 65.9% 100%;
+  }
+
+  &.game-info-icon {
+    background-position: 70% 100%;
+  }
+
+  &.tiles-icon {
+    background-position: 74.1% 100%;
+  }
+
+  &.game-copy-icon {
+    background-position: 78.2% 100%;
+  }
+
+  &.trophy-icon {
+    background-position: 82.3% 100%;
+  }
+}
+
+.icons-16 {
+  background-image: url('../../images/sprite-icons/icons-16.svg');
+
+  @extend %bg-properties;
+
+  &.chevron-right-white {
+    background-position: 0 100%;
+  }
+
+  &.chevron-right-grey {
+    background-position: 5% 100%;
+  }
+
+  &.info-fill {
+    background-position: 10% 100%;
+  }
+
+  &.copy-icon {
+    background-position: 14.8% 100%;
+  }
+
+  &.credit-icon {
+    background-position: 19.9% 100%;
+  }
+
+  &.debit-icon {
+    background-position: 24.9% 100%;
+  }
+
+  &.trash-icon {
+    background-position: 29.7% 100%;
+  }
+
+  &.chevron-up {
+    background-position: 34.6% 100%;
+  }
+
+  &.chevron-down {
+    background-position: 36.6% 100%;
+  }
+
+  &.info-light-grey {
+    background-position: 44.5% 100%;
+  }
+
+  &.close-red-border {
+    background-position: 49.5% 100%;
+  }
+
+  &.chevron-right-gradred {
+    background-position: 54.5% 100%;
+  }
+
+  &.edit-pencil {
+    background-position: 59.5% 100%;
+  }
+
+  &.info-outline {
+    background-position: 64.4% 100%;
+  }
+
+  &.chevron-left-white {
+    background-position: 69.2% 100%;
+  }
+}
+
+.card-icons-40 {
+  background-image: url('../../images/sprite-icons/card-icons-40.svg');
+
+  @extend %bg-properties;
+
+  &.master-card {
+    background-position: 0 100%;
+  }
+
+  &.visa-card {
+    background-position: 10.3% 100%;
+  }
+
+  &.americanexpress-card {
+    background-position: 20.7% 100%;
+  }
+
+  &.dinersclub-card {
+    background-position: 31.3% 100%;
+  }
+
+  &.paytm-card {
+    background-position: 41.8% 100%;
+  }
+
+  &.rupay-card {
+    background-position: 52.2 100%;
+  }
+
+  &.upi-card {
+    background-position: 62.7% 100%;
+  }
+}

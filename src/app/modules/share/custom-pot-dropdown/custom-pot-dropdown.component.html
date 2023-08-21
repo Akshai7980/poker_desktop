@@ -1,0 +1,28 @@
+<div class="custom-input-dropdown p-rel">
+  <p-dropdown
+    [options]="dropDownListNumberPot"
+    (onBlur)="onBlur()"
+    [(ngModel)]="betOptions"
+    (onChange)="onSettingsChange($event, 0)"
+    optionLabel="keyName"
+    scrollHeight="250"
+    styleClass="bet-options"
+  >
+  </p-dropdown>
+  <div class="custom-input-group p-abs" *ngIf="showInputText">
+    <input
+      id="custom-bet-input"
+      (blur)="onBlur()"
+      appInputNumberOnly
+      placeholder="Enter Pot %"
+      type="tel"
+      max="150"
+      class="custom-input bg-light ft-primary-b fs14 lh-normal grey700 p-3 border-0 br8"
+      [(ngModel)]="inputValue.name"
+      (input)="onSettingsChange($event, 1)"
+      i18n-placeholder
+      autocompleteOff
+    />
+  </div>
+  <p class="ft-primary-md fs12 lh-normal grey500 pt-2 m-0">Maximum Pot %: 150</p>
+</div>

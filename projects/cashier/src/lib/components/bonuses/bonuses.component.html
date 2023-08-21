@@ -1,0 +1,59 @@
+<div class="wp100 hp100 flex-col-jst-start ovf-hide">
+  <div class="wp100 h56 d-flex jst-space align-center bg-light shadow p-4">
+    <div class="d-flex align-center gap8 p-rel gap8" i18n>
+      <div class="icons-24 chevron-left wh24 cursor" (click)="backToCashier()"></div>
+      <div class="bonus-text fs20 ft-primary-b grey900">Bonuses</div>
+    </div>
+    <div class="d-flex p-rel jst-end wh24 align-center" (click)="onBack()">
+      <div class="icons-24 close-icon top-right wh24 cursor"></div>
+    </div>
+  </div>
+
+  <div class="p-rel wp100 flex-col-jst-start flex-1 gap24 bg-grey100 p-4 ovf-y-scroll">
+
+    <div class="flex-col-jst-start gap6">
+      <div class="flex-start gap8">
+        <div class="bonus-circle wh24 d-flex jst-center align-center grad-orange-bg br24 fs12 ft-primary-b primary-light ls-1" i18n>IB</div>
+        <span class="fs16 ft-primary-b grey900" i18n>Instant Bonus</span>
+      </div>
+      <div class="flex-base gap4 ml-5 fs14 ft-primary-sb grey800 ls-1" *ngFor="let ibPoint of instantBonus?.points">
+        <span class="ellipse"></span>{{ibPoint}}
+      </div>
+    </div>
+
+    <div class="flex-col-jst-start gap6">
+      <div class="flex-start gap8">
+        <div class="bonus-circle wh24 d-flex jst-center align-center grad-orange-bg br24 fs12 ft-primary-b primary-light ls-1" i18n>TB</div>
+        <span class="fs16 ft-primary-b grey900" i18n>Tournament Bonus</span>
+      </div>
+      <div class="flex-base gap4 ml-5 fs14 ft-primary-sb grey800 ls-1" *ngFor="let tbPoint of tournamentBonus?.points">
+        <span class="ellipse"></span>{{tbPoint}}
+      </div>
+    </div>
+
+    <div class="flex-col-jst-start gap6">
+      <div class="flex-start gap8">
+        <div class="bonus-circle wh24 d-flex jst-center align-center grad-orange-bg br24 fs12 ft-primary-b primary-light ls-1" i18n>BB</div>
+        <span class="fs16 ft-primary-b grey900" i18n>Booster Bonus</span>
+      </div>
+      <div class="flex-base gap4 ml-5 fs14 ft-primary-sb grey800 ls-1" *ngFor="let bbPoint of boosterBonus?.points">
+        <span class="ellipse"></span>{{bbPoint}}
+      </div>
+    </div>
+
+    <div class="flex-col-jst-start gap6">
+      <div class="flex-start gap8">
+        <div class="bonus-circle wh24 d-flex jst-center align-center bg-grey800 br24 fs12 ft-primary-b primary-light ls-1" i18n>FC</div>
+        <span class="fs16 ft-primary-b grey900" i18n>Free Chips</span>
+      </div>
+      <div class="flex-base gap4 ml-5 fs14 ft-primary-sb grey800 ls-1" *ngFor="let fcPoint of freeChips?.points">
+        <span class="ellipse"></span>{{fcPoint}}
+      </div>
+    </div>
+
+    <div *ngIf="isShowToast">
+      <app-toast [toastValue]="toastValue" [(isShowToast)]="isShowToast"></app-toast>
+    </div>
+
+  </div>
+</div>

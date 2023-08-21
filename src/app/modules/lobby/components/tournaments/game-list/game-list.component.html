@@ -1,0 +1,391 @@
+<div
+  class="tournament-games d-flex flex-col jst-center align-center gap12"
+  *ngIf="tournamentMttListount <= 0"
+>
+  <div class="table-container d-flex jst-center align-center empty-data">
+    <div class="ring-table-empty d-flex flex-col jst-center align-center">
+      <div class="empty-image p-rel flex-col jst-center align-center wh108 ovf-hide">
+        <img
+          class="p-abs wp100 hp100 obj-con"
+          alt="NoTable"
+          [src]="assetsImagePath + 'lobby/trophy-dynamic-premium-cup.png'"
+          alt="trophy-dynamic-premium-cup"
+          i18n
+          i18n-alt
+        />
+      </div>
+      <span i18n>Please change your filter settings to see the list of tournaments.</span>
+    </div>
+  </div>
+</div>
+
+<div class="tournament-games d-flex flex-col gap12" [hidden]="tournamentMttListount <= 0">
+  <table class="table d-flex flex-col wp100 gap10" aria-label="Game Table" i18n-aria-label>
+    <thead>
+      <tr class="table1-header d-flex jst-space align-center p-2 wp100 bg-grey100 grey600 br8">
+        <th
+          class="table-header-tournament-text d-flex align-center p-2 fs12 ft-primary-b gap4 text-uppercase cursor"
+          *ngFor="let ptHead of tournamentTableHeaders; let i = index"
+          [attr.data-index]="i"
+          i18n
+        >
+          <div class="sorting-text fs12 ft-primary-b text-uppercase cursor grey600">
+            {{ ptHead.title }}
+          </div>
+          <div class="sorting-icon d-flex jst-center align-center p-rel wh12 ovf-hide cursor">
+            <div
+              class="sort-icon top-right p-rel wh12"
+              [ngClass]="{ 'sort-up': ptHead.isSorted && ptHead.sortOrder === 'asc' }"
+              *ngIf="ptHead.isIcon"
+              (click)="sortList(ptHead.key, ptHead.sortOrder, i)"
+            ></div>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      class="tournament-table d-flex flex-col"
+      *ngIf="tournamentList.joinedTables && tournamentList.joinedTables.length"
+    >
+      <tr class="recommendations d-flex align-center wp100 p-2 bg-orange000">
+        <td colspan="6" class="recommendation-text fs12 ft-primary-b orange900 text-capital" i18n>
+          Joined Tournaments
+        </td>
+      </tr>
+      <ng-container class="table1-data-container wp100">
+        <tr
+          class="table1-tournament-data d-flex jst-space align-center wp100 bg-light cursor trans-03"
+          *ngFor="let list of tournamentList.joinedTables | mttFilter : '' : sortOptions : filters"
+          (dblclick)="openRegistrationDialog('SUFFCIENT_BALANCE')"
+          (click)="openRhs(list)"
+          [ngClass]="{ 'selected-row': selectedGame.id === list.id }"
+        >
+          <ng-container *ngTemplateOutlet="table; context: { $implicit: list }"></ng-container>
+        </tr>
+      </ng-container>
+    </tbody>
+    <tbody
+      class="tournament-table d-flex flex-col"
+      *ngIf="tournamentList.joinWithTickets && tournamentList.joinWithTickets.length"
+    >
+      <tr class="recommendations d-flex align-center wp100 p-2 bg-orange000">
+        <td colspan="6" class="recommendation-text fs12 ft-primary-b orange900 text-capital" i18n>
+          Join With Ticket
+        </td>
+      </tr>
+      <ng-container class="table1-data-container wp100">
+        <tr
+          class="table1-tournament-data d-flex jst-space align-center wp100 bg-light cursor trans-03"
+          *ngFor="
+            let list of tournamentList.joinWithTickets | mttFilter : '' : sortOptions : filters
+          "
+          (dblclick)="openRegistrationDialog('SUFFCIENT_BALANCE')"
+          (click)="openRhs(list)"
+          [ngClass]="{ 'selected-row': selectedGame.id === list.id }"
+        >
+          <ng-container *ngTemplateOutlet="table; context: { $implicit: list }"></ng-container>
+        </tr>
+      </ng-container>
+    </tbody>
+    <tbody class="tournament-table d-flex flex-col">
+      <tr class="recommendations d-flex align-center wp100 p-2 bg-orange000">
+        <td colspan="6" class="recommendation-text fs12 ft-primary-b orange900 text-capital" i18n>
+          Late Registration Available
+        </td>
+      </tr>
+      <ng-container class="table1-data-container wp100">
+        <tr
+          class="table1-tournament-data d-flex jst-space align-center wp100 bg-light cursor trans-03"
+          *ngFor="
+            let list of tournamentList.allTables | mttFilter : 'late_reg' : sortOptions : filters
+          "
+          (dblclick)="openRegistrationDialog('SUFFCIENT_BALANCE')"
+          (click)="openRhs(list)"
+          [ngClass]="{ 'selected-row': selectedGame.id === list.id }"
+        >
+          <ng-container *ngTemplateOutlet="table; context: { $implicit: list }"></ng-container>
+        </tr>
+      </ng-container>
+    </tbody>
+    <tbody class="tournament-table d-flex flex-col">
+      <tr class="recommendations d-flex align-center wp100 p-2 bg-orange000">
+        <td colspan="6" class="recommendation-text fs12 ft-primary-b orange900 text-capital" i18n>
+          Starting Soon
+        </td>
+      </tr>
+      <ng-container class="table1-data-container wp100">
+        <tr
+          class="table1-tournament-data d-flex jst-space align-center wp100 bg-light cursor trans-03"
+          *ngFor="
+            let list of tournamentList.allTables | mttFilter : 'registering' : sortOptions : filters
+          "
+          (dblclick)="openRegistrationDialog('SUFFCIENT_BALANCE')"
+          (click)="openRhs(list)"
+          [ngClass]="{ 'selected-row': selectedGame.id === list.id }"
+        >
+          <ng-container *ngTemplateOutlet="table; context: { $implicit: list }"></ng-container>
+        </tr>
+      </ng-container>
+    </tbody>
+    <tbody class="tournament-table d-flex flex-col">
+      <tr class="recommendations d-flex align-center wp100 p-2 bg-orange000">
+        <td colspan="6" class="recommendation-text fs12 ft-primary-b orange900 text-capital" i18n>
+          Running/Finished
+        </td>
+      </tr>
+      <ng-container class="table1-data-container wp100">
+        <tr
+          class="table1-tournament-data d-flex jst-space align-center wp100 bg-light cursor trans-03"
+          *ngFor="
+            let list of tournamentList.allTables
+              | mttFilter : 'active | completed | cancelled' : sortOptions : filters
+          "
+          (dblclick)="openRegistrationDialog('SUFFCIENT_BALANCE')"
+          (click)="openRhs(list)"
+          [ngClass]="{ 'selected-row': selectedGame.id === list.id }"
+        >
+          <ng-container *ngTemplateOutlet="table; context: { $implicit: list }"></ng-container>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #table let-list>
+  <td class="table-tournament-data-text p-2 d-flex flex-col gap4">
+    <div class="tournament-name-legends d-flex flex-col align-start gap4">
+      <div
+        class="tournament-name d-flex align-center fs14 ft-primary-b grey900 tool-tip bottom tournament-name"
+        i18n
+      >
+        {{ list.remarks.length >= 25 ? list.remarks.slice(0, 25) + ' ...' : list.remarks }}
+        <span class="tooltip-inner-text">{{ list.remarks }}</span>
+      </div>
+      <div class="tournament-icon-legends d-flex align-center gap4">
+        <div
+          class="icon-legend d-flex jst-center align-center py-0 px-2 bg-blue000 br20 fs10 ft-primary-sb blue600"
+          i18n
+          (click)="openIconsLegendDialog()"
+          *ngIf="list.isRentry === 'true'"
+        >
+          RE
+        </div>
+        <div
+          class="icon-legend d-flex jst-center align-center py-0 px-2 bg-blue000 br20 fs10 ft-primary-sb blue600"
+          i18n
+          (click)="openIconsLegendDialog()"
+        >
+          Satty
+        </div>
+        <div
+          class="icon-legend d-flex jst-center align-center py-0 px-2 bg-blue000 br20 fs10 ft-primary-sb blue600"
+          i18n
+          (click)="openIconsLegendDialog()"
+          *ngIf="list.isRebuy === 'true' && list.addOnAllowed === 'true'"
+        >
+          R+A
+        </div>
+        <div
+          class="icon-legend d-flex jst-center align-center py-0 px-2 bg-blue000 br20 fs10 ft-primary-sb blue600"
+          i18n
+          (click)="openIconsLegendDialog()"
+          *ngIf="list.isBountyMTT === 'true'"
+        >
+          KO
+        </div>
+        <div
+          class="icon-legend d-flex jst-center align-center py-0 px-2 bg-blue000 br20 fs10 ft-primary-sb blue600"
+          i18n
+          (click)="openIconsLegendDialog()"
+          *ngIf="list.isProgressiveBountyTourney === 'true'"
+        >
+          PKO
+        </div>
+        <div
+          class="icon-legend d-flex jst-center align-center py-0 px-2 bg-blue000 br20 fs10 ft-primary-sb blue600"
+          i18n
+          (click)="openIconsLegendDialog()"
+          *ngIf="
+            list.isRentry !== 'true' || list.isRebuy !== 'true' || list.addOnAllowed !== 'true'
+          "
+        >
+          FO
+        </div>
+        <div
+          class="icon-legend p-rel d-flex jst-center align-center py-0 px-2 bg-blue000 br20 fs10 ft-primary-sb blue600"
+          i18n
+          (click)="openIconsLegendDialog()"
+          *ngIf="list.isWinTheButton === 'true'"
+        >
+          <img
+            class="p-abs wp100 hp100 obj-con"
+            [src]="assetsImagePath + 'lobby/WinTheButton.svg'"
+            alt="users"
+            i18n-alt
+          />
+        </div>
+      </div>
+    </div>
+  </td>
+  <td class="table-tournament-data-text p-2 d-flex flex-col gap4">
+    <div class="tournament-data-text d-flex align-center gap4" i18n>
+      <div class="users-icon p-rel ovf-hide">
+        <img
+          class="p-abs wp100 hp100 obj-con"
+          [src]="assetsImagePath + 'lobby/users.svg'"
+          alt="users"
+          i18n-alt
+        />
+      </div>
+      <div class="data-text fs14 ft-primary-b grey900 text-nowrap">{{ list.userCount }}</div>
+    </div>
+  </td>
+  <td class="table-tournament-data-text p-2 d-flex flex-col gap4">
+    <div class="tournament-data-text d-flex align-center gap4" i18n>
+      <div class="trophy-icon p-rel ovf-hide">
+        <img
+          class="p-abs wp100 hp100 obj-con"
+          [src]="assetsImagePath + 'lobby/prizeCup.svg'"
+          alt="prize"
+          i18n-alt
+        />
+      </div>
+      <div
+        class="data-text fs14 ft-primary-b grey900 text-nowrap"
+        *ngIf="list.prizeArr && list.prizeArr.length === 1"
+      >
+        ₹ {{ list.prize | number : '1.0-2' }}
+      </div>
+      <div
+        class="data-text fs14 ft-primary-b grey900 text-nowrap"
+        *ngIf="list.prizeArr && list.prizeArr.length > 1"
+      >
+        {{ list.prizeArr[0].chipType === 'VIP' ? '₹' : '' }}
+        {{ list.prizeArr[0].amount | number : '1.0-2' }}
+        {{ list.prizeArr[0].chipType !== 'VIP' ? list.prizeArr[0].chipType : '' }}
+      </div>
+      <div
+        class="prize-count d-flex jst-center align-center circle p-2 bg-grey100 fs12 ft-prmary-sb grey500"
+        *ngIf="list.prizeArr && list.prizeArr.length > 1"
+      >
+        +{{ list.prizeArr.length - 1 }}
+      </div>
+    </div>
+  </td>
+  <td class="table-tournament-data-text p-2 d-flex flex-col gap4">
+    <div class="tournament-data-text d-flex align-center gap4" i18n>
+      <div
+        class="data-text fs14 ft-primary-b grey500 text-nowrap"
+        *ngIf="calculateStartTime(list) === 'dateAndTime'"
+      >
+        {{ list.startDate | date : "dd MMM, ''yy | hh:mm a" }}
+      </div>
+      <div
+        class="data-text fs14 ft-primary-b grey500 text-nowrap"
+        *ngIf="calculateStartTime(list) === 'time'"
+      >
+        {{ list.startDate | date : 'hh:mm a' }}
+      </div>
+      <div
+        class="data-text fs14 ft-primary-b grey500 text-nowrap"
+        *ngIf="calculateStartTime(list).search('mins') > 0"
+      >
+        {{ calculateStartTime(list) }}
+      </div>
+    </div>
+  </td>
+  <td class="table-tournament-data-text p-2 d-flex flex-col gap4">
+    <div class="tournament-data-text d-flex align-center">
+      <button
+        type="button"
+        mat-button
+        class="btn btn-text-primary lobby-btn"
+        trackEvents
+        id="lobby-tournament-buyIn-btn"
+        i18n
+      >
+        <span
+          class="gradient-text"
+          *ngIf="list.buyIn && list.buyIn[0].entry_chip_type.toLowerCase() === 'ticket'"
+          >{{ list.buyIn[0].entry_chip_type }}</span
+        >
+        <span
+          class="gradient-text"
+          *ngIf="list.buyIn && list.buyIn[0].entry_chip_type.toLowerCase() !== 'ticket'"
+          >{{ list.buyIn[0].entry_chip_type === 'VIP' ? '₹' : '' }}
+          {{ list.buyIn[0].entry_amount | number : '1.0-2' }}
+          {{ list.buyIn[0].entry_chip_type !== 'VIP' ? list.buyIn[0].entry_chip_type : '' }}</span
+        >
+      </button>
+    </div>
+  </td>
+  <td class="table-tournament-data-text p-2 d-flex flex-col gap4">
+    <div class="tournament-data-text d-flex align-center">
+      <button
+        type="button"
+        mat-button
+        class="btn btn-status registering"
+        *ngIf="list.status.toLowerCase() === 'registering'"
+        trackEvents
+        id="lobby-tournament-registering-btn"
+        i18n
+      >
+        Registering
+      </button>
+      <button
+        type="button"
+        mat-button
+        class="btn btn-status playing"
+        *ngIf="list.status.toLowerCase() === 'active'"
+        trackEvents
+        id="lobby-tournament-playing-btn"
+        i18n
+      >
+        Playing
+      </button>
+      <button
+        type="button"
+        mat-button
+        class="btn btn-status registered"
+        *ngIf="list.status.toLowerCase() === 'registered'"
+        trackEvents
+        id="lobby-tournament-registered-btn"
+        (click)="openInfoPopup()"
+      >
+        <span class="status-text" i18n>Registered</span>
+      </button>
+      <button
+        type="button"
+        mat-button
+        class="btn btn-status late-register"
+        *ngIf="list.status.toLowerCase() === 'late_reg'"
+        trackEvents
+        id="lobby-tournament-lateRegistered-btn"
+      >
+        Late Reg.
+      </button>
+      <button
+        type="button"
+        mat-button
+        class="btn btn-status cancelled"
+        *ngIf="list.status.toLowerCase() === 'cancelled'"
+        trackEvents
+        id="lobby-tournament-cancelled-btn"
+        i18n
+      >
+        Cancelled
+      </button>
+      <button
+        type="button"
+        mat-button
+        class="btn btn-status finished"
+        *ngIf="list.status.toLowerCase() === 'completed'"
+        trackEvents
+        id="lobby-tournament-finished-btn"
+        i18n
+      >
+        Finished
+      </button>
+    </div>
+  </td>
+</ng-template>

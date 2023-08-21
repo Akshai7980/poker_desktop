@@ -1,0 +1,130 @@
+<div class="cash w414 hp100 d-flex flex-column bg-grey100" [ngClass]="{'p-4':cashTxnLists.cashTxnHistory.length > 0}">
+
+
+  <div class="empty-container wp100 flex-col-jst-center gap12 flex-1 bg-light"
+    *ngIf="cashTxnLists.cashTxnHistory.length <= 0">
+    <div class="wh108 flex-center gap8 bg-grey300 br50 p-6">
+      <img [src]="assetsImagePath + 'cashier/swap.svg'" alt="swap" i18n i18n-alt>
+    </div>
+    <span class="fs16 ft-primary-b grey600" i18n>No Transaction history available </span>
+  </div>
+  <div *ngIf="cashTxnLists.cashTxnHistory.length > 0">
+    <div class="tab-container wp100 d-flex jst-space align-center bg-trans">
+      <div class="h36 d-flex align-center gap12">
+        <div class="tab flex-center gap12 border-0 br-pill py-2 px-4 cursor trans-03" *ngFor="let sTab of subTab"
+          (click)="onSelectTab(sTab)"
+          [ngClass]="selectedTab === sTab? 'tab-active bg-grey900 primary-light' : 'bg-light grey800' ">
+          <span class="tab-text fs14 lh-base ft-primary-b" i18n>{{ sTab }}</span>
+        </div>
+      </div>
+      <div class="action-btns flex-start gap16">
+        <button type="button" mat-button class="cursor border-0 outline-0 bg-trans" (click)="openFilter()"
+          id="transaction-history-cash-filter-btn" trackEvents>
+          <img [src]="assetsImagePath + 'cashier/Funnel.svg'" alt="sort" i18n i18n-alt>
+        </button>
+        <div class="w1 h16 bg-grey600" *ngIf="cashTxnLists.cashTxnHistory.length > 0"></div>
+        <button type="button" class="cursor border-0 outline-0" *ngIf="cashTxnLists.cashTxnHistory.length > 0" mat-button
+          (click)="downloadCSV()" id="cash-downloadcsv-btn" trackEvents>
+          <img [src]="assetsImagePath + 'cashier/download-simple.svg'" alt="download" i18n i18n-alt>
+        </button>
+      </div>
+    </div>
+    <div
+      class="cash-txn-item p-rel wp100 flex-col-jst-start gap12 bg-light br16 my-3 pt-4 pb-2 px-4 border-1.5 border-solid"
+      [ngClass]="cashTxn.isSelected?'active':'border-transparent'"
+      [ngStyle]="{'cursor':cashTxn.type === 'withdraw' ? 'pointer' : '' }"
+      *ngFor="let cashTxn of cashTxnLists.cashTxnHistory"
+      (click)="cashTxn.type === 'withdraw'?onSelectCashTxn(cashTxn):null">
+      <div class="cash-txn-item-top wp100 flex-col-jst-start gap8">
+        <div class="item-top-inner1 wp100 flex-space">
+          <div class="left flex-start gap4">
+            <span class="fs12 ft-primary-md grey600" i18n>Reference ID: </span>
+            <span class="fs12 ft-primary-b grey900" i18n>{{ cashTxn.referenceCode }}</span>
+            <img class="cursor" [src]="assetsImagePath + 'cashier/Copy.svg'" alt="Copy" matTooltip="Click to Copy"
+              (click)="copyToClipboard(cashTxn.referenceCode)" i18n i18n-alt>
+          </div>
+          <div class="right fs12 ft-primary-sb grey500">{{ cashTxn.date | date: "dd MMM, ''yy | hh:mm a" }}</div>
+        </div>
+        <div class="item-top-inner2 wp100 flex-space">
+          <span class="fs14 ft-primary-b grey500 text-uppercase" *ngIf="cashTxn.type === 'withdraw'" i18n>Bank/UPI</span>
+          <span class="fs14 ft-primary-b grey500 text-uppercase" *ngIf="cashTxn.type === 'deposit'" i18n>Payment
+            Method</span>
+          <span class="fs14 ft-primary-b grey500 text-uppercase" *ngIf="cashTxn.type === 'withdraw'" i18n>Cash
+            Withdrawn</span>
+          <span class="fs14 ft-primary-b grey500 text-uppercase" *ngIf="cashTxn.type === 'deposit'" i18n>Cash
+            Deposited</span>
+        </div>
+        <div class="item-top-inner3 wp100 flex-space">
+          <span class="fs16 ft-primary-b grey900" i18n *ngIf="cashTxn.type === 'deposit'">{{ cashTxn.paymentMethod
+            }}</span>
+          <span class="fs16 ft-primary-b grey900" i18n *ngIf="cashTxn.type === 'withdraw'">{{ cashTxn.bankUPI }}</span>
+          <span class="debit flex-start gap4" *ngIf="cashTxn.type === 'withdraw'">
+            <img [src]="assetsImagePath + 'cashier/debit-arrow.svg'" alt="debitArrow" i18n i18n-alt>
+            <span class="fs16 ft-primary-b primary-red" i18n>₹ {{ cashTxn.amount | number: '1.0-2' }}</span>
+          </span>
+
+          <span class="credit flex-start gap4" *ngIf="cashTxn.type === 'deposit'">
+            <img [src]="assetsImagePath + 'cashier/credit-arrow.svg'" alt="creditArrow" i18n i18n-alt>
+            <span class="fs16 ft-primary-b primary-success" i18n>₹ {{ cashTxn.amount | number: '1.0-2' }}</span>
+          </span>
+        </div>
+      </div>
+      <div class="cash-item-bottom wp100 flex-space">
+        <div class="status-box flex-start gap8">
+
+          <div *ngIf="cashTxn.type === 'withdraw' && cashTxn.currentStatus === 'Approved'"
+          class="status h26 flex-center gap4 bg-secondary-success br-pill py-2 px-3 success cdefault">
+          <span class="fs12 ft-primary-b primary-success ls-1" i18n> {{ cashTxn.currentStatus }} </span>
+        </div>
+
+        <div *ngIf="cashTxn.type === 'withdraw' && cashTxn.currentStatus === 'Failed'"
+        class="status h26 flex-center gap4 bg-red000 br-pill py-2 px-3 failed cdefault">
+        <span class="fs12 ft-primary-b grad-red-text ls-1" i18n>{{ cashTxn.currentStatus }}</span>
+      </div>
+
+      <div *ngIf="cashTxn.type === 'withdraw' && cashTxn.currentStatus === 'Pending'"
+      class="status h26 flex-center gap4 bg-orange000 br-pill py-2 px-3 pending cdefault">
+      <span class="fs12 ft-primary-b grad-orange-text ls-1" i18n>{{ cashTxn.currentStatus }}</span>
+    </div>
+
+          <div *ngIf="cashTxn.status === 'success'"
+            class="status h26 flex-center gap4 bg-secondary-success br-pill py-2 px-3 success cdefault">
+            <span class="fs12 ft-primary-b primary-success ls-1" i18n>Success</span>
+          </div>
+          <div *ngIf="cashTxn.currentStatus === 'Credited'"
+            class="status h26 flex-center gap4 bg-secondary-success br-pill py-2 px-3 success cdefault">
+            <span i18n class="fs12 ft-primary-b primary-success ls-1">{{cashTxn.currentStatus}}</span>
+          </div>
+          <div *ngIf="cashTxn.type === 'deposit' && cashTxn.status === 'pending'"
+            class="status h26 flex-center gap4 bg-orange000 br-pill py-2 px-3 pending cdefault">
+            <span i18n class="fs12 ft-primary-b grad-orange-text ls-1">Pending</span>
+          </div>
+          <div *ngIf="cashTxn.currentStatus === 'Pending with bank'"
+            class="status h26 flex-center gap4 bg-orange000 br-pill py-2 px-3 pending cdefault">
+            <span class="fs12 ft-primary-b grad-orange-text ls-1" i18n>Pending</span>
+          </div>
+          <div *ngIf="cashTxn.status === 'failed'"
+            class="status h26 flex-center gap4 bg-red000 br-pill py-2 px-3 failed cdefault">
+            <span i18n class="fs12 ft-primary-b grad-red-text ls-1">Failed</span>
+          </div>
+          <div *ngIf="cashTxn.currentStatus === 'Cancelled'"
+            class="status h26 flex-center gap4 bg-red000 br-pill py-2 px-3 cancelled cdefault">
+            <span i18n class="fs12 ft-primary-b grad-red-text ls-1">{{cashTxn.currentStatus}}</span>
+          </div>
+
+          <div class="icons-16 info-fill wh16 cursor" *ngIf="cashTxn.type === 'withdraw'" (click)="onSelectCashTxn(cashTxn)"></div>
+        </div>
+        <div class="txn-info w-auto h26 flex-center gap4 bg-grey100 br-pill py-2 px-3 fs12 ft-primary-b text-uppercase"
+          *ngIf="cashTxn.type === 'withdraw'">
+          <span class="grey600" i18n>TDS Deducted:</span>
+          <span class="grey900">₹ {{ cashTxn.tdsDeducted | number: '1.0-2' }}</span>
+        </div>
+        <div class="txn-info w-auto h26 flex-center gap4 bg-blue000 br-pill py-2 px-3 fs12 ft-primary-b text-uppercase"
+          *ngIf="cashTxn.type === 'deposit' && cashTxn.bonusCode !== ''">
+          <span class="grey600" i18n>Deposit Code:</span>
+          <span class="grad-blue-text">{{ cashTxn.bonusCode }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

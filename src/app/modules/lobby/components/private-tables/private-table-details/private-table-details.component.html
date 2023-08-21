@@ -1,0 +1,435 @@
+<!--  -->
+<div
+  class="table-details-container d-flex flex-col pt-4 px-2 pb-0 gap16 wp100 mh490 bg-light br-top-16"
+  *ngIf="isShowListData; else noDataList"
+>
+  <div class="table-details-main-header d-flex jst-space align-center gap16 wp100 h24">
+    <div class="d-flex align-center gap4" *ngIf="createdTable">
+      <div class="fs20 ft-primary-b grey900" i18n>{{ createdTable.own }}</div>
+      <div
+        class="d-flex jst-center align-center br20 py-1 px-3 bg-purple000 fs10 ft-primary-sb purple600"
+        i18n
+      >
+        {{ createdTable.rv === 'HOLDEM' ? "Hold'em" : 'PL Omaha' }}
+      </div>
+    </div>
+  </div>
+  <div class="table-details-header d-flex jst-space align-center py-2 px-0 gap10 wp100 h36">
+    <div
+      class="table-details-title d-flex align-center w93 h19 fs16 ft-primary-sb grey900 text-nowrap"
+      i18n
+    >
+      Table Details
+    </div>
+    <div class="table-details-options">
+      <div class="switch-toggle w80 h38 d-flex align-start">
+        <div
+          class="switch-toggle-icons p-rel d-flex jst-center align-center w40 h38 py-4 px-2 gap4 cursor trans-03 border-1 border-solid border-grey200"
+          [ngClass]="{ 'switch-active': !showTableView }"
+          (click)="listToggle()"
+        >
+          <div class="list-icon p-rel wh24 ovf-hide" *ngIf="!showTableView">
+            <img
+              class="p-abs wp100 hp100 obj-con"
+              alt="valueIcon"
+              [src]="assetsImagePath + 'lobby/List-light.svg'"
+              i18n
+              i18n-alt
+            />
+          </div>
+          <div class="table-icon p-rel wh24 ovf-hide" *ngIf="showTableView">
+            <img
+              class="p-abs wp100 hp100 obj-con"
+              alt="valueIcon"
+              [src]="assetsImagePath + 'lobby/List-dark.svg'"
+              i18n
+              i18n-alt
+            />
+          </div>
+        </div>
+        <div
+          class="switch-toggle-icons p-rel d-flex jst-center align-center w40 h38 py-4 px-2 gap4 cursor trans-03 border-1 border-solid border-grey200"
+          [ngClass]="{ 'switch-active': showTableView }"
+          (click)="listToggle()"
+        >
+          <div class="list-icon p-rel wh24 ovf-hide" *ngIf="!showTableView">
+            <img
+              class="p-abs wp100 hp100 obj-con"
+              alt="valueIcon"
+              [src]="assetsImagePath + 'lobby/game-table-black.svg'"
+              i18n
+              i18n-alt
+            />
+          </div>
+          <div class="table-icon p-rel wh24 ovf-hide" *ngIf="showTableView">
+            <img
+              class="p-abs wp100 hp100 obj-con"
+              alt="valueIcon"
+              [src]="assetsImagePath + 'lobby/game-table-white.svg'"
+              i18n
+              i18n-alt
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-container *ngIf="!showTableView">
+    <div class="invite_box d-flex flex-col gap8" *ngIf="createdTable">
+      <div class="share-title fs16 ft-primary-b grey900" i18n>Share Invite Code</div>
+      <div
+        class="copy-box d-flex jst-space align-center wp100 h48 py-3 px-4 br8 border-1.5 border-solid border-grey300"
+      >
+        <div class="d-flex align-center gap4">
+          <div class="fs16 ft-primary-b grey900" i18n>Code:</div>
+          <div class="fs16 ft-primary-b grey900" i18n>{{ createdTable.pnr }}</div>
+        </div>
+        <div
+          class="d-flex jst-center align-center wh20 ovf-hide cursor"
+          (click)="copyToClipBoard(createdTable.pnr)"
+        >
+          <img
+            class="p-abs wp100 hp100 obj-con"
+            [src]="assetsImagePath + 'lobby/Copy.svg'"
+            class="iconImg"
+            tabindex="0"
+            alt="copy"
+            i18n
+            i18n-alt
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="user-stack-detail-container d-flex flex-col align-start gap8 wp100">
+      <div class="user-stack-header d-flex jst-space align-center p-2 wp100 h30 bg-grey100 br8">
+        <div
+          class="user-stack-header-text d-flex jst-end align-center w63 h14 fs12 ft-primary-b grey700 text-nowrap text-uppercase"
+          i18n
+        >
+          USERNAME
+        </div>
+        <div
+          class="user-stack-header-text d-flex jst-end align-center fs12 ft-primary-b grey700 text-nowrap text-uppercase"
+          i18n
+        >
+          STACKS
+        </div>
+      </div>
+      <div
+        class="user-stack-body d-flex flex-col align-start wp100 h216 bg-light border-1 border-solid border-grey200 br8"
+      >
+        <div
+          class="user-stack-body-context d-flex jst-space align-center p-2 wp100 h36"
+          *ngFor="let userData of rhsData?.playerArr"
+        >
+          <div
+            class="user-stack-content-title d-flex align-start h20 gap4 fs14 ft-primary-b grey900"
+          >
+            {{ userData.playerName }}
+            <span
+              class="title-text d-flex jst-center align-center circle wh20 grad-pink-bg fs12 ft-primary-b light"
+              *ngIf="userData.isD"
+              >D</span
+            >
+            <span
+              class="title-text d-flex jst-center align-center circle wh20 grad-pink-bg fs12 ft-primary-b light"
+              *ngIf="userData.isSB"
+              >SB</span
+            >
+            <span
+              class="title-text d-flex jst-center align-center circle wh20 grad-pink-bg fs12 ft-primary-b light"
+              *ngIf="userData.isBB"
+              >BB</span
+            >
+          </div>
+          <div class="user-stack-content-value d-flex jst-end align-center h17 gap4">
+            <div class="value-icon p-rel w12 h9 ovf-hide">
+              <img
+                class="p-abs wp100 hp100 obj-con"
+                alt="valueicon"
+                [src]="assetsImagePath + 'lobby/large_stack.svg'"
+                i18n
+                i18n-alt
+              />
+            </div>
+            <div class="fs14 ft-primary-b grey900">{{ userData.stackAmt }}</div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="user-stack-footer wp100 h49 py-4 pr-1 pl-2 bg-light border-0.5 border-solid border-grey300 br8"
+      >
+        <div class="user-stack-context d-flex jst-space align-center h17 gap20">
+          <div
+            class="user-stack-context-title d-flex align-start fs12 ft-primary-b grey500 text-uppercase"
+            i18n
+          >
+            Average Stack
+          </div>
+          <div
+            class="user-stack-context-value d-flex align-center h17 gap4 fs14 ft-primary-b grey900"
+            *ngIf="rhsData?.avgStack"
+          >
+            <div class="value-icon-img w12 h9 p-rel ovf-hide">
+              <img
+                class="p-abs wp100 hp100 obj-con"
+                alt="valueicon"
+                [src]="assetsImagePath + 'lobby/large_stack.svg'"
+                i18n
+                i18n-alt
+              />
+            </div>
+            <div class="fs14 ft-primary-b grey900">{{ rhsData.avgStack }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <div *ngIf="showTableView">
+    <div class="poker-table-container wp100 p-rel ovf-hide">
+      <img
+        class="p-abs wp100 hp100 obj-cov"
+        [src]="assetsImagePath + 'lobby/poker-table-bg-full.svg'"
+        alt="poker-table-bg"
+        i18n
+        i18n-alt
+      />
+      <div class="poker-table wp100 p-rel ovf-hide">
+        <img
+          class="p-abs wp100 hp100 obj-cov"
+          [src]="assetsImagePath + 'lobby/poker-table-full.svg'"
+          alt="poker-table"
+          i18n
+          i18n-alt
+        />
+        <div class="poker-table-widget p-abs d-flex flex-col w118 h144">
+          <div class="average-stack-container d-flex flex-col jst-end align-end w136 h22 gap10">
+            <div
+              class="average-stack-count d-flex align-center w136 h22 py-1 px-2 gap4 bg-grey900 br20"
+            >
+              <div class="average-stack-title w67 fs10 ft-primary-b grey400" i18n>
+                Average Stack
+              </div>
+              <div class="average-stack-value d-flex align-center w42 h14 gap4">
+                <div class="poker-chip p-rel wh14 ovf-hide">
+                  <img
+                    class="p-abs wp100 hp100 obj-con"
+                    [src]="assetsImagePath + 'lobby/pokerChip.svg'"
+                    alt="poker"
+                    i18n
+                    i18n-alt
+                  />
+                </div>
+                <div class="average-stack-count-value fs10 ft-primary-b h17 light">994</div>
+              </div>
+            </div>
+          </div>
+          <div class="logo-placeholder-container d-flex flex-col align-center gap8 wp100 h42">
+            <div class="logo-placeholder-body d-flex flex-col align-center gap8 wp100">
+              <div class="logo-placeholder p-rel wp100 h24 ovf-hide">
+                <img
+                  class="p-abs wp100 hp100 obj-cov"
+                  [src]="assetsImagePath + 'lobby/logo-placeholder.svg'"
+                  alt="logo"
+                  i18n
+                  i18n-alt
+                />
+              </div>
+              <div class="logo-placeholder-text fs12 ft-primary-b green900 text-center" i18n>
+                Holdem - 100/200
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="poker-players">
+        <div class="player-seating player1 p-abs d-flex jst-center align-center w65 h43 pt-1">
+          <div class="player-image wh42 p-abs">
+            <img
+              class="p-abs obj-con z-1"
+              [src]="assetsImagePath + 'lobby/player.svg'"
+              alt="players"
+              i18n
+              i18n-alt
+            />
+          </div>
+          <div class="floating-name p-abs z-2 w16 h11 br20">
+            <div
+              class="floating-name-body top-left d-flex jst-center align-center w16 h11 light br20 grad-pink-bg fs8 p-2 ft-primary-sb"
+              i18n
+            >
+              SB
+            </div>
+          </div>
+          <div class="player-cards p-abs d-flex align-center wh21 z-1">
+            <div class="cards w16 h21 grad-red-bg br2 border-1 border-solid border-white"></div>
+            <div class="cards w16 h21 grad-red-bg br2 border-1 border-solid border-white"></div>
+          </div>
+          <div class="player-details p-abs d-flex flex-col w65 h40">
+            <div
+              class="player-details-body d-flex flex-col align-center w65 h40 bg-dark br10 pt-2 px-3 pb-2 gap4"
+            >
+              <div class="player-title h13 fs10 ft-primary-b grey000" i18n>Bidyut007</div>
+              <div class="total-money h13 fs10 ft-primary-b grad-orange-text">48,00,000</div>
+            </div>
+          </div>
+        </div>
+        <div class="player-seating player2 p-abs d-flex jst-center align-center w65 h43 pt-1">
+          <div class="player-image wh42 p-abs">
+            <img
+              class="p-abs obj-con z-1"
+              [src]="assetsImagePath + 'lobby/player.svg'"
+              alt="players"
+              i18n
+              i18n-alt
+            />
+          </div>
+          <div class="floating-name p-abs z-2 w16 h11 br20">
+            <div
+              class="floating-name-body top-left d-flex jst-center align-center w16 h11 br20 light grad-pink-bg fs8 ft-primary-sb"
+              i18n
+            >
+              BB
+            </div>
+          </div>
+          <div class="player-cards p-abs d-flex align-center wh21 z-1">
+            <div class="cards w16 h21 grad-red-bg br2 border-1 border-solid border-white"></div>
+            <div class="cards w16 h21 grad-red-bg br2 border-1 border-solid border-white"></div>
+          </div>
+          <div class="player-details p-abs d-flex flex-col w65 h40">
+            <div
+              class="player-details-body d-flex flex-col align-center w65 h40 bg-dark br10 pt-2 px-3 pb-2 gap4"
+            >
+              <div class="player-title h13 fs10 ft-primary-b grey000" i18n>Bidyut007</div>
+              <div class="total-money h13 fs10 ft-primary-b grad-orange-text">48,00,000</div>
+            </div>
+          </div>
+        </div>
+        <div class="player-seating player3 p-abs d-flex jst-center align-center w65 h43 pt-1">
+          <div class="player-image wh42 p-abs">
+            <img
+              class="p-abs obj-con z-1"
+              [src]="assetsImagePath + 'lobby/player.svg'"
+              alt="players"
+              i18n
+              i18n-alt
+            />
+          </div>
+          <div class="floating-name p-abs z-2 w16 h11 br20">
+            <div
+              class="floating-name-body top-left d-flex jst-center align-center w16 h11 light br20 grad-pink-bg fs8 ft-primary-sb"
+              i18n
+            >
+              BB
+            </div>
+          </div>
+          <div class="player-cards p-abs d-flex align-center wh21 z-1">
+            <div class="cards w16 h21 grad-red-bg br2 border-1 border-solid border-white"></div>
+            <div class="cards w16 h21 grad-red-bg br2 border-1 border-solid border-white"></div>
+          </div>
+          <div class="player-details p-abs d-flex flex-col w65 h40">
+            <div
+              class="player-details-body d-flex flex-col align-center w65 h40 bg-dark br10 pt-2 px-3 pb-2 gap4"
+            >
+              <div class="player-title h13 fs10 ft-primary-b grey000" i18n>Bidyut007</div>
+              <div class="total-money h13 fs10 ft-primary-b grad-orange-text">48,00,000</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="table-details-footer d-flex jst-center align-center p-2 gap16 bg-light"
+    *ngIf="createdTable.jnd < createdTable.mxp.toString() && createdTable?.own === 'Me'"
+  >
+    <button
+      type="button"
+      mat-button
+      trackEvents
+      id="lobby-privateTable-tableDetails-join-btn"
+      class="btn btn-primary-outline w171 h40"
+      i18n
+      (click)="joinTable()"
+    >
+      Join
+    </button>
+    <button
+      type="button"
+      mat-button
+      trackEvents
+      id="lobby-privateTable-tableDetails-seatme-btn"
+      class="btn btn-primary w171 h40"
+      i18n
+    >
+      Seat Me
+    </button>
+  </div>
+
+  <div
+    class="table-details-footer d-flex jst-center align-center p-2 gap16 bg-light"
+    *ngIf="createdTable?.jnd === createdTable?.mxp && createdTable.own === 'Me'"
+  >
+    <button
+      type="button"
+      mat-button
+      trackEvents
+      id="lobby-privateTable-tableDetails-watch-btn"
+      class="btn btn-primary-outline w171 h40"
+      i18n
+    >
+      Watch
+    </button>
+    <button
+      type="button"
+      mat-button
+      trackEvents
+      id="lobby-privateTable-tableDetails-watchlist-btn"
+      class="btn btn-primary w171 h40"
+      i18n
+    >
+      Waitlist
+    </button>
+  </div>
+
+  <div
+    class="table-details-footer d-flex jst-center align-center p-2 gap16 bg-light"
+    *ngIf="createdTable?.own !== 'Me'"
+  >
+    <button
+      type="button"
+      mat-button
+      trackEvents
+      id="lobby-privateTable-tableDetails-playing-btn"
+      class="btn btn-primary wp100 h40"
+      i18n
+    >
+      Playing
+    </button>
+  </div>
+</div>
+
+<!-- When No Table is Selected Below will be shown -->
+
+<ng-template #noDataList>
+  <div
+    class="table-details-container table-details-empty d-flex jst-center align-center mh490 pt-4 px-2 pb-0 gap16 wp100 bg-light table-details-empty"
+  >
+    <div class="d-flex flex-col align-center gap12">
+      <div class="user-image p-rel wh108 ovf-hide">
+        <img
+          class="p-abs wp100 hp100 pbj-con"
+          alt="UserBig"
+          [src]="assetsImagePath + 'lobby/UserBig.png'"
+          alt="UserBig"
+          i18n
+          i18n-alt
+        />
+      </div>
+      <span class="fs14 ft-m grey500" i18n>Select a table to view players</span>
+    </div>
+  </div>
+</ng-template>

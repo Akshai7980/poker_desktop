@@ -1,0 +1,66 @@
+<div class="p-rel wp100 hp100 d-flex flex-column gap24">
+
+  <ng-container *ngIf="!isAddUPI && !isAddBank">
+    <div class="wp100 d-flex flex-column gap16">
+      <div class="wp100 d-flex jst-space align-center">
+        <div class="d-flex align-center gap8">
+          <img [src]="assetsImagePath + 'profile/bank.svg'" alt="bank" i18n i18n-alt />
+          <span class="fs16 ft-primary-b grey800" i18n>Withdrawal Method</span>
+        </div>
+        <div class="d-flex align-center gap8 cursor" (click)="openWithdrawMethod()">
+          <div class="fs14 ft-primary-b grey900" i18n>Manage Method</div>
+          <div class="icons-16 chevron-right-grey wh16 cursor"></div>
+        </div>
+      </div>
+      <form [formGroup]="wdrMethodsForm" class="wp100 d-flex flex-column gap16">
+
+        <div class="wp100 d-flex jst-space align-center bg-light br16 border-0.5 border-solid border-grey300 p-4"
+          *ngFor="let item of bankListData; let i = index">
+          <div class="d-flex align-center gap12">
+            <img [src]="assetsImagePath + 'cashier/manage-cards-bank-icon.svg'" alt="bank" class="iconImg" i18n
+              i18n-alt />
+            <div class="d-flex flex-column gap6">
+              <span class="fs14 ft-primary-b grey800" i18n> {{ item?.accountNumber }} </span>
+              <span class="fs12 ft-primary-sb grey500" i18n> {{ item?.bankName }} | {{ item?.ifscCode }} </span>
+            </div>
+          </div>
+
+          <div class="p-field-radiobutton d-flex align-center gap8">
+            <p-radioButton name="withdrawalMethod" [value]=i.toString() formControlName="withdrawalMethod"
+              (onClick)="onSelectRadio($event, i.toString())" [(ngModel)]="selectedRadioIndex"
+              inputId="'i.toString()'+1"></p-radioButton>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="wp100 d-flex flex-column gap16">
+      <div class="wp100 d-flex jst-space align-center">
+        <div class="d-flex align-center gap8">
+          <img [src]="assetsImagePath + 'cashier/add-bank.svg'" alt="bank" i18n i18n-alt />
+          <span class="fs16 ft-primary-b grey800" i18n>Add New Account</span>
+        </div>
+      </div>
+      <form [formGroup]="wdrMethodsForm" class="wp100 d-flex flex-column gap16">
+        <div class="wp100 d-flex jst-center gap12 flex-1 bg-light br16 border-0.5 border-solid border-grey300 p-4">
+          <button type="button" mat-button
+            class="grad-red-btn d-flex jst-center align-center gap8 flex-1 br12 border-1.5 border-solid border-transparent h40 cursor"
+            (click)="add('upi')" i18n id="withdrawal-addupi-btn" trackEvents>
+            <div class="icons-20 plus-circle wh20"></div>
+            <div class="fs14 ft-primary-b grad-red-text">Add UPI</div>
+          </button>
+          <button type="button" mat-button
+            class="grad-red-btn d-flex jst-center align-center gap8 flex-1 br12 border-1.5 border-solid border-transparent h40 cursor"
+            (click)="add('bank')" i18n id="withdrawal-addbank-btn" trackEvents>
+            <div class="icons-20 bank-icon wh20"></div>
+            <div class="fs14 ft-primary-b grad-red-text">Add Bank</div>
+          </button>
+        </div>
+      </form>
+    </div>
+  </ng-container>
+
+  <div *ngIf="isShowToast">
+    <app-toast [toastValue]="toastValue" [(isShowToast)]="isShowToast"></app-toast>
+  </div>
+
+</div>

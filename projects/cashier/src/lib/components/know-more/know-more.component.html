@@ -1,0 +1,14 @@
+<div class="w414 d-flex flex-column gap24 p-4">
+    <div class="d-flex flex-column gap12">
+        <div class="d-flex align-center gap8">
+            <div class="back-icon flex-center wh24 p-rel cursor" (click)="onBackClick()">
+                <div class="icons-24 top-left chevron-left wh24"></div>
+              </div>
+            <span class="fs16 ft-primary-b grey800">{{ title }}</span>
+        </div>
+        <div class="d-flex flex-column gap16">
+            <div class="flex-base gap4" [innerHTML]="answer">
+            </div>
+        </div>
+    </div>
+</div>

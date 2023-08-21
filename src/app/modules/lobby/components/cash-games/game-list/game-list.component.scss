@@ -1,0 +1,6 @@
+@import '../../../../../../assets/abstract/core';
+@import '../../../../../../assets/theme/components/tables';
+
+.game-list-container {
+  height: calc(100vh - 310px); // value would be according to the screen size
+}

@@ -1,0 +1,64 @@
+@import '../../../assets/abstract/core';
+
+.lobby-main {
+  .lobby-left {
+    width: calc(100% - 374px);
+  }
+
+  .lobby-right {
+    width: 374px;
+    height: calc(100vh - 144px);
+  }
+
+  // The below were used for the media query,
+  // so here the classes can't define, the values should here only
+
+  @include device(dxl) {
+    .lobby-left {
+      width: calc(100% - 400px);
+    }
+
+    .lobby-right {
+      width: 400px;
+    }
+  }
+
+  // The below were used for the media query,
+  // so here the classes can't define, the values should here only
+
+  @include device(dxxl) {
+    .lobby-left {
+      width: calc(100% - 454px);
+    }
+
+    .lobby-right {
+      width: 454px;
+    }
+  }
+
+  // The below were used for the media query,
+  // so here the classes can't define, the values should here only
+
+  @include device(dxlg) {
+    .lobby-left {
+      width: calc(100% - 484px);
+    }
+
+    .lobby-right {
+      width: 484px;
+    }
+  }
+
+  // The below were used for the media query,
+  // so here the classes can't define, the values should here only
+
+  @include device(dxxlg) {
+    .lobby-left {
+      width: calc(100% - 534px);
+    }
+
+    .lobby-right {
+      width: 534px;
+    }
+  }
+}

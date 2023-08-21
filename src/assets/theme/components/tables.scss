@@ -1,0 +1,529 @@
+@import '../../abstract/core';
+
+// Border Styles for the table
+
+%border-height {
+  border: 1px solid $grey200;
+  border-bottom: 0 none;
+}
+
+// Border-bottom Styles for the table last child
+
+%border-bottom {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-bottom: 1px solid $grey200;
+}
+
+// gradient color for the icons and texts
+
+%grad-orange {
+  background-image: $grad-orange;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+// for recommendations
+
+%recommandations {
+  height: 28px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+// for active and hover states
+
+%active-hover-states {
+  position: relative;
+  background: $grey200;
+
+  &::after {
+    @include triangle(14px, $grey200, right);
+  }
+}
+
+// for psuedo classes - after
+
+%psuedo-after {
+  content: '';
+  position: absolute;
+
+  @include triangle(14px, transparent, right);
+
+  right: -14px;
+  transition: $transition;
+}
+
+table {
+  &.table {
+    thead {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+
+      tr {
+        &.table1-header {
+          height: 30px;
+
+          th {
+            &.table-header-text {
+              &:nth-child(5n + 1) {
+                width: 155px;
+              }
+
+              &:nth-child(5n + 2) {
+                width: 88px;
+              }
+
+              &:nth-child(5n + 3) {
+                width: 97px;
+              }
+
+              &:nth-child(5n + 4) {
+                width: 81px;
+              }
+
+              &:nth-child(5n + 5) {
+                width: 74px;
+              }
+            }
+
+            &.table-header-tournament-text {
+              &:nth-child(6n + 1) {
+                width: 220px;
+              }
+
+              &:nth-child(6n + 2) {
+                width: 82px;
+              }
+
+              &:nth-child(6n + 3) {
+                width: 160px;
+              }
+
+              &:nth-child(6n + 4) {
+                width: 170px;
+              }
+
+              &:nth-child(6n + 5) {
+                width: 122px;
+              }
+
+              &:nth-child(6n + 6) {
+                width: 86px;
+              }
+            }
+
+            &.table-header-sitout-text {
+              &:nth-child(5n + 1) {
+                width: 301px;
+              }
+
+              &:nth-child(5n + 2) {
+                width: 188px;
+              }
+
+              &:nth-child(5n + 3) {
+                width: 143px;
+              }
+
+              &:nth-child(5n + 4) {
+                width: 122px;
+              }
+
+              &:nth-child(5n + 5) {
+                width: 86px;
+              }
+            }
+
+            &.table-header-private-text {
+              &:nth-child(6n + 1) {
+                width: 156px;
+              }
+
+              &:nth-child(6n + 2) {
+                width: 116px;
+              }
+
+              &:nth-child(6n + 3) {
+                width: 101px;
+              }
+
+              &:nth-child(6n + 4) {
+                width: 144px;
+              }
+
+              &:nth-child(6n + 5) {
+                width: 176px;
+              }
+
+              &:nth-child(6n + 6) {
+                width: 139px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        &.recommendations {
+          @extend %recommandations;
+        }
+
+        &.table1-data {
+          @extend %border-height;
+
+          &::after {
+            @extend %psuedo-after;
+          }
+
+          &:last-child {
+            @extend %border-bottom;
+          }
+
+          &:only-child {
+            border-radius: 0;
+          }
+
+          &:hover {
+            @extend %active-hover-states;
+          }
+
+          &.table-data-clicked {
+            @extend %active-hover-states;
+          }
+
+          td {
+            &.table-data-text {
+              min-height: 32px;
+
+              // .data-icon {
+              //   .star-icon {
+              //     width: 13px;
+              //     height: 13px;
+
+              //     .pi {
+              //       font-size: $fs12;
+              //     }
+
+              //     &:hover {
+              //       .pi {
+              //         @extend %grad-orange;
+              //       }
+              //     }
+
+              //     &.star-active {
+              //       .pi {
+              //         @extend %grad-orange;
+              //       }
+              //     }
+              //   }
+              // }
+
+              .recently-played {
+                width: 87px;
+                height: 20px;
+              }
+
+              &:nth-child(5n + 1) {
+                width: 155px;
+                column-gap: 5px;
+              }
+
+              &:nth-child(5n + 2) {
+                width: 88px;
+                font-weight: 700;
+              }
+
+              &:nth-child(5n + 3) {
+                width: 97px;
+                font-weight: 700;
+              }
+
+              &:nth-child(5n + 4) {
+                width: 81px;
+
+                .users-icon {
+                  width: 15px;
+                  height: 15px;
+                }
+              }
+
+              &:nth-child(5n + 5) {
+                width: 74px;
+              }
+            }
+          }
+        }
+      }
+
+      &.tournament-table {
+        tr {
+          &.recommendations {
+            @extend %recommandations;
+          }
+
+          &.table1-tournament-data {
+            @extend %border-height;
+
+            &::after {
+              @extend %psuedo-after;
+            }
+
+            &:last-child {
+              @extend %border-bottom;
+            }
+
+            &:only-child {
+              border-radius: 0;
+            }
+
+            &:hover {
+              @extend %active-hover-states;
+            }
+
+            &.selected-row {
+              @extend %active-hover-states;
+            }
+
+            &.table-tournament-data-clicked {
+              @extend %active-hover-states;
+            }
+
+            td {
+              &.table-tournament-data-text {
+                .tournament-data-text {
+                  .users-icon {
+                    width: 16px;
+                    height: 16px;
+                  }
+
+                  .trophy-icon {
+                    width: 18px;
+                    height: 18px;
+                  }
+
+                  .prize-count {
+                    width: 18px;
+                    height: 18px;
+                    border-bottom: 1px solid $grey400;
+                  }
+                }
+
+                .tournament-name-legends {
+                  .tournament-icon-legends {
+                    .icon-legend {
+                      min-width: 28px;
+                      height: 20px;
+
+                      .ko-icon {
+                        width: 18px;
+                        height: 10px;
+                      }
+
+                      .pko-icon {
+                        width: 31px;
+                        height: 10px;
+                      }
+
+                      .d-icon {
+                        width: 16px;
+                        height: 16px;
+                      }
+                    }
+                  }
+                }
+
+                &:nth-child(6n + 1) {
+                  width: 220px;
+                }
+
+                &:nth-child(6n + 2) {
+                  width: 82px;
+                }
+
+                &:nth-child(6n + 3) {
+                  width: 160px;
+                }
+
+                &:nth-child(6n + 4) {
+                  width: 170px;
+                }
+
+                &:nth-child(6n + 5) {
+                  width: 122px;
+                }
+
+                &:nth-child(6n + 6) {
+                  width: 86px;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      &.sitout-table {
+        tr {
+          &.recommendations {
+            @extend %recommandations;
+          }
+
+          &.table1-sitout-data {
+            @extend %border-height;
+
+            &::after {
+              @extend %psuedo-after;
+            }
+
+            &:last-child {
+              @extend %border-bottom;
+            }
+
+            &:only-child {
+              border-radius: 0;
+            }
+
+            &:hover {
+              @extend %active-hover-states;
+            }
+
+            &.table-tournament-data-clicked {
+              @extend %active-hover-states;
+            }
+
+            td {
+              &.table-sitout-data-text {
+                .sitout-data-text {
+                  .users-icon {
+                    width: 16px;
+                    height: 16px;
+                  }
+
+                  .trophy-icon {
+                    width: 18px;
+                    height: 18px;
+                  }
+
+                  .user-joined-icon {
+                    width: 18px;
+                    height: 18px;
+                  }
+
+                  .user-not-joined-icon {
+                    width: 18px;
+                    height: 18px;
+                  }
+                }
+
+                &:nth-child(5n + 1) {
+                  width: 301px;
+                }
+
+                &:nth-child(5n + 2) {
+                  width: 188px;
+                }
+
+                &:nth-child(5n + 3) {
+                  width: 143px;
+                }
+
+                &:nth-child(5n + 4) {
+                  width: 122px;
+                }
+
+                &:nth-child(5n + 5) {
+                  width: 86px;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      &.private-table {
+        &.recommendations {
+          @extend %recommandations;
+        }
+
+        tr {
+          &.table1-private-data {
+            @extend %border-height;
+
+            &::after {
+              @extend %psuedo-after;
+            }
+
+            &:last-child {
+              @extend %border-bottom;
+            }
+
+            &:only-child {
+              border-radius: 0;
+            }
+
+            &:hover {
+              @extend %active-hover-states;
+            }
+
+            &.table-tournament-data-clicked {
+              @extend %active-hover-states;
+            }
+
+            td {
+              &.table-private-data-text {
+                .private-data-text {
+                  .user-icon {
+                    width: 16px;
+                    height: 16px;
+                  }
+
+                  .share-icon {
+                    width: 16px;
+                    height: 16px;
+
+                    .pi {
+                      font-size: $fs10;
+                      color: $grey600;
+                    }
+                  }
+                }
+
+                &:nth-child(6n + 1) {
+                  width: 156px;
+                }
+
+                &:nth-child(6n + 2) {
+                  width: 116px;
+                }
+
+                &:nth-child(6n + 3) {
+                  width: 101px;
+                }
+
+                &:nth-child(6n + 4) {
+                  width: 144px;
+                }
+
+                &:nth-child(6n + 5) {
+                  width: 176px;
+
+                  .private-data-text {
+                    color: $grey500;
+                  }
+                }
+
+                &:nth-child(6n + 6) {
+                  width: 139px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

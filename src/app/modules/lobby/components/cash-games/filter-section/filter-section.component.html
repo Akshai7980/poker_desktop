@@ -1,0 +1,50 @@
+<div class="sub-header d-flex jst-space align-center wp100 h48 bg-grey000 br16 pt-2 pr-4 pb-2 pl-2">
+  <div class="sub-header-menu d-flex align-start h32 gap8">
+    <div
+      class="sub-header-items d-flex jst-center align-center py-2 px-3 h32 gap10 text-nowrap fs12 ft-primary-sb grey900 bg-light br8 cursor border-1 border-solid border-grey300"
+      *ngFor="let sbM of subMenus"
+      [ngClass]="{ 'sub-menu-active': selectedSubMenu == sbM }"
+      (click)="onClickSubMenu(sbM)"
+      i18n
+    >
+      {{ sbM }}
+    </div>
+  </div>
+  <div class="sub-header-icons d-flex jst-end align-center h20 gap16">
+    <div class="sub-star-icon p-rel wh20 cursor" *ngIf="isShowFavIcon">
+      <div
+        class="fav-star-icon star-border top-right wh20 trans-03"
+        *ngIf="!showFavorites"
+        (click)="toggleFavorites()"
+      >
+        <span class="top-right opacity-0 trans-03"></span>
+      </div>
+      <div
+        class="fav-star-icon star-fill top-right wh20"
+        *ngIf="showFavorites"
+        (click)="toggleFavorites()"
+      ></div>
+    </div>
+    <div class="sub-icon-filter p-rel wh20 cursor">
+      <div
+        class="funnel-icon funnel-transform funnel-fill top-right wh20 trans-03"
+        [ngClass]="{ filter_applied: filters && filters !== 'reset' && filters.length > 0 }"
+        *ngIf="
+          filters && filters !== 'reset' && filters.length > 0 && isFilterSelected;
+          else filledFilter
+        "
+        (click)="openFilterDialog()"
+      ></div>
+
+      <ng-template #filledFilter>
+        <div
+          class="funnel-icon funnel-transform funnel-border wh20 trans-03"
+          [ngClass]="{ filter_applied: filters && filters !== 'reset' && filters.length > 0 }"
+          (click)="openFilterDialog()"
+        >
+          <span class="top-right opacity-0 trans-03"></span>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

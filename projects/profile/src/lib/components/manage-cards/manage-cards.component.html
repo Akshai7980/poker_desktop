@@ -1,0 +1,39 @@
+<div class="profile p-rel d-flex flex-column flex-1 ovf-hide">
+  <div class="profile-header d-flex jst-space align-center bg-light p-4 shadow">
+    <div class="profile-header-title d-flex align-center gap8" i18n>
+      <div class="back-icon wh24 p-rel cursor" (click)="goBackToProfile()">
+        <div class="icons-24 chevron-left wh24"></div>
+      </div>
+      <div class="profile-title fs20 ft-primary-b grey900">Manage Cards</div>
+    </div>
+    <div class="profile-header-options wh24 p-rel cursor" (click)="onClose()" tabindex="0">
+      <div class="icons-24 close-icon top-right wh24"></div>
+    </div>
+  </div>
+
+  <div class="card-container d-flex flex-column gap16 flex-1 bg-grey100 p-4 ovf-y-scroll">
+    <div class="g-card d-flex jst-space align-center gap12 bg-light br16 p-4 border-0.5 border-solid border-grey300"
+      *ngFor="let card of allSavedCards">
+      <div class="card-left d-flex align-center gap12">
+        <div class="card-icons-40 master-card wh40" *ngIf="card.cardBrand.toLowerCase() == 'master card'"></div>
+        <div class="card-icons-40 visa-card wh40" *ngIf="card.cardBrand.toLowerCase() == 'visa card'"></div>
+        <div class="card-icons-40 americanexpress-card wh40" *ngIf="card.cardBrand.toLowerCase() == 'amarican express card'"></div>
+        <div class="card-icons-40 dinersclub-card wh40" *ngIf="card.cardBrand.toLowerCase() == 'dinners club international card'"></div>
+        <div class="card-icons-40 paytm-card wh40" *ngIf="card.cardBrand.toLowerCase() == 'paytm'"></div>
+        <div class="card-icons-40 rupay-card wh40" *ngIf="card.cardBrand.toLowerCase() == 'rupay'"></div>
+        <div class="card-icons-40 upi-card wh40" *ngIf="card.cardBrand.toLowerCase() == 'upi'"></div>
+        <div class="info-account d-flex flex-column gap6">
+          <span class="fs14 ft-primary-b grey800" i18n>{{ card.cardBrand }}</span>
+          <span class="fs12 ft-primary-sb grey500" i18n>{{ card.cardNumber }}</span>
+        </div>
+      </div>
+      <button type="button" mat-button class="btn-delete border-0 bg-trans cursor" disableRipple="true" (click)="openActionDialog(card.cardId)">
+        <div class="icons-16 trash-icon wh16"></div>
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="isShowToast">
+    <app-toast [toastValue]="toastValue" [(isShowToast)]="isShowToast"></app-toast>
+  </div>
+</div>

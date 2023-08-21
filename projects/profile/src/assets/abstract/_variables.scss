@@ -1,0 +1,198 @@
+// Colors
+$primary-red: #e1313c;
+$primary-info: #4864f5;
+$primary-success: #17a74f;
+$primary-error: #f3473c;
+$primary-warning: #fea72d;
+
+// Secondary
+$secondary-grey: #2f363d;
+
+// Background Colors
+$bg-light: #fff;
+$black: #000;
+$bg-dark: #1a1c1f;
+
+// Grey Shades
+$grey000: #fafbfc;
+$grey100: #ecf0f3;
+$grey200: #e1e4e8;
+$grey300: #d1d5da;
+$grey400: #959da5;
+$grey500: #6a737d;
+$grey600: #586069;
+$grey700: #444d56;
+$grey800: #2f363d;
+$grey900: #24292e;
+$grey20: #323232;
+
+// Green Shades
+$green000: #e2ffed;
+$green100: #9ffcc3;
+$green200: #82e2a7;
+$green300: #54cd83;
+$green400: #30c36a;
+$green500: #1cb357;
+$green600: #028937;
+$green700: #006c2b;
+$green800: #00491d;
+$green900: #003013;
+
+// Mint Green
+$mint-green: #E6F4EB;
+
+// Sea Green Shades
+$sea-green000: #d5fbff;
+$sea-green600: #078a96;
+
+// Orange Shades
+$orange000: #fff3ea;
+$orange100: #ffcba6;
+$orange200: #fca86f;
+$orange300: #ff954d;
+$orange400: #ff8632;
+$orange500: #ff7617;
+$orange600: #de5b00;
+$orange700: #c55000;
+$orange800: #9e4000;
+$orange900: #562300;
+
+// Red Shades
+$red000: #fff2f2;
+$red100: #ffd8d8;
+$red200: #ffb6b6;
+$red300: #ff7079;
+$red400: #f14c56;
+$red500: #e1313c;
+$red600: #cc141f;
+$red700: #970009;
+$red800: #5f0006;
+$red900: #380003;
+
+// Blue Shades
+$blue000: #e9f4ff;
+$blue100: #cbe4ff;
+$blue200: #93c7ff;
+$blue300: #5caaff;
+$blue400: #429cff;
+$blue500: #1c83f4;
+$blue600: #076ede;
+$blue700: #0057b7;
+$blue800: #003b7c;
+$blue900: #002956;
+
+// Pink Shades
+$pink000: #ffe9ef;
+$pink100: #ffb1c7;
+$pink200: #f486a5;
+$pink300: #ff6d96;
+$pink400: #ee5b83;
+$pink500: #e54672;
+$pink600: #d62053;
+$pink700: #b70d3c;
+$pink800: #9a022c;
+$pink900: #490014;
+
+// Purple Shades
+$purple000: #f0eaff;
+$purple100: #ddd0ff;
+$purple200: #bfa5ff;
+$purple300: #ac8dfd;
+$purple400: #9873f4;
+$purple500: #8661e4;
+$purple600: #714ad2;
+$purple700: #492998;
+$purple800: #3b198d;
+$purple900: #1a0253;
+
+// Gradients
+$grad-blue: linear-gradient(93.31deg, #1ea5df 0%, #0167ff 100%);
+$grad-sea-green: linear-gradient(103.74deg, #0abdbd 0%, #248080 95.29%);
+$grad-purple: linear-gradient(149.89deg, #9574eb 0%, #582cd0 100%);
+$grad-pink: linear-gradient(82.73deg, #f26892 13.25%, #ce334f 88.69%);
+$grad-orange: linear-gradient(135deg, #ff9b55 0%, #da4f23 100%);
+$grad-grey: linear-gradient(71.36deg, #959da5 25.22%, #6a737d 74.78%);
+$grad-red: linear-gradient(71.36deg, #e1313c 25.22%, #cb1b26 74.78%);
+$grad-green: linear-gradient(180deg, #1eb85a 0%, #16a54d 100%);
+$border-grad-grey: linear-gradient(90deg, #24292e 0%, #939ba4 47.92%, #24292e 100%);
+$grad-warning: linear-gradient(91.34deg, #8C763B 1.92%, #28210F 97.19%);
+$grad-grey-blue: linear-gradient(90.65deg, #517192 1.94%, #182A3E 98.84%);
+$grad-brown: linear-gradient(90.65deg, #855A3C 1.55%, #372A21 98.32%);
+
+
+
+// Fonts Family
+$font-family: 'Urbanist', sans-serif;
+$font-regular: 'Urbanist-Regular', sans-serif;
+$font-medium: 'Urbanist-Medium', sans-serif;
+$font-semi-bold: 'Urbanist-SemiBold', sans-serif;
+$font-bold: 'Urbanist-Bold', sans-serif;
+
+// Font Weight
+$fw-medium: 500;
+$fw-semi-bold: 600;
+$fw-bold: 700;
+
+// Font Sizes
+// TODO: Need to convert px values to rem values
+$fs8: 8px;
+$fs10: 10px;
+$fs11: 11px;
+$fs12: 12px;
+$fs13: 13px;
+$fs14: 14px;
+$fs16: 16px;
+$fs18: 18px;
+$fs20: 20px;
+$fs22: 22px;
+
+// Border Radius
+$br2: 2px;
+$br3: 3px;
+$br4: 4px;
+$br6: 6px;
+$br8: 8px;
+$br10: 10px;
+$br12: 12px;
+$br14: 14px;
+$br16: 16px;
+$br18: 18px;
+$br20: 20px;
+$br24: 24px;
+$br30: 30px;
+$br32: 32px;
+$br40: 40px;
+$br50: 50%;
+$br-pill: 9999px;
+
+// Flex/Grid Gaps
+$gap1: 1px;
+$gap2: 2px;
+$gap3: 3px;
+$gap4: 4px;
+$gap6: 6px;
+$gap8: 8px;
+$gap10: 10px;
+$gap12: 12px;
+$gap13: 13px;
+$gap14: 14px;
+$gap16: 16px;
+$gap20: 20px;
+$gap24: 24px;
+$gap30: 30px;
+$gap32: 32px;
+$gap48: 48px;
+
+
+// Transitions
+$transition: 0.3s all ease-in;
+$trans-1s: 0.1s all ease-in-out;
+$trans-15s: all 0.15s ease-in-out;
+$trans-2s: 0.2s all ease-in-out;
+$trans-3s: 0.3s all ease-in-out;
+$trans-4s: 0.4s all ease-in-out;
+$trans-5s: 0.5s all ease-in-out;
+
+// Text Transform
+$text-capitalize: capitalize;
+$text-uppercase: uppercase;

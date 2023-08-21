@@ -1,0 +1,35 @@
+<div class="lhs flex-col-jst-end gap60 w400 h520 br-left-16 bg-dark py-3">
+  <div class="feture-logo flex-center">
+    <p-carousel
+      class="p-carousel-item"
+      [value]="lhsCrousels"
+      [numVisible]="1"
+      [numScroll]="1"
+      [autoplayInterval]="2000"
+      [showNavigators]="false"
+      indicatorStyleClass="login-indicator1"
+      [style]="{ 'max-width': '400px', width: '400px' }"
+      [showIndicators]="lhsCrousels.length > 1"
+    >
+      <ng-template let-lhs pTemplate="item">
+        <div class="logo-image-text flex-col-center gap16 wp100">
+          <div class="upi-logo flex-center p-rel w310 h262 ovf-hide">
+            <img
+              class="p-abs wp100 hp100 obj-cov"
+              [src]="lhs?.fields?.for_desktop?.url"
+              alt="upi"
+              i18n
+              i18n-alt
+            />
+          </div>
+        </div>
+      </ng-template>
+    </p-carousel>
+  </div>
+  <div class="flex-center wp100 gap4 pb-7">
+    <div class="fs14 ft-primary-b grey200" i18n>Need Help?</div>
+    <div class="fs14 ft-primary-b grad-red-text cursor" (click)="openContactUsScreen()" i18n>
+      Get here
+    </div>
+  </div>
+</div>

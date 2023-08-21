@@ -1,0 +1,60 @@
+<div class="avatar-selection-container hp100 p-rel d-flex flex-col align-start">
+  <div class="avatar-selection-header d-flex jst-space align-center p-4 wp100 shadow">
+    <div class="avatar-selection-title d-flex align-center gap8" i18n>
+      <div class="back-icon wh24 br8 p-rel cursor" (click)="goBackToProfile()">
+        <div class="icons-24 chevron-left top-right wh24"></div>
+      </div>
+      <div class="avatar-header-title fs20 ft-primary-b grey900">Choose Avatar</div>
+    </div>
+    <div class="avatar-selection-options wh24 p-rel cursor" (click)="onClose()">
+      <div class="icons-24 close-icon wh24"></div>
+    </div>
+  </div>
+  <div class="avatar-selection-body d-flex flex-col align-center gap10 wp100">
+    <div class="avatar-image-container d-flex flex-col jst-center align-center py-8 wp100 h132 bg-pink000">
+      <div class="avatar-image-widget p-rel d-flex jst-center align-center wp100">
+        <div class="images-widget d-flex jst-center align-center gap12 wp100 ovf-x-clip">
+            <div
+              class="avatar-image"
+              [ngClass]="getImage(firstLeftImage)"
+              (click)="selectAvatar(firstLeftImage)"
+            ></div>
+            <div
+              class="avatar-image"
+              [ngClass]="getImage(secondLeftImage)"
+              (click)="selectAvatar(secondLeftImage)"
+            ></div>
+            <div class="avatar-image" [ngClass]="getImage(currentIndex)"></div>
+            <div
+              class="avatar-image"
+              [ngClass]="getImage(firstRightImage)"
+              (click)="selectAvatar(firstRightImage)"
+            ></div>
+            <div
+              class="avatar-image"
+              [ngClass]="getImage(secondRightImage)"
+              (click)="selectAvatar(secondRightImage)"
+            ></div>
+        </div>
+        <div class="avatar-prev-button d-flex jst-end align-center gap10 p-abs z-2">
+          <button type="button" mat-button class="btn btn-primary-xs" (click)="previous()">
+            <div class="icons-20 chevron-left-white wh20"></div>  
+          </button>
+        </div>
+        <div class="avatar-next-button d-flex jst-start align-center gap10 p-abs z-2">
+          <button type="button" mat-button class="btn btn-primary-xs" (click)="next()">
+            <div class="icons-20 chevron-right-white wh20"></div>  
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="avatar-selection-button d-flex jst-center align-center wp100">
+      <button type="button" class="btn btn-primary-lg" (click)="confirm()" i18n>
+        Confirm
+      </button>
+    </div>
+  </div>
+  <div *ngIf="isShowToast">
+    <app-toast [toastValue]="toastValue" [(isShowToast)]="isShowToast"></app-toast>
+  </div>
+</div>

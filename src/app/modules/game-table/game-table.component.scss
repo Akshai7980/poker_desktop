@@ -1,0 +1,1736 @@
+@import '../../../assets/components/avatar';
+@import '../../../assets/abstract/core';
+
+.game-table-conatiner-background {
+  .game-table-container {
+    .game-table-header {
+      .game-table-left-options {
+        .game-left-options-container {
+          width: 12.3rem;
+          height: 3.8rem;
+          border-radius: 1.5rem;
+          transition: width, $trans-5s;
+
+          .game-left-options {
+            width: 8.8rem;
+            height: 2.4rem;
+            transition: width, $trans-5s;
+
+            .game-left-option-icons {
+              width: 2.4rem;
+              height: 2.4rem;
+              padding: 0.6rem;
+              transition: background-color, opacity, $trans-5s;
+
+              &:nth-child(7n + 3) {
+                background: $grad-orange;
+              }
+
+              &:nth-child(7n + 4) {
+                opacity: 0;
+                transition: $trans-4s;
+              }
+
+              &:nth-child(7n + 5) {
+                opacity: 0;
+                transition: $trans-3s;
+              }
+
+              &:nth-child(7n + 6) {
+                opacity: 0;
+                background: $primary-success;
+                transition: $trans-2s;
+              }
+
+              &:nth-child(7n + 7) {
+                opacity: 0;
+                transition: $trans-1s;
+              }
+
+              .home-icon {
+                width: 1.3rem;
+                height: 1.3rem;
+              }
+
+              .table-icon {
+                width: 1.3rem;
+                height: 1rem;
+              }
+
+              .poker-chip-icon {
+                width: 1.3rem;
+                height: 1.3rem;
+              }
+
+              .timer-icon {
+                width: 1.3rem;
+                height: 1.3rem;
+              }
+
+              .settings-icon {
+                width: 1.3rem;
+                height: 1.3rem;
+              }
+
+              .wallet-icon {
+                width: 1.3rem;
+                height: 1.3rem;
+              }
+
+              .info-icon {
+                width: 1.3rem;
+                height: 1.3rem;
+              }
+            }
+          }
+
+          .game-left-toggle {
+            width: 1rem;
+            height: 3rem;
+            z-index: 10;
+
+            .toggle-icon {
+              margin-right: -14px;
+
+              @include triangle(14px, $bg-light, left);
+
+              transform: rotate(180deg);
+              transition: rotate, $trans-5s;
+            }
+          }
+
+          &:hover {
+            width: 26.375rem;
+
+            .game-left-options {
+              width: 22.625rem;
+
+              .game-left-option-icons {
+                &:nth-child(7n + 4) {
+                  opacity: 100;
+                  transition-delay: 0.1s;
+                }
+
+                &:nth-child(7n + 5) {
+                  opacity: 100;
+                  transition-delay: 0.2s;
+                }
+
+                &:nth-child(7n + 6) {
+                  opacity: 100;
+                  transition-delay: 0.3s;
+                }
+
+                &:nth-child(7n + 7) {
+                  opacity: 100;
+                  transition-delay: 0.4s;
+                }
+              }
+            }
+
+            .game-left-toggle {
+              .toggle-icon {
+                margin-right: 0;
+                transform: rotate(180deg);
+              }
+            }
+          }
+        }
+      }
+
+      .game-table-right-options {
+        .game-right-options-container {
+          width: 21.9rem;
+          height: 3.8rem;
+          padding: 1rem;
+          border-radius: 1.5rem;
+          box-shadow: 0 2px 8px rgba(0 0 0 / 50%);
+
+          .game-right-options {
+            width: 9rem;
+            height: 2.4rem;
+            gap: 1rem;
+
+            .game-right-option-icons {
+              width: 2.4rem;
+              height: 2.4rem;
+              padding: 0.6rem;
+
+              .window-icon {
+                width: 1.3rem;
+                height: 1.3rem;
+              }
+
+              .duplicate-icon {
+                width: 1.3rem;
+                height: 1.3rem;
+              }
+
+              .trophy-icon {
+                width: 1.3rem;
+                height: 1.3rem;
+              }
+            }
+          }
+        }
+      }
+
+      @include device(smg) {
+        .game-table-left-options {
+          .game-left-options-container {
+            width: 9.5rem;
+            height: 2.55rem;
+            transition: width, $trans-5s;
+
+            .game-left-options {
+              width: 5.75rem;
+              height: 1.275rem;
+
+              .game-left-option-icons {
+                padding: 0.1625rem;
+                width: 1.275rem;
+                height: 1.275rem;
+                border-radius: 0.4rem;
+
+                .home-icon {
+                  width: 1rem;
+                  height: 1rem;
+                }
+
+                .poker-chip-icon {
+                  width: 1rem;
+                  height: 0.75rem;
+                }
+
+                .timer-icon {
+                  width: 1rem;
+                  height: 1rem;
+                }
+
+                .settings-icon {
+                  width: 1rem;
+                  height: 1rem;
+                }
+
+                .wallet-icon {
+                  width: 1rem;
+                  height: 1rem;
+                }
+
+                .info-icon {
+                  width: 1rem;
+                  height: 1rem;
+                }
+              }
+            }
+
+            .game-left-toggle {
+              .toggle-icon {
+                @include triangle(12px, $bg-light, left);
+
+                transition: width, rotate, $trans-5s;
+              }
+            }
+
+            &:hover {
+              width: 18rem;
+
+              .game-left-options {
+                width: 18.35rem;
+              }
+
+              .game-left-toggle {
+                .toggle-icon {
+                  transform: rotate(180deg);
+                }
+              }
+            }
+          }
+        }
+
+        .game-table-right-options {
+          .game-right-options-container {
+            width: 16.875rem;
+            height: 2.55rem;
+
+            .game-right-options {
+              width: 6rem;
+              height: 1.275rem;
+
+              .game-right-option-icons {
+                padding: 0.1625rem;
+                width: 1.275rem;
+                height: 1.275rem;
+                border-radius: 0.4rem;
+
+                .window-icon {
+                  width: 0.75rem;
+                  height: 0.75rem;
+                }
+
+                .duplicate-icon {
+                  width: 0.75rem;
+                  height: 0.75rem;
+                }
+
+                .trophy-icon {
+                  width: 0.75rem;
+                  height: 0.75rem;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .game-table-body {
+      transform: translateY(-2rem);
+
+      .game-table {
+        width: 65vw;
+        height: 87vh;
+
+        .game-table-users-container {
+          width: 53.6rem;
+          height: 34rem;
+
+          .player-container-widget {
+            top: 3rem;
+            height: 22.2rem;
+
+            .players-container {
+              padding-top: 0.25rem;
+              isolation: isolate;
+              filter: drop-shadow(0 2px 32px rgba(0 0 0 / 40%));
+
+              .player-profile-image {
+                width: 4.5rem;
+                height: 4.5rem;
+                border: 2px solid $grey900;
+              }
+
+              .player-position-empty {
+                width: 4.5rem;
+                height: 4.5rem;
+
+                .player-empty {
+                  width: 2.8rem;
+                  height: 2.8rem;
+
+                  .vertical {
+                    width: 0.25rem;
+                    height: 2rem;
+                  }
+
+                  .horizontal {
+                    width: 2rem;
+                    height: 0.25rem;
+                  }
+                }
+              }
+
+              .player-profile-details {
+                position: absolute;
+                bottom: -3rem;
+                padding: 0.5rem 0.63rem;
+                gap: 0.25rem;
+                width: 6.3rem;
+                height: 3.5rem;
+                border-radius: 0.8rem;
+
+                .player-profile-value {
+                  background-image: $grad-grey;
+                  background-clip: text;
+                  -webkit-background-clip: text;
+                }
+              }
+
+              .player-profile-cards-back {
+                position: absolute;
+                right: -0.5rem;
+                bottom: 0.5rem;
+
+                .cards {
+                  width: 1.1rem;
+                  height: 1.63rem;
+                  background: $grad-red;
+                  border: 1px solid $bg-light;
+                  box-shadow: -2px 0 4px rgba(0 0 0 / 30%);
+                  border-radius: 2;
+
+                  &:nth-child(2n + 1) {
+                    margin: 0 -0.75rem;
+                  }
+                }
+              }
+
+              .player-cards-container {
+                position: absolute;
+                left: 6rem;
+                bottom: -3.5rem;
+
+                .game-cards {
+                  &.show-play-cards {
+                    &:nth-child(2n + 2) {
+                      position: absolute;
+                      left: 20px;
+                    }
+                  }
+                }
+              }
+
+              .player-profile-call-options {
+                position: absolute;
+                bottom: 0;
+                left: 0.1rem;
+
+                &.raise {
+                  background: $grad-red;
+                  border-bottom-left-radius: $br50;
+                  border-bottom-right-radius: $br50;
+                }
+
+                &.fold {
+                  background: $bg-dark;
+                  border-bottom-left-radius: $br50;
+                  border-bottom-right-radius: $br50;
+                }
+              }
+
+              .small-big-blind-capsule {
+                width: 1.5rem;
+                height: 1.2rem;
+              }
+
+              .adda-capsule {
+                width: 1.2rem;
+                height: 1.2rem;
+              }
+
+              &.player-caps8-8 {
+                position: absolute;
+                left: 14rem;
+                top: -2.5rem;
+              }
+
+              &.player-caps8-7 {
+                position: absolute;
+                left: 4rem;
+                top: 1rem;
+              }
+
+              &.player-caps8-6 {
+                position: absolute;
+                left: 0;
+                top: 10rem;
+              }
+
+              &.player-caps8-5 {
+                position: absolute;
+                left: 8.5rem;
+                bottom: 0;
+              }
+
+              &.player-caps8-4 {
+                position: absolute;
+                right: 8.5rem;
+                bottom: 0;
+              }
+
+              &.player-caps8-3 {
+                position: absolute;
+                right: 0;
+                top: 10rem;
+              }
+
+              &.player-caps8-2 {
+                position: absolute;
+                right: 4rem;
+                top: 1rem;
+              }
+
+              &.player-caps8-1 {
+                position: absolute;
+                right: 14rem;
+                top: -2.5rem;
+              }
+
+              &.player-caps6-6 {
+                position: absolute;
+                left: 14rem;
+                top: -2.5rem;
+              }
+
+              &.player-caps6-5 {
+                position: absolute;
+                left: 0;
+                top: 6rem;
+              }
+
+              &.player-caps6-4 {
+                position: absolute;
+                left: 8.5rem;
+                bottom: 0;
+              }
+
+              &.player-caps6-3 {
+                position: absolute;
+                right: 8.5rem;
+                bottom: 0;
+              }
+
+              &.player-caps6-2 {
+                position: absolute;
+                right: 0;
+                top: 6rem;
+              }
+
+              &.player-caps6-1 {
+                position: absolute;
+                right: 14rem;
+                top: -2.5rem;
+              }
+
+              &.player-caps4-4 {
+                position: absolute;
+                left: 14rem;
+                top: -2.5rem;
+              }
+
+              &.player-caps4-3 {
+                position: absolute;
+                left: 8.5rem;
+                bottom: 0;
+              }
+
+              &.player-caps4-2 {
+                position: absolute;
+                right: 9.5rem;
+                bottom: 0;
+              }
+
+              &.player-caps4-1 {
+                position: absolute;
+                right: 14rem;
+                top: -2.5rem;
+              }
+
+              &.player-caps2-2 {
+                position: absolute;
+                left: 14rem;
+                top: -2.5rem;
+              }
+
+              &.player-caps2-1 {
+                position: absolute;
+                right: 12.5rem;
+                bottom: 0;
+              }
+            }
+
+            &:last-child {
+              align-items: flex-end;
+            }
+          }
+        }
+
+        @include device(smg) {
+          width: 80vw;
+          height: 79vh;
+
+          .game-table-users-container {
+            width: 42.6rem;
+            height: 24rem;
+
+            .player-container-widget {
+              height: 15.2rem;
+
+              .players-container {
+                .player-profile-image {
+                  width: 2.5rem;
+                  height: 2.5rem;
+                }
+
+                .player-position-empty {
+                  width: 2.5rem;
+                  height: 2.5rem;
+
+                  .player-empty {
+                    width: 1.6rem;
+                    height: 1.6rem;
+
+                    .vertical {
+                      width: 0.125rem;
+                      height: 1rem;
+                    }
+
+                    .horizontal {
+                      width: 1rem;
+                      height: 0.125rem;
+                    }
+                  }
+                }
+
+                .player-profile-details {
+                  width: 3.75rem;
+                  height: 2.6rem;
+                  bottom: -2.2rem;
+                  gap: 0;
+                  padding-top: 0.1rem;
+                  padding-bottom: 0.2rem;
+
+                  .player-profile-name,
+                  .player-profile-value {
+                    font-size: 0.6rem;
+                  }
+                }
+
+                .player-profile-cards-back {
+                  width: 0.9rem;
+                  height: 1.3rem;
+                  right: -1.5rem;
+                }
+
+                .player-profile-call-options {
+                  width: 2.5rem;
+                  height: 0.8rem;
+                  line-height: 0.85rem;
+                  bottom: 0.1rem;
+                  left: 0.1rem;
+                  font-size: 0.6rem;
+                }
+
+                .small-big-blind-capsule {
+                  width: 1.2rem;
+                  height: 1rem;
+
+                  &.top-right {
+                    right: -0.5rem;
+                  }
+                }
+
+                .adda-capsule {
+                  width: 1rem;
+                  height: 1rem;
+
+                  &.top-left {
+                    left: -0.5rem;
+                  }
+                }
+
+                &.player-caps8-8 {
+                  position: absolute;
+                  left: 12.5rem;
+                  top: -2.5rem;
+                }
+
+                &.player-caps8-7 {
+                  position: absolute;
+                  left: 5rem;
+                  top: 0.5rem;
+                }
+
+                &.player-caps8-6 {
+                  position: absolute;
+                  left: 1rem;
+                  top: 7rem;
+                }
+
+                &.player-caps8-5 {
+                  position: absolute;
+                  left: 8.5rem;
+                  bottom: 0;
+                }
+
+                &.player-caps8-4 {
+                  position: absolute;
+                  right: 8.5rem;
+                  bottom: 0;
+                }
+
+                &.player-caps8-3 {
+                  position: absolute;
+                  right: 3rem;
+                  top: 7rem;
+                }
+
+                &.player-caps8-2 {
+                  position: absolute;
+                  right: 5rem;
+                  top: 0.5rem;
+                }
+
+                &.player-caps8-1 {
+                  position: absolute;
+                  right: 13.5rem;
+                  top: -2.5rem;
+                }
+
+                &.player-caps6-6 {
+                  position: absolute;
+                  left: 12.5rem;
+                  top: -2.5rem;
+                }
+
+                &.player-caps6-5 {
+                  position: absolute;
+                  left: 1rem;
+                  top: 4rem;
+                }
+
+                &.player-caps6-4 {
+                  position: absolute;
+                  left: 8.5rem;
+                  bottom: 0;
+                }
+
+                &.player-caps6-3 {
+                  position: absolute;
+                  right: 8.5rem;
+                  bottom: 0;
+                }
+
+                &.player-caps6-2 {
+                  position: absolute;
+                  right: 3rem;
+                  top: 4rem;
+                }
+
+                &.player-caps6-1 {
+                  position: absolute;
+                  right: 13.5rem;
+                  top: -2.5rem;
+                }
+
+                &.player-caps4-4 {
+                  position: absolute;
+                  left: 12.5rem;
+                  top: -2.5rem;
+                }
+
+                &.player-caps4-3 {
+                  position: absolute;
+                  left: 8.5rem;
+                  bottom: 0;
+                }
+
+                &.player-caps4-2 {
+                  position: absolute;
+                  right: 9.5rem;
+                  bottom: 0;
+                }
+
+                &.player-caps4-1 {
+                  position: absolute;
+                  right: 13.5rem;
+                  top: -2.5rem;
+                }
+
+                &.player-caps2-2 {
+                  position: absolute;
+                  left: 12.5rem;
+                  top: -2.5rem;
+                }
+
+                &.player-caps2-1 {
+                  position: absolute;
+                  right: 12.5rem;
+                  bottom: 0;
+                }
+              }
+            }
+          }
+        }
+
+        .betting-pot-container {
+          position: absolute;
+          top: 7rem;
+          left: 32%;
+
+          .poker-chips-container {
+            .poker-chips-coins-widget {
+              .poker-chip-coins {
+                .poker-chip-icon {
+                  background-image: url('../../../assets/images/game-table/poker-chip-grey.svg');
+                  background-repeat: no-repeat;
+                  background-position: center;
+                  background-size: contain;
+                  width: 12px;
+                  height: 12px;
+                }
+              }
+            }
+          }
+
+          .pot-bet-value-widget-container {
+            .pot-bet-value-widget {
+              .pot-poker-chip-icon {
+                background-image: url('../../../assets/images/game-table/poker-chip-grad.svg');
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: contain;
+                width: 14px;
+                height: 14px;
+              }
+            }
+          }
+
+          @include device(smg) {
+            top: 4.5rem;
+            gap: 6px;
+
+            .poker-chips-container {
+              gap: 3px;
+
+              .poker-chips-coins-widget {
+                .poker-chip-coins {
+                  padding: 2px 4px;
+
+                  .poker-chip-icon {
+                    width: 8px;
+                    height: 8px;
+                  }
+
+                  .poker-chip-value {
+                    font-size: 7px;
+                  }
+                }
+              }
+            }
+
+            .pot-bet-value-widget-container {
+              left: 4rem;
+              top: 8.1rem;
+
+              .pot-bet-value-widget {
+                padding: 3px 5px;
+
+                .pot-text {
+                  font-size: 10px;
+                }
+
+                .pot-poker-chip-icon {
+                  width: 8px;
+                  height: 8px;
+                }
+
+                .pot-value {
+                  font-size: 10px;
+                }
+              }
+            }
+          }
+        }
+
+        .cards-deck-container {
+          position: absolute;
+          top: 14rem;
+
+          .card-deck-row {
+            &:nth-child(2n + 2) {
+              position: absolute;
+              top: 3rem;
+            }
+          }
+
+          @include device(smg) {
+            top: 10rem;
+
+            .card-deck-row {
+              gap: 4px;
+
+              .game-cards {
+                &.play-cards {
+                  width: 46px;
+                  height: 62px;
+
+                  &.md {
+                    width: 40px;
+                    height: 56px;
+                  }
+                }
+              }
+
+              &:nth-child(2n + 2) {
+                gap: 2px;
+                top: 2rem;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .game-table-footer {
+      gap: 0.63rem;
+
+      .game-table-left-footer {
+        .game-table-left-footer-container {
+          transition: width, $trans-5s;
+
+          .game-table-chat-left {
+            width: 30.12rem;
+            height: 10rem;
+            gap: 0.75rem;
+            padding: 1rem 0 0 1rem;
+            opacity: 1;
+            transition: width, opacity, padding, $trans-5s;
+
+            .game-table-chat-header {
+              width: 28.12rem;
+              height: 2.5rem;
+              gap: 0.5rem;
+
+              .game-table-chat-tabs {
+                ul {
+                  width: 25.2rem;
+                  height: 2.5rem;
+                  gap: 0.5rem;
+
+                  li {
+                    padding: 0.63rem 1rem;
+                    min-width: 4.6rem;
+                    height: 2.5rem;
+                    gap: 0.63rem;
+                    border: 0.1rem solid $grey500;
+                    border-radius: 0.8rem;
+                    transition: background-color, 0.3s all ease-in;
+
+                    .tab-text {
+                      transition: color, 0.3s all ease-in;
+                      white-space: nowrap;
+                    }
+
+                    &:hover {
+                      background: $bg-light;
+
+                      .tab-text {
+                        color: $grey900;
+                      }
+                    }
+
+                    &.chat-tab-active {
+                      background: $bg-light;
+
+                      .tab-text {
+                        color: $grey900;
+                      }
+                    }
+                  }
+                }
+              }
+
+              .game-table-chat-expand {
+                padding: 0.63rem;
+                width: 2.5rem;
+                height: 2.5rem;
+                border-radius: 0.8rem;
+
+                .expand-icon {
+                  background-image: url('../../../assets/images/game-table/expand.svg');
+                  background-repeat: no-repeat;
+                  background-position: center;
+                  background-size: contain;
+                  width: 1.3rem;
+                  height: 1.3rem;
+                }
+              }
+            }
+
+            .game-table-chat-container {
+              width: 28.12rem;
+              height: 11.6rem;
+              gap: 0.25rem;
+
+              .game-table-chat-message-container {
+                width: 27rem;
+                height: 1.7rem;
+                padding: 0.25rem 0;
+                border-radius: 0.25rem;
+                gap: 0.5rem;
+                transition: background-color, $trans-5s;
+
+                .game-table-chat-user {
+                  transition: color, $trans-5s;
+
+                  &.user-one {
+                    color: #1da7b4;
+                  }
+
+                  &.user-two {
+                    color: $primary-success;
+                  }
+                }
+
+                &:hover {
+                  background: $grey900;
+
+                  .game-table-chat-user {
+                    color: $grey000;
+                  }
+                }
+
+                &.chat-selected {
+                  background: $grey900;
+
+                  .game-table-chat-user {
+                    color: $grey000;
+                  }
+                }
+              }
+            }
+          }
+
+          .game-table-chat-left-toggle {
+            width: 1.75rem;
+            height: 10rem;
+            border-top-right-radius: 0;
+            box-shadow: -4px 0 4px rgba(0 0 0 / 6%);
+            transition: border-radius, $trans-5s;
+
+            .toggle-icon {
+              border-top: 0.4375rem solid transparent;
+              border-left: 0.4375rem solid $bg-light;
+              border-bottom: 0.4375rem solid transparent;
+              transform: rotate(180deg);
+              transition: rotate, $trans-5s;
+            }
+          }
+
+          .game-table-chat-right-container {
+            width: 12rem;
+            height: 10rem;
+            gap: 1rem;
+            padding-bottom: 1.25rem;
+            border-top-right-radius: 2rem;
+            box-shadow: 0 2px 8px rgba(0 0 0 / 50%);
+            transform: translateY(0);
+            transition: width, height, transform, $trans-5s;
+
+            .game-table-chat-right-toggle {
+              width: 12rem;
+              height: 1.75rem;
+              gap: 0.5rem;
+              padding: 0.5rem 0.25rem;
+              border-top-right-radius: 2rem;
+              transition: border-radius, $trans-5s;
+
+              .toggle-icon {
+                border-top: 0.4375rem solid transparent;
+                border-left: 0.4375rem solid $bg-light;
+                border-bottom: 0.4375rem solid transparent;
+                transform: rotate(90deg);
+                transition: rotate, $trans-5s;
+              }
+            }
+
+            .game-table-chat-list-right {
+              width: 11.9rem;
+              height: 12rem;
+              gap: 1rem;
+              padding-left: 1rem;
+              padding-bottom: 1rem;
+              transition: opacity, $trans-5s;
+            }
+
+            &.chat-height-expanded {
+              height: 1.75rem;
+              transform: translateY(4.1rem);
+
+              .game-table-chat-right-toggle {
+                border-top-left-radius: 0;
+
+                .toggle-icon {
+                  transform: rotate(-90deg);
+                }
+              }
+
+              .game-table-chat-list-right {
+                display: none;
+              }
+            }
+          }
+
+          // These styles were have to be remain here, because they were used for the onclick class.
+
+          &.chat-expanded {
+            width: 13.75rem;
+
+            .game-table-chat-left {
+              width: 0;
+              opacity: 0;
+              padding: 1rem 0 0;
+            }
+
+            .game-table-chat-left-toggle {
+              border-top-right-radius: 2rem;
+              transition-delay: 0.5s;
+
+              .toggle-icon {
+                transform: rotate(0);
+              }
+            }
+          }
+        }
+      }
+
+      .game-table-right-footer {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-start;
+        padding: 0;
+        gap: 0.75rem;
+        width: 40rem;
+        height: 11.875rem;
+        margin-bottom: 0.625rem;
+
+        .game-table-right-panel {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 0;
+          width: 40rem;
+          height: 8rem;
+          filter: drop-shadow(0 2px 8px rgba(0 0 0 / 50%));
+
+          .game-table-right-panel-options-container {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            padding: 0.75rem 1rem 0.5rem;
+            gap: 0.5rem;
+            width: 40rem;
+            height: 3.75rem;
+            background: $bg-dark;
+            border-radius: 1rem 1rem 0 0;
+
+            .game-table-right-panel-options {
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              padding: 0;
+              gap: 0.75rem;
+              width: 38rem;
+              height: 2.5rem;
+
+              .game-table-right-panel-option-items {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                padding: 0.625rem 1.5rem;
+                width: 5.375rem;
+                height: 2.5rem;
+                background: $grey700;
+                border-radius: 0.75rem;
+                font-size: 1.25rem;
+                font-family: $font-bold;
+                font-style: normal;
+
+                // font-weight: 700;
+                line-height: 1.25rem;
+                color: $bg-light;
+                cursor: pointer;
+              }
+            }
+          }
+
+          .game-table-right-panel-slider-options-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 0.5rem 1rem 0.75rem;
+            gap: 0.5rem;
+            width: 40rem;
+            height: 4.25rem;
+            background: $bg-dark;
+            border-radius: 0 0 1rem 1rem;
+
+            .game-table-right-panel-slider-options {
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              padding: 0;
+              gap: 0.75rem;
+              width: 38rem;
+              height: 3rem;
+
+              .game-table-right-panel-slider {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                width: 29.1875rem;
+                height: 3rem;
+              }
+
+              .game-table-right-panel-bet-container {
+                display: flex;
+                flex-direction: row;
+                align-items: flex-start;
+                padding: 0;
+                width: 12.1875rem;
+                height: 3rem;
+
+                .game-table-right-panel-bet-plus {
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  padding: 0.875rem 0.75rem;
+                  gap: 0.25rem;
+                  width: 2.75rem;
+                  height: 3rem;
+                  background: $grey700;
+                  border-top-left-radius: 0.75rem;
+                  border-bottom-left-radius: 0.75rem;
+                  cursor: pointer;
+
+                  .pi {
+                    font-size: 0.75rem;
+                    color: $bg-light;
+                  }
+                }
+
+                .game-table-right-panel-bet-text {
+                  display: flex;
+                  flex-direction: row;
+                  justify-content: center;
+                  align-items: center;
+                  padding: 0.75rem 0.5rem;
+                  gap: 0.25rem;
+                  width: 6.6875rem;
+                  height: 3rem;
+                  background: $grey900;
+                  border-width: 0.0938rem solid $grey700;
+                  font-family: $font-bold;
+                  font-style: normal;
+
+                  // font-weight: 700;
+                  font-size: 1.5rem;
+                  line-height: 1.5rem;
+                  text-align: center;
+                  color: $bg-light;
+                }
+
+                .game-table-right-panel-bet-minus {
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  padding: 0.875rem 0.75rem;
+                  gap: 0.25rem;
+                  width: 2.75rem;
+                  height: 3rem;
+                  background: #444d56;
+                  border-top-right-radius: 0.75rem;
+                  border-bottom-right-radius: 0.75rem;
+                  cursor: pointer;
+
+                  .pi {
+                    font-size: 0.75rem;
+                    color: $bg-light;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .game-table-buttons-panel {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 0 1rem;
+          gap: 0.5rem;
+          width: 40rem;
+          height: 3.25rem;
+          filter: drop-shadow(0 2px 8px rgba(0 0 0 / 50%));
+          border-radius: 1rem;
+
+          .game-table-buttons-panel-container {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            padding: 0;
+            gap: 0.75rem;
+            width: 38rem;
+            height: 3.25rem;
+          }
+        }
+      }
+
+      @include device(smg) {
+        .game-table-left-footer {
+          width: 27rem;
+
+          .game-table-left-footer-container {
+            width: 18.8rem;
+
+            .game-table-chat-left {
+              padding: 0.5rem 0.5rem 0;
+              gap: 0.45rem;
+              width: 17.35rem;
+              opacity: 100;
+              height: 9rem;
+
+              .game-table-chat-header {
+                width: 16.6rem;
+
+                .game-table-chat-tabs {
+                  ul {
+                    width: 14rem;
+
+                    li {
+                      padding: 0.325rem 0.3rem;
+                      min-width: 2.2625rem;
+                      height: 2rem;
+                      border-radius: 0.55rem;
+
+                      .tab-text {
+                        font-size: 0.475rem;
+                      }
+                    }
+                  }
+                }
+
+                .game-table-chat-expand {
+                  padding: 0.425rem;
+                  width: 1.8rem;
+                  height: 1.8rem;
+                  border-radius: 0.45rem;
+                }
+              }
+
+              .game-table-chat-container {
+                width: 16.85rem;
+                height: 9.625rem;
+
+                .game-table-chat-message-container {
+                  width: 14.625rem;
+                  height: 1.3875rem;
+                }
+              }
+            }
+
+            .game-table-chat-left-toggle {
+              padding: 0.5rem;
+              height: 9rem;
+            }
+
+            .game-table-chat-right-container {
+              padding: 0 0 0.5rem;
+              gap: 0.5rem;
+              width: 7.875rem;
+              height: 9rem;
+
+              .game-table-chat-right-toggle {
+                width: 7.875rem;
+              }
+
+              .game-table-chat-list-right {
+                padding: 0 0 0 0.4rem;
+                gap: 0.5rem;
+                width: 7.875rem;
+
+                .game-table-chat-select-list {
+                  width: 7.375rem;
+
+                  .game-table-chat-select-list-text {
+                    font-size: 0.8rem;
+                  }
+                }
+              }
+
+              &.chat-height-expanded {
+                transform: translateY(3.6rem);
+              }
+            }
+
+            &.chat-expanded {
+              width: 9.55rem;
+            }
+          }
+        }
+
+        .game-table-right-footer {
+          width: 22rem;
+        }
+      }
+    }
+  }
+}
+
+table {
+  &.table {
+    &.table-chat {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+      gap: 8px;
+
+      thead {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 12px 16px;
+        gap: 24px;
+        width: 445px;
+        height: 38px;
+        background: $grey900;
+        border-radius: 8px;
+
+        tr {
+          display: flex;
+          align-items: center;
+
+          th {
+            font-family: $font-bold;
+            font-style: normal;
+
+            // font-weight: 700;
+            font-size: 12px;
+            line-height: 120%;
+            text-transform: uppercase;
+            color: $grey400;
+
+            &:nth-child(3n + 1) {
+              width: 109px;
+            }
+
+            &:nth-child(3n + 2) {
+              width: 107px;
+            }
+
+            &:nth-child(3n + 3) {
+              width: 122px;
+            }
+          }
+        }
+      }
+
+      tbody {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        gap: 8px;
+
+        tr {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          padding: 8px 16px;
+          gap: 24px;
+          width: 445px;
+          height: 48px;
+          background: $grey800;
+          border-radius: 8px;
+
+          td {
+            &.td-text {
+              display: flex;
+              align-items: center;
+              font-family: $font-bold;
+              font-style: normal;
+
+              // font-weight: 700;
+              font-size: 14px;
+              line-height: 120%;
+              color: $bg-light;
+            }
+
+            .cards-container {
+              display: flex;
+              flex-direction: row;
+              align-items: flex-start;
+              gap: 2px;
+            }
+
+            .timer-red-circle {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 30px;
+              height: 30px;
+              border-radius: 50%;
+              background: linear-gradient(71.36deg, #e1313c 25.22%, #cb1b26 74.78%);
+              cursor: pointer;
+
+              .timer-red {
+                background-image: url('../../../assets/images/game-table/timer-red.svg');
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: contain;
+                width: 16px;
+                height: 16px;
+              }
+            }
+
+            &.td-icon {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 20px;
+              height: 20px;
+              cursor: pointer;
+
+              .pi {
+                font-size: 20px;
+              }
+            }
+
+            &:nth-child(5n + 1) {
+              width: 109px;
+            }
+
+            &:nth-child(5n + 2) {
+              width: 107px;
+            }
+
+            &:nth-child(5n + 3) {
+              width: 48px;
+            }
+
+            &:nth-child(5n + 4) {
+              width: 32px;
+            }
+
+            &:nth-child(5n + 5) {
+              width: 20px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.info-popup-container {
+  width: 25.875rem;
+  height: 17.75rem;
+  padding: 1rem;
+  gap: 1rem;
+
+  .info-container-widget {
+    gap: 1rem;
+
+    .info-popup-header {
+      padding: 1rem;
+      gap: 1rem;
+      width: 23.875rem;
+      height: 7.4375rem;
+      border-radius: 1rem;
+
+      .info-top-header {
+        padding: 0;
+        gap: 0.75rem;
+        width: 21.875rem;
+        height: 1.875rem;
+
+        .info-top-title {
+          gap: 0.75rem;
+
+          .info-top-left {
+            padding: 0.5rem 0.75rem;
+            width: 4.125rem;
+            height: 1.875rem;
+            border-radius: 2.5rem;
+          }
+        }
+
+        .info-top-options {
+          padding: 8px 12px;
+          gap: $gap10;
+          width: 93px;
+          height: 30px;
+          border-radius: $br40;
+        }
+      }
+
+      .info-header {
+        gap: $gap20;
+        width: 350px;
+        height: 41px;
+
+        .info-header-content {
+          padding: 0;
+          gap: $gap10;
+          width: 104px;
+          height: 41px;
+        }
+      }
+    }
+
+    .info-popup-body {
+      padding: 0;
+      gap: $gap20;
+      width: 23.875rem;
+      height: 41px;
+
+      .info-body-content {
+        padding: 0;
+        gap: $gap10;
+        width: 114px;
+        height: 41px;
+      }
+    }
+
+    .info-popup-footer {
+      padding: 8px 16px;
+      gap: $gap8;
+      width: 23.875rem;
+      height: 56px;
+      border-bottom-left-radius: 1.5rem;
+      border-bottom-right-radius: 1.5rem;
+
+      .info-footer-title {
+        opacity: 0.8;
+      }
+
+      .info-footer-icon {
+        background-image: url('../../../assets/images/game-table/duplicate-copy.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  @include device(smg) {
+    width: 16.875rem;
+    height: 12.75rem;
+    padding: 0.5rem;
+
+    .info-container-widget {
+      gap: 0.5rem;
+
+      .info-popup-header {
+        padding: 0.5rem;
+        gap: 0.5rem;
+        width: 16.575rem;
+        height: 5rem;
+
+        .info-top-header {
+          width: 14.475rem;
+
+          .info-top-title {
+            .info-top-left {
+              font-size: $fs8;
+              width: 3.125rem;
+              height: 0.875rem;
+            }
+
+            .info-title {
+              font-size: $fs12;
+            }
+          }
+
+          .info-top-options {
+            padding: 4px 6px;
+            width: 60px;
+            height: 20px;
+          }
+        }
+
+        .info-header {
+          gap: 0;
+          width: 234px;
+          height: 41px;
+          justify-content: space-between;
+
+          .info-header-content {
+            padding: 0;
+            gap: $gap10;
+            width: 100%;
+            height: 100%;
+
+            .info-header-title {
+              font-size: $fs8;
+            }
+
+            .info-header-value {
+              font-size: $fs12;
+            }
+          }
+        }
+      }
+
+      .info-popup-body {
+        gap: $gap10;
+        width: 16.575rem;
+        justify-content: space-between;
+
+        .info-body-content {
+          gap: 5px;
+          width: 100%;
+          height: 100%;
+
+          .info-body-title {
+            font-size: $fs8;
+          }
+
+          .info-body-value {
+            font-size: $fs12;
+          }
+        }
+      }
+
+      .info-popup-footer {
+        padding: 4px 8px;
+        width: 16.575rem;
+        height: auto;
+
+        .info-footer-title {
+          font-size: $fs10;
+        }
+
+        .info-footer-icon {
+          width: 16px;
+          height: 16px;
+        }
+      }
+    }
+  }
+}
+
+.info-tab-container {
+  .info-tab-body {
+    .info-tab-body-header {
+      padding: 4px 8px;
+    }
+
+    .info-tab-body-content {
+      padding: 0 8px;
+    }
+  }
+
+  .info-tab-footer {
+    padding: 2px 8px;
+
+    .info-tab-footer-icon {
+      background-image: url('../../../assets/images/game-table/duplicate-copy.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+    }
+  }
+}
+
+.copied {
+  background-color: $grey500;
+  border-radius: 4px;
+  padding: 2px 4px;
+  color: $grey200;
+  font-family: $font-family;
+  font-weight: 600;
+  font-size: 10px;
+}

@@ -1,0 +1,141 @@
+@import '../abstract/core';
+
+table {
+  &.table {
+    &.table-rank {
+      &.table-width {
+        thead {
+          tr {
+            th {
+              &:nth-child(2n + 1),
+              &:nth-child(2n + 2) {
+                width: 273px;
+              }
+            }
+          }
+        }
+
+        tbody {
+          tr {
+            td {
+              &:nth-child(2n + 1),
+              &:nth-child(2n + 2) {
+                width: 273px;
+              }
+            }
+          }
+        }
+      }
+
+      &.table-prize-leader {
+        thead {
+          tr {
+            th {
+              &:nth-child(3n + 1) {
+                width: 92px;
+              }
+
+              &:nth-child(3n + 2),
+              &:nth-child(3n + 3) {
+                width: 228px;
+              }
+            }
+          }
+        }
+
+        tbody {
+          tr {
+            td {
+              &:nth-child(3n + 1) {
+                width: 92px;
+              }
+
+              &:nth-child(3n + 2),
+              &:nth-child(3n + 3) {
+                width: 228px;
+              }
+            }
+          }
+        }
+      }
+
+      thead {
+        position: sticky;
+        top: 2px;
+        z-index: 20;
+
+        tr {
+          th {
+            &:nth-child(4n + 1) {
+              width: 100px;
+            }
+
+            &:nth-child(4n + 2),
+            &:nth-child(4n + 3),
+            &:nth-child(4n + 4) {
+              width: 152px;
+            }
+
+            &.th-prize {
+              width: 200px
+            }
+
+            &.th-not-yet {
+              width: 200px
+            }
+          }
+        }
+      }
+
+      tbody {
+        tr {
+          td {
+            .prize-ticket-widget {
+              .prize-ticket-text {
+                span {
+                  &.prize-ticket {
+                    &::before {
+                      content: '';
+                      position: absolute;
+                      left: -1px;
+                      width: 3px;
+                      height: 3px;
+                      border-top-right-radius: 50%;
+                      border-bottom-right-radius: 50%;
+                      background: $bg-light;
+                    }
+
+                    &::after {
+                      content: '';
+                      position: absolute;
+                      right: -1px;
+                      width: 3px;
+                      height: 3px;
+                      border-top-left-radius: 50%;
+                      border-bottom-left-radius: 50%;
+                      background: $bg-light;
+                    }
+                  }
+                }
+              }
+            }
+
+            &:nth-child(4n + 1) {
+              width: 100px;
+            }
+
+            &:nth-child(4n + 2),
+            &:nth-child(4n + 3),
+            &:nth-child(4n + 4) {
+              width: 152px;
+            }
+
+          }
+        }
+      }
+
+
+    }
+  }
+
+}

@@ -1,0 +1,269 @@
+<div class="main-contain flex-row">
+  <app-side-banner></app-side-banner>
+  <ng-container *ngIf="isNotice">
+    <div class="rhs flex-col-start br-right-16 w400 h520 bg-light p-4">
+      <form class="wp100 d-flex flex-col gap16" [formGroup]="loginForm">
+        <div class="close-icon-img p-rel d-flex jst-end align-center wp100">
+          <div
+            class="icons-24 close-icon-bg top-right wh24 cursor trans-03"
+            (click)="onClose()"
+          ></div>
+        </div>
+        <div class="login-rhs-container flex-col-start gap24">
+          <div class="login-rhs-header flex-col-start gap24 wp100">
+            <div class="geo-location-body-container flex-col-center gap24">
+              <div class="geo-location-image-body flex-center wp100">
+                <div class="geo-location-img flex-center wh72 circle bg-pink000">
+                  <div class="geo-location-img-body p-rel flex-center wh36 ovf-hide">
+                    <img
+                      class="p-abs wp100 hp100 obj-con"
+                      [src]="assetsImagePath + 'auth/geopin.svg'"
+                      alt="geopin"
+                      i18n
+                      i18n-alt
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="geo-text-container flex-col-center gap8 bg-grey000 p-5 border-1 border-solid border-grey200 br16"
+              >
+                <div class="fs20 ft-primary-b primary-error" i18n>Notice</div>
+                <div class="text-notice fs14 lh-base ft-primary-sb grey800 text-center" i18n>
+                  Your GPS location is not accessible for this app. Please go to the device/browser
+                  settings and allow Adda52 to access the device location.
+                </div>
+              </div>
+              <div class="btn-container">
+                <button
+                  type="button"
+                  mat-button
+                  class="btn btn-primary"
+                  id="geolocationblocked-ok-btn"
+                  trackEvents
+                  i18n
+                  (click)="getLocation()"
+                >
+                  Retry
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="!isNotice">
+    <div *ngIf="isShowLoginWithOTP; else loginWithPassword">
+      <div class="rhs flex-col-start br-right-16 w400 h520 bg-light p-4">
+        <form class="wp100 d-flex flex-col gap16" [formGroup]="loginForm">
+          <div class="close-icon-img p-rel d-flex jst-end align-center wp100">
+            <div class="icons-24 close-icon-bg p-rel wh24 cursor trans-03" (click)="onClose()">
+              <span class="top-right opacity-0 trans-03"></span>
+            </div>
+          </div>
+          <div class="login-rhs-container flex-col-start gap24">
+            <div class="login-rhs-header flex-col-start gap24 wp100">
+              <div class="login-rhs-header-title flex-row fs20 grey800 ft-primary-b" i18n>
+                Login or Register
+              </div>
+              <div class="login-rhs-input-text-container flex-only-col gap16 wp100">
+                <div class="mobile-input flex-row border-1.5 border-solid border-grey300 br12">
+                  <div
+                    class="country-code flex-center w50 fw700 grey900 border-solid border-grey300"
+                    i18n
+                  >
+                    +91
+                  </div>
+                  <div class="mobile-input-tel">
+                    <input
+                      type="tel"
+                      formControlName="mobileNumber"
+                      maxlength="10"
+                      (keyup)="onEnterMobileNumber($event)"
+                      id="login-mobilenumber-input"
+                      trackEvents
+                      placeholder="Enter Mobile Number"
+                      class="form-input form-input-placeholder wp100 ft-primary-b fs14"
+                      numbersOnly
+                      i18n-placeholder
+                    />
+                  </div>
+                </div>
+                <ng-container *ngIf="!ispromHide">
+                  <div
+                    class="promocode-container flex-space bg-purple000 px-2 py-3 border-0.5 border-solid br12"
+                  >
+                    <div class="promoreceived-text fs14 ft-primary-b grad-purple-text" i18n>
+                      {{ promoCodeText.code.promoCode }}
+                    </div>
+                    <div class="promo-box-close p-rel wh20 cursor" (click)="cancelPromoCode()">
+                      <img
+                        class="p-abs wp100 hp100 obj-con"
+                        [src]="assetsImagePath + 'auth/close-purple.svg'"
+                        alt="close"
+                        i18n
+                        i18n-alt
+                      />
+                    </div>
+                  </div>
+                </ng-container>
+                <div class="login-rhs-login-options flex-space" *ngIf="ispromHide">
+                  <div
+                    class="login-rhs-promo fs14 ft-primary-b grad-red-text cursor"
+                    (click)="openDialog(promoCode, 'promoCode')"
+                    i18n
+                  >
+                    Have a Promo or Referral Code?
+                  </div>
+                  <div
+                    class="login-rhs-password fs14 ft-primary-b grad-red-text cursor"
+                    (click)="passwordLogin()"
+                    i18n
+                  >
+                    Login via Password
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="login-rhs-body flex-col-start gap16 wp100">
+              <div class="rhs-login-button">
+                <button
+                  type="button"
+                  mat-button
+                  [disabled]="!enableOtpButton"
+                  class="btn btn-primary"
+                  (click)="openDialog(mobileVerification, 'mobileVerification')"
+                  i18n
+                >
+                  Get OTP
+                </button>
+              </div>
+              <div>
+                <div class="checkbox-container d-flex align-center gap8">
+                  <mat-checkbox
+                    class="pd-checkbox"
+                    formControlName="verification"
+                    [checked]="isSelected"
+                    (change)="onSelect()"
+                  >
+                  </mat-checkbox>
+                  <span class="fs14 ft-primary-md grey500" i18n>
+                    I certify that I am 18 years old and I agree to the
+                  </span>
+                </div>
+                <span
+                  class="fs14 ft-primary-b grad-red-text cursor my-0 ml-6"
+                  (click)="openDialog(terms, 'terms')"
+                >
+                  Terms & Conditions.
+                </span>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #loginWithPassword>
+    <div class="rhs flex-col-start p-rel br-right-16 gap16 w400 h520 bg-light p-4">
+      <div class="close-icon-img p-rel d-flex jst-end align-center wp100">
+        <div class="icons-24 close-icon-bg p-rel wh24 cursor trans-03" (click)="onClose()">
+          <span class="top-right opacity-0 trans-03"></span>
+        </div>
+      </div>
+      <div class="d-flex flex-column gap24">
+        <div class="login-rhs-container flex-col-start gap24 wp100">
+          <div class="login-rhs-header flex-col-start wp100">
+            <div class="login-rhs-header-title flex-row gap10" i18n>
+              <div class="back-arrow p-rel wh20 cursor" (click)="onBackClick()">
+                <img
+                  class="p-abs wp100 hp100 obj-con"
+                  [src]="assetsImagePath + 'auth/chevron-left.svg'"
+                  alt="left"
+                />
+              </div>
+              <div class="fs20 grey800 ft-primary-b">Login via Password</div>
+            </div>
+          </div>
+        </div>
+        <form
+          class="wp100"
+          [formGroup]="passwordLoginForm"
+          (keydown.enter)="openDialog(welcome, 'welcome')"
+        >
+          <div class="input-check-fields flex-col-start gap16">
+            <div class="input-fields flex-col-start gap16 wp100">
+              <input
+                [ngClass]="invalidFields ? 'invalid-fields input-error' : ''"
+                type="text"
+                formControlName="userName"
+                minlength="3"
+                placeholder="Enter Username/Email/Mobile"
+                class="form-input form-input-placeholder ft-primary-b fs14 br12 wp100"
+                id="loginviapassword-username-input"
+                trackEvents
+                i18n-placeholder
+              />
+              <div
+                class="form-input h48 fs14 ft-primary-b br12 wp100 form-password flex-row"
+                [ngClass]="invalidFields ? 'invalid-fields input-error' : ''"
+              >
+                <input
+                  class="password-input form-input-placeholder ft-primary-b fs14 grey900 border-0"
+                  [ngClass]="invalidFields ? 'invalid-fields' : ''"
+                  [type]="showPassword ? 'text' : 'password'"
+                  formControlName="password"
+                  placeholder="Enter Password"
+                  id="loginviapassword-password-input"
+                  trackEvents
+                  (focus)="isPasswordFocused(true)"
+                  (blur)="isPasswordFocused(false)"
+                  i18n-placeholder
+                />
+                <span
+                  class="wh20 cursor"
+                  (click)="showPassword = !showPassword"
+                  [ngClass]="showPassword ? 'show-eye' : 'hide-eye'"
+                ></span>
+              </div>
+            </div>
+            <div class="options flex-space wp100">
+              <div class="auto-login flex-row gap8">
+                <mat-checkbox
+                  class="pd-checkbox checkbox"
+                  id="rememberMe"
+                  formControlName="rememberMe"
+                >
+                  <span class="auto-login-text fs14 ft-primary-b grey900" i18n>Remember Me</span>
+                </mat-checkbox>
+              </div>
+              <div
+                class="forgot-password fs14 ft-primary-b grad-red-text cursor text-capital"
+                (click)="openDialog(forgotPassWord, 'forgotPassWord')"
+                i18n
+              >
+                Forgot Password ?
+              </div>
+            </div>
+          </div>
+        </form>
+        <button
+          type="button"
+          mat-button
+          [disabled]="!enableLoginBtn"
+          class="btn btn-primary"
+          (click)="openDialog(welcome, 'welcome')"
+          id="loginviapassword-login-btn"
+          trackEvents
+          i18n
+        >
+          Login
+        </button>
+        <div class="login-rhs-footer" *ngIf="isShowToast">
+          <app-toast [toastValue]="toastValue" [(isShowToast)]="isShowToast"></app-toast>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>

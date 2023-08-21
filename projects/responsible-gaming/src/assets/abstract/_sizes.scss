@@ -1,0 +1,819 @@
+// Width
+.w-max {
+  width: max-content;
+}
+
+// Width in px
+.w800 {
+  width: 800px;
+}
+
+.w430 {
+  width: 430px;
+}
+
+.w414 {
+  width: 414px;
+}
+
+.w400 {
+  width: 400px;
+}
+
+.w398 {
+  width: 398px;
+}
+
+.w382 {
+  width: 382px;
+}
+
+.w368 {
+  width: 368px;
+}
+
+.w316 {
+  width: 316px;
+}
+
+.w314 {
+  width: 314px;
+}
+
+.w292 {
+  width: 292px;
+}
+
+.w282 {
+  width: 282px;
+}
+
+.w278 {
+  width: 278px;
+}
+
+.w198 {
+  width: 198px;
+}
+
+.w196 {
+  width: 196px;
+}
+
+.w183 {
+  width: 183px;
+}
+
+.w175 {
+  width: 175px;
+}
+
+.w171 {
+  width: 171px;
+}
+
+.w155 {
+  width: 155px;
+}
+
+.w152 {
+  width: 152px;
+}
+
+.w146 {
+  width: 146px;
+}
+
+.w136 {
+  width: 136px;
+}
+
+.w133 {
+  width: 133px;
+}
+
+.w129 {
+  width: 129px;
+}
+
+.w125 {
+  width: 125px;
+}
+
+.w121 {
+  width: 121px;
+}
+
+.w120,
+.wh120 {
+  width: 120px;
+}
+
+.h116 {
+  height: 116px;
+}
+
+.w118 {
+  width: 118px;
+}
+
+.w112 {
+  width: 112px;
+}
+
+.w111 {
+  width: 111px;
+}
+
+.w93 {
+  width: 93px;
+}
+
+.w89 {
+  width: 89px;
+}
+
+.w88 {
+  width: 88px;
+}
+
+.w81 {
+  width: 81px;
+}
+
+.w80,
+.wh80 {
+  width: 80px;
+}
+
+.w72,
+.wh72 {
+  width: 72px;
+}
+
+.w67 {
+  width: 67px;
+}
+
+.w65 {
+  width: 65px;
+}
+
+.w63 {
+  width: 63px;
+}
+
+.w52 {
+  width: 52px;
+}
+
+.w50 {
+  width: 50px;
+}
+
+.w48 {
+  width: 48px;
+}
+
+.w40 {
+  width: 40px;
+}
+
+.w28 {
+  width: 28px;
+}
+
+.w24 {
+  width: 24px;
+}
+
+.h22 {
+  height: 22px;
+}
+
+.h21 {
+  height: 21px;
+}
+
+.h20 {
+  height: 20px;
+}
+
+.w17 {
+  width: 17px;
+}
+
+.w16 {
+  width: 16px;
+}
+
+.w14 {
+  width: 14px;
+}
+
+.w12 {
+  width: 12px;
+}
+
+.w8,
+.wh8 {
+  width: 8px;
+}
+
+.w6,
+.wh6 {
+  width: 6px;
+}
+
+.w1 {
+  width: 1px;
+}
+
+// Width in %
+.wp100 {
+  width: 100% !important;
+}
+
+.wp90 {
+  width: 90%;
+}
+
+.wp85 {
+  width: 85%;
+}
+
+.wp80 {
+  width: 80%;
+}
+
+.wp50 {
+  width: 50%;
+}
+
+.wp48 {
+  width: 48%;
+}
+
+.wp40 {
+  width: 40%;
+}
+
+.wp30 {
+  width: 30%;
+}
+
+.wp20 {
+  width: 20%;
+}
+
+.wp16 {
+  width: 16%;
+}
+
+.wp15 {
+  width: 15%;
+}
+
+// min widths
+
+.mw86 {
+  min-width: 86px;
+}
+
+.mw51 {
+  min-width: 51px;
+}
+
+// Widths in rem
+.w-53-6 {
+  width: 53.6rem;
+}
+
+.w-40 {
+  width: 40rem;
+}
+
+.w-30-12 {
+  width: 30.12rem;
+}
+
+.w-28-12 {
+  width: 28.12rem;
+}
+
+.w-25-2 {
+  width: 25.2rem;
+}
+
+.w-21-9 {
+  width: 21.9rem;
+}
+
+.w-12-3 {
+  width: 12.3rem;
+}
+
+.w-12 {
+  width: 12.3rem;
+}
+
+.w-11-9 {
+  width: 11.9rem;
+}
+
+.w-9 {
+  width: 9rem;
+}
+
+.w-8-8 {
+  width: 8.8rem;
+}
+
+.w-6-3 {
+  width: 6.3rem;
+}
+
+.w-2 {
+  width: 2rem;
+}
+
+.w-1-75 {
+  width: 1.75rem;
+}
+
+.w-1-5 {
+  width: 1.5rem;
+}
+
+.w-1-3 {
+  width: 1.3rem;
+}
+
+.w-1-1 {
+  width: 1.1rem;
+}
+
+.w-1 {
+  width: 1rem;
+}
+
+.w-0-25 {
+  width: 0.25rem;
+}
+
+.mw-5-6 {
+  min-width: 5.6rem;
+}
+
+// Heights in px
+.h520 {
+  height: 520px;
+}
+
+.h319 {
+  height: 319px;
+}
+
+.h220 {
+  height: 220px;
+}
+
+.h216 {
+  height: 216px;
+}
+
+.h198 {
+  height: 198px;
+}
+
+.h184 {
+  height: 184px;
+}
+
+.h156 {
+  height: 156px;
+}
+
+.h146 {
+  height: 146px;
+}
+
+.h144 {
+  height: 144px;
+}
+
+.h132 {
+  height: 132px;
+}
+
+.h120,
+.wh120 {
+  height: 120px;
+}
+
+.h110 {
+  height: 110px;
+}
+
+.h104 {
+  height: 104px;
+}
+
+.h100 {
+  height: 100px;
+}
+
+.h85 {
+  height: 85px;
+}
+
+.h80,
+.wh80 {
+  height: 80px;
+}
+
+.h72,
+.wh72 {
+  height: 72px;
+}
+
+.h69 {
+  height: 69px;
+}
+
+.h66 {
+  height: 66px;
+}
+
+.h64 {
+  height: 64px;
+}
+
+.h56 {
+  height: 56px;
+}
+
+.h50 {
+  height: 50px;
+}
+
+.h49 {
+  height: 49px;
+}
+
+.h48 {
+  height: 48px;
+}
+
+.h46 {
+  height: 46px;
+}
+
+.h44 {
+  height: 44px;
+}
+
+.h43 {
+  height: 43px;
+}
+
+.h42 {
+  height: 42px;
+}
+
+.h41 {
+  height: 41px;
+}
+
+.h40 {
+  height: 40px;
+}
+
+.h38 {
+  height: 38px;
+}
+
+.h36 {
+  height: 36px;
+}
+
+.h32 {
+  height: 32px;
+}
+
+.h31 {
+  height: 31px;
+}
+
+.h30 {
+  height: 30px;
+}
+
+.h28 {
+  height: 28px;
+}
+
+.h26 {
+  height: 26px;
+}
+
+.h24 {
+  height: 24px;
+}
+
+.h19 {
+  height: 19px;
+}
+
+.h17 {
+  height: 17px;
+}
+
+.h16 {
+  height: 16px;
+}
+
+.h15 {
+  height: 15px;
+}
+
+.h14 {
+  height: 14px;
+}
+
+.h13 {
+  height: 13px;
+}
+
+.h12 {
+  height: 12px;
+}
+
+.h11 {
+  height: 11px;
+}
+
+.h9 {
+  height: 9px;
+}
+
+.h8,
+.wh8 {
+  height: 8px;
+}
+
+.h6,
+.wh6 {
+  height: 6px;
+}
+
+// Height in %
+.hp100 {
+  height: 100%;
+}
+
+// Heights in rem
+.h-34 {
+  height: 34rem;
+}
+
+.h-22-2 {
+  height: 22.2rem;
+}
+
+.h-12 {
+  height: 12rem;
+}
+
+.h-11-6 {
+  height: 11.6rem;
+}
+
+.h-9 {
+  height: 9rem;
+}
+
+.h-4-5 {
+  height: 4.5rem;
+}
+
+.h-3-8 {
+  height: 3.8rem;
+}
+
+.h-3-5 {
+  height: 3.5rem;
+}
+
+.h-3 {
+  height: 3rem;
+}
+
+.h-2-5 {
+  height: 2.5rem;
+}
+
+.h-2-4 {
+  height: 2.4rem;
+}
+
+.h-1-75 {
+  height: 1.75rem;
+}
+
+.h-1-63 {
+  height: 1.63rem;
+}
+
+.h-1-5 {
+  height: 1.5rem;
+}
+
+.h-1-2 {
+  height: 1.2rem;
+}
+
+.h-1 {
+  height: 1rem;
+}
+
+.h-0-25 {
+  height: 0.25rem;
+}
+
+// min-height
+
+.mh185 {
+  min-height: 185px;
+}
+
+.mh490 {
+  min-height: 490px;
+}
+
+// Same Width/Height
+.wh132 {
+  width: 132px;
+  height: 132px;
+}
+
+.wh112 {
+  width: 112px;
+  height: 112px;
+}
+
+.wh108 {
+  width: 108px;
+  height: 108px;
+}
+
+.wh104 {
+  width: 104px;
+  height: 104px;
+}
+
+.wh96 {
+  width: 96px;
+  height: 96px;
+}
+
+.wh84 {
+  width: 84px;
+  height: 84px;
+}
+
+.wh68 {
+  width: 68px;
+  height: 68px;
+}
+
+.wh64 {
+  width: 64px;
+  height: 64px;
+}
+
+.wh44 {
+  width: 44px;
+  height: 44px;
+}
+
+.wh42 {
+  width: 42px;
+  height: 42px;
+}
+
+.wh40 {
+  width: 40px;
+  height: 40px;
+}
+
+.wh36 {
+  width: 36px;
+  height: 36px;
+}
+
+.wh32 {
+  width: 32px;
+  height: 32px;
+}
+
+.wh30 {
+  width: 30px;
+  height: 30px;
+}
+
+.wh25 {
+  width: 25px;
+  height: 25px;
+}
+
+.wh24 {
+  width: 24px;
+  height: 24px;
+}
+
+.wh21 {
+  width: 21px;
+  height: 21px;
+}
+
+.wh20 {
+  width: 20px;
+  height: 20px;
+}
+
+.wh16 {
+  width: 16px;
+  height: 16px;
+}
+
+.wh14 {
+  width: 14px;
+  height: 14px;
+}
+
+.wh13 {
+  width: 13px;
+  height: 13px;
+}
+
+.wh12 {
+  width: 12px;
+  height: 12px;
+}
+
+.wh10 {
+  width: 10px;
+  height: 10px;
+}
+
+.wh5 {
+  width: 5px;
+  height: 5px;
+}
+
+
+// Width/Height in rem
+.wh-2-8 {
+  width: 2.8rem;
+  height: 2.8rem;
+}
+
+.wh-2-5 {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.wh-2-4 {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+.wh-1-3 {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+
+.wh-1-2 {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.wh-4-5 {
+  width: 4.5rem;
+  height: 4.5rem;
+}
+
+// Width/Height in view port
+.width-65 {
+  width: 65vw;
+}
+
+.height-87 {
+  height: 87vh;
+}
+
+// Max Height
+.max-h-100 {
+  max-height: 100%;
+}

@@ -1,0 +1,310 @@
+<div class="game-table-leaderboard-dialog wp100 hp100 flex-col-start gap8 p-4">
+  <div class="leaderboard-contest-container wp100">
+    <mat-tab-group class="wp100 mat-leaderboard">
+      <mat-tab label="Leaderboard">
+        <div class="Leaderboard-container mx-h-400 d-flex flex-col align-center p-4 gap8">
+          <div class="leaderboard-container-widget d-flex flex-col align-center gap24">
+            <div class="leaderboard-container-header d-flex flex-col align-center gap12">
+              <div class="leaderboard-header-title ft-primary-b fs16 grey000">
+                Evening Leaderboard
+              </div>
+              <div class="leaderboard-header-widget d-flex flex-col gap16 bg-grey900 br16 p-4">
+                <div class="leaderboard-header-widget-para fs14 ft-primary-rg grey000 lh20">
+                  This is based on the <span class="ft-primary-b">'Number of hands won'</span>. Only
+                  Post Flop + Non Heads up hands will be counted.
+                  <span class="grad-red-text ft-primary-rg cursor">Know more</span>
+                </div>
+                <div class="start-end-date-container d-flex jst-space align-center">
+                  <div class="start-date-container p-rel d-flex flex-col align-start gap8 wp48">
+                    <div class="start-date-title fs12 ft-primary-b grey400 text-uppercase">
+                      start
+                    </div>
+                    <div class="start-date-time fs14 ft-primary-b grey000">12 Sep, 12:25 PM</div>
+                  </div>
+                  <div class="end-date-container d-flex flex-col align-start gap8 wp48">
+                    <div class="end-date-title fs12 ft-primary-b grey400 text-uppercase">end</div>
+                    <div class="end-date-time fs14 ft-primary-b grey000">12 Oct, 12:25 PM</div>
+                  </div>
+                </div>
+              </div>
+              <div class="leaderboard-container-tabs-updated d-flex jst-space align-center wp100">
+                <div class="leaderboard-container-tabs-updated d-flex align-center wp48">
+                  <ul class="d-flex align-center gap8 p-0 m-0">
+                    <li
+                      class="fs12 ft-primary-b grey300 text-capital bg-dark br8 cursor trans-03 text-nowrap"
+                      [ngClass]="{ 'tab-active': tabClick == 'ranks' }"
+                      (click)="tabClick = 'ranks'"
+                    >
+                      ranks
+                    </li>
+                    <li
+                      class="fs12 ft-primary-b grey300 text-capital bg-dark br8 cursor trans-03 text-nowrap"
+                      [ngClass]="{ 'tab-active': tabClick == 'prize' }"
+                      (click)="tabClick = 'prize'"
+                    >
+                      prize structure
+                    </li>
+                  </ul>
+                </div>
+                <div
+                  class="leaderboard-container-tabs-updated d-flex jst-end align-center wp48 fs12 ft-primary-sb grey300"
+                >
+                  Last Updated : 12:20 PM
+                </div>
+              </div>
+            </div>
+            <div class="leaderboard-container-body wp100">
+              <table
+                class="table table-leader-rank d-flex flex-col gap8"
+                aria-label="Rank Table"
+                i18n-aria-label
+              >
+                <thead class="d-flex align-center gap8">
+                  <tr>
+                    <th>rank</th>
+                    <th>players</th>
+                    <th>hands</th>
+                    <th>prize</th>
+                  </tr>
+                </thead>
+                <tbody class="d-flex flex-col align-start gap8">
+                  <tr class="current-user">
+                    <td>26</td>
+                    <td>
+                      <div class="td-title">Nishanth</div>
+                    </td>
+                    <td>766</td>
+                    <td>₹ 5,054</td>
+                  </tr>
+                  <tr class="first">
+                    <td>
+                      <div class="first-award"></div>
+                    </td>
+                    <td>
+                      <div class="td-title">coastlineo</div>
+                    </td>
+                    <td>1028</td>
+                    <td>
+                      <div class="first-prize-ticket lh20">
+                        <div class="prize-text grad-orange-text">₹ 45,054</div>
+                        <div class="prize-ticket-text d-flex align-center gap6">
+                          <span
+                            class="prize-ticket p-rel d-flex jst-center align-center fs10 ft-primary-b light grad-orange-bg"
+                            >10</span
+                          >
+                          <span class="prize-text grad-orange-text">Tickets</span>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="second">
+                    <td>
+                      <div class="second-award"></div>
+                    </td>
+                    <td>
+                      <div class="td-title">sticksmeat</div>
+                    </td>
+                    <td>1008</td>
+                    <td>
+                      <div class="prize-text">₹ 20,054</div>
+                    </td>
+                  </tr>
+                  <tr class="third">
+                    <td>
+                      <div class="third-award"></div>
+                    </td>
+                    <td>
+                      <div class="td-title">minlunch</div>
+                    </td>
+                    <td>900</td>
+                    <td>
+                      <div class="prize-text">₹ 15,050</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>
+                      <div class="td-title">stagnant</div>
+                    </td>
+                    <td>950</td>
+                    <td>IB 10,054</td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>
+                      <div class="td-title">Suresh rawath</div>
+                    </td>
+                    <td>966</td>
+                    <td>TB 5,054</td>
+                  </tr>
+                  <tr>
+                    <td>6</td>
+                    <td>
+                      <div class="td-title">rahul rakesh</div>
+                    </td>
+                    <td>976</td>
+                    <td>
+                      <div class="d-flex align-center gap8">
+                        <span class="p-rel wh20 ovf-hide"
+                          ><img
+                            class="p-abs wp100 hp100 obj-con"
+                            src="../../../../../assets/images/game-table/crown-prize.svg"
+                            i18n
+                            i18n-alt
+                            alt="Crown"
+                        /></span>
+                        2,054
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>7</td>
+                    <td>
+                      <div class="td-title">rahul sipligunj</div>
+                    </td>
+                    <td>986</td>
+                    <td>₹ 1,554</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="prize-container-body d-flex flex-col gap16 wp100">
+              <div class="prize-pool-buyin-container d-flex align-center wp100">
+                <div
+                  class="prize-pool-container p-rel d-flex jst-center align-center wh104 br-left-16 bg-orange500"
+                >
+                  <div class="prize-image-widget-right-bg top-right bg-orange200"></div>
+                  <div
+                    class="prize-image-body d-flex jst-center align-center wh68 circle bg-orange000"
+                  >
+                    <div class="prizeImageIcon"></div>
+                  </div>
+                </div>
+                <div
+                  class="buyin-container p-rel d-flex jst-around align-start p-2 bg-grey900 br-right-16"
+                >
+                  <div class="prize-text-item d-flex flex-col align-start gap8">
+                    <div
+                      class="text-item-title d-flex align-center fs12 ft-primary-b grey400 text-uppercase"
+                    >
+                      Prize Pool
+                    </div>
+                    <div class="prize-value d-flex align-center fs14 ft-m grey000 gap6">
+                      ₹ 10,00,000
+                    </div>
+                    <div class="prize-value d-flex align-center fs14 ft-m grey000 gap6">
+                      IB 2,000
+                    </div>
+                    <div class="prize-ticket-text d-flex align-center fs14 ft-m grey000 gap6">
+                      <span class="prize-ticket">5</span> Tickets
+                      <!-- <span class="prize-info" [style]="'background-image': 'url(' +  assetsImagePath + 'game-table/Info-icon.svg);'"></span> -->
+                    </div>
+                  </div>
+                  <div class="prize-text-item">
+                    <div
+                      class="textItem-title d-flex align-center fs12 ft-primary-b grey400 text-uppercase"
+                    >
+                      places paid
+                    </div>
+                    <div class="prize-value">10</div>
+                  </div>
+                </div>
+              </div>
+              <table
+                class="table table-leader-prize d-flex flex-col gap8"
+                aria-label="Prize Table"
+                i18n-aria-label
+              >
+                <thead class="d-flex align-center gap8">
+                  <tr>
+                    <th>rank</th>
+                    <th>prize</th>
+                  </tr>
+                </thead>
+                <tbody class="d-flex flex-col align-start gap8">
+                  <tr>
+                    <td>7</td>
+                    <td>₹ 2,554</td>
+                  </tr>
+                  <tr>
+                    <td>6</td>
+                    <td>₹ 6,554</td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>₹ 7,554</td>
+                  </tr>
+                  <tr>
+                    <td>9</td>
+                    <td>₹ 8,554</td>
+                  </tr>
+                  <tr>
+                    <td>8</td>
+                    <td>₹ 3,554</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="leaderboard-container-widget d-flex flex-col align-center gap24">
+            <div class="leaderboard-container-header d-flex flex-col align-center gap12 wp100">
+              <div
+                class="leaderboard-header p-rel d-flex jst-center align-center ft-primary-b fs16 grey000 wp100"
+              >
+                <div class="back-icon wh24 top-left cursor">
+                  <div class="icons-16 chevron-left-white wh16"></div>
+                </div>
+                Evening Leaderboard
+              </div>
+              <div class="leaderboard-body bg-grey900 br16 gap16 p-4 wp100">
+                <div class="leaderbody-body-text d-flex flex-col gap16 wp100">
+                  <div class="fs14 ft-m grey000">Adda Leaderboard</div>
+                  <div class="fs14 ft-m grey000">Let ACL unravel the legend in YOU.</div>
+                  <div class="fs14 ft-m grey000">
+                    ACL offers a staggering 2 Crores in Leaderboard pay-outs promising to be a
+                    year-long bonanza for all. The game of poker has never been rewarded with such
+                    prestige and honour. Forge your way to the Top and Earn Your Mark!
+                  </div>
+                  <div class="fs14 ft-m grey000">Monthly Leaderboard</div>
+                  <div class="fs14 ft-m grey000">
+                    Keep stacking points on Adda52 Tournaments through the 4 uniquely designed
+                    leaderboards and get a chance to win from 13.5 Lac Monthly.
+                  </div>
+                  <div class="d-flex flex-col gap8">
+                    <div class="fs14 ft-m grey000">Freeroll</div>
+                    <div class="fs14 ft-m grey000">Low Buy-In (10 - 499)</div>
+                    <div class="fs14 ft-m grey000">Mid Buy-In (500 - 1,999)</div>
+                    <div class="fs14 ft-m grey000">High Buy-In (2,000 & Above)</div>
+                  </div>
+                  <div class="fs14 ft-m grey000">Quarterly ACL SNG</div>
+                  <div class="fs14 ft-m grey000">
+                    The Top 5 players from each monthly leaderboard will qualify for Quarterly ACL
+                    SNG. 20 players from each month across all leaderboards will progress to the
+                    Quarterly ACL SNG and play for a prize pool of additional 5 lakhs!*.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="Contest">
+        <div
+          class="contest-container empty-container d-flex flex-col jst-center align-center p-4 gap8"
+        >
+          <div class="empty-image-container d-flex jst-center align-center wp100">
+            <div class="empty-image-body d-flex jst-center align-center wh112 circle bg-dark">
+              <div class="empty-image"></div>
+            </div>
+          </div>
+          <div class="empty-text-para fs16 ft-primary-b grey400">
+            No Leaderboard available for this table.
+          </div>
+          <div class="empty-text-para fs14 ft-m grey500 text-center lh20">
+            Please check the leaderboard section to see the other leaderboards.
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

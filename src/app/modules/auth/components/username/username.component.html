@@ -1,0 +1,125 @@
+<div class="main-contain flex-row">
+  <app-registration-successful></app-registration-successful>
+  <div class="rhs flex-col-start p-rel br-right-16 w400 h520 gap16 bg-light p-4">
+    <div class="close-icon-img p-rel d-flex jst-end align-center wp100">
+      <div class="icons-24 close-icon-bg p-rel wh24 cursor trans-03" (click)="onClose()">
+        <span class="top-right opacity-0 trans-03"></span>
+      </div>
+    </div>
+    <div class="login-rhs-container p-rel flex-col-start gap24 wp100">
+      <div class="login-rhs-header flex-col-start gap24 wp100">
+        <div class="existing-rhs-header flex-col-start gap16 wp100">
+          <div class="existing-user-number flex-row gap8 wp100 bg-orange000 br16 p-3">
+            <div class="existing-user-title fs12 ft-primary-sb grey500" i18n>
+              Existing Username:
+            </div>
+            <div class="existing-number fs14 ft-primary-sb grey800">
+              {{ existingUserName?.value }}
+            </div>
+          </div>
+          <div
+            class="login-rhs-header-title flex-row fs20 grey800 gap10 ft-primary-b text-capital"
+            i18n
+          >
+            <div class="back-arrow p-rel wh20 cursor" (click)="onBackArrowSelect()">
+              <img
+                class="p-abs wp100 hp100 obj-con"
+                [src]="assetsImagePath + 'auth/chevron-left.svg'"
+                alt="left"
+              />
+            </div>
+            <div class="fs20 grey800 ft-primary-b text-capital">Create Username</div>
+          </div>
+        </div>
+      </div>
+      <div class="user-input flex-col-start gap8 wp100">
+        <input
+          type="tel"
+          [(ngModel)]="userName"
+          [ngClass]="isUserNameExists ? 'error-border input-error' : ''"
+          autocomplete="off"
+          autocomplete="disabled"
+          (ngModelChange)="validateUserName($event)"
+          (keydown)="onKeyDown($event)"
+          placeholder="Enter Username"
+          class="form-input form-input-placeholder ft-primary-b fs14 br12 wp100"
+          maxlength="20"
+          id="createusername-username-input"
+          trackEvents
+          i18n-placeholder
+          alphanumericOnly
+        />
+        <span class="fs12 ft-primary-sb primary-error" *ngIf="isUserNameExists" i18n
+          >The username is already taken. Try following:</span
+        >
+      </div>
+      <div
+        class="user-name-container flex-row gap12 flex-wrap wp100"
+        *ngIf="isUserNameExists || currentSuggestedUsername"
+      >
+        <div
+          class="user-name flex-center px-2 py-1 br20 wp30 bg-grey100 fs12 ft-primary-b dark cursor"
+          *ngFor="let suggestedUserName of suggestedUserNames"
+          (click)="changeUserName(suggestedUserName)"
+          [ngClass]="currentSuggestedUsername == suggestedUserName ? 'user-active' : ''"
+        >
+          {{ suggestedUserName }}
+        </div>
+      </div>
+      <div class="option-name-container flex-col-start gap12">
+        <div class="option-name-title fs12 ft-primary-sb grey900" i18n>
+          Username should contain:
+        </div>
+        <div class="options-container flex-row gap10 flex-wrap">
+          <div class="options flex-row gap6">
+            <div
+              class="img-check-mark img-active wh16"
+              *ngIf="alphabetPattern; else notAlphabetPattern"
+            ></div>
+            <ng-template #notAlphabetPattern>
+              <div class="img-check-mark wh16"></div>
+            </ng-template>
+            <div class="option-text fs12 ft-primary-sb grey500">Atleast 1 alphabet</div>
+          </div>
+          <div class="options flex-row gap6" i18n>
+            <div
+              class="img-check-mark img-active wh16"
+              *ngIf="minMaxCharPatter; else notMinMaxCharPatter"
+            ></div>
+            <ng-template #notMinMaxCharPatter>
+              <div class="img-check-mark wh16"></div>
+            </ng-template>
+            <div class="option-text fs12 ft-primary-sb grey500">3-20 Character max</div>
+          </div>
+          <div class="options flex-row gap6" i18n>
+            <div
+              class="img-check-mark img-active wh16"
+              *ngIf="noSpecialCharPattern; else notSpecialCharPattern"
+            ></div>
+            <ng-template #notSpecialCharPattern>
+              <div class="img-check-mark wh16"></div>
+            </ng-template>
+            <div class="option-text fs12 ft-primary-sb grey500">No special character</div>
+          </div>
+        </div>
+      </div>
+      <div class="btn-container">
+        <button
+          type="button"
+          mat-button
+          [disabled]="disableSubmitBtn"
+          class="btn btn-primary"
+          (click)="submitUserName()"
+          id="createusername-submit-btn"
+          trackEvents
+          i18n
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+    <div class="login-rhs-footer" *ngIf="isShowToast">
+      <app-toast [toastValue]="toastValue" [(isShowToast)]="isShowToast"></app-toast>
+    </div>
+  </div>
+</div>

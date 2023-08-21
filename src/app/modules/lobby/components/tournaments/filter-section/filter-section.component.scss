@@ -1,0 +1,28 @@
+@import '../../../../../../assets/abstract/core';
+
+.sub-header {
+  height: auto;
+  backdrop-filter: blur(1.7241px);
+
+  .sub-header-buttons {
+    width: calc(100% - 30%);
+  }
+
+  .sub-header-icons {
+    width: 30%;
+
+    .sub-icon {
+      &:hover {
+        .funnel-icon {
+          &.funnel-border {
+            opacity: 0;
+          }
+
+          &.funnel-fill {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}

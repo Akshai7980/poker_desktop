@@ -1,0 +1,22 @@
+@import "../../../assets/components/cashier-common";
+@import '../../../assets/abstract/utilities';
+@import "../../../assets/components/buttons";
+
+.chat-box,
+.email-box { 
+  &.selected-box {
+    &::after {
+      content: '';
+      position: absolute;
+
+      @include triangle(14px, $grey400, right);
+
+      right: -14px;
+      top: 44%;
+    }
+  }
+}
+
+.back-icon:hover {
+  background: $grey100;
+}

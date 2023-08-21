@@ -1,0 +1,39 @@
+<div class="banner-area-container d-flex flex-col wp100 bg-grey300 ovf-hide br16 h198">
+  <div class="banner-area-header d-flex align-start wp100 bg-light h38 br-top-16">
+    <div class="banner-area-info p-rel d-flex jst-center align-center wp48 p-2 gap8">
+      <div
+        class="dot-icon d-flex jst-center align-center wh13 circle border-1.5 border-solid border-white grad-sea-green-bg"
+      ></div>
+      <div class="info-text fs14 ft-primary-md grey900" i18n>Tables</div>
+      <div class="info-count fs14 ft-primary-b grey900">{{ noOfHands.tableCount }}</div>
+    </div>
+    <div class="banner-area-info p-rel d-flex jst-center align-center wp48 p-2 gap8">
+      <div
+        class="dot-icon d-flex jst-center align-center wh13 circle border-1.5 border-solid border-white grad-sea-green-bg"
+      ></div>
+      <div class="info-text fs14 ft-primary-md grey900" i18n>Players</div>
+      <div class="info-count fs14 ft-primary-b grey900">{{ noOfHands.userCount }}</div>
+    </div>
+  </div>
+  <div class="banner-area-body">
+    <p-carousel
+      [value]="tableCrousels"
+      [numVisible]="1"
+      [numScroll]="1"
+      [autoplayInterval]="5000"
+      [showNavigators]="false"
+      contentClass="table-info"
+      indicatorStyleClass="table-info-indicator"
+    >
+      <ng-template let-promo pTemplate="item">
+        <img
+          [src]="assetsImagePath + 'lobby/banner.svg'"
+          i18n
+          i18n-alt
+          alt="promotions"
+          style="width: 100%"
+        />
+      </ng-template>
+    </p-carousel>
+  </div>
+</div>

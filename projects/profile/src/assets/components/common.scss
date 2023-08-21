@@ -1,0 +1,91 @@
+@import "../../assets/abstract/core";
+
+.toast-message {
+  position: absolute;
+  bottom: 1rem;
+
+  &.toast-slider {
+    left: 10%;
+    width: 80%;
+  }
+}
+
+.close-btn,
+.to-back-icon {
+  &:hover {
+    background: $grey100;
+  }
+}
+
+.doc-status {
+  .line {
+    height: 0.5px;
+  }
+
+  &.pending {
+    background: $orange000;
+    border-color: $orange200;
+
+    .line {
+      background: $orange200;
+    }
+
+    .doc-status-bottom {
+      .doc-status-text {
+        color: $orange200;
+      }
+    }
+  }
+
+  &.verified {
+    background: $green000;
+    border-color: $green200;
+
+    .line {
+      background: $green200;
+    }
+
+    .doc-status-bottom {
+      .doc-status-text {
+        color: $primary-success;
+      }
+    }
+  }
+}
+
+.p-inputtext.ng-dirty.ng-invalid {
+  border-color: $grey300;
+}
+
+input {
+  &::placeholder {
+    color: $grey400;
+  }
+}
+
+.preview-img {
+  width: 234px;
+}
+
+.selfie-image {
+  object-fit: fill;
+}
+
+.profile-pic {
+  .icon-container {
+    right: -8px;
+    bottom: -8px;
+  }
+}
+
+.content-height-n1 {
+  height: calc(100vh - 322px);
+}
+
+.content-height-n2 {
+  height: calc(100vh - 380px);
+}
+
+.grad-red-border {
+  background: linear-gradient($bg-light,$bg-light) padding-box, $grad-red border-box;
+}

@@ -1,0 +1,35 @@
+@import '../../../../assets/abstract/core';
+
+.alert {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  padding: 1.5rem;
+
+  .alert-title {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    color: $grey900;
+  }
+
+  .alert-msg {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16.8px;
+    color: $grey900;
+  }
+}
+
+.btn.btn-primary {
+  width: 100%;
+  margin: 0.5rem 0 0;
+  height: 48px;
+  padding: 12px 24px 12px 20px;
+  outline: none;
+
+  .primary-btn-text {
+    line-height: 24px;
+  }
+}

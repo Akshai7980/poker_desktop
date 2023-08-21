@@ -1,0 +1,77 @@
+<div class="main-contain flex-only-row">
+  <app-side-banner></app-side-banner>
+  <div class="rhs flex-col-start p-rel br-right-16 w400 h520 gap16 bg-light p-4">
+    <div class="close-icon-img p-rel d-flex jst-end align-center wp100">
+      <div class="icons-24 close-icon-bg p-rel wh24 cursor trans-03" (click)="onClose()">
+        <span class="top-right opacity-0 trans-03"></span>
+      </div>
+    </div>
+    <form [formGroup]="promoCodeForm">
+      <div class="login-rhs-container flex-col-start gap24 wp100">
+        <div class="login-rhs-header flex-col-start wp100">
+          <div class="login-rhs-header-title flex-row gap10" i18n>
+            <div class="back-arrow p-rel wh20 cursor" (click)="onBackArrowSelect()">
+              <img
+                class="p-abs wp100 hp100 obj-con"
+                [src]="assetsImagePath + 'auth/chevron-left.svg'"
+                alt="left"
+              />
+            </div>
+            <div class="fs20 grey800 ft-primary-b text-capital">Promo/Referral Code</div>
+          </div>
+        </div>
+        <div class="user-name-input p-rel flex-col-start gap8 wp100">
+          <input
+            type="text"
+            placeholder="Enter Code"
+            formControlName="promoCode"
+            class="form-input form-input-placeholder form-input-uppercase text-uppercase ft-primary-b fs14 br12 wp100 default"
+            [ngClass]="isSuccess ? 'success' : isFail ? 'fail input-error' : 'default'"
+            (keyup)="getPromoCode($event)"
+            id="promoreferralcode-code-input"
+            trackEvents
+            autocompleteOff
+            i18n-placeholder
+          />
+          <div *ngIf="isSuccess" class="img-check-mark img-active wh24"></div>
+          <div
+            *ngIf="isFail"
+            class="invalid-code-li d-flex align-center gap4 br50 cursor"
+            (click)="onResetPromoCode()"
+          >
+            <div class="cancel-icon flex-center p-rel wh24 ovf-hide">
+              <img
+                class="p-abs wp100 hp100 obj-con"
+                [src]="assetsImagePath + 'auth/close-red.svg'"
+                alt="cross"
+                i18n
+                i18n-alt
+              />
+            </div>
+            <div class="cancel-text fs14 ft-primary-b primary-error" i18n>Invalid Code</div>
+          </div>
+          <div *ngIf="isLoading" class="spinner">
+            <i class="pi pi-spin pi-spinner red-spinner grad-red-text"></i>
+          </div>
+        </div>
+        <div class="otp-button flex-row wp100">
+          <button
+            mat-button
+            type="submit"
+            class="btn btn-primary"
+            id="promoreferralcode-apply-btn"
+            [disabled]="!isDisabledBtn"
+            (click)="firstTimeBtnClicked ? getPromoCodeVerify() : secondFunction()"
+            trackEvents
+            i18n
+          >
+            Apply
+          </button>
+        </div>
+      </div>
+    </form>
+    <div class="login-rhs-footer" *ngIf="isShowToast">
+      <app-toast [toastValue]="toastValue" [(isShowToast)]="isShowToast"></app-toast>
+    </div>
+  </div>
+</div>

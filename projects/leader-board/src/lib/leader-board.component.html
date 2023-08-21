@@ -1,0 +1,69 @@
+<div class="leaderboard-container d-flex bg-grey100 wp100 hp100 ovf-y-auto">
+  <div class="leaderboard-lhs-container d-flex flex-col gap10 wp50 bg-grey200 shadow ovf-y-auto">
+    <div class="leaderboard-lhs-header d-flex align-center gap16 pt-4 px-4">
+      <div class="leaderboard-lhs-header-logo w48 h48 d-flex jst-center align-center bg-light br8">
+        <div class="leaderboard-lhs-header-logo-image wh32 p-rel ovf-hide">
+          <img class="p-abs wp100 hp100 obj-con" [src]=" assetsImagePath + 'leaderboard/fire.svg'" alt="logo" i18n
+            i18n-alt>
+        </div>
+      </div>
+      <div class="leaderboard-lhs-header-title d-flex flex-col gap10">
+        <div class="lhs-header-title d-flex align-start fs20 ft-primary-b grey900" i18n>
+          Rewards Await you
+        </div>
+        <div class="lhs-header-sub-title d-flex align-start fs14 ft-primary-md grey500" i18n>
+          Let's join Leaderboards & Win Rewards.
+        </div>
+      </div>
+    </div>
+    <div class="leader-board-header-container d-flex flex-col gap10 px-4 wp100">
+      <div class="leader-board-header-tabs d-flex jst-space align-center ">
+        <div class="header-tabs">
+          <ul class="d-flex align-center gap10 p-0 m-0">
+            <li
+              class="d-flex jst-center align-center bg-light br12 cursor py-3 px-4 border-1.5 border-solid border-grey300"
+              routerLinkActive="tab-active" [routerLink]="['cash-games']" (click)="onTabChange($event)">
+              <a class="tab-link d-flex jst-center align-center gap8">
+                <div class="tab-icon p-rel wh20 ovf-hide">
+                  <img class="p-abs wp100 hp100 obj-con" [src]="assetsImagePath + 'leaderboard/cash_note.svg'"
+                    alt="cash note" i18n i18n-alt>
+                </div>
+                <div class="tab-text fs14 ft-primary-b grey900" i18n>
+                  Cash Games
+                </div>
+              </a>
+            </li>
+            <li
+              class="d-flex jst-center align-center bg-light br12 cursor py-3 px-4 border-1.5 border-solid border-grey300"
+              routerLinkActive="tab-active" [routerLink]="['tournaments']" (click)="onTabChange($event)">
+              <a class="tab-link d-flex jst-center align-center gap8">
+                <div class="tab-icon p-rel wh20 ovf-hide">
+                  <img class="p-abs wp100 hp100 obj-con" [src]=" assetsImagePath + 'leaderboard/trophy_mini.svg'"
+                    alt="trophy" i18n i18n-alt>
+                </div>
+                <div class="tab-text fs14 ft-primary-b grey900" i18n>
+                  Tournaments
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="header-options d-flex jst-center align-center wp16 gap8 bg-light br12 cursor py-2 px-4"
+          (click)="viewFaq()">
+          <span class="messageIcon p-rel wh24 ovf-hide">
+            <img class="p-abs wp100 hp100 obj-con" [src]=" assetsImagePath + 'leaderboard/chatsIcon.svg'"
+              alt="messenger" i18n i18n-alt>
+          </span>
+          <span class="fs14 ft-primary-b grey900 text-uppercase">faq</span>
+        </div>
+      </div>
+    </div>
+    <div class="leaderboard-lhs-body d-flex flex-col flex-1 ovf-y-auto">
+      <router-outlet (activate)="handleData($event)"></router-outlet>
+    </div>
+  </div>
+  <div class="leaderboard-rhs-container d-flex flex-col gap10 wp50 bg-grey100 ovf-y-auto">
+    <app-leaderboard-rhs-container [leagueId]="leagueId" [contestType]="contestType" [displayName]="displayName"
+      [description]="description" [showRhs]="showRhs"></app-leaderboard-rhs-container>
+  </div>
+</div>

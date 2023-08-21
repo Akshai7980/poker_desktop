@@ -1,0 +1,76 @@
+<div class="bonus w414 hp100 d-flex flex-column bg-grey100" [ngClass]="{'p-4':bonusData?.length > 0}">
+
+    <ng-template #emptyBonusBlock>
+        <div class="empty-container wp100 flex-col-jst-center gap12 flex-1 bg-light">
+            <div class="wh108 flex-center gap8 bg-grey300 br50 p-6">
+                <img [src]="assetsImagePath + 'cashier/swap.svg'" alt="swap" i18n i18n-alt>
+            </div>
+            <span class="fs16 ft-primary-b grey600" i18n>No Transaction history available </span>
+        </div>
+    </ng-template>
+
+    <div *ngIf="bonusData?.length > 0; else emptyBonusBlock">
+
+        <div class="action-btns flex-end gap16">
+            <button type="button" mat-button class="cursor border-0 outline-0" (click)="openFilter()"><img
+                    [src]="assetsImagePath + 'cashier/Funnel.svg'" alt="sort" i18n i18n-alt id="bonus-funnel-btn"
+                    trackEvents></button>
+            <div class="w1 h16 bg-grey600" *ngIf="bonusData?.length > 0"></div>
+            <button *ngIf="bonusData?.length > 0" type="button" mat-button class="cursor border-0 outline-0"
+                (click)="downloadCSV()"><img [src]="assetsImagePath + 'cashier/download-simple.svg'" alt="download" i18n
+                    i18n-alt id="bonus-downloadcsv-btn" trackEvents></button>
+        </div>
+
+        <div class="bonus-item wp100 flex-col-jst-start gap8 bg-light br16 my-4 p-4" *ngFor="let bonus of bonusData">
+            <div class="bonus-item-top wp100 flex-col-jst-start gap8">
+                <div class="status-box wp100 flex-space" *ngIf="bonus.actionType != 'Expired'">
+                    <div
+                        class="status w-auto h26 flex-center gap4 bg-secondary-success br12 primary-success py-1 px-2 fs12 ft-primary-b ls-1 success">
+                        {{bonus.actionType}}</div>
+                    <span class="fs12 ft-primary-b grey500" i18n>{{bonus.txnDate | date: "dd MMM, ''yy | hh:mm
+                        a"}}</span>
+                </div>
+                <div class="status-box wp100 flex-space" *ngIf="bonus.actionType == 'Expired'">
+                    <div
+                        class="status w-auto h26 flex-center gap4 bg-grey100 br12 grey600 py-1 px-2 fs12 ft-primary-b ls-1">
+                        {{bonus.actionType}}</div>
+                    <span class="fs12 ft-primary-b grey500" i18n>{{bonus.txnDate | date: "dd MMM, ''yy | hh:mm
+                        a"}}</span>
+                </div>
+                <div class="wp100 flex-space">
+                    <span class="fs16 ft-primary-b grey800" i18n>{{bonus.chipType}}</span>
+                    <div class="flex-start gap8">
+                        <img *ngIf="bonus.actionType == 'Credited'" [src]="assetsImagePath + 'cashier/credit-arrow.svg'"
+                            alt="Credit_Arrow" i18n i18n-alt>
+                        <span *ngIf="bonus.actionType != 'Expired'" class="fs16 ft-primary-sb primary-success success"
+                            i18n>₹
+                            {{bonus.amount.toLocaleString("en-IN", {
+                            currency: "INR",
+                            minimumFractionDigits: 0,
+                            maximumFractionDigits: 2
+                            })}}</span>
+                        <span *ngIf="bonus.actionType == 'Expired'" class="fs16 ft-primary-sb grey600" i18n>₹
+                            {{bonus.amount.toLocaleString("en-IN", {
+                            currency: "INR",
+                            minimumFractionDigits: 0,
+                            maximumFractionDigits: 2
+                            })}}</span>
+                    </div>
+                </div>
+                <span class="fs12 ft-primary-sb grey500" i18n>
+                    Tournament <span>{{bonus.remarks}}</span>
+                </span>
+            </div>
+            <div class="bonus-item-bottom wp100 flex-start gap4 bg-orange000 py-1 px-3 br16 ls-1 fs12 ft-primary-b grey900 pending"
+                *ngIf="bonus.actionType == 'Credited'">
+                <span class="expiers-text" i18n>Expires on:</span>
+                <span class="expiers-value grad-orange-text">{{bonus.expiryDate | date: "dd MMM yy, hh:mm a"}}</span>
+            </div>
+            <div class="bonus-item-bottom wp100 flex-start gap4 bg-grey100 py-1 px-3 br16 ls-1 fs12 ft-primary-b grey900"
+                *ngIf="bonus.actionType == 'Expired'">
+                <span class="expiers-text" i18n>Expired on:</span>
+                <span class="expiers-value">{{bonus.expiryDate | date: "dd MMM yy, hh:mm a"}}</span>
+            </div>
+        </div>
+    </div>
+</div>

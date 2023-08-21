@@ -1,0 +1,12 @@
+<div class="d-flex flex-column flex-1 bg-grey100 gap12 p-4 ovf-y-auto">
+  <div class="d-flex align-center h48 py-2 gap8">
+    <img [src]="assetsImagePath + 'responsible-gaming/PokerChip.svg'" alt="PokerChip" i18n i18n-alt />
+    <span class="ft-primary-b fs20 lh-normal grey00" i18n>Responsible Gaming</span>
+  </div>
+  <div class="rg-page-tab-navbar d-flex p-0 gap12">
+    <a class="rg-page-tab-nav flex-center h40 bg-light ft-primary-b fs14 grey900 px-4 py-2 border-1.5 border-solid border-grey300 br12 text-decoration-none trans-03" *ngFor="let tab of tabs" routerLinkActive="active" [routerLink]="[tab.path]" i18n>{{ tab?.name }}</a>
+  </div>
+  <div class="d-flex flex-1 ovf-y-auto">
+    <router-outlet></router-outlet>
+  </div>
+</div>

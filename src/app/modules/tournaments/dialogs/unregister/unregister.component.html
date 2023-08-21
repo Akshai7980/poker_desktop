@@ -1,0 +1,29 @@
+<div class="action-dialog d-flex flex-col jst-space gap16 wp100 mh185 p-6">
+  <div class="action-dialog-header d-flex jst-space align-center">
+    <span class="fs20 ft-primary-b gap16" i18n>Unregister</span>
+    <div class="close-btn d-flex jst-center align-center" mat-dialog-close>
+      <div class="close-btn-icon d-flex jst-center align-center wh24 br50 cursor trans-03">
+        <i class="pi pi-times grey900"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="action-dialog-body mb-4">
+    <div class="fs14 ft-primary-md grey900" i18n>Are you sure you want to unregister?</div>
+  </div>
+  <div class="action-dialog-footer d-flex align-center h48 gap18 m-0 p-0 wp100" mat-dialog-actions>
+    <button mat-dialog-close type="button" class="btn btn-primary-outline w183 h48" mat-button i18n>
+      No
+    </button>
+    <button
+      type="button"
+      class="btn btn-primary w183 h48"
+      mat-button
+      cdkFocusInitial
+      tabindex="0"
+      i18n
+    >
+      Yes
+    </button>
+  </div>
+</div>

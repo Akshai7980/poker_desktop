@@ -1,0 +1,843 @@
+<div
+  class="tournament-rhs-container d-flex jst-center align-center pt-4 px-2 pb-2 bg-light br-top-16"
+>
+  <div class="tournament-rhs p-rel d-flex flex-col align-start gap16 wp100" *ngIf="selectedGame.id">
+    <div class="tournament-rhs-header d-flex align-center">
+      <div class="tournament-rhs-title d-flex jst-start fs20 ft-primary-b grey900" i18n>
+        NPS Golden Rush 1 Cr
+      </div>
+    </div>
+    <div class="tournament-rhs-body d-flex flex-col align-start wp100 gap16">
+      <!-- Starting/Registreing/Registered Card -->
+
+      <div
+        class="tournament-card d-flex align-center wp100 gap12 grad-blue-bg p-2 br16"
+        *ngIf="selectedGame.status && selectedGame.status.toLowerCase() === 'registering'"
+      >
+        <div class="date-time-box d-flex flex-col wh96">
+          <div
+            class="time-box d-flex flex-center align-center wp100 bg-dark pt-2 px-1 pb-2 fs14 ft-primary-b grey000"
+            i18n
+          >
+            {{ selectedGameRhs.time }}
+          </div>
+          <div
+            class="date-box d-flex flex-center align-center pt-2 px-1 pb-2 bg-light gap4 wp100 hp100"
+          >
+            <div class="month-txt d-flex jst-center align-center fs12 ft-primary-sb grey500" i18n>
+              {{ this.selectedGameRhs.month }}
+            </div>
+            <div class="date-txt d-flex jst-center align-center fs24 ft-primary-b grey900" i18n>
+              {{ this.selectedGameRhs.day }}
+            </div>
+          </div>
+        </div>
+        <div class="countdown d-flex flex-col align-start gap16">
+          <div class="countdown-header d-flex align-center">
+            <div class="starting-txt fs16 ft-primary-b light" i18n>Tournaments Starting In</div>
+          </div>
+          <div class="countdown-body d-flex jst-space align-center gap6 wp100">
+            <div class="timer-counting d-flex jst-space align-center wp50">
+              <div class="timer-count-values d-flex flex-col align-start">
+                <div class="table-title fs20 ft-primary-b light" i18n>
+                  {{ selectedGameRhs.remainingTime ? selectedGameRhs.remainingTime.days : 0 }}
+                </div>
+                <div class="normal-title fs10 ft-primary-sb blue000" i18n>Days</div>
+              </div>
+              <div class="timer-count-values d-flex flex-col align-start">
+                <div class="table-title fs20 ft-primary-b light" i18n>
+                  {{ selectedGameRhs.remainingTime ? selectedGameRhs.remainingTime.hours : 0 }}
+                </div>
+                <div class="normal-title fs10 ft-primary-sb blue000" i18n>Hours</div>
+              </div>
+              <div class="timer-count-values d-flex flex-col align-start">
+                <div class="table-title fs20 ft-primary-b light" i18n>
+                  {{ selectedGameRhs.remainingTime ? selectedGameRhs.remainingTime.mins : 0 }}
+                </div>
+                <div class="normal-title fs10 ft-primary-sb blue000" i18n>Minutes</div>
+              </div>
+            </div>
+            <div class="timer-counting-button d-flex jst-end align-center wp50">
+              <button type="button" mat-button class="btn btn-reminder gap4" i18n>
+                <span class="bell-ringing-icon p-rel wh16 ovf-hide">
+                  <img
+                    class="p-abs wp100 hp100 obj-con"
+                    [src]="assetsImagePath + 'lobby/BellRinging.svg'"
+                    alt="bell"
+                    i18n-alt
+                  />
+                </span>
+                Reminder
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Late Regsitration Card -->
+
+      <div
+        class="tournament-card late-reg d-flex align-center wp100 gap12 grad-pink-bg p-2 br16"
+        *ngIf="selectedGame.status && selectedGame.status.toLowerCase() === 'late_reg'"
+      >
+        <div class="date-time-box d-flex flex-col wh96">
+          <div
+            class="time-box d-flex flex-center align-center wp100 bg-dark pt-2 px-1 pb-2 fs14 ft-primary-b grey000"
+            i18n
+          >
+            Late Reg.
+          </div>
+          <div
+            class="date-box d-flex flex-center align-center pt-2 px-1 pb-2 bg-pink000 gap4 wp100 hp100"
+          >
+            <div class="month-txt d-flex jst-center align-center fs12 ft-primary-sb grey500" i18n>
+              {{ this.selectedGameRhs.month }}
+            </div>
+            <div class="date-txt d-flex jst-center align-center fs24 ft-primary-b grey900" i18n>
+              {{ this.selectedGameRhs.day }}
+            </div>
+          </div>
+        </div>
+        <div class="countdown d-flex flex-col align-start gap16">
+          <div class="countdown-header d-flex align-center">
+            <div class="starting-txt fs16 ft-primary-b light" i18n>Late Registration Ends In</div>
+          </div>
+          <div class="countdown-body d-flex jst-space align-center gap6 wp100">
+            <div class="timer-counting d-flex jst-space align-center wp100">
+              <div class="timer-count-values d-flex flex-col align-start">
+                <div class="table-title fs20 ft-primary-b light" i18n>
+                  {{ selectedGameRhs.remainingTime ? selectedGameRhs.remainingTime.days : 0 }}
+                </div>
+                <div class="normal-title fs10 ft-primary-sb blue000" i18n>Days</div>
+              </div>
+              <div class="timer-count-values d-flex flex-col align-start">
+                <div class="table-title fs20 ft-primary-b light" i18n>
+                  {{ selectedGameRhs.remainingTime ? selectedGameRhs.remainingTime.hours : 0 }}
+                </div>
+                <div class="normal-title fs10 ft-primary-sb blue000" i18n>Hours</div>
+              </div>
+              <div class="timer-count-values d-flex flex-col align-start">
+                <div class="table-title fs20 ft-primary-b light" i18n>
+                  {{ selectedGameRhs.remainingTime ? selectedGameRhs.remainingTime.mins : 0 }}
+                </div>
+                <div class="normal-title fs10 ft-primary-sb blue000" i18n>Minutes</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Running Regsitration Card -->
+
+      <div
+        class="tournament-card running d-flex align-center wp100 gap12 grad-sea-green-bg p-2 br16"
+        *ngIf="selectedGame.status && selectedGame.status.toLowerCase() === 'running'"
+      >
+        <div class="date-time-box d-flex flex-col wh96">
+          <div
+            class="time-box d-flex flex-center align-center wp100 bg-dark pt-2 px-1 pb-2 fs14 ft-primary-b grey000"
+            i18n
+          >
+            Running
+          </div>
+          <div
+            class="date-box d-flex flex-center align-center pt-2 px-1 pb-2 bg-sea-green000 gap4 wp100 hp100"
+          >
+            <div class="month-txt d-flex jst-center align-center fs12 ft-primary-sb grey500" i18n>
+              {{ this.selectedGameRhs.month }}
+            </div>
+            <div class="date-txt d-flex jst-center align-center fs24 ft-primary-b grey900" i18n>
+              {{ this.selectedGameRhs.day }}
+            </div>
+          </div>
+        </div>
+        <div class="countdown d-flex flex-col align-start gap16">
+          <div class="countdown-header d-flex align-center">
+            <div class="starting-txt fs16 ft-primary-b light" i18n>Tournamets Running Since</div>
+          </div>
+          <div class="countdown-body d-flex jst-space align-center gap6 wp100">
+            <div class="timer-counting d-flex jst-space align-center wp100">
+              <div class="timer-count-values d-flex flex-col align-start">
+                <div class="table-title fs20 ft-primary-b light" i18n>
+                  {{ selectedGameRhs.remainingTime ? selectedGameRhs.remainingTime.days : 0 }}
+                </div>
+                <div class="normal-title fs10 ft-primary-sb blue000" i18n>Days</div>
+              </div>
+              <div class="timer-count-values d-flex flex-col align-start">
+                <div class="table-title fs20 ft-primary-b light" i18n>
+                  {{ selectedGameRhs.remainingTime ? selectedGameRhs.remainingTime.hours : 0 }}
+                </div>
+                <div class="normal-title fs10 ft-primary-sb blue000" i18n>Hours</div>
+              </div>
+              <div class="timer-count-values d-flex flex-col align-start">
+                <div class="table-title fs20 ft-primary-b light" i18n>
+                  {{ selectedGameRhs.remainingTime ? selectedGameRhs.remainingTime.mins : 0 }}
+                </div>
+                <div class="normal-title fs10 ft-primary-sb blue000" i18n>Minutes</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Finished Card -->
+
+      <div
+        class="tournament-card finished d-flex align-center wp100 gap12 grad-grey-bg p-2 br16"
+        *ngIf="selectedGame.status && selectedGame.status.toLowerCase() === 'completed'"
+      >
+        <div class="date-time-box d-flex flex-col wh96">
+          <div
+            class="time-box d-flex flex-center align-center wp100 bg-dark pt-2 px-1 pb-2 fs14 ft-primary-b grey000"
+            i18n
+          >
+            Finished
+          </div>
+          <div
+            class="date-box d-flex flex-center align-center pt-2 px-1 pb-2 bg-grey100 gap4 wp100 hp100"
+          >
+            <div class="month-txt d-flex jst-center align-center fs12 ft-primary-sb grey500" i18n>
+              {{ this.selectedGameRhs.month }}
+            </div>
+            <div class="date-txt d-flex jst-center align-center fs24 ft-primary-b grey900" i18n>
+              {{ this.selectedGameRhs.day }}
+            </div>
+          </div>
+        </div>
+        <div class="countdown d-flex flex-col align-start gap16">
+          <div class="countdown-header d-flex align-center">
+            <div class="starting-txt fs16 ft-primary-b light" i18n>Tournament Finished!</div>
+          </div>
+          <div class="countdown-body d-flex jst-space align-center gap6 wp100">
+            <div class="timer-counting d-flex jst-space align-center wp100">
+              <div class="timer-count-values d-flex flex-col align-start">
+                <div class="table-title fs20 ft-primary-b light" i18n>00</div>
+                <div class="normal-title fs10 ft-primary-sb blue000" i18n>Days</div>
+              </div>
+              <div class="timer-count-values d-flex flex-col align-start">
+                <div class="table-title fs20 ft-primary-b light" i18n>00</div>
+                <div class="normal-title fs10 ft-primary-sb blue000" i18n>Hours</div>
+              </div>
+              <div class="timer-count-values d-flex flex-col align-start">
+                <div class="table-title fs20 ft-primary-b light" i18n>00</div>
+                <div class="normal-title fs10 ft-primary-sb blue000" i18n>Minutes</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cancelled Card -->
+
+      <div
+        class="tournament-card cancelled d-flex align-center wp100 gap12 grad-grey-bg p-2 br16"
+        *ngIf="selectedGame.status && selectedGame.status.toLowerCase() === 'cancelled'"
+      >
+        <div class="date-time-box d-flex flex-col wh96">
+          <div
+            class="time-box d-flex flex-center align-center wp100 bg-dark pt-2 px-1 pb-2 fs14 ft-primary-b grey000"
+            i18n
+          >
+            Cancelled
+          </div>
+          <div
+            class="date-box d-flex flex-center align-center pt-2 px-1 pb-2 bg-grey100 gap4 wp100 hp100"
+          >
+            <div class="month-txt d-flex jst-center align-center fs12 ft-primary-sb grey500" i18n>
+              {{ this.selectedGameRhs.month }}
+            </div>
+            <div class="date-txt d-flex jst-center align-center fs24 ft-primary-b grey900" i18n>
+              {{ this.selectedGameRhs.day }}
+            </div>
+          </div>
+        </div>
+        <div class="countdown d-flex flex-col align-start gap16">
+          <div class="countdown-header d-flex align-center">
+            <div class="starting-txt fs16 ft-primary-b light" i18n>Tournament Cancelled!</div>
+          </div>
+          <div class="countdown-body d-flex jst-space align-center gap6 wp100">
+            <div class="timer-counting d-flex jst-space align-center wp100">
+              <div class="timer-count-values d-flex flex-col align-start">
+                <div class="table-title fs20 ft-primary-b light" i18n>
+                  {{ selectedGameRhs.remainingTime ? selectedGameRhs.remainingTime.days : 0 }}
+                </div>
+                <div class="normal-title fs10 ft-primary-sb blue000" i18n>Days</div>
+              </div>
+              <div class="timer-count-values d-flex flex-col align-start">
+                <div class="table-title fs20 ft-primary-b light" i18n>
+                  {{ selectedGameRhs.remainingTime ? selectedGameRhs.remainingTime.hours : 0 }}
+                </div>
+                <div class="normal-title fs10 ft-primary-sb blue000" i18n>Hours</div>
+              </div>
+              <div class="timer-count-values d-flex flex-col align-start">
+                <div class="table-title fs20 ft-primary-b light" i18n>
+                  {{ selectedGameRhs.remainingTime ? selectedGameRhs.remainingTime.mins : 0 }}
+                </div>
+                <div class="normal-title fs10 ft-primary-sb blue000" i18n>Minutes</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="prize-pool-buyin-container d-flex align-center wp100">
+        <div
+          class="prize-pool-container p-rel d-flex jst-center align-center wh104 br-left-16 bg-orange500"
+        >
+          <div class="prize-image-widget-right-bg top-right w52 h104 bg-orange200"></div>
+          <div class="prize-image-body d-flex jst-center align-center wh68 circle bg-orange000">
+            <div class="prize-image-icon p-rel wh44 ovf-hide">
+              <img
+                class="p-abs wp100 hp100 obj-con"
+                [src]="assetsImagePath + 'lobby/prizeCup.svg'"
+                alt="prize"
+                i18n
+                i18n-alt
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="buyin-container p-rel d-flex jst-around align-center bg-grey900 h104 br-right-16"
+        >
+          <div class="prize-text-item d-flex flex-col align-start gap8">
+            <div
+              class="text-item-title d-flex align-center fs12 ft-primary-b grey400 text-uppercase"
+            >
+              Prize Pool
+            </div>
+            <div
+              class="prize-value d-flex align-center fs14 ft-primary-md grey000 gap6 text-uppercase"
+            >
+              ₹ 10,00,000
+            </div>
+            <div class="prize-value d-flex align-center gap6">
+              <span class="fs14 ft-primary-md grey000 text-uppercase">IB 2,000 +</span>
+              <span
+                class="prize-ticket p-rel d-flex jst-center align-center w17 h15 bg-orange500 tool-tip bottom prize-bottom-right"
+              >
+                <span class="fs10 ft-primary-b light">5</span>
+                <span class="tooltip-inner-text">
+                  <div
+                    class="ticket-data d-flex flex-col align-start gap10 bg-grey900 text-left text-wrap"
+                  >
+                    <div class="ticket-data-text fs12 ft-primary-md grey000">2 SPARTTKT</div>
+                    <div class="ticket-data-text fs12 ft-primary-md grey000">3 SPARTICKET</div>
+                  </div>
+                </span>
+              </span>
+            </div>
+          </div>
+          <div class="prize-text-item d-flex flex-col align-start gap8">
+            <div
+              class="text-item-title d-flex align-center fs12 ft-primary-b grey400 text-uppercase"
+            >
+              Buy-In
+            </div>
+            <div class="prize-value d-flex align-center gap6">
+              <span class="money-icon p-rel wh16 ovf-hide">
+                <img
+                  class="p-abs wp100 hp100 obj-con"
+                  [src]="assetsImagePath + 'lobby/MoneyGrey.svg'"
+                  alt="money"
+                  i18n
+                  i18n-alt
+                />
+              </span>
+              <span class="fs14 ft-primary-md grey000 text-uppercase">₹ 1,030</span>
+              <span class="info-icon p-rel wh16 tool-tip bottom prize-bottom-money">
+                <img
+                  class="p-abs wp100 hp100 obj-con"
+                  [src]="assetsImagePath + 'lobby/InfoWhite.svg'"
+                  alt="info"
+                  i18n
+                  i18n-alt
+                />
+                <span class="tooltip-inner-text">
+                  <div
+                    class="ticket-data d-flex flex-col align-start gap10 bg-grey900 text-left text-wrap"
+                  >
+                    <div class="ticket-data-text fs12 ft-primary-md grey000">
+                      ₹ 500 (Registration) + ₹ 500 (Bounty) + ₹ 30 (Fee)
+                    </div>
+                  </div>
+                </span>
+              </span>
+            </div>
+            <div
+              class="prize-value d-flex align-center fs14 ft-primary-md grey000 gap6 text-uppercase"
+            >
+              <span class="ticket-icon p-rel wh16 ovf-hide">
+                <img
+                  class="p-abs wp100 hp100 obj-con"
+                  [src]="assetsImagePath + 'lobby/Ticket.svg'"
+                  alt="money"
+                  i18n
+                  i18n-alt
+                />
+              </span>
+              <span class="fs14 ft-primary-md grey000 text-uppercase">Ticket</span>
+              <span class="info-icon p-rel wh16 tool-tip bottom prize-bottom-right">
+                <img
+                  class="p-abs wp100 hp100 obj-con"
+                  [src]="assetsImagePath + 'lobby/InfoWhite.svg'"
+                  alt="info"
+                  i18n
+                  i18n-alt
+                />
+                <span class="tooltip-inner-text">
+                  <div
+                    class="ticket-data d-flex flex-col align-start gap10 bg-grey900 text-left text-wrap"
+                  >
+                    <div class="ticket-data-text fs12 ft-primary-md grey000">1 NPS50TICKET</div>
+                    <div class="ticket-data-text fs12 ft-primary-md grey000">1 NPS50TKT</div>
+                  </div>
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="game-box d-flex jst-space align-center flex-wrap"
+        *ngIf="
+          selectedGame.status &&
+          selectedGame.status.toLowerCase() !== 'cancelled' &&
+          selectedGame.status.toLowerCase() !== 'completed'
+        "
+      >
+        <div class="d-flex flex-col gap10 wp50">
+          <span class="text-uppercase fs12 ft-primary-b grey500" i18n>Game Varient</span>
+          <span class="fs14 ft-primary-b grey900" i18n>{{
+            selectedGameRhs.gameVariant === 'HOLDEM' ? 'Hold`em' : 'PL Omaha'
+          }}</span>
+        </div>
+        <div class="d-flex flex-col gap10 wp50">
+          <span class="text-uppercase fs12 ft-primary-b grey500" i18n>Starting Stack</span>
+          <span class="fs14 ft-primary-b grey900" i18n
+            >{{ selectedGameRhs.startingStack | number : '1.0-2' }} Chips</span
+          >
+        </div>
+
+        <div class="d-flex flex-col gap10 wp50">
+          <span class="text-uppercase fs12 ft-primary-b grey500" i18n>Entries</span>
+          <span class="fs14 ft-primary-b grey900" i18n>{{ selectedGameRhs.tableRunning }}</span>
+          <div class="extra-info-txt fs10 ft-primay-sb grey400" i18n>
+            Minimum 3 Required to start
+          </div>
+        </div>
+        <div class="d-flex flex-col gap10 wp50">
+          <span class="text-uppercase fs12 ft-primary-b grey500" i18n>Re-Entries</span>
+          <span class="fs14 ft-primary-b grey900" i18n>{{ selectedGameRhs.reEntry }} times</span>
+          <div class="extra-info-txt fs10 ft-primay-sb grey400" i18n>Till late registration</div>
+        </div>
+
+        <div class="d-flex flex-col gap10 wp50">
+          <span class="text-uppercase fs12 ft-primary-b grey500" i18n>Late Registration</span>
+          <span class="fs14 ft-primary-b grey900" i18n
+            >Allowed for {{ selectedGameRhs.remainingMins }} Min</span
+          >
+        </div>
+        <div class="d-flex flex-col gap10 wp50">
+          <span class="text-uppercase fs12 ft-primary-b grey500" i18n>blind Interval</span>
+          <span class="fs14 ft-primary-b grey900" i18n
+            >{{ selectedGameRhs.blindInterval }} Min</span
+          >
+        </div>
+      </div>
+
+      <!-- Game Box with Rank -->
+
+      <div
+        class="game-box-with-rank d-flex flex-column gap24 border-0.5 border-solid border-grey300 br12 p-2"
+        *ngIf="false"
+      >
+        <div class="rank-box d-flex align-center wp100">
+          <div class="rank-box-left p-rel d-flex jst-center align-center bg-purple500">
+            <div class="rank-box-left-bg top-right bg-purple100 z-2"></div>
+            <div class="rank-box-image d-flex jst-center align-center wh40 circle bg-purple000 z-3">
+              <div class="rank-box-image-body p-rel wh24 ovf-hide">
+                <img
+                  class="p-abs wp100 hp100 obj-con"
+                  [src]="assetsImagePath + 'lobby/trophy-dynamic-premium-rank.png'"
+                  alt="trophy-dynamic-premium"
+                  i18n
+                  i18n-alt
+                />
+              </div>
+            </div>
+          </div>
+          <div class="rank-box-right p-rel d-flex flex-col gap2 p-3 bg-grey800">
+            <div class="rank-title-txt fs12 ft-primary-b grey400 text-uppercase" i18n>My Rank</div>
+            <div class="rank-value fs24 ft-primary-b grey000" i18n>17</div>
+            <div class="rank-rectangles bottom-right">
+              <div class="rank-rectangles-image p-rel ovf-hide">
+                <img
+                  class="p-abs wp100 hp100 obj-con"
+                  [src]="assetsImagePath + 'lobby/rectanglesGroup.svg'"
+                  alt="rectanglesGroup"
+                  i18n
+                  i18n-alt
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="game-details d-flex jst-space align-center flex-wrap">
+          <div class="game-details-txt-box d-flex flex-col gap10 wp50">
+            <div class="title-txt fs12 ft-primary-b grey500 text-uppercase" i18n>Game Varient</div>
+            <div class="d-flex flex-col gap4">
+              <div class="title-value-txt fs14 ft-primary-b grey900" i18n>Hold’em</div>
+            </div>
+          </div>
+          <div class="game-details-txt-box d-flex flex-col gap10 wp50">
+            <div class="title-txt fs12 ft-primary-b grey500 text-uppercase" i18n>
+              Starting Stack
+            </div>
+            <div class="d-flex flex-col gap4">
+              <div class="title-value-txt fs14 ft-primary-b grey900" i18n>2,500 Chips</div>
+            </div>
+          </div>
+          <div class="game-details-txt-box d-flex flex-col gap10 wp50">
+            <div class="title-txt fs12 ft-primary-b grey500 text-uppercase" i18n>
+              Remaining Entries
+            </div>
+            <div class="d-flex flex-col gap4">
+              <div class="title-value-txt fs14 ft-primary-b grey900" i18n>Upto 30 minutes</div>
+              <div class="subtitle-txt fs10 ft-primary-sb grey400" i18n>Till 10th level</div>
+            </div>
+          </div>
+          <div class="game-details-txt-box d-flex flex-col gap10 wp50">
+            <div class="title-txt fs12 ft-primary-b grey500 text-uppercase" i18n>
+              Tables Running
+            </div>
+            <div class="d-flex flex-col gap4">
+              <div class="title-value-txt fs14 ft-primary-b grey900" i18n>10</div>
+            </div>
+          </div>
+          <div class="game-details-txt-box d-flex flex-col gap10 wp50">
+            <div class="title-txt fs12 ft-primary-b grey500 text-uppercase" i18n>
+              Current Blind Level
+            </div>
+            <div class="d-flex flex-col gap4">
+              <div class="title-value-txt fs14 ft-primary-b grey900" i18n>30</div>
+              <div class="subtitle-txt fs10 ft-primary-sb grey400" i18n>(2000/4000, Ante-500)</div>
+            </div>
+          </div>
+          <div class="game-details-txt-box d-flex flex-col gap10 wp50">
+            <div class="title-txt fs12 ft-primary-b grey500 text-uppercase" i18n>
+              Next Blind Level
+            </div>
+            <div class="d-flex flex-col gap4">
+              <div class="title-value-txt fs14 ft-primary-b grey900" i18n>In 02:45</div>
+              <div class="subtitle-txt fs10 ft-primary-sb grey400" i18n>(2000/4000, Ante-500)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-container d-flex flex-col wp100 gap8">
+        <table
+          class="table table-rank d-flex flex-col gap8"
+          aria-label="Rank Prize Table"
+          i18n-aria-label
+          *ngIf="selectedGame.status && selectedGame.status.toLowerCase() === 'running'"
+        >
+          <thead class="d-flex flex-col align-start wp100 bg-grey100 br8 py-2 px-4">
+            <tr class="d-flex align-start">
+              <th
+                class="fs12 ft-primary-b grey600 text-left text-uppercase"
+                *ngFor="let ptHead of rankPrizeHeaderList"
+              >
+                {{ ptHead.title }}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              class="d-flex align-center py-3 px-4 border-1 border-solid border-grey200"
+              *ngFor="let rpbL of selectedGameRhs.prizeConfig"
+              [ngClass]="{ 'show-orange': rpbL.isHighlisghted }"
+            >
+              <td class="d-flex align-center">
+                <div class="p-rel wh24 ovf-hide" *ngIf="rpbL.icon">
+                  <img
+                    class="p-abs wp100 hp100 ovf-hide"
+                    [src]="assetsImagePath + 'lobby/' + rpbL.icon"
+                    alt="lobby"
+                    i18n
+                    i18n-alt
+                  />
+                </div>
+                <div class="fs14 ft-primary-b grey900" *ngIf="!rpbL.icon">
+                  {{ rpbL.rank }}
+                </div>
+              </td>
+              <td class="d-flex align-center">
+                <div class="fs14 ft-primary-b grey900">
+                  {{
+                    rpbL.chipType === 'VIP' ? '₹ ' + rpbL.amount : rpbL.amount + ' ' + rpbL.chipType
+                  }}
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table
+          class="table table-rank-prize d-flex flex-col gap8"
+          aria-label="Rank Prize Table"
+          i18n-aria-label
+          *ngIf="selectedGame.status && selectedGame.status.toLowerCase() === 'completed'"
+        >
+          <thead class="d-flex flex-col align-start wp100 bg-grey100 br8 py-2 px-4">
+            <tr class="d-flex align-start">
+              <th
+                class="fs12 ft-primary-b grey600 text-left text-uppercase"
+                *ngFor="let ptHead of rankPrizeHeaderList2"
+              >
+                {{ ptHead.title }}
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr
+              class="d-flex align-center py-3 px-4 border-1 border-solid border-grey200"
+              *ngFor="let rpbL of selectedGameRhs.winner"
+              [ngClass]="{ 'show-orange': rpbL.isHighlisghted }"
+            >
+              <td class="d-flex align-center">
+                <div class="p-rel wh24 ovf-hide" *ngIf="rpbL.icon">
+                  <img
+                    class="p-abs wp100 hp100 ovf-hide"
+                    [src]="assetsImagePath + 'lobby/' + rpbL.icon"
+                    alt="lobby"
+                    i18n
+                    i18n-alt
+                  />
+                </div>
+                <div class="fs14 ft-primary-b grey900" *ngIf="!rpbL.icon">
+                  {{ rpbL.rank }}
+                </div>
+              </td>
+              <td class="d-flex align-center">
+                <div class="fs14 ft-primary-b grey900 text-ellipsis text-nowrap ovf-hide">
+                  {{
+                    rpbL.userName.length > 10 ? rpbL.userName.slice(0, 7) + ' ...' : rpbL.userName
+                  }}
+                </div>
+              </td>
+              <td class="d-flex flex-col align-start">
+                <div *ngFor="let data of rpbL.winningArr; let i = index" [attr.data-index]="i">
+                  <div
+                    class="text fs14 ft-primary-b grey900"
+                    [ngClass]="{ 'grad-orange-text': rpbL.isHighlisghted }"
+                    *ngIf="data.chipType === 'VIP' || data.chipType !== 'ticket'"
+                  >
+                    {{ i > 0 ? ' + ' : '' }}
+                    {{
+                      data.chipType === 'VIP'
+                        ? '₹ ' + data.winningAmount
+                        : data.chipType !== 'ticket'
+                        ? data.winningAmount + data.chipType
+                        : ''
+                    }}
+                  </div>
+                  <div class="text d-flex align-center grey900" *ngIf="data.chipType === 'ticket'">
+                    <div
+                      class="prize-ticket p-rel d-flex jst-center align-center w17 h15 fs10 ft-primary-b light grad-orange-bg"
+                    >
+                      {{ i }}
+                      {{ i > 0 ? ' + ' : '' }}
+                      {{ data.count }}
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td class="d-flex align-center gap4">
+                <div class="fs14 ft-primary-sb grey900">₹ {{ rpbL.bountyAmount }}</div>
+                <div class="fs14 ft-primary-sb grey500">({{ rpbL.bountyCount }})</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table
+          class="table table-prize d-flex flex-col gap8"
+          *ngIf="false"
+          aria-label="Rank Prize Table"
+          i18n-aria-label
+        >
+          <thead class="d-flex flex-col align-start wp100 bg-grey100 br8 py-2 px-4">
+            <tr class="d-flex align-start">
+              <th
+                class="fs12 ft-primary-b grey600 text-left text-uppercase"
+                *ngFor="let ptHead of rankPrizeHeaderList3"
+              >
+                {{ ptHead.title }}
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr
+              class="d-flex align-center py-3 px-4 border-1 border-solid border-grey200"
+              *ngFor="let rpbL of rankPrizeBodyList3"
+              [ngClass]="{ 'show-orange': rpbL.showOrange }"
+            >
+              <td class="d-flex align-center">
+                <div class="p-rel wh24 ovf-hide" *ngIf="rpbL.icon">
+                  <img
+                    class="p-abs wp100 hp100 ovf-hide"
+                    [src]="assetsImagePath + 'lobby/' + rpbL.icon"
+                    alt="lobby"
+                    i18n
+                    i18n-alt
+                  />
+                </div>
+                <div class="fs14 ft-primary-b grey900" *ngIf="rpbL.icon == null">
+                  {{ rpbL.rank }}
+                </div>
+              </td>
+              <td>
+                <div class="fs14 ft-primary-sb grey900">{{ rpbL.player }}</div>
+              </td>
+              <td
+                class="d-flex align-center gap4"
+                [ngClass]="{ prizeList: getObjectKeyLength(rpbL.prizes) >= 1 }"
+              >
+                <div
+                  class="text fs14 ft-primary-b grey900"
+                  [ngClass]="{ 'grad-orange-text': getObjectKeyLength(rpbL.prizes) > 1 }"
+                  *ngIf="rpbL.prizes.money"
+                >
+                  {{ rpbL.prizes.money }}
+                </div>
+                <div class="fs14 ft-primary-b grad-orange-text" *ngIf="rpbL.prizes.bonus">
+                  + {{ rpbL.prizes.bonus }}
+                </div>
+                <div class="d-flex align-center" *ngIf="rpbL.prizes.ticket">
+                  <span class="fs14 ft-primary-b grad-orange-text">+</span>
+                  <div
+                    class="prize-ticket p-rel d-flex jst-center align-center w17 h15 fs10 ft-primary-b light grad-orange-bg"
+                    *ngIf="rpbL.prizes.ticket"
+                  >
+                    {{ rpbL.prizes.ticket }}
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- All Footer Button -->
+    <div class="tournament-rhs-footer d-flex jst-space align-center gap4 p-2 bg-light">
+      <ng-container *ngIf="true">
+        <button
+          type="button"
+          mat-button
+          trackEvents
+          id="lobby-privateTable-tableDetails-join-btn"
+          class="btn btn-primary-outline w171 h40"
+          i18n
+          (click)="openTournamentsMttWindow()"
+        >
+          View Details
+        </button>
+        <button
+          type="button"
+          mat-button
+          trackEvents
+          id="lobby-privateTable-tableDetails-seatme-btn"
+          class="btn btn-primary w171 h40"
+          i18n
+        >
+          Register
+        </button>
+      </ng-container>
+
+      <ng-container *ngIf="false">
+        <button
+          type="button"
+          mat-button
+          trackEvents
+          id="lobby-privateTable-tableDetails-join-btn"
+          class="btn btn-primary-outline width-171 h40"
+          i18n
+        >
+          View Details
+        </button>
+        <button
+          type="button"
+          mat-button
+          trackEvents
+          id="lobby-privateTable-tableDetails-seatme-btn"
+          class="btn btn-primary width-171 h40"
+          i18n
+        >
+          Late Reg.
+        </button>
+      </ng-container>
+
+      <ng-container *ngIf="false">
+        <button
+          type="button"
+          mat-button
+          trackEvents
+          id="lobby-privateTable-tableDetails-join-btn"
+          class="btn btn-primary-outline width-171 h40"
+          i18n
+        >
+          View Details
+        </button>
+        <button
+          type="button"
+          mat-button
+          trackEvents
+          id="lobby-privateTable-tableDetails-seatme-btn"
+          class="btn btn-primary width-171 h40"
+          i18n
+        >
+          Observe Table
+        </button>
+      </ng-container>
+
+      <ng-container *ngIf="false">
+        <button
+          type="button"
+          mat-button
+          trackEvents
+          id="lobby-privateTable-tableDetails-joined-btn"
+          class="btn btn-primary width-171 h40"
+          18n
+        >
+          View Details
+        </button>
+      </ng-container>
+    </div>
+  </div>
+
+  <!-- When No Data is available -->
+  <div
+    class="tournament-rhs d-flex jst-center align-center empty-data"
+    *ngIf="!selectedGame || !selectedGame.id"
+  >
+    <div class="empty-table-image flex-col align-center">
+      <div class="empty-image p-rel wh108 ovf-hide">
+        <img
+          class="p-abs wp100 hp100 obj-con"
+          alt="UserBig"
+          [src]="assetsImagePath + 'lobby/file-dynamic-clay.png'"
+          alt="file-dynamic-clay"
+          i18n
+          i18n-alt
+        />
+      </div>
+      <span i18n class="empty-txt fs14 ft-primary-md grey500">No Data Available</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+@import '../../../../../assets/abstract/core';
+
+.divider {
+  border: 1.5px solid $grey700;
+}
+
+.post-bb {
+  width: 40rem;
+
+  @include device(smg) {
+    width: 22rem;
+  }
+}

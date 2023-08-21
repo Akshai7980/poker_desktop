@@ -1,0 +1,65 @@
+@import "../abstract/core";
+
+// common classes are not applicable for buttons as it's been overridden by default "mat-button"
+// This is why we need to include css properties here 
+.btn {
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  text-transform: capitalize;
+  border: 1px solid transparent;
+  font-size: $fs12;
+  font-family: $font-regular;
+  line-height: 1.5;
+  border-radius: $br4;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  cursor: pointer;
+
+  &.btn-primary {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(71.36deg, #e1313c 25.22%, #cb1b26 74.78%);
+    border-radius: $br12;
+    font-size: $fs16;
+    font-family: $font-bold;
+    padding: 10px 24px;
+    color: $bg-light;
+    width: 368px;
+    height: 48px;
+
+    &:disabled, &.disabled {
+      background: $grey300;
+      color: $bg-light !important;
+    }
+  }
+
+  &.btn-primary-outline {
+    height: 48px;
+
+    @include center;
+    
+    background: $bg-light;
+    border: 1.5px solid $secondary-grey;
+    border-radius: $br12;
+    font-size: $fs16;
+    font-family: $font-bold;
+    padding: 10px 24px;
+    color: $secondary-grey;
+    transition: all 0.15s ease-in-out;
+
+    &:hover {
+      background: linear-gradient(71.36deg, #e1313c 25.22%, #cb1b26 74.78%);
+      color: $bg-light;
+      border-color: transparent;
+    }
+  }
+}
+
+// Button Size lg
+.btn.btn-lg {
+  width: 280px;
+}

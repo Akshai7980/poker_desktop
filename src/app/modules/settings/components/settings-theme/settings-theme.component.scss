@@ -1,0 +1,180 @@
+@import '../../../../../assets/abstract/core';
+
+// Placeholders
+// Selected
+%selected {
+  border-color: $primary-red;
+  transition: $trans-15s;
+}
+
+// Common Background Properties for Preview Box
+%bg-box-preview {
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+// Common Background Properties for Preview Table
+%bg-table-preview {
+  background-repeat: no-repeat;
+  background-size: contain;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+}
+
+// Theme Settings Container
+.theme-settings-container {
+  border-width: 1px 0 0;
+}
+
+// Theme Settings Tabs
+.theme-setting-tabs {
+  margin-bottom: 10px;
+
+  .theme-setting-tablink {
+    transition: $trans-15s;
+
+    &:hover,
+    &:focus {
+      background-color: $bg-dark;
+      color: $bg-light;
+    }
+  }
+}
+
+// Fullscreen Button
+.btn-fullscreen {
+  background: none;
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  img {
+    transform: transform 0.15s ease-in-out;
+  }
+
+  &:hover {
+    img {
+      transform: transform 0.15s ease-in-out;
+    }
+  }
+}
+
+// Preview Box
+.box-preview {
+  height: 216px;
+
+  @extend %bg-box-preview;
+
+  background-position: center top -16px;
+
+  .btn-fullscreen {
+    top: 16px;
+    right: 16px;
+
+    img {
+      transform: scale(1.05);
+    }
+
+    &:hover {
+      img {
+        transform: scale(1.15);
+      }
+    }
+  }
+}
+
+// Final Preview Box
+.box-preview-final {
+  width: 184px;
+  height: 84px;
+
+  @extend %bg-box-preview;
+
+  background-position: center top -6px;
+
+  .btn-fullscreen {
+    top: 2px;
+    right: 2px;
+
+    img {
+      transform: scale(0.9);
+    }
+
+    &:hover {
+      img {
+        transform: scale(1);
+      }
+    }
+  }
+}
+
+// Table Preview
+.table-preview {
+  width: 322px;
+  height: 222px;
+
+  @extend %bg-table-preview;
+
+  background-position: center top 26px;
+}
+
+// Table Preview Final
+.table-preview-final {
+  @extend %bg-table-preview;
+
+  background-position: left -3px top 6px;
+}
+
+// Theme Preview
+.theme-preview-final {
+  width: 248px;
+}
+
+// Theme Tab Group, Card Options Wrapper
+.theme-tab-group,
+.card-options-wrapper {
+  width: 532px;
+}
+
+// Game Playing Cards
+.game-cards-group {
+  width: 122px;
+  height: 78px;
+  transition: $trans-15s;
+
+  &.selected {
+    @extend %selected;
+  }
+
+  .game-cards {
+    &.s {
+      left: 29px;
+    }
+
+    &.c {
+      left: 47px;
+    }
+
+    &.d {
+      left: 64px;
+    }
+  }
+
+  .group-title {
+    padding: 2px 8px;
+    bottom: 2px;
+  }
+}
+
+// Game Card Back
+.game-card-back {
+  width: 60px;
+  height: 78px;
+  transition: $trans-15s;
+
+  &.selected {
+    @extend %selected;
+  }
+}

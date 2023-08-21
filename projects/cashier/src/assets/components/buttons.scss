@@ -1,0 +1,101 @@
+@import '../abstract/core';
+
+.btn {
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  text-transform: capitalize;
+  border: 1px solid transparent;
+  font-size: 12px;
+  font-family: $font-family;
+  line-height: 1.5;
+  border-radius: 4px;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  cursor: pointer;
+  outline: none;
+
+  &.btn-primary {
+    @include center;
+
+    background: $grad-red;
+    border-radius: $br12;
+    font-family: $font-bold;
+    padding: 10px 24px;
+    color: $bg-light;
+    width: 120px;
+    height: 40px;
+
+    &:disabled,
+    &.disabled {
+      background: #d1d5da;
+      color: #fff !important;
+    }
+
+    &:focus-visible {
+      outline: none;
+      border: transparent;
+    }
+  }
+
+  &.btn-primary-outline {
+    @include center;
+
+    background: $bg-light;
+    border: 1.5px solid $grey300;
+    border-radius: $br12;
+    font-family: $font-bold;
+    padding: 10px 24px;
+    color: $secondary-grey;
+    width: 120px;
+    height: 40px;
+    transition: $transition;
+  }
+
+  &.btn-success {
+    @include center;
+
+    background: $primary-success;
+    border-radius: $br12;
+    font-family: $font-bold;
+    padding: 10px 24px;
+    color: $bg-light;
+    width: 120px;
+    height: 40px;
+
+    &:disabled {
+      background: $grey400;
+    }
+  }
+}
+
+.btn-cancel {
+  transition: all 0.15s ease-in-out;
+
+  &:hover, &:focus {
+    background-color: rgba($color: $secondary-grey, $alpha: 12.5%);
+    border-color: transparent;
+    transition: all 0.15s ease-in-out;
+  }
+}
+
+.btn-no {
+  transition: all 0.15s ease-in-out;
+
+  &:hover, &:focus {
+    background: $grad-red;
+    border-color: transparent;
+    transition: all 0.15s ease-in-out;
+
+    .btn-text {
+      color: $bg-light;
+    }
+  }
+}
+
+.grad-red-btn {
+  background: linear-gradient($bg-light,$bg-light) padding-box, $grad-red border-box;
+}

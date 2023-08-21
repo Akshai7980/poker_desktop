@@ -1,0 +1,94 @@
+<div class="promotions-dialog">
+  <div class="header">
+    <div class="header-left">
+      <span class="header-title" i18n>Daily free tournaments</span>
+      <span class="header-subtitle" i18n>Play to win ₹5000 with just ₹100 fee</span>
+    </div>
+    <img
+      [src]="assetsImagePath + 'settings/X.svg'"
+      alt="X"
+      mat-dialog-close
+      style="cursor: pointer"
+      i18n
+      i18n-alt
+    />
+  </div>
+  <img
+    [src]="assetsImagePath + 'promotions/card-images/cash-sprint-lg.svg'"
+    alt="cash-sprint-lg"
+    i18n
+    i18n-alt
+  />
+  <div class="info-box">
+    <div class="info-inner">
+      <div class="info-inner-box">
+        <span class="info-title" i18n>Tournamnet</span>
+        <span class="info-title-text" i18n>Free Tourney 100</span>
+      </div>
+      <div class="line"></div>
+      <div class="info-inner-box">
+        <span class="info-title" i18n>DATE & TIME</span>
+        <span class="info-title-text" i18n>Daily 1800 hrs</span>
+      </div>
+      <div class="line"></div>
+      <div class="info-inner-box">
+        <span class="info-title" i18n>ENTRY FEE</span>
+        <span class="info-title-text" i18n>₹100</span>
+      </div>
+      <div class="line"></div>
+      <div class="info-inner-box">
+        <span class="info-title" i18n>PRICE POOL</span>
+        <span class="info-title-text" i18n>₹5,000</span>
+      </div>
+    </div>
+  </div>
+  <span id="about-heading-text" i18n>About</span>
+  <div class="about-para-text">
+    <span>{{ rawContent1 }}</span>
+    <span class="toggle" (click)="toggleContent()" *ngIf="!isToggled" i18n>Read More</span>
+  </div>
+  <p-table
+    *ngIf="isToggled"
+    [columns]="cols"
+    [value]="tableData"
+    styleClass="promotions-table"
+    [tableStyle]="{ width: '576px' }"
+  >
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th [id]="i" *ngFor="let col of columns; let i = index">
+          {{ col.header }}
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr>
+        <td *ngFor="let col of columns">
+          {{ rowData[col.field] }}
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <div class="about-para-text" *ngIf="isToggled">
+    <span>{{ rawContent2 }}</span>
+    <span>...&nbsp;</span>
+    <span class="toggle" (click)="toggleContent()" i18n>Read Less</span>
+  </div>
+  <div class="timeline-container">
+    <div class="timeline-info">
+      <img [src]="assetsImagePath + 'FlowArrow.svg'" alt="FlowArrow" i18n i18n-alt />
+      <span id="info" i18n>How to play</span>
+    </div>
+    <p-timeline [value]="events" align="left" styleClass="customized-timeline">
+      <ng-template pTemplate="marker" let-event>
+        <span class="custom-marker shadow-2" [style.backgroundColor]="event.color">
+          {{ event.icon }}
+        </span>
+      </ng-template>
+      <ng-template pTemplate="content" let-event>
+        <span>{{ event.status }}</span>
+      </ng-template>
+    </p-timeline>
+    <div class="play-btn"><span i18n>Play now</span></div>
+  </div>
+</div>

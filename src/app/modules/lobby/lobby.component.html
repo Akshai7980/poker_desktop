@@ -1,0 +1,40 @@
+<div class="lobby-main d-flex align-start wp100 hp100 bg-grey100 gap16 p-4">
+  <div class="lobby-left d-flex flex-col">
+    <div class="message-section d-flex align-center bg-grey100 mb-4">
+      <div class="shoutout-icon-img p-rel wh20 ovf-hide">
+        <img
+          class="p-abs wp100 hp100 obj-con"
+          src="./assets/images/lobby/megaphone.svg"
+          alt="hello"
+          i18n
+          i18n-alt
+        />
+      </div>
+      <div class="shoutout-message fs14 ft-primary-b grey900 p-1" i18n="@@lobby.shoutoutMessage">
+        The opportunity to claim FLAT 50% Bonus is knocking on your door! Join quickly to claim.
+        Let's join and earn the rewards
+      </div>
+    </div>
+    <div class="lobby-header d-flex align-center mb-4">
+      <app-lobby-header (OptionSelected)="onTabSelection($event)"></app-lobby-header>
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+  <div class="lobby-right d-flex flex-col align-start gap12 ovf-y-scroll">
+    <div class="lobby-play-info wp100">
+      <app-info></app-info>
+    </div>
+    <div class="lobby-play-table-details wp100 hp100">
+      <ng-container [ngSwitch]="selectedTab">
+        <app-table-details *ngSwitchCase="1" [selectedTable]="selectedTable"></app-table-details>
+        <ng-container *ngSwitchCase="4">
+          <app-private-table-details *ngIf="userLoggedIn"></app-private-table-details>
+        </ng-container>
+        <app-sng-table-details [data]="lobbySngData" *ngSwitchCase="3"></app-sng-table-details>
+        <ng-container *ngSwitchCase="2">
+          <app-tournament-rhs *ngIf="!!userLoggedIn"></app-tournament-rhs>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+</div>

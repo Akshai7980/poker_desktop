@@ -1,0 +1,20 @@
+<p-timeline [value]="timelineArray" align="left" [layout]="layout" [styleClass]="'txn-timeline '+adjacentClass">
+  <ng-template pTemplate="marker" let-event>
+    <span class="custom-marker p-shadow-2" [style.backgroundColor]="event.color"
+      [style.borderColor]="event.borderColor">
+      <img [src]="assetsImagePath + 'cashier/'+event.icon" alt="icon" *ngIf="!event.isIndex" i18n i18n-alt />
+      <i class="timeline-index-icon fs12 ft-primary-b fst-normal" [style.color]="event.iconColor" *ngIf="event.isIndex" i18n>{{event.icon}}</i>
+    </span>
+  </ng-template>
+  <ng-template pTemplate="content" let-event>
+    <div class="timeline-content flex-col-jst-start gap4" [ngClass]="adjacentClass">
+      <span class="timeline-title fs16 ft-primary-b grey800" [ngClass]="event.disabled && event.disabled == true ? 'title-disabled' : ''"
+        *ngIf="event.title" [style.color]="event.titleColor?event.titleColor:event.iconColor" i18n>{{event.title}}</span>
+      <span class="timeline-date fs12 ft-primary-sb grey500" *ngIf="event.date" i18n>{{ event.date | date: "dd MMM, ''yy | hh:mm a" }}</span>
+      <span class="timeline-substatus fs12 ft-primary-sb grad-orange-bg" *ngIf="event.subStatusBank" i18n>{{event.subStatusBank}}</span>
+      <span class="timeline-substatus fs12 ft-primary-sb primary-red" *ngIf="event.subStatus" i18n>{{event.subStatus}}</span>
+      <span class="timeline-reason fs12 ft-primary-sb grey500 text-capital" *ngIf="event.reason" i18n>Reason : {{event.reason}}</span>
+      <span class="timeline-reason fs12 ft-primary-sb grey500 text-capital" *ngIf="event.remarks" i18n>{{event.remarks}}</span>
+    </div>
+  </ng-template>
+</p-timeline>

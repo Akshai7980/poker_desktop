@@ -1,0 +1,159 @@
+<div class="confirmation-dialog d-flex flex-col jst-space align-center w430 h319 bg-light">
+  <div class="confirmation-dialog-header d-flex jst-space align-center wp100">
+    <div class="fs20 ft-primary-b grey900" i18n>Info</div>
+    <div class="close-btn wh24 p-rel cursor" (click)="dialogClose()">
+      <div class="icons-24 close-icon wh24 top-right"></div>
+    </div>
+  </div>
+
+  <ng-container *ngIf="data.from == 'CANCEL_TRANSACTION'">
+    <div class="confirmation-dialog-body d-flex flex-col jst-space gap16 wp100">
+      <div class="text fs14 ft-primary-md grey900" *ngIf="YesClicked" i18n>
+        If you cancel this request, all your requests raised after this will be cancelled.
+      </div>
+      <div class="text fs14 ft-primary-md grey900" i18n>
+        Are you sure you want to cancel this withdrawal request?
+      </div>
+    </div>
+    <div class="confirmation-dialog-footer d-flex align-center h48 gap16" mat-dialog-actions>
+      <ng-container *ngIf="!YesClicked">
+        <button
+          type="button"
+          class="btn btn-primary-outline w183 h40"
+          mat-button
+          (click)="dialogClose()"
+          i18n
+        >
+          No
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary w183 h40"
+          mat-button
+          cdkFocusInitial
+          tabindex="0"
+          (click)="clickedYes()"
+          i18n
+        >
+          Yes
+        </button>
+      </ng-container>
+
+      <ng-container *ngIf="YesClicked">
+        <button
+          type="button"
+          class="btn btn-primary-outline w183 h40"
+          mat-button
+          mat-dialog-close
+          i18n
+        >
+          Cancel
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary w183 h40"
+          mat-button
+          mat-dialog-close
+          cdkFocusInitial
+          tabindex="0"
+          i18n
+        >
+          Proceed
+        </button>
+      </ng-container>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="data.from == 'TICKETS_OFFERS'">
+    <div class="confirmation-dialog-body d-flex flex-col jst-space gap16 wp100">
+      <div
+        class="balance-box d-flex flex-col jst-center align-center gap16 h85 p-4 bg-blue000"
+        [ngClass]="!showInsufficientFlag ? 'balance-box' : 'INSUFFICIENT_BALANCE'"
+      >
+        <div class="fs12 ft-primary-sb grey500" i18n>REAL BALANCE</div>
+        <div class="amount fs24 ft-primary-sb blue500">
+          ₹
+          {{
+            totalAmount.toLocaleString('en-IN', {
+              currency: 'INR',
+              minimumFractionDigits: 0,
+              maximumFractionDigits: 2
+            })
+          }}
+        </div>
+      </div>
+      <div class="fs14 ft-primary-b" *ngIf="!showInsufficientFlag" i18n>
+        Are you sure you want to buy this ticket for ₹
+        {{
+          ticketPrice.toLocaleString('en-IN', {
+            currency: 'INR',
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 2
+          })
+        }}.
+      </div>
+
+      <ng-container *ngIf="showInsufficientFlag">
+        <div class="fs14 ft-primary-b" i18n>Insufficient account balance.</div>
+        <span class="fs12 ft-primary-sb grey500" i18n
+          >Add more ₹
+          {{
+            balanceNeeded.toLocaleString('en-IN', {
+              currency: 'INR',
+              minimumFractionDigits: 0,
+              maximumFractionDigits: 2
+            })
+          }}
+          to purchase this ticket.</span
+        >
+      </ng-container>
+    </div>
+
+    <div class="confirmation-dialog-footer d-flex align-center gap16" mat-dialog-actions>
+      <ng-container *ngIf="!showInsufficientFlag">
+        <button
+          type="button"
+          class="btn btn-primary-outline w183 h40"
+          mat-button
+          mat-dialog-close
+          i18n
+        >
+          No
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary w183 h40"
+          mat-button
+          cdkFocusInitial
+          (click)="getPurchaseWithSufficientBalance()"
+          i18n
+        >
+          Yes
+        </button>
+      </ng-container>
+
+      <ng-container *ngIf="showInsufficientFlag">
+        <button
+          type="button"
+          class="btn btn-primary-outline w183 h40"
+          mat-button
+          mat-dialog-close
+          i18n
+        >
+          Cancel
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary success bg-primary-success light w90 h40"
+          mat-button
+          mat-dialog-close
+          cdkFocusInitial
+          tabindex="0"
+          i18n
+        >
+          Add Cash
+        </button>
+      </ng-container>
+    </div>
+  </ng-container>
+</div>

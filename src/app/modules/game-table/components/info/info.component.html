@@ -1,0 +1,55 @@
+<div class="game-table-info wp100 hp100 flex-col-start gap8 bg-dark-op9 p-4">
+  <div class="fs16 ft-primary-b grey000" i18n>Info</div>
+  <!-- Use *ngSwitch or any optimized solution here -->
+
+  <!-- TopUp Failed -->
+  <div class="fs14 ft-primary-md grey000" i18n>
+    Topup failed. Chips on the table exceed your requested amount.
+  </div>
+  <!-- TopUp not allowed -->
+  <div class="fs14 ft-primary-md grey000" *ngIf="false" i18n>
+    Topup is not allowed since your chips on table exceed the maximum buy-in.
+  </div>
+  <button type="button" mat-button class="btn btn-primary wp100 h40 mt-4">
+    <span i18n>OK</span>
+  </button>
+
+  <!-- Topup_Request Again -->
+  <ng-container *ngIf="false">
+    <div class="fs14 ft-primary-md grey000" i18n>
+      Requesting again for Topup will cancel your previous Topup request. Do you want to proceed?
+    </div>
+    <div class="flex-space gap16 wp100 mt-4">
+      <button
+        type="button"
+        mat-button
+        class="btn btn-dark flex-center py-2 wp50 h40"
+        mat-dialog-close
+      >
+        <span class="fs14 ft-primary-b primary-light" i18n>No</span>
+      </button>
+      <button type="button" mat-button class="btn btn-primary wp50 h40">
+        <span i18n>Yes</span>
+      </button>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="false">
+    <div class="fs14 ft-primary-md grey000" i18n>
+      Topup cannot be processed as you don’t have sufficient balance in your account.
+    </div>
+    <div class="flex-center wp100 fs16 ft-primary-b grad-orange-text">Cash Balance - 1.2</div>
+    <div class="flex-space gap16 wp100 mt-4">
+      <button
+        type="button"
+        mat-button
+        class="btn btn-dark flex-center py-2 wp50 h40"
+        mat-dialog-close
+      >
+        <span class="fs14 ft-primary-b primary-light" i18n>Close</span>
+      </button>
+      <button type="button" mat-button class="btn btn-success wp50 h40">
+        <span i18n>Add Money</span>
+      </button>
+    </div>
+  </ng-container>
+</div>

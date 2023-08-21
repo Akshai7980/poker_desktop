@@ -1,0 +1,79 @@
+<form class="selfie-form wp100 d-flex flex-column align-center gap16">
+  <div class="selfie-input wp100 content-height-n2 d-flex flex-column gap16 bg-light br16 p-4 border-0.5 border-solid border-grey300 ovf-y-scroll" *ngIf="!isAfterVerification">
+
+    <div class="input-field only-info wp100 d-flex flex-column gap4">
+      <span class="fs12 ft-primary-b grey600" i18n>Please upload your SELFIE</span>
+    </div>
+
+    <div class="upload-file-container p-rel wp100 d-flex flex-column jst-center align-center gap12 bg-red000 br12 border-1.5 border-dashed border-primary-red py-6 px-4 cursor" *ngIf="!isUploadedSelfie">
+      <div class="icons-24 camera-icon wh24" *ngIf="!isCameraOpened" (click)="initiateCamera()"></div>
+      <div class="fs12 ft-primary-sb grad-red-text" i18n *ngIf="!isCameraOpened">Tap Here to Open Camera</div>
+      <div class="preview d-flex flex-column gap24" *ngIf="isCameraOpened">
+        <video class="br8" #videoElement style="width:300px"></video>
+        <button [disabled]="disableCapture" class="btn btn-primary capture-image wp100" (click)="capture()" i18n>Capture
+          Image</button>
+        <canvas #canvasElement style="display:none;"></canvas>
+      </div>
+    </div>
+
+    <div class="upload-file-container p-rel wp100 d-flex flex-column jst-center align-center gap12 bg-red000 br12 border-1.5 border-dashed border-primary-red p-3 cursor" *ngIf="isUploadedSelfie">
+      <img [src]="capturedImage" alt="upload" class="uploaded-image wp100 h220 br8" i18n i18n-alt>
+    </div>
+
+    <ng-container>
+
+      <div class="selfie-upload-guide wp100 d-flex flex-column gap12">
+        <div class="ensure-box wp100 d-flex flex-column gap8 bg-grey100 br8 p-3">
+          <div class="fs12 ft-primary-b grey900" i18n>Selfie Guidelines:</div>
+          <div class="ensure wp100 d-flex flex-column gap8 flex-wrap">
+            <div class="d-flex align-baseline gap4 fs12 ft-primary-sb grey900" *ngFor="let guideL of selfieGuideLines" i18n>
+              <div class="dot wh5 br50 bg-grey900"></div>
+              <div class="text fs10 ft-primary-sb grey900">{{guideL}}</div>               
+            </div>
+            <div class="wp100 d-flex flex-column gap4 fs12" i18n> 
+              <div class="ft-primary-b grey600">Note:</div> 
+              <div class="ft-primary-sb grey900 lh-base">If you are using a Desktop and Webcam is not present, you may login from your mobile
+              (either App or mobile browser) and visit "My Profile >> KYC Verification" section to get the selfie
+              verified
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </ng-container>
+
+  </div>
+
+  <div *ngIf="isAfterVerification" style="width:100%">
+    <div class="doc-status wp100 d-flex flex-column jst-center align-center gap12 br16 border-0.5 border-solid p-3" [ngClass]="status === 'verified' ? 'verified' : 'pending' " *ngIf="isVerified">
+      <div class="doc-status-top selfie w196 h132 d-flex gap12 bg-light br12 p-2">
+        <img [src]="capturedImage" alt="selfie" class="final-status-image wp100 hp100 br8" i18n i18n-alt>
+      </div>
+      <div class="doc-status-bottom d-flex jst-center align-center px-4">
+        <div class="d-flex flex-column align-center gap4">
+          <span class="fs10 ft-primary-md grey500" i18n>Verification Status</span>
+          <span class="doc-status-text fs16 ft-primary-b grey500" i18n>{{status === 'verified' ? 'Verified' : 'Pending'}}</span>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+  <button type="button" mat-button class="btn btn-primary wp100" [disabled]="isNextDisabled" *ngIf="showNextButton"
+    (click)="onVerifyClicked()" i18n>
+    Next
+  </button>
+
+  <div class="button-container wp100 d-flex align-cnter gap10" *ngIf="isUploadedSelfie && !isAfterVerification">
+    <button type="button" class="retake-btn wp50 h48 d-flex jst-center align-center bg-light br12 border-1.5 border-solid border-grey800 fs16 ft-primary-b grey800 cursor" (click)="retakeSelfie()" i18n>Retake
+      photo</button>
+    <button [disabled]="proceedDisabled" type="button" mat-button class="btn btn-primary verify-btn wp50" mat-button
+      cdkFocusInitial (click)="verifyAndProceed()" i18n>Verify & Proceed</button>
+  </div>
+
+  <div *ngIf="isShowToast">
+    <app-toast [toastValue]="toastValue" [(isShowToast)]="isShowToast"></app-toast>
+  </div>
+</form>

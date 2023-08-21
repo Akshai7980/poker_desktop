@@ -1,0 +1,168 @@
+<div class="main-container flex-only-col wp100 gap16 hp100 p-4 bg-grey100 ovf-y-scroll">
+  <div class="main-page-title flex-start py-3">
+    <div class="page-title-text flex-row fs20 gap8 ft-primary-b grey900">
+      <div class="page-title-icon p-rel flex-center wh24 ovf-hide">
+        <img
+          class="p-abs wp100 hp100 obj-con"
+          alt="vector"
+          [src]="assetsImagePath + 'contact-us/contact-us.svg'"
+          i18n
+          i18n-alt
+        />
+      </div>
+      <div class="main-title fs20 ft-primary-b grey900" i18n>Contact Us</div>
+    </div>
+  </div>
+  <div class="card-container-widget flex-only-col gap16">
+    <div class="email-support-container flex-only-space gap24 wp100">
+      <div class="email-container flex-only-col gap16 wp40 bg-light br16 p-4">
+        <div class="email-title flex-start fs16 ft-primary-b grey800" i18n>Email Us</div>
+        <div class="email-card-container flex-only-col gap16">
+          <ng-container *ngFor="let enquiryCategory of enquiryCategoryList?.list">
+            <div
+              class="email-card flex-space bg-grey000 gap16 br8 p-5 border-0.5 border-solid border-grey300 cursor"
+              (click)="openGeneralEnquires(enquiryCategory)"
+            >
+              <div class="email-icon p-rel flex-center wh24 ovf-hide">
+                <img
+                  class="p-abs wp100 hp100 obj-con"
+                  [src]="assetsImagePath + 'contact-us/mail.svg'"
+                  alt="mail"
+                  i18n
+                  i18n-alt
+                />
+              </div>
+              <div class="email-text flex-col-start gap4">
+                <div class="email-text-title fs14 ft-primary-b grey800" i18n>
+                  {{ enquiryCategory.name }}
+                </div>
+                <div class="email-address fs12 ft-primary-sb grey500" i18n>
+                  {{ enquiryCategory.email }}
+                </div>
+              </div>
+              <div class="email-icon wh24 p-rel">
+                <div class="icons-24 chevron-right-grey500 top-right wh24"></div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <div class="support-container flex-only-col gap12 bg-light br16 p-4">
+        <div class="support-title flex-start fs16 ft-primary-b grey800" i18n>Support</div>
+        <div class="support-card-container flex-only-col gap16">
+          <ng-container *ngFor="let contactSupport of contactSupportList">
+            <div
+              class="support-card d-flex align-center bg-grey000 gap16 br8 p-5 border-0.5 border-solid border-grey300"
+              [ngClass]="{
+                'not-disabled cursor': contactSupport.enabled && contactSupport.type !== 'call'
+              }"
+              (click)="contactSupport.enabled && clickRightNext(contactSupport)"
+            >
+              <div class="support-icon p-rel flex-center wh24 ovf-hide">
+                <img
+                  class="p-abs wp100 hp100 obj-con"
+                  [src]="assetsImagePath + contactSupport.image"
+                  alt="call"
+                  i18n
+                  i18n-alt
+                />
+              </div>
+              <div class="support-text d-flex flex-column align-start gap6">
+                <div
+                  class="support-title fs14 ft-primary-b"
+                  [ngClass]="!contactSupport.enabled ? 'grey300' : 'grey800'"
+                  i18n
+                >
+                  {{ contactSupport.title }}
+                </div>
+                <div class="d-flex flex-column gap4">
+                  <div
+                    class="support-toll-free fs12 ft-primary-sb"
+                    [ngClass]="!contactSupport.enabled ? 'grey300' : 'grey800'"
+                    *ngIf="contactSupport.dialNumber"
+                    i18n
+                  >
+                    {{ contactSupport.dialNumber }}
+                  </div>
+                  <div
+                    class="support-timing fs12 ft-primary-sb"
+                    [ngClass]="!contactSupport.enabled ? 'grey400' : 'grey500'"
+                    *ngIf="contactSupport.timings"
+                    i18n
+                  >
+                    {{ contactSupport.timings }} | {{ contactSupport.dayTypes }}
+                  </div>
+                  <div
+                    class="support-context fs12 ft-primary-sb grey500"
+                    *ngIf="contactSupport.description"
+                    i18n
+                  >
+                    {{ contactSupport.description }}
+                  </div>
+                </div>
+              </div>
+              <div class="support-icon wh24 p-rel">
+                <div
+                  class="icons-24 chevron-right-grey500 top-right wh24"
+                  *ngIf="contactSupport.type !== 'call'"
+                ></div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="address-card-container flex-col-start bg-light br16 gap16 p-4">
+      <div class="address-title fs16 ft-primary-b grey800">Address</div>
+      <div
+        class="address-card-widget wp100 flex-only-space gap32 bg-grey000 p-5 br8 border-0.5 border-solid border-grey300"
+      >
+        <div
+          *ngFor="let address of addressList; let indx = index"
+          class="address-card wp48 flex-only-row gap16"
+        >
+          <div class="address-icon p-rel flex-center wh24 ovf-hide">
+            <img
+              class="p-abs wp100 hp100 obj-con"
+              alt="vector"
+              [src]="assetsImagePath + 'contact-us/location.svg'"
+              alt="location"
+              i18n
+              i18n-alt
+            />
+          </div>
+          <div class="address-text flex-only-col gap6">
+            <div class="address-text-title fs14 ft-primary-b grey800">{{ address.title }}</div>
+            <div class="address-context-container flex-col-start gap4">
+              <div
+                *ngFor="let subAddress of address.address1List"
+                class="address-context fs12 ft-primary-sb grey500"
+              >
+                {{ subAddress }}
+              </div>
+            </div>
+          </div>
+          <div class="address-icon p-rel flex-center wh24 ovf-hide">
+            <img
+              class="copy-content p-abs wp100 hp100 obj-con cursor"
+              alt="vector"
+              [src]="assetsImagePath + 'contact-us/copy-content.svg'"
+              alt="location"
+              i18n
+              i18n-alt
+              (click)="copyToClipboard(address)"
+            />
+          </div>
+          <div
+            class="address-card-seperator hp100 border-1 border-solid border-grey300"
+            *ngIf="indx + 1 != addressList.length"
+          ></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="isShowToast">
+    <app-toast [toastValue]="toastValue" [(isShowToast)]="isShowToast"></app-toast>
+  </div>
+</div>

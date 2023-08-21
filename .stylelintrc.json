@@ -1,0 +1,9 @@
+{
+  "extends": "stylelint-config-standard-scss",
+  "rules": {
+    "no-descending-specificity": null,
+    "media-feature-range-notation": null,
+    "property-no-vendor-prefix": null,
+    "selector-class-pattern": null
+  }
+}

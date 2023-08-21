@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+npx stylelint 'src/app/**/*.scss' 'project/**/*.scss'
+
+ng test --browsers=ChromeHeadless --watch=false
+ng test shared --browsers=ChromeHeadless --watch=false
+ng test leader-board --browsers=ChromeHeadless --watch=false
+ng test poker-profile --browsers=ChromeHeadless --watch=false
+ng test cashier --browsers=ChromeHeadless --watch=false
+ng test raf --browsers=ChromeHeadless --watch=false
+ng test responsible-gaming --browsers=ChromeHeadless --watch=false
+ng test challenges --browsers=ChromeHeadless --watch=false
+
+npm run ng lint
+npm run prettier
+npm run build:qa

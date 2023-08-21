@@ -1,0 +1,96 @@
+<div class="header d-flex jst-space align-center bg-light p-4 shadow">
+  <div class="header-title-icon d-flex align-center gap8" i18n>
+    <div class="back-icon flex-center wh24 br8 cursor" (click)="goBackToProfile()">
+      <div class="icons-24 chevron-left wh24"></div>
+    </div>
+    <div class="header-title fs20 ft-primary-b grey900">KYC Documents</div>
+  </div>
+  <div class="header-options p-rel wh24 cursor" (click)="onClose()" tabindex="0">
+    <div class="icons-24 top-right close-icon wh24"></div>
+  </div>
+</div>
+<ng-template #verifiedDocsBlock>
+  <form class="kyc-form wp100 d-flex flex-column align-center gap24 bg-grey100 flex-1 p-4 ovf-y-scroll">
+
+    <div class="doc-container wp100 d-flex flex-column gap12" *ngIf="isShowPanList">
+      <span class="doc-title fs16 ft-primary-b grey800" i18n>PAN</span>
+
+      <div class="doc-status wp100 br16 border-1 border-solid" [ngClass]="panCardDetails.status === 'verified' ? 'verified' : 'pending' ">
+        <div class="doc-status-top d-flex jst-space align-center p-4">
+          <div class="d-flex flex-column gap4">
+            <span class="fs10 ft-primary-md grey500" i18n>Document Type</span>
+            <span class="fs14 ft-primary-b grey900" i18n> PAN </span>
+          </div>
+          <div class="d-flex flex-column align-end gap4">
+            <span class="fs10 ft-primary-md grey500" i18n>Document ID</span>
+            <span class="fs14 ft-primary-b grey900" i18n>{{ panCardDetails.panNumber }}</span>
+          </div>
+        </div>
+        <div class="line wp100"></div>
+        <div class="doc-status-bottom d-flex jst-center align-center p-4">
+          <div class="d-flex flex-column align-center gap4">
+            <span class="fs10 ft-primary-md grey500" i18n>Verification Status</span>
+            <span class="doc-status-text fs16 ft-primary-b grey500" i18n>{{ panCardDetails.status === 'verified' ? 'Verified' : 'Pending' }}</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="doc-container wp100 d-flex flex-column gap12" *ngIf="kycDocuments && kycDocuments.length > 0">
+      <span class="doc-title fs16 ft-primary-b grey800" i18n>KYC Documents</span>
+
+      <div class="doc-status wp100 br16 border-1 border-solid" *ngFor="let item of kycDocuments"
+        [ngClass]="item.status === 'verified' ? 'verified' : 'pending' ">
+        <div class="doc-status-top d-flex jst-space align-center p-4">
+          <div class="d-flex flex-column gap4">
+            <span class="fs10 ft-primary-md grey500" i18n>Document Type</span>
+            <span class="fs14 ft-primary-b grey900" i18n> {{ item?.docType }} </span>
+          </div>
+          <div class="d-flex flex-column align-end gap4">
+            <span class="fs10 ft-primary-md grey500" i18n>Document ID</span>
+            <span class="fs14 ft-primary-b grey900" i18n> {{ item?.docNumber ? item.docNumber : '--' || item?.docNumber ? item?.docNumber : '--' }} </span>
+          </div>
+        </div>
+        <div class="line wp100"></div>
+        <div class="doc-status-bottom d-flex jst-center align-center p-4">
+          <div class="d-flex flex-column align-center gap4">
+            <span class="fs10 ft-primary-md grey500" i18n>Verification Status</span>
+            <span class="doc-status-text fs16 ft-primary-b grey500" i18n> {{ item.status === 'verified' ? 'Verified' : 'Pending' }} </span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <button type="button" mat-button class="btn btn-primary-outline add-btn wp100 d-flex jst-center align-center gap8 h40 bg-light br12 cursor border-1.5 border-solid border-grey800 p-3" (click)="addAnotherDoc()">
+      <span class="add-btn-text fs14 ft-primary-b" i18n>
+        Add another document
+      </span>
+      <i class="pi pi-plus"></i>
+    </button>
+
+    <div class="doc-container selfie-kyc wp100 d-flex flex-column gap12" *ngIf="capturedImage && capturedImage.length > 0">
+      <span class="doc-title fs16 ft-primary-b grey800" i18n>Selfie</span>
+
+      <div class="doc-status wp100 d-flex flex-column jst-center align-center gap12 br16 border-1 border-solid py-3" [ngClass]="status === 'verified' ?'verified':'pending'">
+        <div class="doc-status-top wh132 d-flex gap12 bg-light br12 p-2">
+          <img [src]="capturedImage" alt="selfie" class="selfie-image wh120 br10" i18n i18n-alt />
+        </div>
+        <div class="doc-status-bottom d-flex jst-center align-center">
+          <div class="d-flex flex-column align-center gap4">
+            <span class="fs10 ft-primary-md grey500" i18n>Verification Status</span>
+            <span class="doc-status-text fs16 ft-primary-b grey500" i18n>{{ status === 'verified' ? 'Verified' : 'Pending' }}</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </form>
+</ng-template>
+
+  <div class="kyc-form wp100 d-flex flex-column align-center gap24 bg-grey100 flex-1 p-4 ovf-y-scroll" *ngIf="showAddDocsSection; else verifiedDocsBlock">
+    <app-kyc [uploadFrom]="uploadFrom" (showAddDocsSection)="uploadedDocs()" [isProfileAlreadyComplete]="true" ></app-kyc>
+  </div>

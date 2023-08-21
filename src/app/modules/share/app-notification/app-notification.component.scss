@@ -1,0 +1,42 @@
+@import '../../../../assets/abstract/core';
+
+.notification {
+  position: absolute;
+  top: 0;
+  height: 51px;
+
+  .notification-icon-title {
+    .notification-icon {
+      background: rgba(235 149 28 / 100%);
+
+      &.error {
+        background: $primary-error;
+      }
+
+      &.success {
+        background: $primary-success;
+      }
+
+      &.info {
+        background: $primary-info;
+      }
+
+      &.pending {
+        background: $primary-warning;
+      }
+    }
+  }
+
+  .notification-options {
+    .pi {
+      font-size: 15px;
+    }
+  }
+}
+
+// TODO wil move this css later to specific file
+
+.wh35 {
+  width: 35px;
+  height: 35px;
+}

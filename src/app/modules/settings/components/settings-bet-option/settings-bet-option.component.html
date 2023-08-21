@@ -1,0 +1,770 @@
+<div class="d-flex flex-column flex-1 ovf-y-auto">
+  <div class="d-flex flex-column flex-1 gap12 px-4">
+    <div class="card card-settings bg-grey000 border-1 border-solid border-grey100 br16 mb-1">
+      <div class="card-header d-flex align-center bg-grey100 gap8 px-3 py-4">
+        <p class="ft-primary-b fs14 lh-normal grey800 m-0" i18n>Bet Size Adjustment</p>
+      </div>
+      <div class="card-body d-flex gap12 px-3 py-4">
+        <div class="d-flex align-center gap8 flex-1">
+          <p-radioButton
+            value="0"
+            id="radio-betSliderBigB"
+            [(ngModel)]="betOptions.betSliderVal"
+            (ngModelChange)="onSettingsChange()"
+          ></p-radioButton>
+          <label class="ft-primary-md fs14 lh-normal grey800" for="Big Blinds" i18n
+            >Big Blinds</label
+          >
+        </div>
+        <div class="d-flex align-center gap8 flex-1">
+          <p-radioButton
+            value="1"
+            id="radio-betSliderSmallB"
+            [(ngModel)]="betOptions.betSliderVal"
+            (ngModelChange)="onSettingsChange()"
+          ></p-radioButton>
+          <label class="ft-primary-md fs14 lh-normal grey800" for="Small Blinds" i18n
+            >Small Blinds</label
+          >
+        </div>
+      </div>
+    </div>
+    <div class="flop-tab-group d-flex align-center gap12 mb-1">
+      <div
+        trackEvents
+        id="betoption-preflop-btn"
+        class="flop-tablink text-center px-4 py-2 br12 cursor"
+        [ngClass]="selectedTab === 1 ? 'bg-grey900 light' : 'bg-grey100 grey600'"
+        (click)="selectTab(1)"
+      >
+        <span class="ft-primary-b fs14 lh-base" i18n>Pre Flop</span>
+      </div>
+      <div
+        trackEvents
+        id="betoption-postflop-btn"
+        class="flop-tablink text-center px-4 py-2 br12 cursor"
+        [ngClass]="selectedTab === 2 ? 'bg-grey900 light' : 'bg-grey100 grey600'"
+        (click)="selectTab(2)"
+      >
+        <span class="ft-primary-b fs14 lh-base" i18n>Post Flop</span>
+      </div>
+    </div>
+    <div class="border-0.5 border-solid border-grey100 mb-1"></div>
+    <ng-container *ngIf="!isPostFlop; else postFlop">
+      <div class="flop-group d-flex align-center gap2">
+        <div
+          class="flop-item h40 d-flex jst-center align-center flex-1 bg-grey100 ft-primary-b fs14 lh-normal p-2"
+          trackEvents
+          id="betoption-x1-btn"
+        >
+          <span i18n>{{ preFlopValues[0] }}</span>
+        </div>
+        <div
+          class="flop-item h40 d-flex jst-center align-center flex-1 bg-grey100 ft-primary-b fs14 lh-normal p-2"
+          trackEvents
+          id="betoption-x2-btn"
+        >
+          <span i18n>{{ preFlopValues[1] }}</span>
+        </div>
+        <div
+          class="flop-item h40 d-flex jst-center align-center flex-1 bg-grey100 ft-primary-b fs14 lh-normal p-2"
+          trackEvents
+          id="betoption-x3-btn"
+        >
+          <span i18n>{{ preFlopValues[2] }}</span>
+        </div>
+        <div
+          class="flop-item h40 d-flex jst-center align-center flex-1 bg-grey100 ft-primary-b fs14 lh-normal p-2"
+          trackEvents
+          id="betoption-1/2-btn"
+        >
+          <span i18n>{{ preFlopValues[3] }}</span>
+        </div>
+        <div
+          class="flop-item h40 d-flex jst-center align-center flex-1 bg-grey100 ft-primary-b fs14 lh-normal p-2"
+          trackEvents
+          id="betoption-3/4-btn"
+        >
+          <span i18n>{{ preFlopValues[4] }}</span>
+        </div>
+        <div
+          class="flop-item h40 d-flex jst-center align-center flex-1 bg-grey100 ft-primary-b fs14 lh-normal p-2"
+          trackEvents
+          id="betoption-pot-btn"
+        >
+          <span i18n>{{ preFlopValues[5] }}</span>
+        </div>
+        <div
+          class="flop-item h40 d-flex jst-center align-center flex-1 bg-grey100 ft-primary-b fs14 lh-normal p-2"
+          trackEvents
+          id="betoption-max-btn"
+        >
+          <span i18n>{{ preFlopValues[6] }}</span>
+        </div>
+      </div>
+      <p class="ft-primary-sb fs12 lh-base grey500 m-0" i18n>
+        You can select any 4 for mobile view
+      </p>
+      <div class="d-flex flex-column flex-1 bg-grey000 border-1 border-solid border-grey100 br16">
+        <div class="d-flex flex-column flex-1">
+          <ul class="list-bet-option d-flex flex-column flex-1 p-0 m-0">
+            <li class="list-bet-option-item d-flex jst-space gap16 p-2">
+              <div
+                class="dropdown-group d-flex align-center gap16"
+                [ngClass]="{ disabled: !checkedPreFlop[0] }"
+              >
+                <p-dropdown
+                  [options]="dropDownList"
+                  [(ngModel)]="betOptions.PREFLOP.BUTTON1"
+                  (onChange)="
+                    onSettingsChange(
+                      { type: 'PREFLOP', name: 'BUTTON1' },
+                      betOptions.PREFLOP.BUTTON1
+                    )
+                  "
+                  optionLabel="name"
+                  scrollHeight="250"
+                  styleClass="bet-options"
+                ></p-dropdown>
+                <p-dropdown
+                  *ngIf="betOptions.PREFLOP.BUTTON1.name == 'BB/Call'"
+                  [options]="dropDownListNumber"
+                  [(ngModel)]="betOptions.PREFLOP.BUTTON1_VAL"
+                  (onChange)="
+                    onSettingsChange(
+                      { type: 'PREFLOP', name: 'BUTTON1_VAL' },
+                      betOptions.PREFLOP.BUTTON1_VAL
+                    )
+                  "
+                  optionLabel="name"
+                  scrollHeight="250"
+                  styleClass="bet-options"
+                ></p-dropdown>
+              </div>
+              <p-inputSwitch
+                class="d-flex pt-2"
+                [(ngModel)]="checkedPreFlop[0]"
+                (ngModelChange)="onSettingsChange()"
+              ></p-inputSwitch>
+            </li>
+            <li class="list-bet-option-item d-flex jst-space gap16 p-2">
+              <div
+                class="dropdown-group d-flex align-center gap16"
+                [ngClass]="{ disabled: !checkedPreFlop[1] }"
+              >
+                <p-dropdown
+                  [options]="dropDownList"
+                  [(ngModel)]="betOptions.PREFLOP.BUTTON2"
+                  (onChange)="
+                    onSettingsChange(
+                      { type: 'PREFLOP', name: 'BUTTON2' },
+                      betOptions.PREFLOP.BUTTON2
+                    )
+                  "
+                  optionLabel="name"
+                  scrollHeight="250"
+                  styleClass="bet-options"
+                ></p-dropdown>
+                <p-dropdown
+                  *ngIf="betOptions.PREFLOP.BUTTON2.name == 'BB/Call'"
+                  [options]="dropDownListNumber"
+                  [(ngModel)]="betOptions.PREFLOP.BUTTON2_VAL"
+                  (onChange)="
+                    onSettingsChange(
+                      { type: 'PREFLOP', name: 'BUTTON2_VAL' },
+                      betOptions.PREFLOP.BUTTON2_VAL
+                    )
+                  "
+                  optionLabel="name"
+                  scrollHeight="250"
+                  styleClass="bet-options"
+                ></p-dropdown>
+              </div>
+              <p-inputSwitch
+                class="d-flex pt-2"
+                [(ngModel)]="checkedPreFlop[1]"
+                (ngModelChange)="onSettingsChange()"
+              ></p-inputSwitch>
+            </li>
+            <li class="list-bet-option-item d-flex jst-space gap16 p-2">
+              <div
+                class="dropdown-group d-flex align-center gap16"
+                [ngClass]="{ disabled: !checkedPreFlop[2] }"
+              >
+                <p-dropdown
+                  [options]="dropDownList"
+                  [(ngModel)]="betOptions.PREFLOP.BUTTON3"
+                  (onChange)="
+                    onSettingsChange(
+                      { type: 'PREFLOP', name: 'BUTTON3' },
+                      betOptions.PREFLOP.BUTTON3
+                    )
+                  "
+                  optionLabel="name"
+                  scrollHeight="250"
+                  styleClass="bet-options"
+                ></p-dropdown>
+                <p-dropdown
+                  *ngIf="betOptions.PREFLOP.BUTTON3.name == 'BB/Call'"
+                  [options]="dropDownListNumber"
+                  [(ngModel)]="betOptions.PREFLOP.BUTTON3_VAL"
+                  (onChange)="
+                    onSettingsChange(
+                      { type: 'PREFLOP', name: 'BUTTON3_VAL' },
+                      betOptions.PREFLOP.BUTTON3_VAL
+                    )
+                  "
+                  optionLabel="name"
+                  scrollHeight="250"
+                  styleClass="bet-options"
+                ></p-dropdown>
+              </div>
+              <p-inputSwitch
+                class="d-flex pt-2"
+                [(ngModel)]="checkedPreFlop[2]"
+                (ngModelChange)="onSettingsChange()"
+              ></p-inputSwitch>
+            </li>
+            <li class="list-bet-option-item d-flex jst-space gap16 p-2">
+              <div
+                class="dropdown-group d-flex align-center gap16"
+                [ngClass]="{ disabled: !checkedPreFlop[3] }"
+              >
+                <p-dropdown
+                  [options]="dropDownList"
+                  [(ngModel)]="betOptions.PREFLOP.BUTTON4"
+                  (onChange)="
+                    onSettingsChange(
+                      { type: 'PREFLOP', name: 'BUTTON4' },
+                      betOptions.PREFLOP.BUTTON4
+                    )
+                  "
+                  optionLabel="name"
+                  scrollHeight="250"
+                  styleClass="bet-options"
+                ></p-dropdown>
+                <p-dropdown
+                  *ngIf="betOptions.PREFLOP.BUTTON4.name == 'BB/Call'"
+                  [options]="dropDownListNumber"
+                  [(ngModel)]="betOptions.PREFLOP.BUTTON4_VAL"
+                  (onChange)="
+                    onSettingsChange(
+                      { type: 'PREFLOP', name: 'BUTTON4_VAL' },
+                      betOptions.PREFLOP.BUTTON4_VAL
+                    )
+                  "
+                  optionLabel="name"
+                  scrollHeight="250"
+                  styleClass="bet-options"
+                ></p-dropdown>
+              </div>
+              <p-inputSwitch
+                class="d-flex pt-2"
+                [(ngModel)]="checkedPreFlop[3]"
+                (ngModelChange)="onSettingsChange()"
+              ></p-inputSwitch>
+            </li>
+            <li class="list-bet-option-item d-flex jst-space gap16 p-2">
+              <div
+                class="dropdown-group d-flex align-center gap16"
+                [ngClass]="{ disabled: !checkedPreFlop[4] }"
+              >
+                <p-dropdown
+                  [options]="dropDownList"
+                  [(ngModel)]="betOptions.PREFLOP.BUTTON5"
+                  (onChange)="
+                    onSettingsChange(
+                      { type: 'PREFLOP', name: 'BUTTON5' },
+                      betOptions.PREFLOP.BUTTON5
+                    )
+                  "
+                  optionLabel="name"
+                  scrollHeight="250"
+                  styleClass="bet-options"
+                ></p-dropdown>
+                <p-dropdown
+                  *ngIf="betOptions.PREFLOP.BUTTON5.name == 'BB/Call'"
+                  [options]="dropDownListNumber"
+                  [(ngModel)]="betOptions.PREFLOP.BUTTON5_VAL"
+                  (onChange)="
+                    onSettingsChange(
+                      { type: 'PREFLOP', name: 'BUTTON5_VAL' },
+                      betOptions.PREFLOP.BUTTON5_VAL
+                    )
+                  "
+                  optionLabel="name"
+                  scrollHeight="250"
+                  styleClass="bet-options"
+                ></p-dropdown>
+              </div>
+              <p-inputSwitch
+                class="d-flex pt-2"
+                [(ngModel)]="checkedPreFlop[4]"
+                (ngModelChange)="onSettingsChange()"
+              ></p-inputSwitch>
+            </li>
+            <li class="list-bet-option-item d-flex jst-space gap16 p-2">
+              <div
+                class="dropdown-group d-flex align-center gap16"
+                [ngClass]="{ disabled: !checkedPreFlop[5] }"
+              >
+                <p-dropdown
+                  [options]="dropDownList"
+                  [(ngModel)]="betOptions.PREFLOP.BUTTON6"
+                  (onChange)="
+                    onSettingsChange(
+                      { type: 'PREFLOP', name: 'BUTTON6' },
+                      betOptions.PREFLOP.BUTTON6
+                    )
+                  "
+                  optionLabel="name"
+                  scrollHeight="250"
+                  styleClass="bet-options"
+                ></p-dropdown>
+                <p-dropdown
+                  *ngIf="betOptions.PREFLOP.BUTTON6.name == 'BB/Call'"
+                  [options]="dropDownListNumber"
+                  [(ngModel)]="betOptions.PREFLOP.BUTTON6_VAL"
+                  (onChange)="
+                    onSettingsChange(
+                      { type: 'PREFLOP', name: 'BUTTON6_VAL' },
+                      betOptions.PREFLOP.BUTTON6_VAL
+                    )
+                  "
+                  optionLabel="name"
+                  scrollHeight="250"
+                  styleClass="bet-options"
+                ></p-dropdown>
+              </div>
+              <p-inputSwitch
+                class="d-flex pt-2"
+                [(ngModel)]="checkedPreFlop[5]"
+                (ngModelChange)="onSettingsChange()"
+              ></p-inputSwitch>
+            </li>
+            <li class="list-bet-option-item d-flex jst-space gap16 p-2">
+              <div
+                class="dropdown-group d-flex align-center gap16"
+                [ngClass]="{ disabled: !checkedPreFlop[6] }"
+              >
+                <p-dropdown
+                  [options]="dropDownList"
+                  [(ngModel)]="betOptions.PREFLOP.BUTTON7"
+                  (onChange)="
+                    onSettingsChange(
+                      { type: 'PREFLOP', name: 'BUTTON7' },
+                      betOptions.PREFLOP.BUTTON7
+                    )
+                  "
+                  optionLabel="name"
+                  scrollHeight="250"
+                  styleClass="bet-options"
+                ></p-dropdown>
+                <p-dropdown
+                  *ngIf="betOptions.PREFLOP.BUTTON7.name == 'BB/Call'"
+                  [options]="dropDownListNumber"
+                  [(ngModel)]="betOptions.PREFLOP.BUTTON7_VAL"
+                  (onChange)="
+                    onSettingsChange(
+                      { type: 'PREFLOP', name: 'BUTTON7_VAL' },
+                      betOptions.PREFLOP.BUTTON7_VAL
+                    )
+                  "
+                  optionLabel="name"
+                  scrollHeight="250"
+                  styleClass="bet-options"
+                ></p-dropdown>
+              </div>
+              <p-inputSwitch
+                class="d-flex pt-2"
+                [(ngModel)]="checkedPreFlop[6]"
+                (ngModelChange)="onSettingsChange()"
+              ></p-inputSwitch>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #postFlop>
+      <div class="flop-group d-flex align-center gap2">
+        <div
+          class="flop-item h40 d-flex jst-center align-center flex-1 bg-grey100 ft-primary-b fs14 lh-normal p-2"
+        >
+          <span i18n>{{ postFlopValues[0] }}</span>
+        </div>
+        <div
+          class="flop-item h40 d-flex jst-center align-center flex-1 bg-grey100 ft-primary-b fs14 lh-normal p-2"
+        >
+          <span i18n>{{ postFlopValues[1] }}</span>
+        </div>
+        <div
+          class="flop-item h40 d-flex jst-center align-center flex-1 bg-grey100 ft-primary-b fs14 lh-normal p-2"
+        >
+          <span i18n>{{ postFlopValues[2] }}</span>
+        </div>
+        <div
+          class="flop-item h40 d-flex jst-center align-center flex-1 bg-grey100 ft-primary-b fs14 lh-normal p-2"
+        >
+          <span i18n>{{ postFlopValues[3] }}</span>
+        </div>
+        <div
+          class="flop-item h40 d-flex jst-center align-center flex-1 bg-grey100 ft-primary-b fs14 lh-normal p-2"
+        >
+          <span i18n>{{ postFlopValues[4] }}</span>
+        </div>
+        <div
+          class="flop-item h40 d-flex jst-center align-center flex-1 bg-grey100 ft-primary-b fs14 lh-normal p-2"
+        >
+          <span i18n>{{ postFlopValues[5] }}</span>
+        </div>
+        <div
+          class="flop-item h40 d-flex jst-center align-center flex-1 bg-grey100 ft-primary-b fs14 lh-normal p-2"
+        >
+          <span i18n>{{ postFlopValues[6] }}</span>
+        </div>
+      </div>
+      <p class="ft-primary-sb fs12 lh-base grey500 m-0" i18n>
+        You can select any 4 for mobile view
+      </p>
+      <div class="d-flex flex-column flex-1 bg-grey000 border-1 border-solid border-grey100 br16">
+        <div class="d-flex flex-column flex-1">
+          <ul class="list-bet-option d-flex flex-column flex-1 p-0 m-0">
+            <li class="list-bet-option-item d-flex jst-space gap16 p-2">
+              <div
+                class="dropdown-group d-flex align-start gap16"
+                [ngClass]="{ disabled: !checkedPostFlop[0] }"
+              >
+                <p-dropdown
+                  [options]="dropDownListPf"
+                  [(ngModel)]="betOptions.POSTFLOP.BUTTON1"
+                  (onChange)="
+                    onSettingsChange(
+                      { type: 'POSTFLOP', name: 'BUTTON1' },
+                      betOptions.POSTFLOP.BUTTON1
+                    )
+                  "
+                  optionLabel="name"
+                  scrollHeight="250"
+                  styleClass="bet-options"
+                ></p-dropdown>
+                <p-dropdown
+                  *ngIf="betOptions.POSTFLOP.BUTTON1.name == 'BB/Call'"
+                  [options]="dropDownListNumber"
+                  [(ngModel)]="betOptions.POSTFLOP.BUTTON1_VAL"
+                  (onChange)="
+                    onSettingsChange(
+                      { type: 'POSTFLOP', name: 'BUTTON1_VAL' },
+                      betOptions.POSTFLOP.BUTTON1_VAL
+                    )
+                  "
+                  optionLabel="name"
+                  scrollHeight="250"
+                  styleClass="bet-options"
+                ></p-dropdown>
+                <div class="custom-pot-percent">
+                  <app-custom-pot-dropdown
+                    *ngIf="betOptions.POSTFLOP.BUTTON1.name == 'Pot %'"
+                    [dropDownListNumberPot]="dropDownListNumberPot"
+                    [inputValue]="betOptions.POSTFLOP.BUTTON1_VAL"
+                    (value)="onSettingsChange({ type: 'POSTFLOP', name: 'BUTTON1_VAL' }, $event)"
+                  ></app-custom-pot-dropdown>
+                </div>
+              </div>
+              <p-inputSwitch
+                class="d-flex pt-2"
+                [(ngModel)]="checkedPostFlop[0]"
+                (ngModelChange)="onSettingsChange()"
+              ></p-inputSwitch>
+            </li>
+            <li class="list-bet-option-item d-flex jst-space gap16 p-2">
+              <div
+                class="dropdown-group d-flex align-start gap16"
+                [ngClass]="{ disabled: !checkedPostFlop[1] }"
+              >
+                <p-dropdown
+                  [options]="dropDownListPf"
+                  [(ngModel)]="betOptions.POSTFLOP.BUTTON2"
+                  (onChange)="
+                    onSettingsChange(
+                      { type: 'POSTFLOP', name: 'BUTTON2' },
+                      betOptions.POSTFLOP.BUTTON2
+                    )
+                  "
+                  optionLabel="name"
+                  scrollHeight="250"
+                  styleClass="bet-options"
+                ></p-dropdown>
+                <p-dropdown
+                  *ngIf="betOptions.POSTFLOP.BUTTON2.name == 'BB/Call'"
+                  [options]="dropDownListNumber"
+                  [(ngModel)]="betOptions.POSTFLOP.BUTTON2_VAL"
+                  (onChange)="
+                    onSettingsChange(
+                      { type: 'POSTFLOP', name: 'BUTTON2_VAL' },
+                      betOptions.POSTFLOP.BUTTON2_VAL
+                    )
+                  "
+                  optionLabel="name"
+                  scrollHeight="250"
+                  styleClass="bet-options"
+                ></p-dropdown>
+                <app-custom-pot-dropdown
+                  *ngIf="betOptions.POSTFLOP.BUTTON2.name == 'Pot %'"
+                  [dropDownListNumberPot]="dropDownListNumberPot"
+                  [inputValue]="betOptions.POSTFLOP.BUTTON2_VAL"
+                  (value)="onSettingsChange({ type: 'POSTFLOP', name: 'BUTTON2_VAL' }, $event)"
+                ></app-custom-pot-dropdown>
+              </div>
+              <p-inputSwitch
+                class="d-flex pt-2"
+                [(ngModel)]="checkedPostFlop[1]"
+                (ngModelChange)="onSettingsChange()"
+              ></p-inputSwitch>
+            </li>
+            <li class="list-bet-option-item d-flex jst-space gap16 p-2">
+              <div
+                class="dropdown-group d-flex align-start gap16"
+                [ngClass]="{ disabled: !checkedPostFlop[2] }"
+              >
+                <p-dropdown
+                  [options]="dropDownListPf"
+                  [(ngModel)]="betOptions.POSTFLOP.BUTTON3"
+                  (onChange)="
+                    onSettingsChange(
+                      { type: 'POSTFLOP', name: 'BUTTON3' },
+                      betOptions.POSTFLOP.BUTTON3
+                    )
+                  "
+                  optionLabel="name"
+                  scrollHeight="250"
+                  styleClass="bet-options"
+                ></p-dropdown>
+                <p-dropdown
+                  *ngIf="betOptions.POSTFLOP.BUTTON3.name == 'BB/Call'"
+                  [options]="dropDownListNumber"
+                  [(ngModel)]="betOptions.POSTFLOP.BUTTON3_VAL"
+                  (onChange)="
+                    onSettingsChange(
+                      { type: 'POSTFLOP', name: 'BUTTON3_VAL' },
+                      betOptions.POSTFLOP.BUTTON3_VAL
+                    )
+                  "
+                  optionLabel="name"
+                  scrollHeight="250"
+                  styleClass="bet-options"
+                ></p-dropdown>
+                <app-custom-pot-dropdown
+                  *ngIf="betOptions.POSTFLOP.BUTTON3.name == 'Pot %'"
+                  [dropDownListNumberPot]="dropDownListNumberPot"
+                  [inputValue]="betOptions.POSTFLOP.BUTTON3_VAL"
+                  (value)="onSettingsChange({ type: 'POSTFLOP', name: 'BUTTON3_VAL' }, $event)"
+                ></app-custom-pot-dropdown>
+              </div>
+              <p-inputSwitch
+                class="d-flex pt-2"
+                [(ngModel)]="checkedPostFlop[2]"
+                (ngModelChange)="onSettingsChange()"
+              ></p-inputSwitch>
+            </li>
+            <li class="list-bet-option-item d-flex jst-space gap16 p-2">
+              <div
+                class="dropdown-group d-flex align-start gap16"
+                [ngClass]="{ disabled: !checkedPostFlop[3] }"
+              >
+                <p-dropdown
+                  [options]="dropDownListPf"
+                  [(ngModel)]="betOptions.POSTFLOP.BUTTON4"
+                  (onChange)="
+                    onSettingsChange(
+                      { type: 'POSTFLOP', name: 'BUTTON4' },
+                      betOptions.POSTFLOP.BUTTON4
+                    )
+                  "
+                  optionLabel="name"
+                  scrollHeight="250"
+                  styleClass="bet-options"
+                ></p-dropdown>
+                <p-dropdown
+                  *ngIf="betOptions.POSTFLOP.BUTTON4.name == 'BB/Call'"
+                  [options]="dropDownListNumber"
+                  [(ngModel)]="betOptions.POSTFLOP.BUTTON4_VAL"
+                  (onChange)="
+                    onSettingsChange(
+                      { type: 'POSTFLOP', name: 'BUTTON4_VAL' },
+                      betOptions.POSTFLOP.BUTTON4_VAL
+                    )
+                  "
+                  optionLabel="name"
+                  scrollHeight="250"
+                  styleClass="bet-options"
+                ></p-dropdown>
+                <app-custom-pot-dropdown
+                  *ngIf="betOptions.POSTFLOP.BUTTON4.name == 'Pot %'"
+                  [dropDownListNumberPot]="dropDownListNumberPot"
+                  [inputValue]="betOptions.POSTFLOP.BUTTON4_VAL"
+                  (value)="onSettingsChange({ type: 'POSTFLOP', name: 'BUTTON4_VAL' }, $event)"
+                ></app-custom-pot-dropdown>
+              </div>
+              <p-inputSwitch
+                class="d-flex pt-2"
+                [(ngModel)]="checkedPostFlop[3]"
+                (ngModelChange)="onSettingsChange()"
+              ></p-inputSwitch>
+            </li>
+            <li class="list-bet-option-item d-flex jst-space gap16 p-2">
+              <div
+                class="dropdown-group d-flex align-start gap16"
+                [ngClass]="{ disabled: !checkedPostFlop[4] }"
+              >
+                <p-dropdown
+                  [options]="dropDownListPf"
+                  [(ngModel)]="betOptions.POSTFLOP.BUTTON5"
+                  (onChange)="
+                    onSettingsChange(
+                      { type: 'POSTFLOP', name: 'BUTTON5' },
+                      betOptions.POSTFLOP.BUTTON5
+                    )
+                  "
+                  optionLabel="name"
+                  scrollHeight="250"
+                  styleClass="bet-options"
+                ></p-dropdown>
+                <p-dropdown
+                  *ngIf="betOptions.POSTFLOP.BUTTON5.name == 'BB/Call'"
+                  [options]="dropDownListNumber"
+                  [(ngModel)]="betOptions.POSTFLOP.BUTTON5_VAL"
+                  (onChange)="
+                    onSettingsChange(
+                      { type: 'POSTFLOP', name: 'BUTTON5_VAL' },
+                      betOptions.POSTFLOP.BUTTON5_VAL
+                    )
+                  "
+                  optionLabel="name"
+                  scrollHeight="250"
+                  styleClass="bet-options"
+                ></p-dropdown>
+                <app-custom-pot-dropdown
+                  *ngIf="betOptions.POSTFLOP.BUTTON5.name == 'Pot %'"
+                  [dropDownListNumberPot]="dropDownListNumberPot"
+                  [inputValue]="betOptions.POSTFLOP.BUTTON5_VAL"
+                  (value)="onSettingsChange({ type: 'POSTFLOP', name: 'BUTTON5_VAL' }, $event)"
+                ></app-custom-pot-dropdown>
+              </div>
+              <p-inputSwitch
+                class="d-flex pt-2"
+                [(ngModel)]="checkedPostFlop[4]"
+                (ngModelChange)="onSettingsChange()"
+              ></p-inputSwitch>
+            </li>
+            <li class="list-bet-option-item d-flex jst-space gap16 p-2">
+              <div
+                class="dropdown-group d-flex align-start gap16"
+                [ngClass]="{ disabled: !checkedPostFlop[5] }"
+              >
+                <p-dropdown
+                  [options]="dropDownListPf"
+                  [(ngModel)]="betOptions.POSTFLOP.BUTTON6"
+                  (onChange)="
+                    onSettingsChange(
+                      { type: 'POSTFLOP', name: 'BUTTON6' },
+                      betOptions.POSTFLOP.BUTTON6
+                    )
+                  "
+                  optionLabel="name"
+                  scrollHeight="250"
+                  styleClass="bet-options"
+                ></p-dropdown>
+                <p-dropdown
+                  *ngIf="betOptions.POSTFLOP.BUTTON6.name == 'BB/Call'"
+                  [options]="dropDownListNumber"
+                  [(ngModel)]="betOptions.POSTFLOP.BUTTON6_VAL"
+                  (onChange)="
+                    onSettingsChange(
+                      { type: 'POSTFLOP', name: 'BUTTON6_VAL' },
+                      betOptions.POSTFLOP.BUTTON6_VAL
+                    )
+                  "
+                  optionLabel="name"
+                  scrollHeight="250"
+                  styleClass="bet-options"
+                ></p-dropdown>
+                <app-custom-pot-dropdown
+                  *ngIf="betOptions.POSTFLOP.BUTTON6.name == 'Pot %'"
+                  [dropDownListNumberPot]="dropDownListNumberPot"
+                  [inputValue]="betOptions.POSTFLOP.BUTTON6_VAL"
+                  (value)="onSettingsChange({ type: 'POSTFLOP', name: 'BUTTON6_VAL' }, $event)"
+                ></app-custom-pot-dropdown>
+              </div>
+              <p-inputSwitch
+                class="d-flex pt-2"
+                [(ngModel)]="checkedPostFlop[5]"
+                (ngModelChange)="onSettingsChange()"
+              ></p-inputSwitch>
+            </li>
+            <li class="list-bet-option-item d-flex jst-space gap16 p-2">
+              <div
+                class="dropdown-group d-flex align-start gap16"
+                [ngClass]="{ disabled: !checkedPostFlop[6] }"
+              >
+                <p-dropdown
+                  [options]="dropDownListPf"
+                  [(ngModel)]="betOptions.POSTFLOP.BUTTON7"
+                  (onChange)="
+                    onSettingsChange(
+                      { type: 'POSTFLOP', name: 'BUTTON7' },
+                      betOptions.POSTFLOP.BUTTON7
+                    )
+                  "
+                  optionLabel="name"
+                  scrollHeight="250"
+                  styleClass="bet-options"
+                ></p-dropdown>
+                <p-dropdown
+                  *ngIf="betOptions.POSTFLOP.BUTTON7.name == 'BB/Call'"
+                  [options]="dropDownListNumber"
+                  [(ngModel)]="betOptions.POSTFLOP.BUTTON7_VAL"
+                  (onChange)="
+                    onSettingsChange(
+                      { type: 'POSTFLOP', name: 'BUTTON7_VAL' },
+                      betOptions.POSTFLOP.BUTTON7_VAL
+                    )
+                  "
+                  optionLabel="name"
+                  scrollHeight="250"
+                  styleClass="bet-options"
+                ></p-dropdown>
+                <app-custom-pot-dropdown
+                  *ngIf="betOptions.POSTFLOP.BUTTON7.name == 'Pot %'"
+                  [dropDownListNumberPot]="dropDownListNumberPot"
+                  [inputValue]="betOptions.POSTFLOP.BUTTON7_VAL"
+                  (value)="onSettingsChange({ type: 'POSTFLOP', name: 'BUTTON7_VAL' }, $event)"
+                ></app-custom-pot-dropdown>
+              </div>
+              <p-inputSwitch
+                class="d-flex pt-2"
+                [(ngModel)]="checkedPostFlop[6]"
+                (ngModelChange)="onSettingsChange()"
+              ></p-inputSwitch>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+  <div class="d-flex jst-end p-4">
+    <button
+      type="button"
+      mat-button
+      (click)="changeUserBetPref(); onSave()"
+      class="btn btn-primary"
+      trackEvents
+      id="betoption-verify-btn"
+      [disabled]="isDisableBtn"
+    >
+      <span i18n>Apply</span>
+    </button>
+  </div>
+  <div *ngIf="isShowToast">
+    <app-toast [(isShowToast)]="isShowToast" [toastValue]="toastValue"></app-toast>
+  </div>
+</div>

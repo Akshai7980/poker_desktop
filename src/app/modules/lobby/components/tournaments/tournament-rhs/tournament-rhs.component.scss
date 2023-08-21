@@ -1,0 +1,423 @@
+@import '../../../../../../assets/abstract/core';
+
+.tournament-rhs-footer {
+  width: 374px;
+  height: 56px;
+  box-shadow: 0 -4px 8px rgba(0 0 0 / 10%);
+  border-bottom-left-radius: $br16;
+  border-bottom-right-radius: $br16;
+  position: sticky;
+  bottom: 0;
+}
+
+// for common orange styles
+
+%show-orange-border {
+  border: 1px solid $orange100;
+  border-bottom: 0 none;
+  background: $orange000;
+}
+
+%show-orange-childs {
+  &:nth-child(3n + 1) {
+    border-top-left-radius: $br8;
+    border-top-right-radius: $br8;
+  }
+
+  &:nth-child(3n + 2) {
+    border-radius: 0;
+  }
+
+  &:nth-child(3n + 3) {
+    border-radius: 0;
+  }
+}
+
+table {
+  &.table {
+    tbody {
+      tr {
+        border-bottom: 0 none;
+
+        &:first-child {
+          border-top-left-radius: $br8;
+          border-top-right-radius: $br8;
+        }
+
+        &:last-child {
+          border-bottom-left-radius: $br8;
+          border-bottom-right-radius: $br8;
+          border-bottom: 1px solid $grey200;
+        }
+      }
+    }
+
+    &.table-rank {
+      thead {
+        tr {
+          th {
+            &:nth-child(2n + 1) {
+              width: 92px;
+            }
+
+            &:nth-child(2n + 2) {
+              width: 88px;
+            }
+          }
+        }
+      }
+
+      tbody {
+        tr {
+          td {
+            &:nth-child(2n + 1) {
+              width: 92px;
+            }
+
+            &:nth-child(2n + 2) {
+              width: 88px;
+            }
+          }
+
+          &.show-orange {
+            @extend %show-orange-border;
+            @extend %show-orange-childs;
+          }
+        }
+      }
+    }
+
+    &.table-rank-prize {
+      thead {
+        tr {
+          th {
+            &:nth-child(4n + 1) {
+              width: 49px;
+            }
+
+            &:nth-child(4n + 2) {
+              width: 88px;
+            }
+
+            &:nth-child(4n + 3) {
+              width: 94px;
+            }
+
+            &:nth-child(4n + 4) {
+              width: 79px;
+            }
+          }
+        }
+      }
+
+      tbody {
+        tr {
+          td {
+            // For Table td these widths were for single time purpose, so have to be declared in scss file
+            &:nth-child(4n + 1) {
+              width: 49px;
+            }
+
+            &:nth-child(4n + 2) {
+              width: 88px;
+            }
+
+            &:nth-child(4n + 3) {
+              width: 94px;
+            }
+
+            &:nth-child(4n + 4) {
+              width: 79px;
+            }
+          }
+
+          &.show-orange {
+            @extend %show-orange-border;
+            @extend %show-orange-childs;
+          }
+        }
+      }
+    }
+
+    &.table-prize {
+      thead {
+        tr {
+          th {
+            // For Table th these widths were for single time purpose, so have to be declared in scss file
+            &:nth-child(3n + 1) {
+              width: 49px;
+            }
+
+            &:nth-child(3n + 2) {
+              width: 88px;
+            }
+
+            &:nth-child(3n + 3) {
+              width: 189px;
+            }
+          }
+        }
+      }
+
+      tbody {
+        tr {
+          td {
+            // For Table td these widths were for single time purpose, so have to be declared in scss file
+            &:nth-child(3n + 1) {
+              width: 49px;
+            }
+
+            &:nth-child(3n + 2) {
+              width: 88px;
+            }
+
+            &:nth-child(3n + 3) {
+              width: 189px;
+            }
+          }
+
+          &.show-orange {
+            @extend %show-orange-border;
+
+            &:nth-child(n + 1) {
+              border-top-left-radius: $br8;
+              border-top-right-radius: $br8;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.date-box {
+  border-bottom-left-radius: $br12;
+  border-bottom-right-radius: $br12;
+}
+
+.prize-image-body {
+  backdrop-filter: blur(1.7241px);
+}
+
+.tournament-rhs-container {
+  .tournament-rhs {
+    &.empty-data {
+      height: calc(100vh - 292px);
+    }
+
+    .tournament-rhs-body {
+      .tournament-card {
+        .date-time-box {
+          .date-box {
+            border-bottom-left-radius: $br12;
+            border-bottom-right-radius: $br12;
+          }
+        }
+
+        .countdown {
+          width: calc(100% - 84px);
+        }
+      }
+
+      .prize-pool-buyin-container {
+        .prize-pool-container {
+          &::before {
+            // Psuedo Elements
+            content: '';
+            position: absolute;
+            top: -8px;
+            right: -8px;
+
+            @include triangle(16px, $bg-light, right);
+
+            z-index: 10;
+            border-radius: $br50;
+            transform: rotate(-45deg); // Psuedo ELements
+          }
+
+          &::after {
+            // Psuedo Elements
+            content: '';
+            position: absolute;
+            right: -8px;
+            bottom: -8px;
+
+            @include triangle(16px, $bg-light, right);
+
+            border-radius: $br50;
+            transform: rotate(45deg); // Psuedo Elements
+          }
+        }
+
+        .buyin-container {
+          width: calc(100% - 104px);
+
+          .prize-text-item {
+            .prize-value {
+              .prize-ticket {
+                &::before {
+                  // Psuedo Elements
+                  content: '';
+                  position: absolute;
+                  left: -1px;
+                  width: 3px;
+                  height: 3px;
+                  border-top-right-radius: $br50;
+                  border-bottom-right-radius: $br50;
+                  background: $grey900; // Psuedo Elements
+                }
+
+                &::after {
+                  content: '';
+                  position: absolute; // Psuedo Elements
+                  right: -1px;
+                  width: 3px;
+                  height: 3px;
+                  border-top-left-radius: $br50;
+                  border-bottom-left-radius: $br50;
+                  background: $grey900; // Psuedo Elements
+                }
+              }
+            }
+          }
+
+          &::before {
+            // Psuedo Elements
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: -8px;
+
+            @include triangle(16px, $bg-light, left);
+
+            z-index: 10;
+            border-radius: $br50;
+            transform: rotate(45deg); // Psuedo Elements
+          }
+
+          &::after {
+            // Psuedo Elements
+            content: '';
+            position: absolute;
+            left: -8px;
+            bottom: -8px;
+
+            @include triangle(16px, $bg-light, left);
+
+            border-radius: $br50;
+            transform: rotate(-45deg); // Psuedo Elements
+          }
+        }
+      }
+    }
+
+    .tournament-rhs-footer {
+      width: 355px;
+      height: 56px;
+      box-shadow: 0 -4px 8px rgba(0 0 0 / 10%);
+      border-bottom-left-radius: $br16;
+      border-bottom-right-radius: $br16;
+      position: sticky;
+      bottom: 0;
+      margin-left: -8px;
+    }
+  }
+
+  // The below were used for the media query,
+  // so here the classes can't define, the values should here only
+
+  @include device(dxl) {
+    .tournament-rhs {
+      .tournament-rhs-body {
+        .tournament-card {
+          .date-time-box {
+            width: 104px;
+            height: 104px;
+          }
+
+          .countdown {
+            width: calc(100% - 92px);
+          }
+        }
+      }
+
+      .tournament-rhs-footer {
+        width: 400px;
+      }
+    }
+  }
+
+  // The below were used for the media query,
+  // so here the classes can't define, the values should here only
+
+  @include device(dxxl) {
+    .tournament-rhs {
+      .tournament-rhs-footer {
+        width: 454px;
+      }
+    }
+  }
+
+  // The below were used for the media query,
+  // so here the classes can't define, the values should here only
+
+  @include device(dxlg) {
+    .tournament-rhs {
+      .tournament-rhs-footer {
+        width: 484px;
+        gap: 16px;
+
+        button {
+          &.btn {
+            &.btn-primary,
+            &.btn-primary-outline {
+              width: 220px !important;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // The below were used for the media query,
+  // so here the classes can't define, the values should here only
+
+  @include device(dxxlg) {
+    .tournament-rhs {
+      .tournament-rhs-footer {
+        width: 534px;
+      }
+    }
+  }
+}
+
+.prize-ticket {
+  &::before {
+    // Psuedo Elements
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 2px;
+    height: 2px;
+    border-top-right-radius: $br50;
+    border-bottom-right-radius: $br50;
+    background: $bg-light; // Psuedo Elements
+  }
+
+  &::after {
+    content: ''; // Psuedo Elements
+    position: absolute;
+    right: 0;
+    width: 2px;
+    height: 2px;
+    border-top-left-radius: $br50;
+    border-bottom-left-radius: $br50;
+    background: $bg-light; // Psuedo Elements
+  }
+}
+
+.tournament-rhs {
+  &.empty-data {
+    height: calc(100vh - 292px);
+  }
+}

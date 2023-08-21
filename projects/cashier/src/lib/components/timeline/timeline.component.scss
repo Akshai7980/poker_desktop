@@ -1,0 +1,12 @@
+@import "../../../assets/components/cashier-common";
+@import '../../../assets/abstract/utilities';
+ 
+  // Dynamic Class for KYC Pending Drawer Popup
+  .timeline-content.kyc-pending{
+    .timeline-title{
+      font-size: $fs14;
+      font-family: $font-bold;
+      color: $grey400;
+    }
+  }
+

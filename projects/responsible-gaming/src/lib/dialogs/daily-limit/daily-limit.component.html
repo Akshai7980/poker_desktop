@@ -1,0 +1,85 @@
+<div class="pd-confirmation-dialog p-rel d-flex flex-column flex-1 ovf-y-auto">
+  <div class="dialog-header d-flex jst-space align-center p-4">
+    <h5 class="dialog-title ft-primary-b fs20 lh-normal grey900 m-0" i18n> Daily Limit </h5>
+    <div class="dialog-options wh24 p-rel cursor" (click)="onClose()">
+      <div class="icons-24 close-icon wh24 top-right"></div>
+    </div>
+  </div>
+  <div class="dialog-body d-flex flex-column flex-1 p-4 ovf-y-auto" [ngSwitch]="activeTemplate">
+    <ng-container *ngSwitchCase="'FORM_TEMP'">
+      <div class="d-flex jst-space align-center gap8 mb-4">
+        <div class="ft-primary-b fs14 lh-normal grey600 text-uppercase m-0" i18n>Existing Amount Limit</div>
+        <div class="ft-primary-b fs16 lh-normal grey900 m-0" i18n> {{ existingAmount }} </div>
+      </div>
+      <div class="d-flex jst-space align-center gap8 mb-4">
+        <div class="ft-primary-b fs14 lh-normal grey600 text-uppercase m-0" i18n>New Amount Limit</div>
+        <input type="text"
+          class="pd-input form-input-placeholder amount-limit-input w152 h48 ft-primary-b fs16 lh-base text-right px-4 py-3 border1.5 border-solid br12"
+          maxlength="12" [(ngModel)]="dailyLimit" minlength="3"
+          [ngClass]="showError ? 'border-primary-error' : 'border-grey300'" (input)="onVerifyAmount($event)" numbersOnly
+          autocompleteOff />
+      </div>
+      <div class="pd-separator w152 p-rel border-solid border-grey200 pt-2"></div>
+      <div class="d-flex jst-space align-center gap8 mb-4">
+        <div class="ft-primary-b fs14 lh-normal grey600 text-uppercase m-0" i18n>Existing Count Limit</div>
+        <div class="ft-primary-b fs16 lh-normal grey900 m-0" i18n> {{ excisingCount }} </div>
+      </div>
+      <div class="d-flex jst-space align-center gap8 mb-4">
+        <div class="ft-primary-b fs14 lh-normal grey600 text-uppercase m-0" i18n>New Count Limit</div>
+        <input type="text"
+          class="pd-input form-input-placeholder amount-limit-input w152 h48 ft-primary-b fs16 lh-base text-right px-4 py-3 border1.5 border-solid br12"
+          maxlength="2" [(ngModel)]="dailyNewCount" numbersOnly
+          [ngClass]="showErrorCount ? 'border-primary-error' : 'border-grey300'" (keyup)="onCountChange()" autocompleteOff />
+      </div>
+      <p class="ft-primary-md fs14 lh-normal grey900 mt-0 mb-4" i18n>
+        If anyone of the count or amount is set then both the limits cannot be increased for the next 7 days, except
+        for reducing the limits.
+      </p>
+      <div class="d-flex align-center gap16">
+        <button type="button" mat-button class="btn btn-primary-outline flex-1" (click)="onClose()"
+          id="resp-game-depositLimit-cancel-btn" trackEvents>
+          Cancel
+        </button>
+        <button type="button" mat-button class="btn btn-primary flex-1" cdkFocusInitial (click)="onClickApply()"
+          id="resp-game-depositLimit-apply-btn" trackEvents [ngClass]="!disableApply || (amount === parsedAmount) ? 'disabled' : 'default'">
+          Apply
+        </button>
+      </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="'CONFIRMATION_TEMP'">
+      <p class="ft-primary-md fs14 lh-normal grey900 mt-0 mb-4" i18n>You have chosen to impose Daily Limit.</p>
+      <p class="ft-primary-b fs14 lh-normal grey900 mt-0 mb-6" i18n>Do you wish to continue?</p>
+      <div class="d-flex align-center gap16">
+        <button type="button" mat-button class="btn btn-primary-outline flex-1" (click)="onClose()"
+          id="resp-game-depositLimit-no-btn" trackEvents>
+          No
+        </button>
+        <button type="button" mat-button class="btn btn-primary flex-1" cdkFocusInitial (click)="onClickYes()"
+          id="resp-game-depositLimit-yes-btn" trackEvents autofocus #yesBtn>
+          Yes
+        </button>
+      </div>
+    </ng-container>
+    <form *ngSwitchCase="'OTP_TEMP'">
+      <p class="ft-primary-md fs14 grey900 mt-0 mb-4" i18n>
+        Enter the OTP you received on <span class="ft-primary-b"> {{ maskedPhoneNumber }} </span>
+      </p>
+      <app-otp-input (data)="onOtpChange($event)" [isResetOtpForm]="isResetOtpForm" [isErrorFlag]="isErrorFlag"></app-otp-input>
+      <div class="d-flex align-center gap4 pt-2 mb-6">
+        <div class="icons-20 clock wh20"></div>
+        <div class="ft-primary-b fs16 lh-normal grey900 m-0">{{ min }}:{{ sec }}</div>
+        <div class="ft-primary-b fs16 lh-base cursor"
+          [ngClass]="isDisabledResend ? 'disabled grey400' : 'grad-red-text'" (click)="clickResendOtp()" i18n>
+          Resend OTP
+        </div>
+      </div>
+      <button type="button" mat-button class="btn btn-primary wp100" [disabled]="!showOtpButton" (click)="onSubmit()"
+        id="resp-game-depositLimit-otp-submit-btn" trackEvents i18n>
+        Submit
+      </button>
+    </form>
+  </div>
+  <div *ngIf="isShowToast">
+    <app-toast [toastValue]="toastValue" [(isShowToast)]="isShowToast"></app-toast>
+  </div>
+</div>

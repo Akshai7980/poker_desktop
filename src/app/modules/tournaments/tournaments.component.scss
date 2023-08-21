@@ -1,0 +1,57 @@
+@import '../../../assets/abstract/core';
+@import './styles/shared';
+
+.tournaments {
+  .tournaments-header {
+    background-image: url('../../../assets/images/tournaments/tournament-header-bg.svg');
+    background-repeat: no-repeat;
+    background-position: 50% 4%;
+    background-size: cover;
+  }
+
+  .tournaments-content {
+    padding-left: 55px;
+    padding-right: 55px;
+  }
+}
+
+.tabs {
+  .tab {
+    flex-shrink: 0;
+
+    &.tab-active {
+      background: $bg-light;
+      color: $grey900;
+      border-color: $grey300;
+    }
+  }
+}
+
+.tournament-status {
+  min-width: 66px;
+  max-width: 100px;
+  letter-spacing: 0.02em;
+  padding: 6px 10px;
+}
+
+.tournament-card {
+  width: 358px;
+
+  .countdown {
+    .countdown-body {
+      .timer-counting-button {
+        width: auto;
+
+        // mat button properties cannot be overridden by common utility classes
+        button.btn.btn-reminder {
+          padding: 8px 0;
+        }
+      }
+    }
+  }
+}
+
+.btn.btn-primary,
+.btn-unregister {
+  width: 160px;
+}

@@ -1,0 +1,10 @@
+.add-cash-title {
+  .add-cash-icon {
+    width: 5%;
+  }
+
+  .add-cash-text {
+    width: calc(100% - 5%);
+    transform: translateX(-12%);
+  }
+}

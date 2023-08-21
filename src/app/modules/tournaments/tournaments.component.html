@@ -1,0 +1,415 @@
+<div class="tournaments p-rel hp100 d-flex flex-column flex-1 bg-dark ovf-y-scroll">
+  <div class="tournaments-header d-flex flex-column flex-1 jst-start gap24 py-4 px-7">
+    <div
+      class="tournament-details d-flex flex-1 align-center gap24"
+      [ngSwitch]="tournamentsData[1].status"
+    >
+      <div class="d-flex flex-column gap8 ovf-hide">
+        <div
+          class="tournament-status d-flex jst-center align-center bg-grey800 fs12 ft-primary-b grey000 br16"
+          i18n
+        >
+          Announced
+        </div>
+        <div class="ft-primary-b fs24 grey000" i18n>1 Cr Nano Main Event</div>
+        <div class="tabs d-flex align-center gap8 flex-1">
+          <a
+            *ngFor="let tab of tabs"
+            [routerLink]="tab.path"
+            [routerLinkActive]="'tab-active'"
+            class="tab h32 d-flex jst-center align-center bg-dark br8 border-1 border-solid border-grey500 py-2 px-3 fs12 ft-primary-sb grey300 text-decoration-none"
+            i18n
+            >{{ tab.title }}</a
+          >
+        </div>
+      </div>
+
+      <!-- Starting In -->
+      <ng-container *ngSwitchCase="TOURNAMENTS_STATUS.REGISTRATION_STARTING_IN">
+        <div class="d-flex align-center gap16">
+          <div class="tournament-card d-flex align-center gap8 p-1 pr-2">
+            <div class="date-time-box d-flex flex-column wh96">
+              <div
+                class="time-box wp100 h31 d-flex jst-center align-center bg-dark fs14 ft-primary-b grey000"
+                i18n
+              >
+                12:25 PM
+              </div>
+              <div
+                class="date-box wp100 hp100 d-flex flex-column jst-center align-center gap2 bg-blue000"
+              >
+                <div class="month-txt fs12 ft-primary-sb grey500" i18n>Dec</div>
+                <div class="date-txt fs24 ft-primary-b grey900" i18n>23</div>
+              </div>
+            </div>
+            <div class="countdown d-flex flex-column align-start">
+              <div class="countdown-header d-flex align-center">
+                <div class="starting-txt fs16 ft-primary-b primary-light" i18n>
+                  Tournaments Starting In
+                </div>
+              </div>
+              <div class="countdown-body wp100 d-flex jst-space align-center gap6">
+                <div class="timer-counting wp50 d-flex jst-space align-center">
+                  <div class="timer-count-values d-flex flex-column align-start">
+                    <div class="table-title fs20 ft-primary-b primary-light" i18n>02</div>
+                    <div class="normal-title fs10 ft-primary-sb blue000" i18n>Days</div>
+                  </div>
+                  <div class="timer-count-values d-flex flex-column align-start">
+                    <div class="table-title fs20 ft-primary-b primary-light" i18n>04</div>
+                    <div class="normal-title fs10 ft-primary-sb blue000" i18n>Hours</div>
+                  </div>
+                  <div class="timer-count-values d-flex flex-column align-start">
+                    <div class="table-title fs20 ft-primary-b primary-light" i18n>53</div>
+                    <div class="normal-title fs10 ft-primary-sb blue000" i18n>Minutes</div>
+                  </div>
+                </div>
+                <div class="timer-counting-button d-flex jst-end align-center">
+                  <button type="button" mat-button class="btn btn-reminder" i18n>
+                    <span class="bell-ringing-icon"></span> Reminder
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex flex-column gap8">
+            <div class="fs12 ft-primary-b text-uppercase grey400" i18n>
+              Registration Starting In
+            </div>
+            <div class="time-countings fs20 ft-primary-b text-uppercase grey000" i18n>
+              01 <span class="fs16 ft-primary-sb grey400">D :</span> 01
+              <span class="fs16 ft-primary-sb grey400"> H :</span> 23
+              <span class="fs16 ft-primary-sb grey400"> M</span>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <!-- Registering -->
+      <ng-container *ngSwitchCase="TOURNAMENTS_STATUS.REGISTERING">
+        <div class="d-flex align-center gap16">
+          <div class="tournament-card d-flex align-center gap8 p-1 pr-2">
+            <div class="date-time-box d-flex flex-column wh96">
+              <div
+                class="time-box wp100 h31 d-flex jst-center align-center bg-dark fs14 ft-primary-b grey000"
+                i18n
+              >
+                12:25 PM
+              </div>
+              <div
+                class="date-box wp100 hp100 d-flex flex-column jst-center align-center gap2 bg-blue000"
+              >
+                <div class="month-txt fs12 ft-primary-sb grey500" i18n>Dec</div>
+                <div class="date-txt fs24 ft-primary-b grey900" i18n>23</div>
+              </div>
+            </div>
+            <div class="countdown d-flex flex-column align-start">
+              <div class="countdown-header d-flex align-center">
+                <div class="starting-txt fs16 ft-primary-b primary-light" i18n>
+                  Tournaments Starting In
+                </div>
+              </div>
+              <div class="countdown-body wp100 d-flex jst-space align-center gap6">
+                <div class="timer-counting wp50 d-flex jst-space align-center">
+                  <div class="timer-count-values d-flex flex-column align-start">
+                    <div class="table-title fs20 ft-primary-b primary-light" i18n>02</div>
+                    <div class="normal-title fs10 ft-primary-sb blue000" i18n>Days</div>
+                  </div>
+                  <div class="timer-count-values d-flex flex-column align-start">
+                    <div class="table-title fs20 ft-primary-b primary-light" i18n>04</div>
+                    <div class="normal-title fs10 ft-primary-sb blue000" i18n>Hours</div>
+                  </div>
+                  <div class="timer-count-values d-flex flex-column align-start">
+                    <div class="table-title fs20 ft-primary-b primary-light" i18n>53</div>
+                    <div class="normal-title fs10 ft-primary-sb blue000" i18n>Minutes</div>
+                  </div>
+                </div>
+                <div class="timer-counting-button d-flex jst-end align-center">
+                  <button type="button" mat-button class="btn btn-reminder" i18n>
+                    <span class="bell-ringing-icon"></span> Reminder
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button
+            mat-button
+            class="btn btn-primary"
+            (click)="openRegistrationDialog('SUFFICIENT_BALANCE')"
+          >
+            <span class="fs16 ft-primary-b primary-light" i18n>Register</span>
+          </button>
+          <button
+            *ngIf="false"
+            class="btn-unregister border-grad-red-bg-light d-flex jst-center align-center br12 border-1.5 border-solid border-transparent h48 py-3 px-6 cursor trans-03"
+            (click)="openUnRegisterDialog('val')"
+          >
+            <span class="fs16 ft-primary-b grad-red-text" i18n>Register</span>
+          </button>
+        </div>
+      </ng-container>
+
+      <!-- Registering Satellite -->
+      <ng-container *ngSwitchCase="TOURNAMENTS_STATUS.REGISTERING_SATELLITE">
+        <div class="d-flex align-center gap16">
+          <div class="tournament-card d-flex align-center gap8 p-1 pr-2">
+            <div class="date-time-box d-flex flex-column wh96">
+              <div
+                class="time-box wp100 h31 d-flex jst-center align-center bg-dark fs14 ft-primary-b grey000"
+                i18n
+              >
+                12:25 PM
+              </div>
+              <div
+                class="date-box wp100 hp100 d-flex flex-column jst-center align-center gap2 bg-blue000"
+              >
+                <div class="month-txt fs12 ft-primary-sb grey500" i18n>Dec</div>
+                <div class="date-txt fs24 ft-primary-b grey900" i18n>23</div>
+              </div>
+            </div>
+            <div class="countdown d-flex flex-column align-start">
+              <div class="countdown-header d-flex align-center">
+                <div class="starting-txt fs16 ft-primary-b primary-light" i18n>
+                  Tournaments Starting In
+                </div>
+              </div>
+              <div class="countdown-body wp100 d-flex jst-space align-center gap6">
+                <div class="timer-counting wp50 d-flex jst-space align-center">
+                  <div class="timer-count-values d-flex flex-column align-start">
+                    <div class="table-title fs20 ft-primary-b primary-light" i18n>02</div>
+                    <div class="normal-title fs10 ft-primary-sb blue000" i18n>Days</div>
+                  </div>
+                  <div class="timer-count-values d-flex flex-column align-start">
+                    <div class="table-title fs20 ft-primary-b primary-light" i18n>04</div>
+                    <div class="normal-title fs10 ft-primary-sb blue000" i18n>Hours</div>
+                  </div>
+                  <div class="timer-count-values d-flex flex-column align-start">
+                    <div class="table-title fs20 ft-primary-b primary-light" i18n>53</div>
+                    <div class="normal-title fs10 ft-primary-sb blue000" i18n>Minutes</div>
+                  </div>
+                </div>
+                <div class="timer-counting-button d-flex jst-end align-center">
+                  <button type="button" mat-button class="btn btn-reminder" i18n>
+                    <span class="bell-ringing-icon"></span> Reminder
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex flex-column jst-space gap24">
+            <button mat-button class="btn btn-primary">
+              <span class="fs16 ft-primary-b primary-light" i18n>Register</span>
+            </button>
+            <div class="d-flex jst-center align-center cursor">
+              <span class="fs14 ft-primary-b grad-red-text" i18n>View 6 Satellite</span>
+              <img
+                [src]="assetsImagePath + '/tournaments/caret-double-right.svg'"
+                alt="caret-double-right.svg"
+                i18n
+                i18n-alt
+              />
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <!-- Late Registration -->
+      <ng-container *ngSwitchCase="TOURNAMENTS_STATUS.LATE_REGISTRATION">
+        <div class="d-flex align-center gap16">
+          <div class="tournament-card late-reg d-flex align-center gap8 p-1 pr-2">
+            <div class="date-time-box d-flex flex-column wh96">
+              <div
+                class="time-box wp100 h31 d-flex jst-center align-center bg-dark fs14 ft-primary-b grey000"
+                i18n
+              >
+                Running
+              </div>
+              <div
+                class="date-box wp100 hp100 d-flex flex-column jst-center align-center gap2 bg-pink000"
+              >
+                <div class="month-txt fs12 ft-primary-sb grey500" i18n>Dec</div>
+                <div class="date-txt fs24 ft-primary-b grey900" i18n>23</div>
+              </div>
+            </div>
+            <div class="countdown d-flex flex-column align-start">
+              <div class="countdown-header d-flex align-center">
+                <div class="starting-txt fs16 ft-primary-b primary-light" i18n>
+                  Late Registration Ends In
+                </div>
+              </div>
+              <div class="countdown-body wp100 d-flex jst-space align-center gap6">
+                <div class="timer-counting wp50 d-flex jst-space align-center">
+                  <div class="timer-count-values d-flex flex-column align-start">
+                    <div class="table-title fs20 ft-primary-b primary-light" i18n>02</div>
+                    <div class="normal-title fs10 ft-primary-sb blue000" i18n>Days</div>
+                  </div>
+                  <div class="timer-count-values d-flex flex-column align-start">
+                    <div class="table-title fs20 ft-primary-b primary-light" i18n>04</div>
+                    <div class="normal-title fs10 ft-primary-sb blue000" i18n>Hours</div>
+                  </div>
+                  <div class="timer-count-values d-flex flex-column align-start">
+                    <div class="table-title fs20 ft-primary-b primary-light" i18n>53</div>
+                    <div class="normal-title fs10 ft-primary-sb blue000" i18n>Minutes</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button mat-button class="btn btn-primary" *ngIf="true">
+            <span class="fs16 ft-primary-b primary-light" i18n>Late Registration</span>
+          </button>
+        </div>
+      </ng-container>
+
+      <!-- Running & Observe Table -->
+      <ng-container *ngSwitchCase="TOURNAMENTS_STATUS.RUNNING">
+        <div class="d-flex align-center gap16">
+          <div class="tournament-card running d-flex align-center gap8 p-1 pr-2">
+            <div class="date-time-box d-flex flex-column wh96">
+              <div
+                class="time-box wp100 h31 d-flex jst-center align-center bg-dark fs14 ft-primary-b grey000"
+                i18n
+              >
+                Running
+              </div>
+              <div
+                class="date-box wp100 hp100 d-flex flex-column jst-center align-center gap2 bg-sea-green000"
+              >
+                <div class="month-txt fs12 ft-primary-sb grey500" i18n>Dec</div>
+                <div class="date-txt fs24 ft-primary-b grey900" i18n>23</div>
+              </div>
+            </div>
+            <div class="countdown d-flex flex-column align-start">
+              <div class="countdown-header d-flex align-center">
+                <div class="starting-txt fs16 ft-primary-b primary-light" i18n>
+                  Tournaments Running Since
+                </div>
+              </div>
+              <div class="countdown-body wp100 d-flex jst-space align-center gap6">
+                <div class="timer-counting wp50 d-flex jst-space align-center">
+                  <div class="timer-count-values d-flex flex-column align-start">
+                    <div class="table-title fs20 ft-primary-b primary-light" i18n>02</div>
+                    <div class="normal-title fs10 ft-primary-sb blue000" i18n>Days</div>
+                  </div>
+                  <div class="timer-count-values d-flex flex-column align-start">
+                    <div class="table-title fs20 ft-primary-b primary-light" i18n>04</div>
+                    <div class="normal-title fs10 ft-primary-sb blue000" i18n>Hours</div>
+                  </div>
+                  <div class="timer-count-values d-flex flex-column align-start">
+                    <div class="table-title fs20 ft-primary-b primary-light" i18n>53</div>
+                    <div class="normal-title fs10 ft-primary-sb blue000" i18n>Minutes</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button mat-button class="btn btn-primary" *ngIf="true">
+            <span class="fs16 ft-primary-b primary-light" i18n>Join Your Table</span>
+          </button>
+          <button mat-button class="btn btn-dark h48 py-3 px-6" *ngIf="false">
+            <span class="fs16 ft-primary-b primary-light" i18n>Observe Table</span>
+          </button>
+        </div>
+      </ng-container>
+
+      <!-- Joined & Finished -->
+      <ng-container *ngSwitchCase="TOURNAMENTS_STATUS.JOINED_FINISHED">
+        <div class="d-flex jst-end align-center gap16 flex-1">
+          <div class="tournament-card finished d-flex align-center gap8 p-1 pr-2">
+            <div class="date-time-box d-flex flex-column wh96">
+              <div
+                class="time-box wp100 h31 d-flex jst-center align-center bg-dark fs14 ft-primary-b grey000"
+                i18n
+              >
+                Finished
+              </div>
+              <div
+                class="date-box wp100 hp100 d-flex flex-column jst-center align-center gap2 bg-sea-green000"
+              >
+                <div class="month-txt fs12 ft-primary-sb grey500" i18n>Dec</div>
+                <div class="date-txt fs24 ft-primary-b grey900" i18n>23</div>
+              </div>
+            </div>
+            <div class="countdown d-flex flex-column align-start">
+              <div class="countdown-header d-flex align-center">
+                <div class="starting-txt fs16 ft-primary-b primary-light" i18n>
+                  Tournament Finished!
+                </div>
+              </div>
+              <div class="countdown-body wp100 d-flex jst-space align-center gap6">
+                <div class="timer-counting wp50 d-flex jst-space align-center">
+                  <div class="timer-count-values d-flex flex-column align-start">
+                    <div class="table-title fs20 ft-primary-b primary-light" i18n>00</div>
+                    <div class="normal-title fs10 ft-primary-sb blue000" i18n>Hours</div>
+                  </div>
+                  <div class="timer-count-values d-flex flex-column align-start">
+                    <div class="table-title fs20 ft-primary-b primary-light" i18n>00</div>
+                    <div class="normal-title fs10 ft-primary-sb blue000" i18n>Minutes</div>
+                  </div>
+                  <div class="timer-count-values d-flex flex-column align-start">
+                    <div class="table-title fs20 ft-primary-b primary-light" i18n>00</div>
+                    <div class="normal-title fs10 ft-primary-sb blue000" i18n>Seconds</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <!-- Cancelled -->
+      <ng-container *ngSwitchCase="TOURNAMENTS_STATUS.CANCELLED">
+        <div class="d-flex jst-end align-center gap16 flex-1">
+          <div class="tournament-card finished d-flex align-center gap8 p-1 pr-2">
+            <div class="date-time-box d-flex flex-column wh96">
+              <div
+                class="time-box wp100 h31 d-flex jst-center align-center bg-dark fs14 ft-primary-b grey000"
+                i18n
+              >
+                Cancelled
+              </div>
+              <div
+                class="date-box wp100 hp100 d-flex flex-column jst-center align-center gap2 bg-sea-green000"
+              >
+                <div class="month-txt fs12 ft-primary-sb grey500" i18n>Dec</div>
+                <div class="date-txt fs24 ft-primary-b grey900" i18n>23</div>
+              </div>
+            </div>
+            <div class="countdown d-flex flex-column align-start">
+              <div class="countdown-header d-flex align-center">
+                <div class="starting-txt fs16 ft-primary-b primary-light" i18n>
+                  Tournament Cancelled
+                </div>
+              </div>
+              <div class="countdown-body wp100 d-flex jst-space align-center gap6">
+                <div class="timer-counting wp50 d-flex jst-space align-center">
+                  <div class="timer-count-values d-flex flex-column align-start">
+                    <div class="table-title fs20 ft-primary-b primary-light" i18n>00</div>
+                    <div class="normal-title fs10 ft-primary-sb blue000" i18n>Hours</div>
+                  </div>
+                  <div class="timer-count-values d-flex flex-column align-start">
+                    <div class="table-title fs20 ft-primary-b primary-light" i18n>00</div>
+                    <div class="normal-title fs10 ft-primary-sb blue000" i18n>Minutes</div>
+                  </div>
+                  <div class="timer-count-values d-flex flex-column align-start">
+                    <div class="table-title fs20 ft-primary-b primary-light" i18n>00</div>
+                    <div class="normal-title fs10 ft-primary-sb blue000" i18n>Seconds</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+  <div class="tournaments-content d-flex flex-column flex-1 bg-grey200 br-top-32 py-4">
+    <router-outlet></router-outlet>
+    <!-- Previous & Next Button -->
+    <button type="button" mat-button class="prev-btn p-rel wh64 bg-grey300" disabled="true">
+      <span class="prev-arrow p-abs"></span>
+    </button>
+    <button type="button" mat-button class="next-btn p-rel wh64 bg-grey300">
+      <span class="next-arrow p-abs"></span>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+@import "../assets/components/cashier-common";
+@import "../assets/components/buttons";
+@import "../assets/abstract/utilities";
+
+.claim-box {
+    min-width: 160px;
+
+    .claim-time {
+        min-width: 80px;
+    }
+}

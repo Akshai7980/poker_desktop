@@ -1,0 +1,29 @@
+@import '../../../../../assets/abstract/core';
+
+.top-nav-menu {
+  ul {
+    &.nav-menu {
+      li {
+        &.nav-item {
+          max-width: max-content;
+          transition: color, $trans-3s;
+        }
+
+        &:hover,
+        &.nav-active {
+          &.nav-item {
+            background: $bg-dark; // on hover and active state
+
+            a {
+              &.nav-link {
+                .nav-text {
+                  color: $grey100; // on hover and active state
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

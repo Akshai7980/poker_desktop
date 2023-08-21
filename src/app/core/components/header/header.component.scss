@@ -1,0 +1,130 @@
+@import '../../../../assets/abstract/core';
+@import '../../../../assets/components/avatar';
+
+.login-btn {
+  background: $primary-red;
+  color: $bg-light;
+  border-radius: $br6;
+}
+
+.main-header {
+  height: 64px;
+
+  .logo-image {
+    height: 112px;
+    width: 112px;
+  }
+
+  .header-options {
+    .line-vert {
+      width: 1px;
+      height: 32px;
+    }
+
+    .header-options-icon-container {
+      width: 168px;
+      height: 27px;
+
+      .header-option-icons {
+        width: 24px;
+        height: 24px;
+
+        &:hover {
+          filter: invert(41%) sepia(75%) saturate(6207%) hue-rotate(339deg) brightness(89%)
+            contrast(97%);
+        }
+      }
+    }
+
+    .header-options-cash-container {
+      width: 319px;
+      height: 40px;
+
+      .header-option-cash {
+        width: 165px;
+        height: 40px;
+
+        .header-option-cash-eye {
+          padding: 10px 28px 10px 16px;
+          width: 64px;
+          height: 40px;
+          border-top-left-radius: 20px;
+          border-bottom-left-radius: 20px;
+        }
+
+        .header-option-cash-total-icon {
+          padding: 8px 12px 8px 16px;
+          width: 117px;
+          height: 40px;
+          margin: 0 -16px;
+        }
+      }
+
+      .header-option-wallet-cash {
+        width: 106px;
+        height: 40px;
+      }
+
+      .header-option-wallet-info {
+        width: 24px;
+        height: 24px;
+
+        .pi {
+          font-size: $fs20;
+        }
+      }
+    }
+
+    .header-options-user-container {
+      width: 163px;
+      height: 40px;
+
+      .user-profile-details {
+        width: 91px;
+        height: 39px;
+
+        .user-profile-member {
+          width: 91px;
+          height: 16px;
+
+          .user-profile-member-image {
+            width: 16px;
+            height: 16px;
+          }
+        }
+      }
+
+      .user-profile-icon {
+        @include center;
+
+        width: 16px;
+        height: 16px;
+
+        .triangle {
+          border-top: 7px solid transparent;
+          border-left: 7px solid $bg-light;
+          border-bottom: 7px solid transparent;
+          border-radius: 2px;
+        }
+      }
+    }
+  }
+}
+
+// TODO will have to move later to utilities.scss
+
+.border-grey800 {
+  border-color: $grey800;
+}
+
+.grad-green-bg {
+  background: $grad-green;
+}
+
+.ltr-space-02 {
+  letter-spacing: 0.2em;
+}
+
+.text-ellipse {
+  text-overflow: ellipse;
+}

@@ -1,0 +1,153 @@
+<div class="cashier-window-container wp100 p-rel bg-dark">
+  <div class="add-cash-header wp100 d-flex jst-start align-center gap8 p-4">
+    <div class="add-cash-title d-flex jst-start align-center gap8 fs20 ft-primary-b primary-light" i18n>
+      <i class="pi pi-chevron-left fs15 grey000 cursor" (click)="onClickBack()"></i> Deposit Status
+    </div>
+  </div>
+  <div class="status-main-body d-flex flex-column align-center gap32">
+    <div class="status-main-header wp100 d-flex jst-center align-center">
+      <div class="status-header success-transaction d-flex flex-column align-center gap16 p-0" *ngIf="trnxInfo.status == 'approved'">
+        <div class="status-icon d-flex jst-center align-center bg-grey800 p-3 br50">
+          <div class="status-icon-body d-flex jst-center align-center bg-green400 br50">
+            <i class="pi pi-check fs20 grey800"></i>
+          </div>
+        </div>
+        <div class="status-text fs20 ft-primary-b green400 text-capital" i18n>Transaction Successful</div>
+
+
+      </div>
+      <div class="status-header pending-transaction d-flex flex-column align-center gap16 p-0" *ngIf="trnxInfo.status == 'pending'">
+        <div class="status-icon d-flex jst-center align-center bg-grey800 p-3 br50">
+          <div class="status-icon-body d-flex jst-center align-center br50">
+            <div class="status-pending"></div>
+          </div>
+        </div>
+        <div class="status-text-pending fs20 ft-primary-b orange500 text-capital" i18n>Transaction Pending</div>
+
+
+      </div>
+      <div class="status-header fail-transaction d-flex flex-column align-center gap16 p-0" *ngIf="trnxInfo.status == 'error' || trnxInfo.status == 'cancelled'">
+        <div class="status-icon d-flex jst-center align-center bg-grey800 p-3 br50">
+          <div class="status-icon-body d-flex jst-center align-center br50">
+            <div class="status-failed"></div>
+          </div>
+        </div>
+        <div class="status-text-failed fs20 ft-primary-b red400 text-capital" i18n>Transaction Failed</div>
+
+
+      </div>
+    </div>
+    <div class="status-body d-flex flex-column align-center gap16 ovf-y-auto">
+      <div class="status-transaction-details d-flex flex-column align-center gap8 bg-grey800 br16 p-3">
+        <div class="status-transaction-details-content d-flex jst-space align-center">
+          <div class="status-transaction-details-content-title d-flex align-center fs14 ft-primary-b primary-light" i18n>Cash Deposit</div>
+          <div class="status-transaction-details-content-value d-flex align-center gap8 fs16 ft-primary-sb primary-light" [ngClass]="{'success-value':  trnxInfo.status == 'approved'}" i18n *ngIf="trnxInfoAmount">
+            <i class="pi pi-arrow-down-right fs12 primary-light"></i> ₹ {{ trnxInfoAmount.toLocaleString("en-IN", {
+              minimumFractionDigits: 0,
+              maximumFractionDigits: 2
+              })|| 0}}
+          </div>
+        </div>
+        <div class="status-transaction-details-sub-content d-flex jst-space align-center">
+          <div class="status-transaction-details-content-sub-title d-flex align-center fs12 ft-primary-sb grey300" i18n>
+            Credited to Cash Balance
+          </div>
+          <div class="status-transaction-details-content-sub-status fs12 ft-primary-sb green400" i18n *ngIf="trnxInfo.status == 'approved'">
+            Success
+          </div>
+          <div class="status-transaction-details-content-sub-status fs12 ft-primary-sb orange500" i18n *ngIf="trnxInfo.status == 'pending'">
+            Pending
+          </div>
+          <div class="status-transaction-details-content-sub-status fail-value fs12 ft-primary-sb red400 text-capital" i18n
+          *ngIf="trnxInfo.status == 'error' || trnxInfo.status == 'cancelled'">
+            Failed
+          </div>
+        </div>
+      </div>
+      <div class="reference-coupon-contianer d-flex align-center flex-wrap gap8 bg-grey800 br16 p-3">
+        <div class="reference-coupon-content d-flex flex-col gap4">
+          <div class="reference-coupon-content-title d-flex align-center fs10 ft-primary-md grey300 text-uppercase" i18n>Reference ID</div>
+          <div class="reference-coupon-content-value d-flex align-center gap4 fs14 ft-primary-b primary-light text-uppercase">{{trnxRefId!=null ? trnxRefId : '-'}}<span class="copy-img wh16 cursor" i18n (click)="copyToClipboard(trnxRefId)"></span></div>
+        </div>
+        <div class="reference-coupon-content d-flex flex-col gap4">
+          <div class="reference-coupon-content-title d-flex align-center fs10 ft-primary-md grey300 text-uppercase" i18n>Time</div>
+          <div class="reference-coupon-content-value d-flex align-center gap4 fs14 ft-primary-b primary-light" i18n *ngIf="trnxTime">{{trnxTime | date: "dd MMM, ''yy | hh:mm a"}}</div>
+        </div>
+        <div class="reference-coupon-content flex-col gap4">
+          <div class="reference-coupon-content-title d-flex align-center fs10 ft-primary-md grey300 text-uppercase" i18n>Payment Method</div>
+          <div class="reference-coupon-content-value d-flex align-center gap4 fs14 ft-primary-b primary-light text-uppercase" i18n *ngIf="paymentMethod">{{paymentMethod}}</div>
+        </div>
+        <div class="reference-coupon-content flex-col gap4">
+          <div class="reference-coupon-content-title d-flex align-center fs10 ft-primary-md grey300 text-uppercase" i18n>Coupon </div>
+          <div class="reference-coupon-content-value d-flex align-center gap4 fs14 ft-primary-b primary-light text-uppercase" i18n>{{trnxInfo.bonusCode ? trnxInfo.bonusCode :'-'}}</div>
+        </div>
+      </div>
+      <div class="wp100 p-4" *ngIf="trnxInfo.status == 'error' || trnxInfo.status == 'cancelled'">
+        <button matRipple class="btn btn-primary wp100"  (click)="retryPayment()" id="viewstatus-retrypayment-btn" trackEvents>
+          <span class="fs16 ft-primary-b primary-light" i18n>Retry Payment</span>
+          </button>
+      </div>
+
+      <div class="status-benefits-container d-flex flex-column align-start gap16 bg-grey800 br16 mb-1 p-3" *ngIf="trnxInfo.status == 'approved' && additionalMsg.data">
+        <div class="status-benefits-title d-flex align-center fs16 ft-primary-b primary-light" i18n>Coupon Offer Benefits</div>
+        <div class="status-benefits-content d-flex flex-column gap16">
+          <div class="status-context fs14 ft-primary-md gap4 primary-light" *ngFor="let b of additionalMsg.data; let i=index">
+            <span class="status-day fs14 ft-primary-b grad-orange-text" i18n>Day {{ ((+b.day) + index) }}</span>&nbsp;:&nbsp;{{b.msg}}
+          </div>
+        </div>
+      </div>
+      <div class="deposit-offer-benefits d-flex flex-column align-start gap24 bg-grey800 br16 p-3" *ngIf="trnxInfo.status == 'approved' && (!additionalMsg.data && (promoInfo.amount || bonusInfo.boosterBonus)) && bonusInfo.tktInfo">
+        <div class="deposits-offer-title d-flex align-center fs16 ft-primary-b primary-light" i18n>
+          Deposit Offer Benefits
+        </div>
+        <div class="deposit-coupon-benefit d-flex flex-column gap12">
+          <div class="deposit-offer-content d-flex jst-space align-center">
+            <div class="deposit-ticket-coupon d-flex align-center gap4 fs14 ft-primary-sb grey000">
+              <span class="ticket-cash wh24" i18n></span> {{ bonusInfo?.tktInfo?.ticketName }} + <span class="prize-ticket p-rel d-flex jst-center align-center grad-orange-bg fs10 ft-primary-b primary-light" i18n> {{ bonusInfo?.tktInfo?.count }} </span>
+            </div>
+            <div class="deposit-ticket-options d-flex flex-column align-end">
+              <div class="ticket-expires fs10 ft-primary-sb primary-warning" i18n> Expires on</div>
+              <!-- <div class="ticket-expires-date fs10 ft-primary-sb primary-light" i18n> 12th Dec, 22 | 12:55 AM </div> -->
+              <div class="ticket-expires-date fs10 ft-primary-sb primary-light" i18n> {{ bonusInfo?.tktInfo?.expiryDate | date:"d MMM, 'yy | hh:mm a" }} </div>
+            </div>
+          </div>
+          <div class="ticket-coupon d-flex align-center gap4 fs14 ft-primary-b primary-light"> <span class="ib grad-orange-text text-uppercase" i18n>ib</span> {{ bonusInfo?.instantBonus ? (bonusInfo.instantBonus | currencyFormat: false) : '-' }} <span i18n class="deposit-bonus d-flex align-center fs10 ft-primary-sb grey400 text-capital"> Deposit Bonus
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="deposit-benefits-container d-flex flex-column align-start gap24 bg-grey800 br16 p-3" *ngIf="trnxInfo.status == 'approved' && (!additionalMsg.data && (promoInfo.amount || bonusInfo.boosterBonus)) && !bonusInfo.tktInfo">
+        <div class="deposits-benefit-title d-flex align-center fs16 ft-primary-b primary-light" i18n>
+          Deposit Offer Benefits
+        </div>
+        <div class="deposit-benefit-content-body d-flex align-center gap12 flex-wrap">
+          <div class="deposit-benefit-content d-flex flex-column gap4">
+            <div class="benefit-title d-flex align-center fs10 ft-primary-md grey300 text-uppercase" i18n>Instant Bonus</div>
+            <div class="benefit-value d-flex align-center gap4 fs14 ft-primary-md primary-light text-uppercase" i18n> {{ bonusInfo?.instantBonus ? (bonusInfo.instantBonus | currencyFormat: false) : '-' }} </div>
+          </div>
+          <div class="deposit-benefit-content d-flex flex-column gap4">
+            <div class="benefit-title d-flex align-center fs10 ft-primary-md grey300 text-uppercase" i18n>Tourney Bonus</div>
+            <div class="benefit-value d-flex align-center gap4 fs14 ft-primary-md primary-light text-uppercase" i18n> {{ bonusInfo?.tourneyBonus ? (bonusInfo.tourneyBonus | currencyFormat: false) : '-' }} </div>
+          </div>
+          <div class="deposit-benefit-content d-flex flex-column gap4">
+            <div class="benefit-title d-flex align-center fs10 ft-primary-md grey300 text-uppercase" i18n>Booster Bonus</div>
+            <div class="benefit-value d-flex align-center gap4 fs14 ft-primary-md primary-light text-uppercase" i18n> {{ bonusInfo?.boosterBonus ? (bonusInfo.boosterBonus | currencyFormat: false) : '-' }} </div>
+          </div>
+          <div class="deposit-benefit-content d-flex flex-column gap4">
+            <div class="benefit-title d-flex align-center fs10 ft-primary-md grey300 text-uppercase" i18n>GDFTTKT</div>
+            <div class="benefit-value d-flex align-center gap4 fs14 ft-primary-md primary-light text-uppercase" i18n>01</div>
+          </div>
+          <div class="deposit-benefit-content d-flex flex-column gap4">
+            <div class="benefit-title d-flex align-center fs10 ft-primary-md grey300 text-uppercase" i18n>CHIP25TKT</div>
+            <div class="benefit-value d-flex align-center gap4 fs14 ft-primary-md primary-light text-uppercase" i18n>02</div>
+          </div>
+        </div>
+      </div>
+      <div class="wp100 p-4" *ngIf="trnxInfo.status == 'approved' || trnxInfo.status == 'pending'">
+        <button matRipple class="btn btn-primary wp100" (click)="goToLobby()" id="viewstatus-gotolobby-btn" trackEvents>
+          <span class="fs16 ft-primary-b primary-light" i18n>Go to Lobby</span>
+          </button>
+      </div>
+    </div>
+  </div>
+</div>

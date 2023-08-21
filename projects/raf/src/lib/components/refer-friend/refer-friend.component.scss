@@ -1,0 +1,21 @@
+@import "../../../../../../src/assets/abstract/core";
+@import "../../../assets/styles/shared";
+
+.banner-wrap {
+  height: 224px;
+}
+
+.card-information, .card-referral-points {
+  min-height: 244px;
+}
+
+.card-referral-points {
+  .img-placeholder {
+    width: 108px;
+  }
+}
+
+.arrow-right-red {
+  background-image: url('../../../assets/images/arrow-right-red.svg');
+  background-position: top 1px center;
+}

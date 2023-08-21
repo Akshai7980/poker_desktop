@@ -1,0 +1,13 @@
+@import '../../../assets/styles/tables';
+@import '../../../assets/styles/leaderboard';
+
+.table-wrapper::before {
+    content: '';
+    height: 18px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    background-color: $bg-light;
+    z-index: 1;
+}

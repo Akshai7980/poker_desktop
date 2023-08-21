@@ -1,0 +1,17 @@
+<div class="kyc-pending w414 p-rel d-flex flex-col align-center bg-light pt-5">
+    <div class="circle wh72 d-flex jst-center align-center gap8 bg-red000 tsf-center br50 p-6">
+        <img [src]="assetsImagePath + 'cashier/Warning.svg'" alt="warning" i18n i18n-alt />
+    </div>
+    <span class="pending-title fs20 ft-primary-b primary-error my-8" i18n>KYC Pending</span>
+    <div class="time-line d-flex jst-center align-center ml-7 mt-1">
+        <app-timeline [timelineArray]="kycPendingTimeLines" [layout]="layout"
+            [adjacentClass]="'kyc-pending'"></app-timeline>
+    </div>
+    <div class="bottom-box d-flex flex-col jst-center align-center gap16 my-5">
+        <div class="fs14 ft-primary-b grey500" i18n>Read more about our <span class="grad-red-text cursor" (click)="openInNewWindow('withdrawal')">Withdrawal</span> & <span class="grad-red-text cursor"
+                (click)="openInNewWindow('tds')">TDS</span> Policy</div>
+        <button type="button" mat-button matRipple class="btn btn-primary w380 h48" (click)="onClickCompleteKYC()">
+            <span class="fs16 ft-primary-b primary-light" i18n id="kycpending-completedkyc-btn" trackEvents>Complete KYC</span>
+        </button>
+    </div>
+</div>

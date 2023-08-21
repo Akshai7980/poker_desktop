@@ -1,0 +1,55 @@
+@import '../../../../../assets/abstract/core';
+@import '../../../../../assets/theme/components/custom';
+
+.custom-dialog-body {
+  height: calc(100% - 138px);
+}
+
+.filter-item {
+  min-width: 88px;
+
+  &:hover,
+  &.selected {
+    background: $bg-dark;
+    color: $bg-light;
+  }
+
+  &.game-type,
+  &.status-filter,
+  &.format-filter {
+    width: 30%;
+  }
+
+  &.buy-in-filter {
+    &:nth-child(7n + 1),
+    &:nth-child(7n + 2),
+    &:nth-child(7n + 3) {
+      width: 30%;
+    }
+
+    &:nth-child(7n + 4),
+    &:nth-child(7n + 5),
+    &:nth-child(7n + 6),
+    &:nth-child(7n + 7) {
+      width: 48%;
+    }
+  }
+}
+
+.btn-container {
+  .btn {
+    &.btn-primary,
+    &.btn-primary-outline {
+      &:focus-visible {
+        border: transparent;
+      }
+    }
+  }
+
+  &.tournament-btn-container {
+    box-shadow: 0 -4px 8px rgba(0 0 0 / 10%);
+    position: fixed;
+    bottom: 0;
+    right: 0;
+  }
+}

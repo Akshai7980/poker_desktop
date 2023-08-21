@@ -1,0 +1,303 @@
+@use 'sass:color';
+
+// common classes are not applicable for buttons as it's been overridden by default "mat-button" css
+// This is why we need to include css properties here
+
+// Buttons
+.pd-btn,
+.pd-btn.mat-flat-button {
+  min-height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: $font-bold;
+  font-size: $fs16;
+  line-height: 1.25;
+  border: 1.5px solid transparent;
+  border-radius: $br12;
+  transition: $trans-15s;
+}
+
+// common classes are not applicable for buttons as it's been overridden by default "mat-button" css
+// This is why we need to include css properties here
+.pd-btn-outline-primary,
+.pd-btn-outline-primary.mat-flat-button {
+  @include btn-outline-variant(
+    $bg-light,
+    $primary-red,
+    $primary-red,
+    $primary-red,
+    $bg-light,
+    $primary-red
+  );
+}
+
+// common classes are not applicable for buttons as it's been overridden by default "mat-button" css
+// This is why we need to include css properties here
+.pd-btn-link {
+  display: inline-flex;
+  align-items: end;
+  background: transparent;
+  color: $primary-red;
+  border: 0 none;
+  padding: 0;
+  cursor: pointer;
+  transition: $trans-15s;
+
+  &:hover,
+  &:focus {
+    color: color.adjust($primary-red, $blackness: 15%);
+  }
+}
+
+// Tabs
+.pd-tabs {
+  .pd-tablink {
+    transition: $trans-15s;
+
+    &:hover,
+    &:focus,
+    &.active,
+    &:active {
+      background-color: $bg-dark;
+      color: $bg-light;
+      border-color: $grey500;
+    }
+  }
+}
+
+// Placeholder
+.pd-placeholder {
+  img {
+    width: 64px;
+  }
+
+  .pd-placeholder-status {
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 24px;
+  }
+}
+
+// Bullet Placeholder
+%bullet {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: $grey900;
+  border-radius: $br4;
+  top: 6px;
+  left: -20px;
+}
+
+// Bullet List Item
+.pd-bullet-list-item {
+  &::after {
+    @extend %bullet;
+  }
+}
+
+// When API response of bulleted list has html structure in it.
+.pd-bullet-list-content {
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: $gap16;
+  }
+
+  li {
+    position: relative;
+    font-family: $font-medium;
+    font-size: $fs14;
+    color: $grey900;
+
+    &::after {
+      @extend %bullet;
+    }
+  }
+}
+
+// common classes are not applicable for panel as it's been overridden by default "p-panel" css
+// This is why we need to include css properties here
+
+// Accordion Panel
+.pd-accordion-panel {
+  &.p-panel-toggleable.p-panel-expanded .p-toggleable-content:not(.ng-animating) {
+    overflow: hidden;
+  }
+
+  &.p-panel.p-panel-toggleable .p-panel-header {
+    padding: 12px;
+  }
+
+  &.p-panel-expanded {
+    .p-panel-header {
+      border-radius: $br12 $br12 0 0;
+      transition: border-radius 0.15ms ease;
+    }
+  }
+
+  .p-panel-header {
+    background-color: $bg-light;
+    gap: $gap12;
+    font-family: $font-bold;
+    font-size: $fs16;
+    line-height: 1.5;
+    border-color: $grey100;
+    border-radius: $br12;
+    transition: border-radius 0.15ms ease;
+    transition-delay: 0.3s;
+
+    .p-panel-header-icon {
+      background-color: $grey100;
+      border-radius: $br8;
+
+      &:focus {
+        box-shadow: none;
+      }
+    }
+
+    .pi {
+      font-size: $fs12;
+    }
+  }
+
+  .p-panel-content {
+    background-color: $grey000;
+    border-color: $grey100;
+    padding: 0;
+    border-radius: 0 0 $br12 $br12;
+  }
+
+  .pd-accordion {
+    gap: $gap8;
+
+    .p-accordion-tab {
+      margin-bottom: 0;
+    }
+
+    &.p-accordion .p-accordion-header .p-accordion-header-link {
+      background-color: transparent !important;
+    }
+  }
+}
+
+// common classes are not applicable for accordion as it's been overridden by default "p-accordion" css
+// This is why we need to include css properties here
+
+// Accordion
+.pd-accordion {
+  padding: 16px 0;
+
+  .p-accordion-header .p-accordion-header-link {
+    padding: 8px 16px;
+
+    .p-accordion-toggle-icon {
+      margin-right: 20px;
+    }
+  }
+
+  .p-accordion-content {
+    background-color: $grey000;
+    font-family: $font-medium;
+    font-size: $fs12;
+    line-height: 1.25;
+    color: $grey800;
+    padding: 4px 16px 4px 52px;
+    border: 0 none;
+
+    p {
+      margin: 0;
+    }
+  }
+}
+
+.pd-accordion.faq-accordion {
+  gap: 0;
+
+  .p-accordion-header .p-accordion-header-link {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: $grey700;
+    border: 0 none;
+  }
+
+  .p-accordion-content {
+    font-size: 0.875rem;
+  }
+}
+
+// Separator
+.pd-separator {
+  border-width: 0 0 2px;
+  margin: 0 auto 24px;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    background-color: $grey200;
+    top: 4px;
+    transform: rotate(-45deg);
+  }
+
+  &::before {
+    left: 0;
+  }
+
+  &::after {
+    right: 0;
+  }
+}
+
+// Bullet List
+.pd-bullet-list {
+  .pd-bullet-list-item {
+    &::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background-color: $grey900;
+      border-radius: $br3;
+      top: 8px;
+      left: -16px;
+    }
+  }
+}
+
+// common classes are not applicable for checkbox as it's been overridden by default "mat-checkbox" css
+// This is why we need to include css properties here
+
+.pd-checkbox.mat-checkbox {
+  display: flex;
+}
+
+// Table
+.pd-table {
+  border-collapse: collapse;
+}
+
+.pd-table-bordered {
+  tr {
+    border-top: 1px solid $grey200;
+    border-bottom: 1px solid $grey200;
+  }
+
+  th,
+  td {
+    padding: 4px 8px;
+    border-right: 1px solid $grey200;
+    border-left: 1px solid $grey200;
+  }
+}
+
+// Confetti Animation
+.confetti-animation {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

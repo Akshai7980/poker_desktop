@@ -1,0 +1,67 @@
+<div class="d-flex flex-1 gap16 ovf-y-auto">
+  <!-- SELF EXCLUSION FORM -->
+  <div class="flex-1 ovf-y-auto">
+    <div class="d-flex flex-column max-h-100 bg-light p-4 br16 ovf-y-auto">
+      <form [formGroup]="selfExclusionForm" class="d-flex flex-column flex-1 gap16 ovf-y-auto">
+        <div class="d-flex flex-column flex-1 bg-grey000 border-1 border-solid border-grey200 br8 ovf-y-auto">
+          <div class="d-flex flex-column flex-1 p-4 ovf-y-auto">
+            <p class="ft-primary-md fs14 lh-base grey900 mt-0 mb-6" i18n>
+              Set custom
+              <span class="ft-primary-b">Self-Exclusion limit</span> to block yourself from playing any game on
+              Adda52 Poker. Once set, the App will restrict you from playing any Poker variant across the App, in
+              addition,
+              no cash deposits will be allowed during the period of time selected by you
+            </p>
+            <p class="ft-primary-md fs14 lh-base grey900 mt-0 mb-6" i18n>You will however be allowed to log in the App,
+              make withdrawals requests as
+              applicable.
+            </p>
+            <div class="d-flex flex-column gap4 mb-3">
+              <label class="ft-primary-b fs14 lh-normal grey900" i18n>Select Self-Exclusion Period</label>
+              <p-dropdown [options]="periodList" [(ngModel)]="selectedPeriod" formControlName="periods"
+                scrollHeight="550" styleClass="period-dropdown br12" placeholder="Select" appendTo="body"
+                name="blinds"></p-dropdown>
+            </div>
+            <p class="ft-primary-md fs14 lh-base grey900 mt-0 mb-6" i18n>If you are pre-registered for any SnG or Cash
+              tournaments, you will be
+              unregistered from the same and the amount will be credited back to your Deposit wallet.
+            </p>
+            <p class="ft-primary-md fs14 lh-base grey900 mt-0 mb-6" i18n>Running Cash games, SNG tournaments that you
+              are registered for/playing
+              remain
+              unaffected by these set limits.
+            </p>
+            <p class="ft-primary-md fs14 lh-base grey900 m-0" i18n>
+              <span class="ft-primary-b">Note:</span> Once the time period is set, you cannot change it back
+              during
+              that window.
+            </p>
+          </div>
+        </div>
+        <div class="d-flex jst-end">
+          <button type="button" mat-button class="btn btn-primary btn-lg"
+            [disabled]="!selfExclusionForm.valid || (period === selectedPeriod)" (click)="onSubmit()"
+            id="resp-game-selfExclusion-submit-btn" trackEvents i18n>
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- SELF EXCLUSION FORM -->
+
+  <!-- RHS BANNER IMAGES -->
+  <div class="pd-card-advertise max-h-100 d-flex flex-column align-self-start bg-light br16 ovf-y-auto">
+    <div class="d-flex flex-column flex-1 gap16 p-4 ovf-y-auto">
+      <img class="img-ad wp100 br8" *ngFor="let rim of rhsImages"
+        [src]="assetsImagePath+'responsible-gaming/'+rim.imgSrc" alt="advertise" i18n i18n-alt />
+    </div>
+  </div>
+  <!-- RHS BANNER IMAGES -->
+</div>
+
+<!-- TOAST COMPONENT -->
+<div class="text-center" *ngIf="isShowToast">
+  <app-toast [toastValue]="toastValue" [(isShowToast)]="isShowToast"></app-toast>
+</div>
+<!-- TOAST COMPONENT -->

@@ -1,0 +1,31 @@
+@import '../../../../../assets/abstract/core';
+@import '../../../../../assets/components/cashier-common';
+@import '../../../../../assets/theme/components/custom';
+
+.confirmation-dialog {
+  width: 430px;
+  height: 319px;
+}
+
+.confirmation-dialog-footer {
+  height: 48px;
+}
+
+.balance-box {
+  height: 85px;
+}
+
+.btn-primary {
+  width: 183px;
+  height: 48px;
+
+  &.success {
+    background: $primary-success;
+    color: $bg-light;
+    width: 90px;
+  }
+}
+
+.btn.btn-primary {
+  width: 183px !important;
+}

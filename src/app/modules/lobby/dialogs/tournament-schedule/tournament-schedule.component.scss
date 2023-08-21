@@ -1,0 +1,86 @@
+@import '../../../../../assets/abstract/core';
+@import '../../../../../assets/theme/components/custom';
+
+.schedule-footer {
+  width: 750px;
+  height: 33px;
+  position: fixed;
+  bottom: 0;
+}
+
+table {
+  &.table {
+    thead {
+      position: sticky;
+      top: 0;
+
+      tr {
+        th {
+          &:nth-child(6n + 1) {
+            width: 90px;
+          }
+
+          &:nth-child(6n + 2) {
+            width: 110px;
+          }
+
+          &:nth-child(6n + 3) {
+            width: 200px;
+          }
+
+          &:nth-child(6n + 4) {
+            width: 100px;
+          }
+
+          &:nth-child(6n + 5) {
+            width: 100px;
+          }
+
+          &:nth-child(6n + 6) {
+            width: 98px;
+          }
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        &.selected-row {
+          background: $orange000;
+        }
+
+        td {
+          &:nth-child(6n + 1) {
+            width: 90px;
+          }
+
+          &:nth-child(6n + 2) {
+            width: 110px;
+          }
+
+          &:nth-child(6n + 3) {
+            width: 200px;
+          }
+
+          &:nth-child(6n + 4) {
+            width: 100px;
+          }
+
+          &:nth-child(6n + 5) {
+            width: 100px;
+          }
+
+          &:nth-child(6n + 6) {
+            width: 98px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.custom-dialog-body {
+  &.table-height {
+    height: calc(100vh - 92px);
+  }
+}

@@ -1,0 +1,26 @@
+@import "../../../assets/components/cashier-common";
+@import "../../../assets/components/buttons";
+@import '../../../assets/abstract/utilities';
+
+.withdraw-box {
+  .box-top {
+    &.second {
+      border-top: 0.5px solid $grey700;
+    }
+  }
+
+  .box-bottom {
+    border-top: 1px solid $grey100;
+  }
+}
+
+// Properties are not overridden by common classes as it's deriving from PrimeNG Components
+.g-form-group {
+  i.custom-right-icon {
+    &.valid-icon {
+      color: $primary-error;
+    }
+  }
+}
+
+

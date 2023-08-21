@@ -1,0 +1,72 @@
+<div class="profile p-rel d-flex flex-column flex-1 ovf-hide">
+  <div class="header d-flex jst-space align-center bg-light p-4 shadow">
+    <div class="header-title d-flex align-center gap8 fs20 ft-primary-b grey900" i18n>
+      Profile
+    </div>
+    <div class="header-options d-flex jst-end align-center p-rel wh24 cursor" (click)="closeDialog()">
+      <div class="icons-24 close-icon top-right wh24"></div>
+    </div>
+  </div>
+
+  <div class="profile-body d-flex flex-column align-center gap16 flex-1 p-4 bg-trans ovf-y-scroll">
+    <div class="user-profile-container d-flex jst-center align-center gap8 py-4">
+
+      <div class="user-profile d-flex flex-column align-center gap20">
+        <div class="profile-pic p-rel wh80 border-2 border-solid border-primary-red br16 shadow-n2"
+          (click)="openDialog(avatarSelection)">
+          <div class="profile-avatar" [ngClass]="selectedAvatar">
+          </div>
+          <div class="icon-container wh24 d-flex bg-light shadow br50 p-abs p-1 cursor">
+            <div class="icons-16 edit-pencil wh16"></div>
+          </div>
+        </div>
+        <div class="username-container d-flex jst-center align-center gap4">
+          <span id="username" class="d-flex align-center fs16 ft-primary-b grey800" i18n>{{userName}}</span>
+          <div class="icon-container wh24 d-flex gap8 bg-light shadow br50 p-1 cursor" *ngIf="isUsernameEditable"
+            (click)="openDialog(editUserName)">
+            <div class="icons-16 edit-pencil wh16"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ng-container *ngIf="isPersonalDetailsAlreadyUpdated else personalDetails">
+      <div class="wp100 d-flex jst-space align-center bg-grey100 br12 p-2" *ngFor="let pf of profiles">
+        <div class="d-flex align-center gap10">
+          <img [src]="assetsImagePath + '' + pf.icon + '.svg'" alt="profile" i18n i18n-alt />
+          <span class="fs14 ft-primary-b grey800" i18n>{{ pf.title }}</span>
+        </div>
+        <button class="wh32 d-flex jst-center align-center bg-light br8 border-0 cursor p-2"
+          (click)="openComponentDialog(pf)">
+          <div class="icons-16 chevron-right-grey wh16"></div>
+        </button>
+      </div>
+    </ng-container>
+    <ng-template #personalDetails>
+      <div class="profile-progress-container d-flex flex-column jst-center align-center gap16 bg-purple000 p-4 br12">
+        <div class="progress-box wp100 d-flex flex-column gap16 bg-light br8 p-4">
+          <div class="progress-info wp100 d-flex jst-space fs14 ft-primary-b">
+            <span class="current-progress grey900" i18n>Step {{ selectedProgress.stepValue }}/3</span>
+            <span class="next-progress grey600" i18n>Next : <b class="grey900">{{ selectedProgress.nextState
+                }}</b></span>
+          </div>
+          <p-progressBar [value]="selectedProgress.stepperValue" [showValue]="false"
+            styleClass='profile-progressbar'></p-progressBar>
+        </div>
+        <span class='progress-desc d-flex align-center fs14 ft-primary-md grey800' i18n>Complete personal verification
+          and add money in your account to start
+          playing!</span>
+        <button class="btn btn-primary h40" (click)='onClickComplete(selectedProgress.stepValue)'>
+          <span class="fs14 ft-primary-b primary-light" i18n>Complete Profile</span>
+        </button>
+      </div>
+    </ng-template>
+
+
+    <div *ngIf="isShowToast">
+      <app-toast [toastValue]="toastValue" [(isShowToast)]="isShowToast"></app-toast>
+    </div>
+  </div>
+
+
+</div>

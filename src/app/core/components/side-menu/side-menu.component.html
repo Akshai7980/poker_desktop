@@ -1,0 +1,59 @@
+<div class="side-menu">
+  <div class="menu-top">
+    <div *ngFor="let sideMenu of sideMenus" class="menu">
+      <a
+        [ngClass]="{ active: currentRoute.indexOf(sideMenu.route) > 0 }"
+        class="menu-link"
+        (click)="open(sideMenu.route)"
+      >
+        <div class="menu-icon">
+          <div class="menu-icon-img">
+            <img
+              [src]="assetsImagePath + 'menu/' + sideMenu.menuIcon"
+              [alt]="sideMenu.menuTitle"
+              i18n
+              i18n-alt
+            />
+          </div>
+          <div class="menu-icon-hover">
+            <img
+              [src]="assetsImagePath + 'menu/' + sideMenu.menuIconFill"
+              [alt]="sideMenu.menuTitle"
+              i18n
+              i18n-alt
+            />
+          </div>
+        </div>
+        <div class="menu-title" i18n>{{ sideMenu.menuTitle }}</div>
+      </a>
+    </div>
+    <div (click)="showMoreOrLessToggle()" class="menu" @enterAnimation>
+      <a class="menu-link" *ngIf="isShowMoreClicked; else isShowMoreClickedElseBlock">
+        <img class="menu-icon" [src]="assetsImagePath + 'menu/CaretUp.svg'" alt="iew Less" />
+        <span class="menu-title" i18n>View Less</span>
+      </a>
+      <ng-template #isShowMoreClickedElseBlock>
+        <a class="menu-link">
+          <img
+            class="menu-icon"
+            [src]="assetsImagePath + 'menu/View.svg'"
+            alt="Show More"
+            i18n
+            i18n-alt
+          />
+          <span class="menu-title" i18n>Show More</span>
+        </a>
+      </ng-template>
+    </div>
+  </div>
+  <div class="menu-bottom">
+    <div *ngIf="!!userLoggedIn" class="logout-box" (click)="logout()">
+      <img [src]="assetsImagePath + 'menu/power.svg'" alt="" i18n i18n-alt />
+      <span i18n>Log out</span>
+    </div>
+    <div class="timer-box">
+      <img [src]="assetsImagePath + 'common/Clock.svg'" alt="" i18n i18n-alt />
+      <span i18n>{{ displayTime }}</span>
+    </div>
+  </div>
+</div>

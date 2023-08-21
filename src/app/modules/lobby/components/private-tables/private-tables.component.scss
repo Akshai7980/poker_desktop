@@ -1,0 +1,49 @@
+@import '../../../../../assets/abstract/core';
+@import '../../../../../assets/theme/components/tables';
+
+.menubar {
+  box-shadow: 0 2px 16px rgba(0 0 0 / 4%);
+  min-height: 62px;
+}
+
+.custom-input-btn-box {
+  input[type='text'] {
+    width: calc(100% - 73px);
+    border-top-left-radius: $br8;
+    border-bottom-left-radius: $br8;
+
+    &::placeholder {
+      color: $grey400;
+    }
+
+    &:focus,
+    &:focus-visible {
+      outline: 0;
+      border: 0;
+    }
+  }
+
+  &.invalid {
+    input {
+      &.btn-join {
+        border-color: $primary-error;
+      }
+    }
+
+    .btn {
+      &.btn-join {
+        border-color: $primary-error;
+      }
+    }
+  }
+}
+
+.empty {
+  height: calc(100vh - 260px);
+}
+
+.table-container {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  height: calc(100vh - 258px) !important;
+}

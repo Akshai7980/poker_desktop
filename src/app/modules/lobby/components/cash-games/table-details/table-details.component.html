@@ -1,0 +1,346 @@
+<div
+  class="table-details-container p-rel d-flex flex-col gap16 wp100 hp100 bg-light pt-4 px-2 pb-0 br-top-16"
+  *ngIf="showList && selectedTable"
+>
+  <div class="table-details-main-header d-flex jst-space align-center wp100 h24">
+    <div class="side-icon p-rel wh24 cursor" (click)="goToPreviousTable()">
+      <img class="p-abs wp100 hp100 obj-con" [src]="assetsImagePath + 'lobby/caret-left.svg'" />
+    </div>
+    <div
+      class="header-text d-flex jst-center align-center h24 fs20 ft-primary-b grey900 text-nowrap"
+      i18n
+    >
+      Table ID - {{ selectedTable.roomNameByPlayOptions }}
+    </div>
+    <div class="side-icon p-rel wh24 cursor" (click)="goToNextTable()">
+      <img class="p-abs wp100 hp100 obj-con" [src]="assetsImagePath + 'lobby/caret-right.svg'" />
+    </div>
+  </div>
+  <div class="table-details-header d-flex jst-space align-center py-2 px-0 gap10 wp100 h36">
+    <div
+      class="table-details-title d-flex align-center w93 h19 fs16 ft-primary-sb grey900 text-nowrap"
+      i18n
+    >
+      Table Details
+    </div>
+    <div class="table-details-options">
+      <div class="switch-toggle d-flex align-center w80 h38">
+        <div
+          class="switch-toggle-icons w40 h38 p-rel d-flex jst-center align-center py-3 px-2 gap4 border-1 border-solid border-grey200 cursor trans-03"
+          [ngClass]="{ 'switch-active': !showTableView }"
+          (click)="toggleView()"
+        >
+          <div class="list-icon wh24"></div>
+        </div>
+        <div
+          class="switch-toggle-icons w40 h38 p-rel d-flex jst-center align-center py-3 px-2 gap4 border-1 border-solid border-grey200 cursor trans-03"
+          [ngClass]="{ 'switch-active': showTableView }"
+          (click)="toggleView()"
+        >
+          <div class="table-icon wh24"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="user-stack-detail-container d-flex flex-col align-start gap8 wp100"
+    *ngIf="!showTableView"
+  >
+    <div class="user-stack-header d-flex jst-space align-center p-2 wp100 h30 bg-grey100 br8">
+      <div
+        class="user-stack-header-text d-flex jst-end align-end w63 h14 fs12 ft-primary-b grey700 text-uppercase text-nowrap"
+        i18n
+      >
+        User Name
+      </div>
+      <div
+        class="user-stack-header-text d-flex jst-end align-end w63 h14 fs12 ft-primary-b grey700 text-uppercase text-nowrap"
+        i18n
+      >
+        Stacks
+      </div>
+    </div>
+    <div
+      class="user-stack-body h216 d-flex flex-col align-start wp100 bg-light border-1 border-solid border-grey200 br8"
+    >
+      <div
+        class="user-stack-body-context d-flex jst-space align-center p-2 wp100 h36"
+        *ngFor="let player of selectedTable.players"
+      >
+        <div
+          class="user-stack-content-title d-flex jst-start align-start gap4 h20 fs14 ft-primary-b grey900"
+          i18n
+        >
+          {{ player.name }}
+          <span
+            class="player-status d-flex jst-center align-center fs12 ft-primary-b grad-pink-bg circle light wh20 lh-base ml-1"
+          >
+            {{ player.isBB ? 'BB' : player.isDealer ? 'D' : player.isSB ? 'SB' : '' }}
+          </span>
+        </div>
+        <div class="user-stack-content-value d-flex jst-end align-center gap4 h17">
+          <div class="value-icon p-rel w12 h9 ovf-hide">
+            <img
+              class="p-abs wp100 hp100 obj-con"
+              alt="value-icon"
+              [src]="assetsImagePath + 'lobby/large_stack.svg'"
+              i18n
+              i18n-alt
+            />
+          </div>
+          <div class="fs14 ft-primary-b grey900">
+            {{ player.playerGameChips | number : '1.0-2' }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="user-stack-footer wp100 h49 pt-4 pr-1 pb-4 pl-2 bg-light border-0.5 border-solid border-grey300 br8"
+    >
+      <div class="user-stack-context d-flex jst-space align-center h17 gap20">
+        <div
+          class="user-stack-context-title d-flex jst-start align-center fs12 ft-primary-b grey500 text-uppercase"
+          i18n
+        >
+          Average Stack
+        </div>
+        <div
+          class="user-stack-context-value d-flex align-center h17 gap4 fs14 ft-primary-b grey900"
+        >
+          <div class="value-icon p-rel ovf-hide">
+            <img
+              class="p-abs wp100 hp100 obj-con"
+              alt="value-icon"
+              [src]="assetsImagePath + 'lobby/large_stack.svg'"
+              i18n
+              i18n-alt
+            />
+          </div>
+          {{ selectedTable.avgStack }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wp100" *ngIf="showTableView">
+    <div class="poker-table-container p-rel ovf-hide wp100">
+      <img
+        class="p-abs wp100 hp100 obj-cov"
+        [src]="assetsImagePath + 'lobby/poker-table-bg.svg'"
+        alt="poker-table-bg"
+        i18n
+        i18n-alt
+      />
+      <div class="poker-table p-rel ovf-hide wp100">
+        <img
+          class="p-abs wp100 hp100 obj-cov"
+          [src]="assetsImagePath + 'lobby/poker-table.svg'"
+          alt="poker-table"
+          i18n
+          i18n-alt
+        />
+        <div class="poker-table-widget p-abs d-flex flex-col align-center w118 h144">
+          <div class="average-stack-container d-flex flex-col jst-end align-center gap10 w136 h22">
+            <div
+              class="average-stack-count d-flex align-center py-1 px-2 gap4 bg-grey900 br20 w136 h22"
+            >
+              <div class="average-stack-title fs10 ft-primary-b grey400 w67" i18n>
+                Average Stack
+              </div>
+              <div class="average-stack-value d-flex jst-end align-center gap4 w42 h14">
+                <div class="poker-chip p-rel wh14 ovf-hide">
+                  <img
+                    class="p-abs wp100 hp100 obj-con"
+                    [src]="assetsImagePath + 'lobby/pokerChip.svg'"
+                    alt="chips"
+                    i18n-alt
+                  />
+                </div>
+                <div class="average-stack-count-value fs10 ft-prmary-b light w17">
+                  {{ selectedTable.avgStack }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="logo-placeholder-container d-flex flex-col align-center gap8 wp100 h42">
+            <div class="logo-placeholder-body d-flex flex-col align-center gap8 wp100">
+              <div class="logo-placeholder p-rel wp100 h24 ovf-hide">
+                <img
+                  class="p-abs wp100 hp100 obj-cov"
+                  [src]="assetsImagePath + 'lobby/logo-placeholder.svg'"
+                  alt="logo"
+                  i18n
+                  i18n-alt
+                />
+              </div>
+              <div class="logo-placeholder-text fs12 ft-primary-b green900 text-center" i18n>
+                Holdem - 100/200
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="poker-players">
+        <div
+          *ngFor="let player of selectedTable.players; let i = index"
+          [attr.data-index]="i"
+          class="player-seating p-abs d-flex flex-col jst-center align-center pt-4 w65 h43 player{{
+            i + 1
+          }}"
+        >
+          <div class="player-image p-abs wh42 z-1">
+            <div class="user-avatar avatar-radius" [ngClass]="player.avatar"></div>
+          </div>
+          <div class="floating-name p-abs w16 h11 z-1">
+            <div
+              class="floating-name-body top-left d-flex jst-center align-center w16 h11 light grad-pink-bg br20 fs8 ft-primary-sb"
+              i18n
+            >
+              {{ player.isSB ? 'SB' : player.isBB ? 'BB' : 'D' }}
+            </div>
+          </div>
+          <div class="floating-d p-abs z-1">
+            <div
+              class="floating-name-d bottom-left d-flex jst-center align-center wh12 light bg-dark br50 fs8 ft-primary-b"
+            >
+              D
+            </div>
+          </div>
+          <div class="player-cards p-abs d-flex align-center wh21 z-2">
+            <div class="cards w16 h21 grad-red-bg border-1 border-solid border-white br2"></div>
+            <div class="cards w16 h21 grad-red-bg border-1 border-solid border-white br2"></div>
+          </div>
+          <div class="player-details top-left d-flex flex-col align-center w65 h40">
+            <div
+              class="player-details-body d-flex flex-col align-center w65 h40 bg-dark br10 pt-2 px-3 pb-2 gap4"
+            >
+              <div class="player-title h13 fs10 ft-primary-b grey000" i18n>
+                {{ player.name }}
+              </div>
+              <div class="total-money h13 fs10 ft-primay-b grad-orange-text">
+                {{ player.playerGameChips | number : '1.0-2' }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- If a player opens table details but has not joined the game, and if there is space on the table for the player to sit, then give buttons: “Join” and “Seat Me”. -->
+
+  <div
+    class="table-details-footer d-flex jst-center align-center p-2 gap8 bg-light"
+    *ngIf="!showTableView && selectedTable.roomVacantInfo === 'true'"
+    &&
+    !selectedTable.isPlayerJoined
+  >
+    <button
+      type="button"
+      mat-button
+      trackEvents
+      id="lobby-cash-tableDetails-join-btn"
+      class="btn btn-primary-outline w171"
+      i18n
+    >
+      Join
+    </button>
+    <button
+      type="button"
+      mat-button
+      trackEvents
+      id="lobby-cash-tableDetails-seatme-btn"
+      class="btn btn-primary w171 h-40"
+      i18n
+    >
+      Seat Me
+    </button>
+  </div>
+
+  <!-- If the table is full, then give “Watch, Join Wait list” buttons. -->
+
+  <div
+    class="table-details-footer d-flex jst-center align-center p-2 gap8 bg-light"
+    *ngIf="
+      !showTableView && selectedTable.roomVacantInfo === 'false' && !selectedTable.isPlayerJoined
+    "
+  >
+    <button
+      type="button"
+      mat-button
+      trackEvents
+      id="lobby-cash-tableDetails-watch-btn"
+      class="btn btn-primary-outline w171"
+      i18n
+      (click)="joinTable()"
+    >
+      Watch
+    </button>
+    <button
+      type="button"
+      mat-button
+      trackEvents
+      id="lobby-cash-tableDetails-watchlist-btn"
+      class="btn btn-primary w171 h40"
+      i18n
+    >
+      Wait List
+      {{ selectedTable.waitListCount !== '0' ? '(' + selectedTable.waitListCount + ')' : '' }}
+    </button>
+  </div>
+
+  <!-- If he has taken a seat or is actively playing on it, show the “Playing” button. -->
+
+  <div class="table-details-footer d-flex jst-center align-center p-2 gap8 bg-light" *ngIf="false">
+    <button
+      type="button"
+      mat-button
+      trackEvents
+      id="lobby-cash-tableDetails-playing-btn"
+      class="btn btn-primary w171 h-40"
+      i18n
+    >
+      Playing
+    </button>
+  </div>
+
+  <!-- On clicking the Join button, launch game table in new window. If user opts to sit on an empty seat, then the buy-in form will open up. -->
+
+  <div
+    class="table-details-footer d-flex jst-center align-center p-2 gap8 bg-light"
+    *ngIf="!showTableView && selectedTable.isPlayerJoined"
+  >
+    <button
+      type="button"
+      mat-button
+      trackEvents
+      id="lobby-cash-tableDetails-joined-btn"
+      class="btn btn-primary w171 h-40"
+      i18n
+    >
+      Joined
+    </button>
+  </div>
+</div>
+
+<!-- When No Table is Selected Below will be shown -->
+
+<div
+  class="table-details-container empty p-rel d-flex jst-center align-center gap16 wp100 hp100 bg-light pt-4 px-2 pb-0"
+  *ngIf="!showList || !selectedTable"
+>
+  <div class="d-flex flex-col align-center gap12">
+    <div class="user-image p-rel wh108 ovf-hide">
+      <img
+        class="p-abs wp100 hp100 pbj-con"
+        alt="UserBig"
+        [src]="assetsImagePath + 'lobby/UserBig.png'"
+        alt="UserBig"
+        i18n
+        i18n-alt
+      />
+    </div>
+    <span class="fs14 ft-m grey500" i18n>Select a table to view players</span>
+  </div>
+</div>

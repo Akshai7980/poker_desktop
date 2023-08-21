@@ -1,0 +1,51 @@
+<div class="avatar-user-selection-container d-flex flex-col align-start gap20">
+  <div class="avatar-user-title d-flex align-start ft-primary-b fs20 grey900" i18n>
+    Choose Avatar
+  </div>
+  <div
+    class="avatar-selection-container d-flex flex-col jst-center align-center wp100"
+    [ngClass]="from"
+  >
+    <div class="avatar-selection-body d-flex flex-col align-center gap10">
+      <div
+        class="avatar-image-container d-flex flex-col jst-center align-center gap8 bg-pink000 wp100 h132 br24 py-8"
+      >
+        <div class="avatar-image-widget p-rel d-flex jst-center align-center gap12 wp100">
+          <div class="images-widget d-flex jst-center align-center gap12 wp100 ovf-x-clip">
+            <div
+              class="avatar-image"
+              [ngClass]="getImage(firstLeftImage)"
+              (click)="selectAvatar(firstLeftImage)"
+            ></div>
+            <div
+              class="avatar-image"
+              [ngClass]="getImage(secondLeftImage)"
+              (click)="selectAvatar(secondLeftImage)"
+            ></div>
+            <div class="avatar-image" [ngClass]="getImage(currentIndex)"></div>
+            <div
+              class="avatar-image"
+              [ngClass]="getImage(firstRightImage)"
+              (click)="selectAvatar(firstRightImage)"
+            ></div>
+            <div
+              class="avatar-image"
+              [ngClass]="getImage(secondRightImage)"
+              (click)="selectAvatar(secondRightImage)"
+            ></div>
+          </div>
+          <div class="avatar-prev-button d-flex jst-end align-center gap10 p-abs z-2">
+            <button type="button" mat-button class="btn btn-primary-xs" (click)="previous()">
+              <div class="icons-20 chevron-left-white wh20"></div>
+            </button>
+          </div>
+          <div class="avatar-next-button d-flex jst-start align-center gap10 p-abs z-2">
+            <button type="button" mat-button class="btn btn-primary-xs" (click)="next()">
+              <div class="icons-20 chevron-right-white wh20"></div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

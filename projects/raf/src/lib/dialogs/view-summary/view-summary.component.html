@@ -1,0 +1,208 @@
+<div class="d-flex flex-column hp100 ovf-hide">
+    <div class="d-flex jst-space align-center bg-light p-4 shadow">
+        <span class="fs20 ft-primary-b grey900" i18n>View Summary</span>
+        <div class="d-flex jst-end align-center">
+            <div class="d-flex jst-center align-center w24 h24 bg-trans br50 cursor trans-03-in"
+                (click)="onClose()">
+                <span class="img-icon x-icon wh24"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex flex-1 ovf-y-auto">
+
+        <div class="w414 hp100 d-flex flex-column flex-1 gap12 px-4 py-3 ovf-y-auto">
+
+            <div class="d-flex jst-end align-center gap8">
+                <div class="fs14 ft-primary-b grey800" i18n>{{valueFilter}}</div>
+                <div class="w1 h16 bg-grey600"></div>
+                <button type="button" (click)="toggleFilterScreen('filter')" class="wh24 bg-trans border-0 cursor p-0">
+                    <img [src]="assetsImagePath + 'raf/funnel1.svg'" alt="Filter" i18n i18n-alt />
+                </button>
+            </div>
+
+            <div class="d-flex flex-column">
+                <p-panel [toggleable]="true" expandIcon="pi pi-chevron-down" collapseIcon="pi pi-chevron-up"
+                    styleClass="cashier-tnc-panel" transitionOptions="60ms cubic-bezier(.17,.67,.83,.67)"
+                    [collapsed]="false">
+                    <ng-template pTemplate="header">
+                        <div class="d-flex jst-space align-center flex-1">
+                            <div class="d-flex align-center gap4 text-capital" i18n>
+                                Added to your wallet 
+                                    <span class="img-icon info-grey cursor" (click)="openEarningSummary('earning-summary')"></span>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="content">
+                        <div class="d-flex flex-column gap16">
+                            <div class="d-flex">
+                                <div *ngIf="creditedToWallet?.real && creditedToWallet.real !== 0" class="d-flex flex-1 align-center gap8">
+                                    <span class="img-icon cash-icon wh20"></span>
+                                    <span class="fs14 ft-primary-b grey800" i18n>{{creditedToWallet.real | currencyFormat: true}}</span>
+                                </div>
+                                <div *ngIf="creditedToWallet?.ticket && creditedToWallet.ticket !== 0" class="d-flex flex-1 align-center gap8">
+                                    <span class="img-icon ticket-icon wh20"></span>
+                                    <span class="fs14 ft-primary-b grey800" i18n>{{creditedToWallet.ticket}} Tickets</span>
+                                </div>
+                            </div>
+                            <div class="d-flex">
+                                <div *ngIf="creditedToWallet?.ib !== 0 || creditedToWallet?.bb !== 0 || creditedToWallet?.tb !== 0" class="d-flex flex-1 align-center gap8">
+                                    <span class="img-icon circle-wavy-icon wh20"></span>
+                                    <span class="fs14 ft-primary-b grey800" i18n>{{(creditedToWallet.ib || 0) + (creditedToWallet.bb || 0) + (creditedToWallet.tb || 0) | currencyFormat: false}} Bonus</span>
+                                </div>
+                                <div class="d-flex flex-1 align-center gap8">
+                                    <span class="img-icon gift-icon wh20"></span>
+                                    <span class="fs14 ft-primary-b grey800" i18n>Others</span>
+                                    <span class="img-icon info-grey cursor" (click)="openOtherPrizes('other-prizes')"></span>    
+                                </div>
+                            </div>
+                            <div class="d-flex">
+                                <div *ngIf="creditedToWallet?.crown && creditedToWallet.crown !== 0" class="d-flex flex-1 align-center gap8">
+                                    <span class="img-icon crown-icon wh20"></span>
+                                    <span class="fs14 ft-primary-b grey800" i18n>{{creditedToWallet.crown}} Crowns</span>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </p-panel>
+            </div>
+
+            <div class="d-flex flex-column">
+                <p-panel [toggleable]="true" expandIcon="pi pi-chevron-down" collapseIcon="pi pi-chevron-up"
+                    styleClass="cashier-tnc-panel" transitionOptions="60ms cubic-bezier(.17,.67,.83,.67)"
+                    [collapsed]="true">
+                    <ng-template pTemplate="header">
+                        <div class="d-flex jst-space align-center flex-1">
+                            <div class="d-flex align-center gap4 text-capital" i18n>
+                                Lifetime Earnings <span class="img-icon info-grey cursor" (click)="openEarningSummary('earning-summary')"></span>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="content">
+                        <div class="d-flex flex-column gap16">
+                            <div class="d-flex">
+                                <div *ngIf="lifetimeEarnings?.real && lifetimeEarnings.real !== 0" class="d-flex flex-1 align-center gap8">
+                                    <span class="img-icon cash-icon wh20"></span>
+                                    <span class="fs14 ft-primary-b grey800" i18n>{{lifetimeEarnings.real | currencyFormat: true}}</span>
+                                </div>
+                                <div *ngIf="lifetimeEarnings?.ticket && lifetimeEarnings.ticket !== 0" class="d-flex flex-1 align-center gap8">
+                                    <span class="img-icon ticket-icon wh20"></span>
+                                    <span class="fs14 ft-primary-b grey800" i18n>{{lifetimeEarnings.ticket}} Tickets</span>
+                                </div>
+                            </div>
+                            <div class="d-flex">
+                                <div *ngIf="lifetimeEarnings?.ib !== 0 || lifetimeEarnings?.bb !== 0 || lifetimeEarnings?.tb !== 0" class="d-flex flex-1 align-center gap8">
+                                    <span class="img-icon circle-wavy-icon wh20"></span>
+                                    <span class="fs14 ft-primary-b grey800" i18n>{{(lifetimeEarnings.ib || 0) + (lifetimeEarnings.bb || 0) + (lifetimeEarnings.tb || 0)}} Bonus</span>
+                                </div>
+                                <div class="d-flex flex-1 align-center gap8">
+                                    <span class="img-icon gift-icon wh20"></span>
+                                    <span class="fs14 ft-primary-b grey800" i18n>Others</span>
+                                    <span class="img-icon info-grey cursor" (click)="openOtherPrizes('other-prizes')"></span>
+                                </div>
+                            </div>
+                            <div class="d-flex">
+                                <div *ngIf="lifetimeEarnings?.crown && lifetimeEarnings.crown !== 0" class="d-flex flex-1 align-center gap8">
+                                    <span class="img-icon crown-icon wh20"></span>
+                                    <span class="fs14 ft-primary-b grey800" i18n>{{lifetimeEarnings.crown}} Crowns</span>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </p-panel>
+            </div>
+
+            <div class="d-flex flex-column">
+                <p-panel [toggleable]="true" expandIcon="pi pi-chevron-down" collapseIcon="pi pi-chevron-up"
+                    styleClass="cashier-tnc-panel" transitionOptions="60ms cubic-bezier(.17,.67,.83,.67)"
+                    [collapsed]="true">
+                    <ng-template pTemplate="header">
+                        <div class="d-flex jst-space align-center flex-1">
+                            <div class="d-flex align-center gap4 text-capital" i18n>
+                                Unclaimed Payout <span class="img-icon info-grey cursor" (click)="openEarningSummary('earning-summary')"></span>
+                            </div>
+                            <div class="text-uppercase mr-2" i18n>{{unclaimedPayout | number: '1.0-0'}} PGP</div>
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="content">
+                        <div class="d-flex flex-column gap12">
+                            <div class="d-flex jst-space py-2 payout-item border-solid border-grey300" *ngFor="let claim of unclaimedList">
+                                <div class="d-flex flex-column gap4">
+                                    <div class="fs14 ft-primary-b grey900" i18n>{{claim.campaignName}}</div>
+                                    <div class="fs10 ft-primary-sb grey500" i18n>Minimum <span class="ft-primary-b">{{claim.minPgp}}
+                                            PGP</span> required to claim payout.</div>
+                                </div>
+                                <div class="d-flex flex-column align-end gap4">
+                                    <div class="fs10 ft-primary-b grey500 text-uppercase" i18n>EARNED</div>
+                                    <div class="fs14 ft-primary-b grey900 text-uppercase" i18n>{{claim.pgpEarned | number: '1.0-0'}} PGP</div>
+                                </div>
+                            </div>
+                            <button type="button" class="pd-btn pd-btn-outline-primary cursor"
+                                (click)="onClickClaimPayout('unclaimed-payout')" i18n>Claim Now</button>
+                        </div>
+                    </ng-template>
+                </p-panel>
+            </div>
+
+            <div class="d-flex flex-column gap12 mt-3">
+                <div class="fs16 ft-primary-b grey800" i18n>Payout Statement</div>
+                <table class="d-flex flex-column gap8" aria-describedby="payout">
+                    <thead class="d-flex align-center flex-1">
+                        <tr class="d-flex align-center flex-1 gap8 bg-grey100 py-2 px-3 br8">
+                            <th class="d-flex align-center wp30 fs12 ft-primary-b grey600 text-uppercase" i18n>date</th>
+                            <th class="d-flex align-center flex-1 fs12 ft-primary-b grey600 text-uppercase" i18n>referral
+                                payout</th>
+                        </tr>
+                    </thead>
+                    <tbody class="d-flex flex-column gap8">
+                        <tr class="d-flex jst-start align-center flex-1 gap8 bg-grey000 py-2 px-3 br8"
+                            *ngFor="let payoutStmtData of dateWiseHistory">
+                            <td class="d-flex align-center wp30 fs14 ft-primary-b grey900" i18n>{{payoutStmtData.date | date: "dd MMM, ''yy"}}
+                            </td>
+                            <td  class="d-flex align-center gap4 flex-1 flex-wrap fs14 ft-primary-b grey900">
+                                <ng-container *ngFor="let chip of payoutStmtData.chipTypeAmount; let ind = index;">
+
+                                <div *ngIf="chip.chiptype === 'REAL'" i18n>{{chip.amount | currencyFormat: true}}</div>
+                                <div *ngIf="chip.chiptype === 'IB' || chip.chiptype === 'BB' || 
+                                chip.chiptype === 'TB'" class="d-flex align-center gap4" i18n>
+                                    {{chip.chiptype}}
+                                    {{chip.amount | currencyFormat: false}}
+                                    <span *ngIf="ind !== payoutStmtData.chipTypeAmount.length-1">+</span>
+                                </div>
+                                <div *ngIf="chip.chiptype === 'VOUCHER'" class="d-flex align-center gap4" i18n>
+                                    {{chip.chiptype}}
+                                    {{chip.amount}}
+                                    <span *ngIf="ind !== payoutStmtData.chipTypeAmount.length-1">+</span>
+                                </div>
+                                <div class="d-flex align-center gap4" *ngIf="chip.chiptype === 'CROWN'">
+                                    <span class="img-icon crown-icon wh20"></span>
+                                    <div i18n>{{chip.amount}}</div>
+                                    <span *ngIf="ind !== payoutStmtData.chipTypeAmount.length-1">+</span>
+                                </div>
+                                <div class="d-flex align-center gap4" *ngIf="chip.chiptype === 'TICKET'">
+                                    <div class="ticket-chip img-icon p-rel wh20"><span
+                                        class="ticket-chip-number tsf-center fs10 ft-primary-b grey000">{{chip.amount}}</span>
+                                        <span *ngIf="ind !== payoutStmtData.chipTypeAmount.length-1">+</span>
+                                    </div>
+                                    <div i18n>Tickets</div>
+                                    <span class="img-icon info-grey cursor"></span>
+                                </div>
+                                
+                            </ng-container>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div *ngIf="isDualScreen" class="w414 hp100 ovf-y-auto">
+            <ng-container [ngSwitch]="activeDualScreenComponent">
+                <app-filters *ngSwitchCase="'filter'" (value)="value($event)" (fromDate)="fromDate($event)" (toDate)="toDate($event)" (isDualScreen)="dualScreen($event)"></app-filters>
+                <app-unclaimed-payout *ngSwitchCase="'unclaimed-payout'" [unclaimedList]="unclaimedList"></app-unclaimed-payout>
+                <app-earning-summary *ngSwitchCase="'earning-summary'"></app-earning-summary>
+                <app-other-prizes *ngSwitchCase="'other-prizes'" [creditedToWallet]="creditedToWallet"></app-other-prizes>
+            </ng-container>
+        </div>
+    </div>
+</div>

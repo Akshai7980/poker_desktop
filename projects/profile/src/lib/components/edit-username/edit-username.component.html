@@ -1,0 +1,100 @@
+<div class="username-edit-container p-rel hp100 d-flex flex-column align-center ovf-hide">
+  <div class="profile-header d-flex jst-space align-center bg-light p-4 shadow">
+    <div class="profile-header-title-icon d-flex align-center gap8" i18n>
+      <div class="back-icon p-rel wh24 br8 cursor" (click)="goBackToProfile()">
+        <div class="icons-24 chevron-left wh24"></div>
+      </div>
+      <div class="profile-header-title fs20 ft-primary-b grey900">Edit Username</div>
+    </div>
+    <div class="profile-header-options wh24 p-rel cursor" (click)="onClose()">
+      <div class="icons-24 close-icon wh24"></div>
+    </div>
+  </div>
+
+  <div class="wp100 d-flex flex-column align-center gap32 ovf-y-scroll">
+
+    <div class="user-profile-container d-flex jst-center align-center gap8 mt-7">
+      <div class="user-profile d-flex flex-column align-center gap20">
+        <div class="profile-pic p-rel wh80 border-2 border-solid border-primary-red br16 shadow-n2">
+          <div class="profile-avatar" [ngClass]="selectedAvatar">
+          </div>
+          <div class="icon-container wh24 d-flex gap8 bg-light shadow br50 p-abs p-1 cursor">
+            <div class="icons-16 edit-pencil wh16"></div>
+          </div>
+        </div>
+        <div class="username-container d-flex jst-center align-center gap4">
+          <span id="username" class="d-flex align-center fs16 ft-primary-b grey800" i18n>{{this.username.value}}</span>
+        </div>
+      </div>
+    </div>
+
+    <form class="p-rel wp100 px-4" [formGroup]="editUsernameForm">
+      <div class="form-input wp100 d-flex flex-column gap4 border-0 mb-6 p-0">
+        <div class="label-container wp100 d-flex jst-space align-center gap10">
+          <label class="d-flex align-center fs14 ft-primary-b grey900" i18n>Current Username</label>
+          <span class="edit-info d-flex align-center fs12 ft-primary-md grey500" i18n>Editable only once till 3 months
+            from sign up</span>
+        </div>
+        <input type="text" autocompleteOff placeholder="Enter Current Username" formControlName="currentUsername"
+          readonly
+          class="read-only wp100 h48 d-flex align-center gap8 bg-light br12 p-3 border-1.5 border-solid border-grey300 fs16 ft-primary-b grey400"
+          i18n-placeholder />
+      </div>
+      <div class="form-input wp100 d-flex flex-column gap4 border-0 p-0">
+        <div class="label-container wp100 d-flex jst-space align-center gap10">
+          <label class="d-flex align-center fs14 ft-primary-b grey900" i18n>New Username</label>
+        </div>
+        <input type="text" placeholder="Enter New Username" formControlName="newUsername"
+          class="new-username wp100 h48 d-flex align-center gap8 bg-light br12 p-3 border-1.5 border-solid border-grey300 fs16 ft-primary-b grey700"
+          (ngModelChange)="validateUserName($event)" (input)="validateUserNameInput($event)" maxlength="20"
+          [ngClass]="{'input-error':isUserNameExists}" autocompleteOff i18n-placeholder alphanumericOnly />
+        <span class="error-txt fs12 ft-primary-sb primary-error" *ngIf="!isAlreadyTakenUsername" i18n>The username is
+          already taken. Try following:</span>
+      </div>
+      <div class="mt-1" *ngIf="isUserNameExists">
+        <div class="suggestion-text fs12 ft-primary-sb primary-error" i18n>The username is
+          already taken. Try following:</div>
+        <div class="suggestion-chip-container d-flex flex-wrap my-3"
+          *ngIf="isUserNameExists || currentSuggestedUsername">
+          <div class="suggestion-chip d-flex flex-column jst-center align-center bg-grey100 br16 py-2 px-7 cursor"
+            *ngFor="let suggestedUserName of suggestedUserNames" (click)="changeUserName(suggestedUserName)"
+            [ngClass]="{'user-active':currentSuggestedUsername==suggestedUserName}">
+            <span class="suggestion-chip-text fs12 ft-primary-b primary-dark" i18n>{{suggestedUserName}}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="matchingpass-container d-flex flex-column gap12 mt-4">
+        <div class="matchingpass-container-title fs12 ft-primary-sb grey900" i18n>
+          Username should contain:
+        </div>
+
+        <div class="wp100 d-flex align-center gap8">
+          <div class="d-flex align-center gap4">
+            <div class="img-check-mark wh16" [ngClass]="{'img-active': alphabetPattern}"></div>
+            <div class="fs12 ft-primary-sb grey500" i18n>Atleast 1 alphabet</div>
+          </div>
+          <div class="d-flex align-center gap4">
+            <div class="img-check-mark wh16" [ngClass]="{'img-active': minMaxCharPatter}"></div>
+            <div class="fs12 ft-primary-sb grey500" i18n>3-20 Character max</div>
+          </div>
+        </div>
+        <div class="wp100 d-flex align-center gap8">
+          <div class="d-flex align-center gap4">
+            <div class="img-check-mark wh16" [ngClass]="{'img-active': noSpecialCharPattern}"></div>
+            <div class="fs12 ft-primary-sb grey500" i18n>No special character</div>
+          </div>
+        </div>
+      </div>
+      <div class="wp100 my-7">
+        <button type="button" mat-button class="btn btn-primary wp100" [disabled]="disableSubmitBtn"
+          (click)="submitUserName()">
+          <div class="fs16 ft-primary-b primary-light" i18n>Submit</div>
+        </button>
+      </div>
+      <div *ngIf="isShowToast">
+        <app-toast [toastValue]="toastValue" [(isShowToast)]="isShowToast"></app-toast>
+      </div>
+    </form>
+  </div>
+</div>

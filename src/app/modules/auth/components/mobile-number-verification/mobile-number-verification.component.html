@@ -1,0 +1,88 @@
+<div class="main-contain flex-row">
+  <app-side-banner></app-side-banner>
+  <div class="rhs flex-col-start p-rel br-right-16 w400 h520 gap16 bg-light p-4">
+    <div class="close-icon-img p-rel d-flex jst-end align-center wp100">
+      <div class="icons-24 close-icon-bg p-rel wh24 cursor trans-03" (click)="onClose()">
+        <span class="top-right opacity-0 trans-03"></span>
+      </div>
+    </div>
+    <div class="login-rhs-container flex-col-start gap24 wp100 hp100">
+      <div class="login-rhs-header flex-col-start gap24 wp100">
+        <div
+          class="login-rhs-header-title flex-row fs20 grey800 gap10 ft-primary-b text-capital"
+          i18n
+        >
+          Verification
+        </div>
+      </div>
+      <div class="mob-confirmation-text flex-space wp100">
+        <div class="fs14 ft-primary-md grey900" i18n>
+          {{ data.mobileno.slice(0, 20) }}
+          <span class="ft-primary-b">{{ data.mobileno.slice(21) }}</span>
+        </div>
+        <div
+          class="mob-confirmation-text fs14 ft-primary-b grad-red-text cursor"
+          (click)="onChange()"
+          i18n
+        >
+          Change
+        </div>
+      </div>
+
+      <div class="otp-container-timer flex-col-start gap16 wp100">
+        <div class="otp-container wp100">
+          <app-otp-input
+            (data)="onOtpChange($event)"
+            [isErrorFlag]="isErrorFlag"
+            [isResetOtpForm]="isResetOtpForm"
+          ></app-otp-input>
+        </div>
+        <div class="otp-timer flex-row gap4 wp100" *ngIf="min && sec">
+          <div class="timer-img-container p-rel wh20">
+            <div class="icons-20 clock wh20"></div>
+          </div>
+          <div class="time w40 fs16 ft-primary-b grey900">{{ min }}:{{ sec }}</div>
+          <div
+            class="ft-primary-b fs14 cursor"
+            [ngClass]="
+              isdisabledResend || isMultiAttemptMessageShow ? ' grey400 ptr-evts ' : 'primary-red'
+            "
+            (click)="clickResendOtp()"
+            i18n
+          >
+            Resend OTP
+          </div>
+        </div>
+      </div>
+
+      <div
+        *ngIf="isMultiAttemptMessageShow"
+        class="error-message-multi fs12 ft-primary-sb primary-error"
+        i18n
+      >
+        {{ otpData?.message }}
+      </div>
+
+      <div class="btn-container">
+        <button
+          type="button"
+          mat-button
+          (click)="login('welcome')"
+          class="btn btn-primary"
+          [disabled]="!showOtpButton"
+          id="mobilenumberverification-continue-btn"
+          trackEvents
+          i18n
+        >
+          <span *ngIf="isShowLoader">
+            <mat-spinner [diameter]="18" class="light"></mat-spinner
+          ></span>
+          <span *ngIf="!isShowLoader">Continue</span>
+        </button>
+      </div>
+    </div>
+    <div *ngIf="isShowToast">
+      <app-toast [toastValue]="toastValue" [(isShowToast)]="isShowToast"></app-toast>
+    </div>
+  </div>
+</div>

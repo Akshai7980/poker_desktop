@@ -1,0 +1,76 @@
+<div class="lobby-sub-header-section d-flex flex-col align-start gap10">
+  <div class="lobby-sub-header d-flex flex-col align-start wp100">
+    <app-filter-section
+      [(showFavorites)]="showFavorites"
+      (ringVariant)="ringVariantDetect($event)"
+      (showFavoritesChange)="isFavListOpened($event)"
+    ></app-filter-section>
+  </div>
+
+  <!-- Show Empty Tables -->
+
+  <div
+    class="section-1 empty d-flex jst-center align-center p-2 gap10 wp100 bg-light br16"
+    *ngIf="isTablesNotAvailable"
+  >
+    <div
+      class="favourite-empty d-flex flex-col align-center gap16"
+      *ngIf="showFavorites && (!isShowEmptyFaviouriteTable || isTablesNotAvailable)"
+    >
+      <img alt="NoTable" [src]="assetsImagePath + 'lobby/NoTable.png'" i18n i18n-alt />
+      <div class="text-container d-flex flex-col align-center gap6">
+        <div class="fs16 ft-b grey600" i18n>No Favourite Tables Available</div>
+        <div class="ft-m fs14 grey500" i18n *ngIf="isFiltersApplied">
+          Please change your filter settings to see the tables.
+        </div>
+      </div>
+    </div>
+    <div
+      class="ring-table-empty d-flex flex-col align-center gap16"
+      *ngIf="!showFavorites && (!showTableView || isTablesNotAvailable)"
+    >
+      <img alt="NoTable" [src]="assetsImagePath + 'lobby/NoTable.png'" i18n i18n-alt />
+      <div class="text-container d-flex flex-col align-center gap6">
+        <div class="ft-b fs16 grey600" i18n>No Tables Available</div>
+        <div class="ft-m fs14 grey500" i18n *ngIf="isFiltersApplied">
+          Please change your filter settings to see the tables.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Show Tables -->
+
+  <div
+    class="wp100"
+    [hidden]="
+      (!showTableView && showFavorites && isTablesNotAvailable) ||
+      (!showFavorites && !isShowEmptyFaviouriteTable && isTablesNotAvailable)
+    "
+  >
+    <div class="section-1 d-flex align-start p-2 gap10 wp100 bg-light br16">
+      <div class="section1-lhs">
+        <app-game-list
+          [cashGamesList]="cashGamesListCopy.allTables ? cashGamesListCopy.allTables : []"
+          [isRecommendedAvailable]="isRecommendedAvailable"
+          [isFavoriteSelected]="showFavorites"
+          (selectedGameDetails)="showSelectedTableInfo($event)"
+          [rRingVariant]="rRingVariant"
+          (isFaviouriteListEmpty)="showEmptyFavouriteTable($event)"
+        ></app-game-list>
+      </div>
+      <div
+        class="section1-rhs"
+        *ngIf="
+          (showTableView && !showFavorites && !isTablesNotAvailable) ||
+          (showFavorites && isShowEmptyFaviouriteTable && !isTablesNotAvailable)
+        "
+      >
+        <app-avg-stack-table
+          [tableRingList]="tableRingList"
+          [selectedGame]="selectedGame"
+        ></app-avg-stack-table>
+      </div>
+    </div>
+  </div>
+</div>

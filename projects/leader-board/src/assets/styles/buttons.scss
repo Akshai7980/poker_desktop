@@ -1,0 +1,32 @@
+@import '../abstract/core';
+
+.btn {
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  text-transform: $text-capitalize;
+  border: 1px solid transparent;
+  font-size: $fs12;
+  font-family: $font-regular;
+  line-height: 1.5;
+  border-radius: 4px;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  cursor: pointer;
+
+  &.btn-primary-join {
+    @include center;
+
+    background: $grad-red;
+    border-radius: $br12;
+    font-size: $fs16;
+    font-family: $font-bold;
+    line-height: 24px;
+    padding: 10px 24px;
+    color: $bg-light;
+    width: 89px;
+    height: 40px;
+  }
+}

@@ -1,0 +1,197 @@
+@use 'sass:math';
+@import "../abstract/variables";
+
+
+
+@mixin circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: $br50;
+}
+
+@mixin radcircle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: $br50;
+}
+
+@mixin center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin space {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin around {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+@mixin start {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+@mixin end {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+@mixin row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+@mixin row-start {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+@mixin row-end {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+@mixin only-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@mixin column-start {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+@mixin column-jst-start {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+@mixin column-end {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+// For Triangles
+
+@mixin triangle($size, $color, $direction) {
+  height: 0;
+  width: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: math.div($size, 2);
+
+  @if $direction == up 
+  {
+    border-bottom-color: $color;
+  } @else if $direction == right 
+  {
+    border-left-color: $color;
+  } @else if $direction == down 
+  {
+    border-top-color: $color;
+  } @else if $direction == left 
+  {
+    border-right-color: $color;
+  } @else {
+    @error "Unknown direction #{$direction}.";
+  }
+}
+
+// Media Queries
+
+// Media Queries
+
+@mixin device($size) {
+  @if $size == smg {   // For Device Specific configuration
+    @media (min-width: 800px) and (max-width: 899px) {
+      @content;
+    }
+  }
+
+  // For Device Desktop
+  @else if $size == md {
+    @media (min-width: 900px) {
+      @content;
+    }
+  }
+
+  // For Device Medium Desktop
+  @else if $size == lg {
+    @media (min-width: 1200px) and (max-width: 1349px) {
+      @content;
+    }
+  }
+
+  // For Device Specific Current Resolution - 1366px
+  @else if $size == dlg {
+    @media (min-width: 1366px) and (max-width: 1450px) {
+      @content;
+    }
+  }
+
+  // For Device Specific Current Resolution - 1500px
+  @else if $size == dxl {
+    @media (min-width: 1500px) and (max-width: 1699px) {
+      @content;
+    }
+  }
+
+  // For Device Specific Current Resolution - 1700px
+  @else if $size == dxxl {
+    @media (min-width: 1700px) and (max-width: 1799px) {
+      @content;
+    }
+  }
+
+  // For Device Specific Current Resolution - 1800px
+  @else if $size == dxlg {
+    @media (min-width: 1800px) and (max-width: 1999px) {
+      @content;
+    }
+  }
+
+  // For Device Specific Current Resolution - 2000px
+  @else if $size == dxxlg {
+    @media (min-width: 2000px) and (max-width: 2199px) {
+      @content;
+    }
+  }
+
+  // For Device Large Screens
+  @else if $size == xl {
+    @media (min-width: 1800px) {
+      @content;
+    }
+  }
+
+  // For Device Extra Large Screens
+  @else if $size == xxl {
+    @media (min-width: 2000px) {
+      @content;
+    }
+  }
+}

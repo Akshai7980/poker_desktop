@@ -1,0 +1,38 @@
+@import '../../../../../assets/abstract/core';
+@import '../../styles/shared';
+
+.table-container {
+  table.app-table {
+    .app-table-head {
+      tr {
+        th {
+          &:nth-child(1) {
+            width: 24%;
+          }
+
+          &:last-child {
+            width: 76%;
+          }
+        }
+      }
+    }
+
+    .app-table-body {
+      tr {
+        td {
+          &:nth-child(1) {
+            width: 24%;
+          }
+
+          &:last-child {
+            width: 76%;
+          }
+        }
+      }
+    }
+  }
+}
+
+.search-icon {
+  top: 0.6rem;
+}

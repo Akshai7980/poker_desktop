@@ -1,0 +1,24 @@
+<div class="document-verification w414 hp100 p-rel d-flex flex-column gap16 px-4 pt-4">
+  <div class="i-text d-flex align-center gap4" i18n>
+    <div class="icons-16 info-outline wh16"></div>
+    <div class="text fs12 ft-primary-md grey600"> All completed steps are auto-saved</div>
+  </div>
+  <div class="tab-container wp100 d-flex bg-light br16">
+    <div class="tab d-flex jst-center align-center gap8 flex-1 p-3 trans-01 cursor" *ngFor="let tab of tabs; let i = index"
+      [ngClass]="selectedTabIndex === i ? 'active' : (tab.verified ? 'verified' : '') " (click)="onSelectedTab(i)">
+      <span class="tab-text fs14 ft-primary-md grey400" i18n>{{ tab.label }}</span>
+    </div>
+  </div>
+
+  <ng-container *ngIf="selectedTabIndex === 0">
+    <app-pan (clickNext)="onClickNext($event, 'pan')"></app-pan>
+  </ng-container>
+
+  <ng-container *ngIf="selectedTabIndex === 1">
+    <app-kyc (clickNext)="onClickNext($event, 'kyc')"></app-kyc>
+  </ng-container>
+
+  <ng-container *ngIf="selectedTabIndex === 2">
+    <app-selfie (isComplected)="nextClicked()" [matStepperRef]="matStepperRef"></app-selfie>
+  </ng-container>
+</div>

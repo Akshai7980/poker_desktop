@@ -1,0 +1,40 @@
+@import '../../../../../assets/abstract/core';
+@import '../../../../../assets/components/cashier-common';
+@import '../../../../../assets/theme/components/custom';
+
+.tab-container {
+  ul {
+    li {
+      &.tab-ui {
+        min-width: 96px;
+        max-width: max-content;
+        transition: background-color, color, $trans-3s;
+
+        &:hover,
+        &.tab-active {
+          background: $grey900;
+
+          a {
+            &.text-tab {
+              color: $bg-light;
+              text-decoration: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.strike-out {
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}
+
+.offer-footer {
+  border-top: 1px solid $grey100;
+}
+
+.empty-ticket-offer-box {
+  height: calc(100vh - 120px);
+}

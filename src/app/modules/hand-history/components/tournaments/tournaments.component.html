@@ -1,0 +1,291 @@
+<ng-template #showRecordPageElseBlock>
+  <div
+    class="hh-placeholder-container d-flex flex-column align-center jst-center flex-1 bg-light gap8 p-5 border-0.5 border-solid border-grey300 br16"
+  >
+    <div class="pd-placeholder wh112 d-flex jst-center align-center bg-grey300 p-4 br50 mb-1">
+      <img
+        class="br8"
+        [src]="assetsImagePath + 'hand-history/smiley-sad.png'"
+        alt="Smiley Sad"
+        i18n
+        i18n-alt
+      />
+    </div>
+    <p class="hh-placeholder-text ft-md fs14 grey500 text-center mb-3" i18n>
+      No hand history found. Play now to see hands.
+    </p>
+    <button
+      mat-flat-button
+      class="hh-placeholder-button"
+      i18n
+      trackEvents
+      id="tournaments-playnow-btn"
+    >
+      Play Now
+    </button>
+  </div>
+</ng-template>
+<div
+  *ngIf="showEmptyScreen; else showRecordPageElseBlock"
+  class="hh-form-container d-flex align-start gap16 ovf-y-auto"
+>
+  <form [formGroup]="cashGamesForm" class="hh-form d-flex flex-column ovf-y-auto">
+    <div
+      class="card-selection d-flex flex-column flex-1 bg-light border-1 border-solid border-grey300 br16 ovf-y-auto"
+    >
+      <div class="card-body d-flex flex-column flex-1 p-4 gap16 ovf-y-auto">
+        <div
+          class="card-selection-item d-flex flex-column bg-grey000 p-4 gap16 border-1 border-solid border-grey100 br12"
+        >
+          <div class="p-field-radiobutton d-flex align-center gap16">
+            <p-radioButton
+              value="1"
+              formControlName="quickReport"
+              ngDefaultControl
+              (onClick)="onSelectRadio($event, '1')"
+              [(ngModel)]="selectedRadioIndex"
+              inputId="radio1"
+            ></p-radioButton>
+            <label for="radio1" class="input-label ft-primary-b fs14 lh-normal cursor" i18n
+              >Quick report for last 5 Tournaments</label
+            >
+          </div>
+        </div>
+        <div
+          class="card-selection-item d-flex flex-column bg-grey000 p-4 gap16 border-1 border-solid border-grey100 br12"
+        >
+          <div class="p-field-radiobutton d-flex align-center gap16">
+            <p-radioButton
+              value="2"
+              formControlName="numberOfHands"
+              name="numberOfHands"
+              (onClick)="onSelectRadio($event, '2')"
+              [(ngModel)]="selectedRadioIndex"
+              inputId="radio2"
+            ></p-radioButton>
+            <label for="radio2" class="input-label ft-primary-b fs14 lh-normal cursor" i18n
+              >Number of Tournaments</label
+            >
+          </div>
+          <form [formGroup]="myForm" *ngIf="showdrop">
+            <div class="d-flex gap8">
+              <p-dropdown
+                [options]="tournaments"
+                formControlName="selectedValue"
+                [(ngModel)]="selectedCity"
+                class="cursor"
+                placeholder="Select Number of Tournaments"
+                optionLabel="name"
+                (onChange)="onChange($event)"
+              >
+                <ng-template pTemplate="selectedItem">
+                  <div class="city-item selected" *ngIf="selectedCity">
+                    <span
+                      [ngClass]="selectedCity.name.length <= 12 ? 'ft-primary-b' : 'ft-primary-md'"
+                      i18n
+                      >{{ selectedCity.name.slice(0, 12) }}</span
+                    >
+                    <span class="ft-primary-b" i18n>{{ selectedCity.name.slice(12) }}</span>
+                  </div>
+                </ng-template>
+                <ng-template let-city pTemplate="item">
+                  <div class="city-item" i18n>
+                    <span class="ft-primary-md"
+                      >{{ city.name.slice(0, 12) }}
+                      <span class="ft-primary-b">{{ city.name.slice(12) }}</span></span
+                    >
+                  </div>
+                </ng-template>
+              </p-dropdown>
+              <div *ngIf="selectedHands == 'Custom'">
+                <input
+                  trackEvents
+                  autocompleteOff
+                  id="tournaments-custom-input"
+                  formControlName="customValue"
+                  [(ngModel)]="count"
+                  (keyup)="enterCustomNumber($event)"
+                  class="custom-hands-input bg-light ft-primary-b p-3 border-1.5 border-solid border-grey300 br12"
+                  type="text"
+                  max="{{ maxValue }}"
+                  onkeypress="if (this.value.length > 1) return false;"
+                  placeholder="Enter Custom"
+                  numbersOnly
+                  i18n-placeholder
+                />
+                <div class="ft-primary-sb fs12 grey500 lh-normal pt-1 px-2" i18n>
+                  Maximum Tournaments: 99
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div
+          class="card-selection-item d-flex flex-column flex-1 bg-grey000 p-4 gap16 border-1 border-solid border-grey100 br12"
+        >
+          <div class="p-field-radiobutton d-flex align-center gap16">
+            <p-radioButton
+              value="3"
+              formControlName="duration"
+              (onClick)="onSelectRadio($event, '3')"
+              [(ngModel)]="selectedRadioIndex"
+              inputId="radio3"
+            ></p-radioButton>
+            <label for="radio3" class="input-label ft-primary-b fs14 lh-normal cursor" i18n
+              >Duration</label
+            >
+          </div>
+          <div
+            class="duration-button-group d-flex align-center flex-wrap gap6 pl-4 ml-4"
+            *ngIf="showduration"
+          >
+            <div
+              class="duration-button d-flex align-center jst-center ft-primary-b fs14 px-4 py-2 border-1.5 border-solid border-grey300 br12 cursor"
+              [ngClass]="
+                selectedDurationTabIndex === i ? 'active bg-dark grey100' : 'bg-light grey900'
+              "
+              *ngFor="let dTab of durationTabList; let i = index"
+              (click)="onSelectDTab(i)"
+              i18n
+            >
+              {{ dTab.tabTitle }}
+            </div>
+            <div class="datepicker" *ngIf="selectedDurationTabIndex === 5">
+              <mat-form-field appearance="outline" class="custom-datepicker">
+                <mat-label *ngIf="!form.valid" i18n>Select Date Range</mat-label>
+                <mat-date-range-input
+                  [formGroup]="form"
+                  [rangePicker]="picker"
+                  [max]="maxDate"
+                  [min]="sixMonthsAgo"
+                  (click)="picker.open()"
+                >
+                  <input
+                    type="text"
+                    style="cursor: pointer"
+                    trackEvents
+                    id="tournaments-startdate-input"
+                    matStartDate
+                    formControlName="startDate"
+                    (dateChange)="getHistory()"
+                    readonly
+                    autocompleteOff
+                  />
+                  <input
+                    type="text"
+                    style="cursor: pointer"
+                    trackEvents
+                    id="tournaments-enddate-input"
+                    matEndDate
+                    formControlName="endDate"
+                    (dateChange)="getHistory()"
+                    readonly
+                    autocompleteOff
+                  />
+                </mat-date-range-input>
+                <mat-datepicker-toggle class="date-pick" matIconSuffix [for]="picker">
+                  <mat-icon matDatepickerToggleIcon>
+                    <img
+                      [src]="assetsImagePath + 'hand-history/CalendarBlank.svg'"
+                      alt="calendar"
+                      i18n
+                      i18n-alt
+                    />
+                  </mat-icon>
+                </mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <button
+          matRipple
+          trackEvents
+          id="tournaments-gethistory-btn"
+          class="primary-btn ft-primary-b fs16 ml-auto"
+          (click)="getHandHistoryData()"
+        >
+          <span class="primary-light" i18n>Get History</span>
+        </button>
+      </div>
+    </div>
+  </form>
+  <ng-template #showReportElseBlock>
+    <div
+      class="card-reports d-flex flex-column align-self-stretch flex-1 bg-light p-4 gap12 border-1 border-solid border-grey300 br16 ovf-y-auto"
+    >
+      <div class="card-header d-flex align-center py-1 gap8">
+        <img [src]="assetsImagePath + 'hand-history/Pdf.svg'" alt="pdf" i18n i18n-alt />
+        <h4 class="card-title ft-primary-b fs16 grey800 m-0" i18n>Hand History Reports</h4>
+      </div>
+      <div
+        class="card-body d-flex flex-column flex-1 bg-grey000 border-0.5 border-solid border-grey100 br12 ovf-y-auto"
+      >
+        <div class="d-flex flex-column align-center jst-center flex-1 gap16 p-4 ovf-y-auto">
+          <img [src]="assetsImagePath + 'hand-history/hist-icon.svg'" alt="history" i18n i18n-alt />
+          <span class="text-placeholder ft-primary-md grey800" i18n
+            >No Hand History reports available to download</span
+          >
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <div
+    class="card-reports d-flex flex-column align-self-stretch flex-1 bg-light p-4 gap12 border-1 border-solid border-grey300 br16"
+    *ngIf="showReport; else showReportElseBlock"
+  >
+    <div class="card-header d-flex align-center py-1 gap8">
+      <img [src]="assetsImagePath + 'hand-history/Pdf.svg'" alt="pdf" i18n i18n-alt />
+      <h4 class="card-title ft-primary-b fs16 grey800 m-0" i18n>Hand History Reports</h4>
+    </div>
+    <div
+      class="card-body d-flex flex-column flex-1 bg-grey000 border-0.5 border-solid border-grey100 br12 ovf-y-auto"
+    >
+      <div class="list-report d-flex flex-column flex-1 gap16 p-4 ovf-y-auto">
+        <div
+          class="list-report-item d-flex jst-space align-center bg-grey100 p-3 gap8 br12 wp100"
+          *ngFor="let record of processingListTournament; let i = index"
+        >
+          <p class="list-report-item-caption ft-primary-md fs14 grey800 m-0">
+            {{ record.fileName }}
+          </p>
+          <div
+            class="list-report-item-action d-flex jst-center align-center bg-grey000 gap6 fs12 p-2 br24"
+          >
+            <p-progressSpinner
+              [style]="{ width: '12px', height: '12px' }"
+              strokeWidth="8"
+              animationDuration=".5s"
+            ></p-progressSpinner>
+            <button mat-flat-button class="list-report-item-button" i18n>Processing</button>
+          </div>
+        </div>
+        <div
+          class="list-report-item d-flex jst-space align-center bg-grey100 p-3 gap8 br12 wp100"
+          *ngFor="let history of handHistoryList; let i = index"
+        >
+          <p class="list-report-item-caption ft-primary-md fs14 grey800 m-0">
+            {{ history.fileName }}
+          </p>
+          <div
+            (click)="onProcess(history.fileName, i, history.s3FilePath)"
+            class="end-btn d-flex align-center gap4"
+          >
+            <div class="download-icon">
+              <img
+                [src]="assetsImagePath + 'hand-history/Download-icon.svg'"
+                alt="download"
+                i18n
+                i18n-alt
+              />
+            </div>
+            <button mat-flat-button class="list-report-item-button" i18n>Download</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="isShowToast">
+  <app-toast [toastValue]="toastValue" [(isShowToast)]="isShowToast"></app-toast>
+</div>

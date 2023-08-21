@@ -1,0 +1,65 @@
+<div class="wp100 hp100 flex-col-jst-start ovf-hide p-rel">
+  <div class="wp100 h56 flex-space bg-light shadow p-4">
+    <div class="header-title d-flex jst-start align-center gap8">
+      <div class="back-icon p-rel d-flex align-center wh24">
+        <div class="icons-24 chevron-left top-right wh24 cursor trans-03" (click)="backToCashier()"></div>
+      </div>
+      <div class="title fs20 ft-primary-b grey900">Redeem Voucher/Scratch Card</div>
+    </div>
+    <div class="d-flex jst-end align-center p-rel wh24 cursor" (click)="onBack()">
+      <div class="icons-24 close-icon top-right chevron-left wh24"></div>
+    </div>
+  </div>
+  <div class="wp100 flex-col-jst-start flex-1 gap24 bg-grey100 p-4 ovf-y-auto">
+    <form [formGroup]="voucherForm" class="wp100 flex-col-jst-start gap16 bg-light br16 p-4 bdr0-5-grey300"
+      (ngSubmit)="onSubmitVoucher()">
+      <div class="g-form-group wp100">
+        <label class="fs16 ft-primary-b grey800" i18n>Enter Voucher Code</label>
+        <div class="p-input-icon-right d-flex align-center wp100 mt-1">
+          <div class="img-check-mark img-active wh16" *ngIf="isValidCode"></div>
+          <input type="text" (keyup)="OnChangeCode()" pInputText formControlName="voucherCode" placeholder="Enter Code"
+            class="g-form-control wp100 br12 fs16 ft-b grey900 ft-primary-b" autocompleteOff alphanumericOnly
+            [ngClass]="scratchCardInputStatus === 'failed' ? 'input-error' : scratchCardInputStatus === 'success' ? 'border-primary-success ptr-evts' : 'border-grey300'"
+            i18n-placeholder id="redeemvoucher-entercode-input" trackEvents />
+        </div>
+      </div>
+      <button type="submit" mat-button matRipple class="btn btn-primary wp100 h48"
+        [disabled]="!voucherForm.valid || scratchCardInputStatus === 'failed' "
+        id="cashier-redeem-scratch-card-redeem-btn" trackEvents>
+        <span class="fs16 ft-primary-b primary-light" i18n>
+          Redeem
+        </span>
+      </button>
+    </form>
+
+    <div class="wp100 flex-col-jst-start gap12 my-4">
+
+      <span class="fs16 ft-primary-b grey800" i18n>FAQ's</span>
+
+      <div class="flex-col-jst-start gap16">
+
+        <div *ngFor="let pL of faqList; let i = index">
+          <p-panel
+            [toggleable]="true"
+            expandIcon="pi pi-chevron-down"
+            collapseIcon="pi pi-chevron-up"
+            styleClass="cashier-tnc-panel"
+            [collapsed]="openFAQIndex !== i"
+            (click)="openFAQIndex = i === openFAQIndex ? -1 : i"
+          >
+            <ng-template pTemplate="header" i18n>{{ pL?.title }}</ng-template>
+
+            <ng-template pTemplate="content">
+              <div class="contents fs14 ft-primary-md grey800" [innerHTML]="pL?.answer"></div>
+            </ng-template>
+          </p-panel>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="isShowToast">
+    <app-toast [toastValue]="toastValue" [(isShowToast)]="isShowToast"></app-toast>
+  </div>
+</div>

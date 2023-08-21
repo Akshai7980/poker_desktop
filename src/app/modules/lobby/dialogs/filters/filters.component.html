@@ -1,0 +1,243 @@
+<div class="custom-dialog custom-dialog d-flex flex-col jst-start align-start bg-light">
+  <div class="custom-dialog-header d-flex jst-space align-center wp100 p-4">
+    <div class="header-title d-flex align-center gap4 tool-tip bottom" i18n-tooltip>
+      <div class="funnel-icon p-rel ovf-hide">
+        <img
+          class="p-abs wp100 hp100 obj-con"
+          [src]="assetsImagePath + 'lobby/Funnel.svg'"
+          alt="Filter"
+          i18n
+          i18n-alt
+        />
+      </div>
+      <div class="title fs20 ft-primary-b grey900">Filters</div>
+      <span class="tooltip-inner-text" i18n>Filters</span>
+    </div>
+    <div class="close-btn d-flex jst-end align-center p-rel wh24 cursor" (click)="onClose('close')">
+      <div class="icons-24 close-icon wh24 top-right"></div>
+    </div>
+  </div>
+
+  <div
+    class="custom-dialog-body d-flex flex-col jst-start align-start gap12 wp100 border-0 border-solid border-grey300 p-4 ovf-y-scroll"
+  >
+    <ng-container *ngIf="data.from == 'CASH_GAMES'">
+      <div class="filters d-flex flex-col jst-start align-start gap8">
+        <div class="filter-title fs16 ft-primary-b grey800" i18n>Stakes</div>
+        <div class="filter-item-container d-flex jst-start align-start wp100 gap8 flex-wrap">
+          <div
+            class="filter-item d-flex jst-center align-center gap10 w88 text-nowrap bg-light border-1.5 border-solid border-grey300 br12 p-3 fs14 trans-03 ft-primary-b grey900 cursor"
+            *ngFor="let stk of stakes"
+            (click)="onStakesSelected(stk)"
+            [ngClass]="selectedStakes == stk ? 'selected' : ''"
+          >
+            {{ stk }}
+          </div>
+        </div>
+      </div>
+
+      <div class="filters d-flex flex-col jst-start align-start gap8">
+        <span class="filter-title fs16 ft-primary-b grey800" i18n>Types</span>
+        <div class="filter-item-container d-flex jst-start align-start wp100 gap8 flex-wrap">
+          <div
+            class="filter-item d-flex jst-center align-center w88 text-nowrap gap10 bg-light border-1.5 border-solid border-grey300 br12 p-3 fs14 ft-primary-b grey900 cursor"
+            *ngFor="let tp of types"
+            (click)="onTypesSelected(tp)"
+            [ngClass]="selectedTypes == tp ? 'selected' : ''"
+            i18n
+          >
+            {{ tp }}
+          </div>
+        </div>
+      </div>
+
+      <div class="check-boxes d-flex jst-space align-center wp100">
+        <mat-checkbox
+          class="checkbox lobby-filter-check-box d-flex align-center gap8"
+          trackEvents
+          id="lobby-cash-filters-hideFullTables-checkbox"
+          [checked]="isFullTableSelected"
+          (change)="showFullTable()"
+        >
+          <span class="checkbox-text fs16 ft-primary-md grey900" i18n>Hide Full Tables</span>
+        </mat-checkbox>
+        <mat-checkbox
+          class="checkbox lobby-filter-check-box d-flex align-center gap8"
+          trackEvents
+          id="lobby-cash-filters-hideEmptyTables-checkbox"
+          [checked]="isEmptyTableSelected"
+          (change)="showEmptyTable()"
+        >
+          <span class="checkbox-text fs16 ft-primary-md grey900" i18n>Hide Empty Tables</span>
+        </mat-checkbox>
+      </div>
+
+      <div class="btn-container d-flex jst-space align-center gap16 w382" mat-dialog-actions>
+        <button
+          type="button"
+          mat-button
+          class="btn btn-primary-outline w183 h40"
+          trackEvents
+          id="lobby-cash-filters-reset-btn"
+          (click)="onReset()"
+          i18n
+        >
+          Reset
+        </button>
+        <button
+          class="btn btn-primary w183 h40"
+          cdkFocusInitial
+          trackEvents
+          id="lobby-cash-filters-apply-btn"
+          (click)="onClose()"
+          tabindex="0"
+          i18n
+        >
+          Apply
+        </button>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="data.from == 'SNG'">
+      <div class="filters d-flex flex-col jst-start align-start gap8">
+        <span class="filter-title fs16 ft-primary-b grey800" i18n>Table Size</span>
+        <div class="filter-item-container d-flex jst-start align-start wp100 gap8 flex-wrap">
+          <div
+            class="filter-item d-flex jst-center align-center w88 text-nowrap gap10 bg-light border-1.5 border-solid border-grey300 br12 p-3 fs14 ft-primary-b grey900 cursor"
+            *ngFor="let ts of tableSizes"
+            (click)="onTableSizeSelected(ts)"
+            [ngClass]="selectedTableSize == ts ? 'selected' : ''"
+            i18n
+          >
+            {{ ts }}
+          </div>
+        </div>
+      </div>
+
+      <div class="filters d-flex flex-col jst-start align-start gap8">
+        <span class="filter-title fs16 ft-primary-b grey800" i18n>Buy-In</span>
+        <div class="filter-item-container d-flex jst-start align-start wp100 gap8 flex-wrap">
+          <div
+            class="filter-item d-flex jst-center align-center w88 text-nowrap gap10 bg-light border-1.5 border-solid border-grey300 br12 p-3 fs14 ft-primary-b grey900 cursor"
+            *ngFor="let bI of buyIns"
+            (click)="onBuyInSelected(bI)"
+            [ngClass]="isBuyInSelected(bI) ? 'selected' : ''"
+            i18n
+          >
+            {{ bI }}
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-container d-flex jst-space align-center gap16 w382" mat-dialog-actions>
+        <button
+          type="button"
+          mat-button
+          class="btn btn-primary-outline w183 h40"
+          trackEvents
+          id="lobby-cash-filters-reset-btn"
+          (click)="onClickResetFilter()"
+          i18n
+        >
+          Reset
+        </button>
+        <button
+          class="btn btn-primary w183 h40"
+          cdkFocusInitial
+          trackEvents
+          id="lobby-cash-filters-apply-btn"
+          (click)="onClose()"
+        >
+          Apply
+        </button>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="data.from == 'TOURNAMENTS'">
+      <div class="filters d-flex flex-col jst-start align-start gap8">
+        <span class="filter-title fs16 ft-primary-b grey800" i18n>Game Type</span>
+        <div class="filter-item-container d-flex jst-start align-start wp100 gap8 flex-wrap">
+          <div
+            class="filter-item game-type d-flex jst-center align-center w88 text-nowrap gap10 bg-light border-1.5 border-solid border-grey300 br12 p-3 fs14 ft-primary-b grey900 cursor"
+            *ngFor="let gt of gameTypes"
+            (click)="onGameTypeSelected(gt)"
+            [ngClass]="isGameTypeSelected(gt) ? 'selected' : ''"
+          >
+            {{ gt }}
+          </div>
+        </div>
+      </div>
+
+      <div class="filters d-flex flex-col jst-start align-start gap8">
+        <span class="filter-title fs16 ft-primary-b grey800" i18n>Status</span>
+        <div class="filter-item-container d-flex jst-start align-start wp100 gap8 flex-wrap">
+          <div
+            class="filter-item status-filter d-flex jst-center align-center w88 text-nowrap gap10 bg-light border-1.5 border-solid border-grey300 br12 p-3 fs14 ft-primary-b grey900 cursor"
+            *ngFor="let sL of statusList"
+            (click)="onStatusSelected(sL)"
+            [ngClass]="isStatusSelected(sL) ? 'selected' : ''"
+          >
+            {{ sL }}
+          </div>
+        </div>
+      </div>
+
+      <div class="filters d-flex flex-col jst-start align-start gap8">
+        <span class="filter-title fs16 ft-primary-b grey800" i18n>Buy-In</span>
+        <div class="filter-item-container d-flex jst-start align-start wp100 gap8 flex-wrap">
+          <div
+            class="filter-item buy-in-filter d-flex jst-center align-center w88 text-nowrap gap10 bg-light border-1.5 border-solid border-grey300 br12 p-3 fs14 ft-primary-b grey900 cursor touranment-buy-in"
+            *ngFor="let bI of buyInsTornaments"
+            (click)="onBuyInTournamentSelected(bI)"
+            [ngClass]="isBuyInTournamentSelected(bI) ? 'selected' : ''"
+          >
+            {{ bI }}
+          </div>
+        </div>
+      </div>
+
+      <div class="filters d-flex flex-col jst-start align-start gap8">
+        <span class="filter-title fs16 ft-primary-b grey800" i18n>Format</span>
+        <div class="filter-item-container d-flex jst-start align-start wp100 gap8 flex-wrap">
+          <div
+            class="filter-item format-filter d-flex jst-center align-center w88 text-nowrap gap10 bg-light border-1.5 border-solid border-grey300 br12 p-3 fs14 ft-primary-b grey900 cursor"
+            *ngFor="let fL of formatList"
+            (click)="onFormatSelected(fL)"
+            [ngClass]="isFormatSelected(fL) ? 'selected' : ''"
+          >
+            {{ fL }}
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="btn-container w398 h64 p-0 tournament-btn-container mb-0 p-2 bg-light gap16"
+        mat-dialog-actions
+      >
+        <button
+          type="button"
+          mat-button
+          class="btn btn-primary-outline w183 h40"
+          trackEvents
+          id="lobby-cash-filters-reset-btn"
+          mat-dialog-close
+          i18n
+          (click)="applyTournamentFilter('reset')"
+        >
+          Reset
+        </button>
+        <button
+          class="btn btn-primary w183 h40"
+          cdkFocusInitial
+          trackEvents
+          id="lobby-cash-filters-apply-btn"
+          tabindex="0"
+          i18n
+          (click)="applyTournamentFilter()"
+        >
+          Apply
+        </button>
+      </div>
+    </ng-container>
+  </div>
+</div>

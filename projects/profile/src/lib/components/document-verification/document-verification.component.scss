@@ -1,0 +1,56 @@
+@import '../../../assets/abstract/core';
+
+.tab-container {
+  .tab {
+    border-right: 1.5px solid $grey300;
+    
+    &:last-child {
+      border-right: none;
+    }
+
+    &.active {
+      background: $bg-dark;
+
+      &:first-child {
+        border-top-left-radius: 16px;
+        border-bottom-left-radius: 16px;
+      }
+
+      &:last-child {
+        border-top-right-radius: 16px;
+        border-bottom-right-radius: 16px;
+      }
+
+      .tab-text {
+        color: $bg-light;
+        font-family: $font-bold;
+      }
+    }
+
+    &:hover {
+      background: $bg-dark;
+
+      &:first-child {
+        border-top-left-radius: 16px;
+        border-bottom-left-radius: 16px;
+      }
+
+      &:last-child {
+        border-top-right-radius: 16px;
+        border-bottom-right-radius: 16px;
+      }
+
+      .tab-text {
+        color: $bg-light;
+        font-family: $font-bold;
+      }
+    }
+
+    &.verified {
+      .tab-text {
+        color: $primary-success;
+        font-family: $font-bold;
+      }
+    }
+  }
+}

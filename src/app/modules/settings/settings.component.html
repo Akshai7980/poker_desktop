@@ -1,0 +1,89 @@
+<div class="settings-page-container d-flex flex-column flex-1 ovf-y-auto">
+  <nav mat-tab-nav-bar class="settings-navbar align-center px-4 py-3">
+    <a
+      mat-tab-link
+      [routerLink]="['game-settings']"
+      routerLinkActive="active"
+      class="settings-navlink h40 gap8 br12"
+    >
+      <img
+        [src]="assetsImagePath + 'settings/Gear.svg'"
+        class="tab-icon"
+        alt="Game Settings"
+        i18n-alt
+      />
+      <span i18n>Game Settings</span>
+    </a>
+    <a
+      mat-tab-link
+      [routerLink]="['buy-in-preferences']"
+      routerLinkActive="active"
+      class="settings-navlink h40 gap8 br12"
+    >
+      <img
+        [src]="assetsImagePath + 'settings/Wallet.svg'"
+        class="tab-icon"
+        alt="Buy-In Preferences"
+        i18n-alt
+      />
+      <span i18n>Buy-In Preferences</span>
+    </a>
+    <a
+      mat-tab-link
+      [routerLink]="['theme']"
+      routerLinkActive="active"
+      class="settings-navlink h40 gap8 br12"
+    >
+      <img
+        [src]="assetsImagePath + 'settings/PaintBucket.svg'"
+        class="tab-icon"
+        alt="Themes"
+        i18n-alt
+      />
+      <span i18n>Themes</span>
+    </a>
+    <a
+      mat-tab-link
+      [routerLink]="['bet-options']"
+      routerLinkActive="active"
+      class="settings-navlink h40 gap8 br12"
+    >
+      <img
+        [src]="assetsImagePath + 'settings/Coin.svg'"
+        class="tab-icon"
+        alt="Bet Options"
+        i18n-alt
+      />
+      <span i18n>Bet Options</span>
+    </a>
+    <a
+      mat-tab-link
+      [routerLink]="['sound']"
+      routerLinkActive="active"
+      class="settings-navlink h40 gap8 br12"
+    >
+      <img
+        [src]="assetsImagePath + 'settings/MusicNote.svg'"
+        class="tab-icon"
+        alt="Sounds"
+        i18n-alt
+      />
+      <span i18n>Sounds</span>
+    </a>
+    <a
+      mat-tab-link
+      [routerLink]="['hot-keys']"
+      routerLinkActive="active"
+      class="settings-navlink h40 gap8 br12"
+    >
+      <img
+        [src]="assetsImagePath + 'settings/Lightning.svg'"
+        class="tab-icon"
+        alt="Hot Keys"
+        i18n-alt
+      />
+      <span i18n>Hot Keys</span>
+    </a>
+  </nav>
+  <router-outlet></router-outlet>
+</div>

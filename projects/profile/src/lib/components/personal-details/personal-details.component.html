@@ -1,0 +1,238 @@
+<div class="profile-container w414 hp100 p-rel flex-column bg-grey100">
+  <div class="profile-header d-flex jst-space align-center bg-light p-4 shadow" *ngIf="afterProfileUpdated">
+    <div class="profile-header-title d-flex align-center gap8 fs20 ft-primary-b grey900" mat-dialog-close i18n>
+      Personal Details
+    </div>
+    <div class="profile-header-options wh24 p-rel cursor" (click)="onClose()">
+      <div class="icons-24 close-icon wh24 top-right"></div>
+    </div>
+  </div>
+
+  <div class="personal-details wp100 d-flex flex-column gap16 p-4" [ngClass]="{'wp100 mt-0':afterProfileUpdated}">
+    <div class="i-text d-flex align-center gap6" i18n *ngIf="!afterProfileUpdated">
+      <div class="icons-16 info-outline wh16"></div>
+      <div class="text fs12 ft-primary-md grey600">All completed steps are auto-saved</div>  
+    </div>
+
+    <ng-container *ngIf="!isVerifyAlternateMobile && !isEmailIdVerify && userProfileData">
+      <div class="form-box wp100 d-flex flex-column gap32 bg-light br16 p-4 border-0.5 border-solid border-grey300 ovf-y-scroll" [ngClass]="{'content-height-n1':!afterProfileUpdated}">
+
+        <form class="d-flex flex-column gap24 " [formGroup]="personalDetailsForm">
+
+          <div class="form-input d-flex flex-column jst-center gap4 border-0 p-0">
+            <div class="label-container wp100 d-flex jst-space align-center gap10 p-0">
+              <label class="d-flex align-center fs14 ft-primary-b grey900" i18n>Username</label>
+              <span *ngIf="isUsernameEditable" class="input-info d-flex gap4 fs12 ft-primary-md grey500" i18n>Editable
+                only once till 3 months from sign up
+              </span>
+            </div>
+            <input type="text" placeholder="Enter Current Username" [readonly]="!isUsernameEditable"
+              formControlName="username" (blur)="updateUsername()" (input)="validateUserNameInput($event)"
+              autocompleteOff id="personaldetails-username-input" trackEvents
+              [ngClass]="!isUsernameEditable ? 'read-only' : 'grey700'" i18n-placeholder
+              class="wp100 h48 d-flex align-center gap8 bg-light br12 fs16 ft-primary-b grey400 border-1.5 border-solid border-grey300 p-3" />
+          </div>
+
+          <div class="form-input d-flex flex-column jst-center gap4 border-0 p-0">
+            <div class="label-container wp100 d-flex jst-space align-center gap10 p-0">
+              <label class="d-flex align-center fs14 ft-primary-b grey900" i18n>Gender (Optional)</label>
+            </div>
+            <p-dropdown [options]="genders" formControlName="gender" optionLabel="name" scrollHeight="250"
+              styleClass="personal-details wp100" placeholder="Select Gender" appendTo="body" name="gender" width="350px"
+              (onChange)="onGenderChange($event)"
+              [readonly]="personalDetailsForm.controls['gender'].value ? true : false"></p-dropdown>
+          </div>
+
+          <div class="form-input d-flex flex-column jst-center gap4 border-0 p-0">
+            <div class="label-container wp100 d-flex jst-space align-center gap10 p-0">
+              <label class="d-flex align-center fs14 ft-primary-b grey900" i18n>Mobile No.</label>
+              <div class="d-flex jst-end align-center gap8 p-0">
+                <p-radioButton name="mark1" ngDefaultControl inputId="mark1" [value]="1" label="Mark as preferred"
+                  formControlName="mark1" (onClick)="onMobilePrefChange('1')" labelStyleClass="cursor"
+                  [(ngModel)]="selectedRadioIndex"></p-radioButton>
+                <div class="info-icon p-rel wh10 tool-tip info-tooltip">
+                  <div class="icons-16 icon-fill wh10"></div>
+                  <span class="tooltip-inner-text border-2 border-solid border-grey700" i18n>This number will be used for all communications.</span>
+                </div>
+              </div>
+            </div>
+            <div class="input-verify wp100 p-rel d-flex align-center">
+              <input type="text" pInputText formControlName="mobileNo" autocompleteOff trackEvents readonly numbersOnly
+                maxlength="10" id="personaldetails-mobileno-input"
+                [ngClass]="this.userProfileData.userInfo.mobile ? 'read-only' : ''" i18n-placeholder
+                class="wp100 h48 d-flex align-center gap8 bg-light br12 fs16 ft-primary-b grey400 border-1.5 border-solid border-grey300 p-3" />
+              <div class="right-green-check p-abs right10">
+                <div class="img-check-mark wh20 img-active"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-input d-flex flex-column jst-center gap4 border-0 p-0">
+            <div class="label-container wp100 d-flex jst-space align-center gap10 p-0">
+              <label class="d-flex align-center fs14 ft-primary-b grey900" i18n>Alt. Mobile No. (Optional)</label>
+              <div class="d-flex jst-end align-center gap8 p-0">
+                <p-radioButton *ngIf="altNumberVerified" name="mark2" ngDefaultControl inputId="mark2" [value]="2"
+                  label="Mark as preferred" formControlName="mark2" (onClick)="onMobilePrefChange('2')" labelStyleClass="cursor"
+                  [(ngModel)]="selectedRadioIndex"></p-radioButton>
+                <div class="info-icon p-rel wh10 tool-tip info-tooltip"  *ngIf="altNumberVerified">
+                  <div class="icons-16 icon-fill wh10"></div>
+                  <span class="tooltip-inner-text border-2 border-solid border-grey700" i18n>This number will be used for all communications.</span>
+                </div>
+              </div>
+            </div>
+            <div class="input-verify wp100 p-rel d-flex align-center">
+              <input #altMobileNoInput type="text" pInputText maxlength="10" formControlName="altMobileNo"
+                [readonly]="altNumberVerified" id="personaldetails-altmobileno-input" trackEvents numbersOnly
+                autocompleteOff placeholder="Enter Mobile Number" (keyup)="onEnterMobileNumber($event)"
+                class="wp100 h48 d-flex align-center gap8 bg-light br12 fs16 ft-primary-b grey400 border-1.5 border-solid border-grey300 p-3"
+                [ngClass]="{'read-only' : altNumberVerified}"
+                i18n-placeholder />
+
+              <div class="right-green-check p-abs right10" *ngIf="altNumberVerified">
+                <div class="img-check-mark wh20 img-active"></div>
+              </div>
+
+              <div class="p-abs right10 d-flex jst-center align-center fs14 ft-primary-b text-capital"
+                *ngIf="!altNumberVerified" (click)="toSendMobileOtp('firstOtp')" [ngClass]="
+                personalDetailsForm.controls['altMobileNo'].value?.length === 10 ? 'primary-red cursor' : 'grey400' "
+                i18n>
+                Verify
+              </div>
+            </div>
+          </div>
+
+          <div class="form-input d-flex flex-column jst-center gap4 border-0 p-0">
+            <div class="label-container wp100 d-flex jst-space align-center gap10 p-0">
+              <label class="d-flex align-center fs14 ft-primary-b grey900" i18n>Email ID</label>
+            </div>
+            <span class="input-verify wp100 p-rel d-flex align-center">
+              <input #email type="text" pInputText formControlName="email" placeholder="Enter Email ID"
+                [readonly]="isEmailIdVerified" id="personaldetails-email-input" autocompleteOff
+                [ngClass]="{'read-only' : this.userProfileData.userInfo.email === this.personalDetailsForm.controls['email'].value || isEmailIdVerified}"
+                class="wp100 h48 d-flex align-center gap8 bg-light br12 fs16 ft-primary-b grey400 border-1.5 border-solid border-grey300 p-3"
+                trackEvents i18n-placeholder />
+
+              <div class="right-green-check p-abs right10" *ngIf="isEmailIdVerified">
+                <div class="img-check-mark wh20 img-active"></div>
+              </div>
+
+              <div class="p-abs right10 d-flex jst-center align-center fs14 ft-primary-b text-capital"
+                *ngIf="!isEmailIdVerified" (click)="toSendEmailOtp('firstOtp')" [ngClass]="
+                personalDetailsForm.controls['email'].valid ? 'primary-red cursor' : 'grey400'" i18n>
+                Verify
+              </div>
+            </span>
+          </div>
+
+        </form>
+
+      </div>
+
+      <button class="btn btn-primary wp100" [disabled]="!isEmailIdVerified" (click)="onSubmitNext()"
+        id="personaldetails-submitnext-btn" trackEvents *ngIf="!afterProfileUpdated">
+        <span class="fs16 ft-primary-b primary-light" i18n>Next</span>
+      </button>
+
+    </ng-container>
+
+    <ng-container *ngIf="isVerifyAlternateMobile">
+      <div class="form-box verify wp100 d-flex flex-column jst-space gap16 bg-light br16 p-4 border-0.5 border-solid border-grey300 mb-1">
+
+        <div class="main-text">
+          <span class="fs20 ft-primary-b grey800" i18n>Verify Alternate Mobile Number</span>
+        </div>
+
+        <div class="mob-confirmation-text wp100 d-flex jst-space align-center fs14 ft-primary-md">
+          <div class="ft-primary-md grey900">OTP has been sent to <span class="ft-primary-b"> {{
+              convertMobileNumberToMask(personalDetailsForm.controls['altMobileNo'].value) }} </span></div>
+          <div class="red ft-primary-b primary-red cursor" (click)="toChangeEntry('alternateNumber')" i18n>Change</div>
+        </div>
+
+        <app-otp-input (data)="onOtpChange($event, 'altMobileNo')" [isErrorFlag]="isErrorFlag"
+          [isResetOtpForm]="isResetOtpForm"></app-otp-input>
+
+        <span *ngIf="emailErrorMsg" class="error-msg fs12 ft-primary-sb primary-error" i18n> {{emailErrorMsg}} </span>
+
+        <div class="otp-timer wp100 d-flex jst-sapce align-center gap4">
+
+          <div class="timer-container p-rel d-flex jst-sapce align-center gap4 ft-primary-b">
+            <div class="icons-20 clock wh20"></div>
+            <div class="time fs16 ft-primary-b grey900">{{ min }}:{{ sec }}</div>
+            <div [ngClass]="isDisabledResend? 'grey400 ptr-evts' : 'grad-red-text cursor' " class="resend w80 fs14 ft-primary-b p-abs"
+              (click)="clickResendOtp('mobile')" i18n>
+              Resend OTP
+            </div>
+
+          </div>
+
+          <div class="call-otp wp100 d-flex jst-end fs14 ft-primary-b primary-error cursor" *ngIf="showResendOtpButton"
+            i18n>
+            Get OTP Via Call
+          </div>
+
+        </div>
+
+      </div>
+
+      <button class="btn btn-primary wp100" [disabled]="!showOtpButton" (click)="toVerifyAlternateMobile()"
+        id="personaldetails-verifysubmit-btn" trackEvents>
+        <span class="fs16 ft-primary-b primary-light" i18n>Verify</span>
+      </button>
+
+    </ng-container>
+
+    <ng-container *ngIf="isEmailIdVerify">
+
+      <div class="d-flex flex-column gap16">
+
+        <div class="form-box verify wp100 d-flex flex-column jst-space gap16 bg-light br16 p-4 border-0.5 border-solid border-grey300 mb-1">
+
+          <div class="main-text">
+            <span class="fs20 ft-primary-b grey800" i18n>Verify Email ID</span>
+          </div>
+
+          <div class="mob-confirmation-text wp100 d-flex jst-space align-center fs14 ft-primary-md">
+            <div class="ft-primary-md grey900" i18n>OTP has been sent to <br> <span class="ft-primary-b"> {{
+                maskedContent }} </span></div>
+            <div class="red ft-primary-b primary-red cursor" i18n (click)="toChangeEntry('email')">Change</div>
+          </div>
+
+          <app-otp-input (data)="onOtpChange($event, 'email')" [isErrorFlag]="isErrorFlag"
+            [isResetOtpForm]="isResetOtpForm"></app-otp-input>
+
+          <span *ngIf="emailErrorMsg" class="error-msg fs12 ft-primary-sb primary-error" i18n> {{emailErrorMsg}} </span>
+
+          <div class="otp-timer wp100 d-flex jst-sapce align-center gap4">
+            <div class="timer-container timer-container p-rel d-flex jst-sapce align-center gap4 ft-primary-b">
+              <div class="icons-20 clock wh20"></div>
+              <div class="time fs16 ft-primary-b grey900">{{ min }}:{{ sec }}</div>
+              <div [ngClass]="isDisabledResend? 'grey400 ptr-evts' : 'grad-red-text cursor' " class="resend w80 fs14 ft-primary-b p-abs"
+                (click)="clickResendOtp('email')" i18n>
+                Resend OTP
+              </div>
+            </div>
+            <div class="call-otp wp100 d-flex jst-end fs14 ft-primary-b primary-error cursor"
+              *ngIf="showResendOtpButton" i18n>
+              Get OTP Via Call
+            </div>
+
+          </div>
+
+        </div>
+
+        <button class="btn btn-primary wp100 mb-1" [disabled]="!showOtpButton" (click)="onVerifyEmailOtp()"
+          id="personaldetails-verifyemail-btn" trackEvents>
+          <span class="fs16 ft-primary-b primary-light" i18n>Verify</span>
+        </button>
+
+      </div>
+
+    </ng-container>
+
+
+  </div>
+
+  <div *ngIf="isShowToast">
+    <app-toast [toastValue]="toastValue" [(isShowToast)]="isShowToast"></app-toast>
+  </div>
+</div>

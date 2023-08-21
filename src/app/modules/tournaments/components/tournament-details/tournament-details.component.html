@@ -1,0 +1,145 @@
+<div class="tournament-details flex-space" [ngSwitch]="tournamentsData[0].status">
+  <!-- Starting In -->
+  <ng-container *ngSwitchCase="TOURNAMENTS_STATUS.REGISTRATION_STARTING_IN">
+    <div class="flex-col-start gap12">
+      <div class="tournament-status flex-row-center grey000 ft-primary-b fs12" i18n>Announced</div>
+      <div class="ft-primary-b fs24 grey000" i18n>1 Cr Nano Main Event</div>
+    </div>
+    <div class="flex-row-center gap24">
+      <div class="tournament-card">
+        <div class="date-time-box">
+          <div class="time-box" i18n>12:25 PM</div>
+          <div class="date-box">
+            <div class="month-txt" i18n>Dec</div>
+            <div class="date-txt" i18n>23</div>
+          </div>
+        </div>
+        <div class="countdown">
+          <div class="countdown-header">
+            <div class="starting-txt" i18n>Tournaments Starting In</div>
+          </div>
+          <div class="countdown-body">
+            <div class="timer-counting">
+              <div class="timer-count-values">
+                <div class="tableTitle" i18n>02</div>
+                <div class="normalTitle" i18n>Days</div>
+              </div>
+              <div class="timer-count-values">
+                <div class="tableTitle" i18n>04</div>
+                <div class="normalTitle" i18n>Hours</div>
+              </div>
+              <div class="timer-count-values">
+                <div class="tableTitle" i18n>53</div>
+                <div class="normalTitle" i18n>Minutes</div>
+              </div>
+            </div>
+            <div class="timer-counting-button">
+              <button type="button" mat-button class="btn btn-reminder" i18n>
+                <span class="bellRingingIcon"></span> Reminder
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex-only-col gap8">
+        <div class="fs12 ft-primary-b text-uppercase grey400" i18n>Registration Starting In</div>
+        <div class="time-countings fs20 ft-primary-b text-uppercase grey000" i18n>
+          01 <span class="fs16 ft-primary-sb grey400">D :</span> 01
+          <span class="fs16 ft-primary-sb grey400"> H :</span> 23
+          <span class="fs16 ft-primary-sb grey400"> M</span>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <!-- Registering -->
+  <ng-container *ngSwitchCase="TOURNAMENTS_STATUS.REGISTERING">
+    <div class="flex-col-start gap12">
+      <div class="tournament-status flex-row-center grey000 ft-primary-b fs12">Registering</div>
+      <div class="ft-primary-b fs24 grey000">1 Cr Nano Main Event</div>
+    </div>
+    <div class="flex-row-center gap24">
+      <div class="tournament-card">
+        <div class="date-time-box">
+          <div class="time-box" i18n>12:25 PM</div>
+          <div class="date-box">
+            <div class="month-txt" i18n>Dec</div>
+            <div class="date-txt" i18n>23</div>
+          </div>
+        </div>
+        <div class="countdown">
+          <div class="countdown-header">
+            <div class="starting-txt" i18n>Tournaments Starting In</div>
+          </div>
+          <div class="countdown-body">
+            <div class="timer-counting">
+              <div class="timer-count-values">
+                <div class="tableTitle" i18n>02</div>
+                <div class="normalTitle" i18n>Days</div>
+              </div>
+              <div class="timer-count-values">
+                <div class="tableTitle" i18n>04</div>
+                <div class="normalTitle" i18n>Hours</div>
+              </div>
+              <div class="timer-count-values">
+                <div class="tableTitle" i18n>53</div>
+                <div class="normalTitle" i18n>Minutes</div>
+              </div>
+            </div>
+            <div class="timer-counting-button">
+              <button type="button" mat-button class="btn btn-reminder" i18n>
+                <span class="bellRingingIcon"></span> Reminder
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button mat-button class="btn btn-primary">
+        <span class="primary-btn-text w100" i18n>Register Now</span>
+      </button>
+    </div>
+  </ng-container>
+
+  <!-- Late Registration -->
+  <ng-container *ngSwitchCase="TOURNAMENTS_STATUS.LATE_REGISTRATION">
+    <div class="flex-col-start gap12">
+      <div class="tournament-status flex-row-center grey000 ft-primary-b fs12">Running</div>
+      <div class="ft-primary-b fs24 grey000">1 Cr Nano Main Event</div>
+    </div>
+    <div class="flex-row-center gap24">
+      <div class="tournament-card late-reg">
+        <div class="date-time-box">
+          <div class="time-box" i18n>Running</div>
+          <div class="date-box">
+            <div class="month-txt" i18n>Dec</div>
+            <div class="date-txt" i18n>23</div>
+          </div>
+        </div>
+        <div class="countdown">
+          <div class="countdown-header">
+            <div class="starting-txt" i18n>Late Registration Ends In</div>
+          </div>
+          <div class="countdown-body">
+            <div class="timer-counting">
+              <div class="timer-count-values">
+                <div class="tableTitle" i18n>02</div>
+                <div class="normalTitle" i18n>Days</div>
+              </div>
+              <div class="timer-count-values">
+                <div class="tableTitle" i18n>04</div>
+                <div class="normalTitle" i18n>Hours</div>
+              </div>
+              <div class="timer-count-values">
+                <div class="tableTitle" i18n>53</div>
+                <div class="normalTitle" i18n>Minutes</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button mat-button class="btn btn-primary" *ngIf="true">
+        <span class="primary-btn-text w100" i18n>Late Registration</span>
+      </button>
+    </div>
+  </ng-container>
+</div>

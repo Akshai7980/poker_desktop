@@ -1,0 +1,25 @@
+<ng-template #progressSpinnerRef>
+  <div class="progress-spinner">
+    <div class="spinner-container">
+      <div class="preloader-wrapper-wrap">
+        <div class="preloader-wrapper">
+          <div class="spinner-layer">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="message-container">
+      <span class="status">{{ status }}</span>
+      <span class="message">{{ message }}</span>
+    </div>
+  </div>
+</ng-template>

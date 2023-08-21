@@ -1,0 +1,78 @@
+<div class="main-contain flex-row br16 ovf-hide">
+  <app-registration-successful></app-registration-successful>
+  <div class="rhs flex-col-start p-rel gap16 w400 h520 bg-light p-4">
+    <div class="close-icon-img p-rel d-flex jst-end align-center wp100">
+      <div class="icons-24 close-icon-bg p-rel wh24 cursor trans-03" (click)="onClose()">
+        <span class="top-right opacity-0 trans-03"></span>
+      </div>
+    </div>
+
+    <div class="login-rhs-container p-rel flex-col-start gap24 wp100">
+      <div class="user-section-rhs gap24 wp100">
+        <div class="user-selection-avatar w368">
+          <app-avatar-selection
+            class="userProfile-avatar"
+            (data)="getAvatarId($event)"
+            [from]="'avatar-sprite'"
+          ></app-avatar-selection>
+        </div>
+      </div>
+      <div class="user-section-middle flex-col-center gap48 wp100">
+        <div
+          class="user-name-container flex-col-start wp100 gap12 bg-grey900 p-4 br16"
+          *ngIf="!userName.changed"
+        >
+          <div class="user-text-edit flex-space wp100">
+            <div class="user-name-text fs14 ft-m grey000" i18n>
+              Your username is "{{ userName.value }}"
+            </div>
+            <div class="user-edit fs16 ft-primary-b primary-red cursor" (click)="openDialog()" i18n>
+              Edit
+            </div>
+          </div>
+          <div class="user-context fs12 ft-m grey400" i18n>
+            You can also change it later in the 'My Profile' section.
+          </div>
+        </div>
+        <div
+          class="user-name-container flex-col-jst-center wp100 gap6 grad-sea-green-bg p-4 br16"
+          *ngIf="userName.changed"
+        >
+          <div class="user-sub-title fs14 ft-m grey000" i18n>Your new username is</div>
+          <div class="user-title fs20 ft-primary-b light" i18n>"{{ userName.value }}"</div>
+        </div>
+        <div class="btn-container wp100">
+          <button
+            type="button"
+            mat-button
+            class="btn wp100"
+            [ngClass]="isHighlightPlayBtn ? 'btn-primary' : 'btn-outline-primary'"
+            id="chooseavatar-startplaying-btn"
+            trackEvents
+            (click)="startPlaying()"
+            i18n
+          >
+            Start Playing
+          </button>
+        </div>
+      </div>
+      <div class="deposit-link flex-center wp100">
+        <button
+          type="button"
+          mat-button
+          class="btn wp100"
+          (click)="openAddCashDialog()"
+          [ngClass]="isHighlightDepositBtn ? 'btn-primary' : 'btn-outline-primary'"
+          id="chooseavatar-startplaying-btn"
+          trackEvents
+          i18n
+        >
+          Deposit Offers
+        </button>
+      </div>
+    </div>
+    <div class="login-rhs-footer" *ngIf="isShowToast">
+      <app-toast [toastValue]="toastValue" [(isShowToast)]="isShowToast"></app-toast>
+    </div>
+  </div>
+</div>

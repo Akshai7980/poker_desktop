@@ -1,0 +1,40 @@
+<div class="hp100 d-flex flex-column flex-1 gap16 bg-grey100 p-4 ovf-y-auto">
+   <div class="d-flex align-center gap8 grey900">
+    <span class="img-icon caret-left wh24 cursor" (click)="onBackButton()"></span>
+    <span class="fs20 ft-primary-b" i18n>Filters</span>
+   </div> 
+
+   <div class="d-flex flex-column flex-1 gap8">
+    <span class="fs16 ft-primary-b grey800" i18n>Duration</span>
+    <form class="d-flex flex-column flex-1 gap16" [formGroup]="filterForm">
+      <div class="d-flex align-center">
+        <div class="d-flex align-center flex-1 gap8">
+            <p-radioButton value="Last 3 Months" formControlName="Last3Months" (onClick)="onSelectRadio($event)"
+              [(ngModel)]="radio" inputId="Last 3 Months"></p-radioButton>
+            <label class="fs16 ft-primary-md grey500 cursor" for="Last 3 Months" i18n [ngClass]="{'grey900':radio=='Last 3 Months'}" i18n>Last 3 Months</label>
+          </div>
+          <div class="d-flex align-center flex-1 gap8">
+            <p-radioButton value="Last 6 Months" formControlName="Last6Months" (onClick)="onSelectRadio($event)"
+              [(ngModel)]="radio" inputId="Last 6 Months"></p-radioButton>
+            <label class="fs16 ft-primary-md grey500 cursor" for="Last 6 Months" i18n [ngClass]="{'grey900':radio=='Last 6 Months'}" i18n>Last 6 Months</label>
+          </div>
+      </div>
+      <div class="d-flex align-center">
+        <div class="d-flex align-center flex-1 gap8">
+            <p-radioButton value="Last 9 Months" formControlName="Last9Months" (onClick)="onSelectRadio($event)"
+              [(ngModel)]="radio" inputId="Last 9 Months"></p-radioButton>
+            <label class="fs16 ft-primary-md grey500 cursor" for="Last 9 Months" i18n [ngClass]="{'grey900':radio=='Last 9 Months'}" i18n>Last 9 Months</label>
+          </div>
+          <div class="d-flex align-center flex-1 gap8">
+            <p-radioButton value="All" formControlName="All" (onClick)="onSelectRadio($event)"
+              [(ngModel)]="radio" inputId="All"></p-radioButton>
+            <label class="fs16 ft-primary-md grey500 cursor" for="All" i18n [ngClass]="{'grey900':radio=='All'}" i18n>All</label>
+          </div>
+      </div>
+      <button type="button" mat-button class="btn btn-primary wp100 h48 mt-5" (click)="getDate()">
+        <span class="fs16 ft-primary-b primary-light" i18n>Apply</span>
+      </button>
+    </form>
+  </div>
+
+</div>

@@ -1,0 +1,97 @@
+<div class="custom-dialog p-rel d-flex flex-col jst-start align-start bg-light gap24">
+  <div class="custom-dialog-header d-flex jst-space align-center wp100 p-4">
+    <div class="fs20 ft-primary-b grey900" i18n>Invite Your Friend</div>
+    <div class="close-btn wh24 p-rel cursor" (click)="onClose()">
+      <div class="icons-24 close-icon wh24 top-right"></div>
+    </div>
+  </div>
+
+  <div
+    class="custom-dialog-body d-flex flex-col jst-start align-start gap12 wp100 border-0 border-solid border-grey300 p-4"
+  >
+    <div
+      class="redirect-from-create-table d-flex flex-col jst-center align-center gap12 wp100"
+      *ngIf="data.from == 'CreateTableComponent'"
+    >
+      <div class="table-data d-flex p-rel ovf-hide bg-grey100 br50">
+        <img
+          class="p-abs wp100 hp100 obj-con"
+          [src]="assetsImagePath + 'lobby/woman-img.svg'"
+          alt="woman-img"
+          i18n
+          i18n-alt
+        />
+      </div>
+      <div class="fs16 ft-primary-b grey900" i18n>
+        Your Private Table has been created successfully.
+      </div>
+    </div>
+
+    <div
+      class="invite-top d-flex flex-col wp100 p-4 br16 gap10 border-1 border-solid border-grey200"
+    >
+      <div class="invite-top-header d-flex align-center gap4 wp100">
+        <div
+          class="d-flex jst-center align-center br20 py-1 px-3 bg-purple000 fs10 ft-primary-sb purple600"
+          i18n
+        >
+          {{ inviteData?.rv == 'HOLDEM' ? "Hold'em" : 'PL Omaha' }}
+        </div>
+        <div class="fs14 ft-primary-b dark" i18n>{{ inviteData?.own }}</div>
+      </div>
+      <div class="invite-top-header-1 d-flex jst-space align-center wp100">
+        <div class="d-flex flex-col gap10">
+          <div class="fs12 ft-primary-b grey500 text-uppercase" i18n>Blinds</div>
+          <div class="fs14 ft-primary-b grey900" i18n>{{ inviteData?.sbbb }}</div>
+        </div>
+        <div class="d-flex flex-col gap10">
+          <div class="fs12 ft-primary-b grey500 text-uppercase" i18n>BUY-IN</div>
+          <div class="fs14 ft-primary-b grey900" i18n>₹ {{ inviteData?.blbh }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="invite-bottom d-flex flex-col gap12 wp100">
+      <div class="share-title fs16 ft-primary-b grey900" i18n>Share Invite Code</div>
+      <div
+        class="copy-box d-flex jst-space align-center border-1.5 border-solid border-grey300 br8 py-3 px-4"
+        (click)="copyToClipBoard(inviteData?.pnr)"
+      >
+        <div class="d-flex align-center gap4">
+          <div class="fs16 ft-primary-b grey700" i18n>Code:</div>
+          <div class="fs16 ft-primary-b grey700" i18n>{{ inviteData?.pnr }}</div>
+        </div>
+        <div class="copy-icon p-rel wh20 ovf-hide trans0-3 cursor">
+          <img
+            class="p-abs wp100 hp100 obj-con"
+            [src]="assetsImagePath + 'lobby/Copy.svg'"
+            tabindex="0"
+            alt="lobby"
+            i18n
+            i18n-alt
+          />
+        </div>
+      </div>
+      <div class="social-box d-flex jst-center align-center gap48 wp100 mt-1">
+        <a
+          [href]="sc.path"
+          class="social-icon p-rel wh32 ovf-hide"
+          *ngFor="let sc of social"
+          (click)="getSoicalMedialink($event, sc)"
+        >
+          <img
+            class="p-abs wp100 hp100 obj-con"
+            [src]="assetsImagePath + 'lobby/' + sc.icon"
+            class="iconImg"
+            alt="lobby"
+            i18n
+            i18n-alt
+          />
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="lobby-toast" *ngIf="isShowToast">
+    <app-toast [toastValue]="toastValue" [(isShowToast)]="isShowToast"></app-toast>
+  </div>
+</div>

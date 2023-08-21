@@ -1,0 +1,73 @@
+@import '../../../assets/abstract/core';
+
+.search-player {
+  padding: 24px;
+}
+
+.top-info-text {
+  margin-left: 170px;
+}
+
+input {
+  width: 300px;
+  height: 48px;
+  border: 1.5px solid $grey300;
+  border-radius: $br12;
+  background: $bg-light;
+  padding: 14px 16px;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.btn.btn-primary {
+  &.search-btn {
+    width: 108px;
+  }
+
+  width: 168px;
+}
+
+table.app-table {
+  .app-table-head {
+    tr {
+      height: 38px;
+
+      th {
+        width: 23.8%;
+
+        &:nth-child(1) {
+          width: 10.15%;
+        }
+
+        &:last-child {
+          width: 15.87%;
+        }
+      }
+    }
+  }
+
+  .app-table-body {
+    tr {
+      height: 54px;
+      border: 1.5px solid $grey200;
+
+      td {
+        width: 23.8%;
+
+        &:nth-child(1) {
+          width: 10.15%;
+        }
+
+        &:last-child {
+          width: 15.87%;
+        }
+      }
+    }
+  }
+}
+
+.checkbox.lobby-filter-check-box {
+  margin-bottom: 2px;
+}

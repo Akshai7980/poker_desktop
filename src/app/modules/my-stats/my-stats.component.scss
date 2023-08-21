@@ -1,0 +1,86 @@
+@import '../../../assets/abstract/core';
+
+.header-container {
+  display: flex;
+  position: relative;
+  top: 24px;
+  left: 34px;
+  gap: 16px;
+}
+
+.title {
+  font-family: $font-bold;
+  font-size: 20px;
+  align-items: center;
+  color: #24292e;
+}
+
+.title-text {
+  font-family: $font-medium;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  color: #24292e;
+}
+
+.main-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 8px 16px 8px 0;
+  gap: 0;
+  width: 870px;
+  height: 30px;
+
+  /* BG Blur/Small */
+
+  backdrop-filter: blur(1.7241px);
+
+  /* Note: backdrop-filter has minimal browser support */
+
+  border-radius: 16px;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin-top: 1rem;
+}
+
+.btn-text {
+  font-family: $font-bold;
+  font-size: 14px;
+}
+
+.header-btn {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 16px;
+  gap: 8px;
+  width: max-content;
+  height: 40px;
+  background: $bg-light;
+  border: 1.5px solid #d1d5da;
+  border-radius: 12px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  margin-right: 10px;
+}
+
+.tab-container {
+  position: absolute;
+  top: 129px;
+  left: 138px;
+}
+
+.tab-body {
+  position: relative;
+  top: 94px;
+  left: 40px;
+}

@@ -1,0 +1,140 @@
+<div class="d-flex flex-1 gap16 ovf-y-auto">
+  <!-- Deposit Limit FORM -->
+  <div class="flex-1 ovf-y-auto">
+    <div class="d-flex flex-column max-h-100 bg-light p-4 br16 ovf-y-auto">
+      <form [formGroup]="depositLimitForm" class="d-flex flex-1 gap16 ovf-y-auto">
+        <div class="d-flex flex-column flex-1 bg-grey000 border-1 border-solid border-grey200 br8 ovf-y-auto">
+          <div class="d-flex flex-column flex-1 gap24 p-4 ovf-y-auto">
+            <div class="d-flex flex-column gap8">
+              <div class="d-flex flex-1 jst-space align-center gap8">
+                <div class="ft-primary-b fs20 lh-base grey900" i18n>Per Transaction Limit</div>
+                <div class="ft-primary-sb fs12 lh-normal grey500" i18n>Cannot be greater than Daily or Weekly limit
+                </div>
+              </div>
+              <div class="bg-grey100 d-flex align-end flex-1 gap16 p-4 br12">
+                <div class="d-flex flex-column gap8 flex-1">
+                  <label for="amount" class="ft-primary-b fs12 lh-normal grey700" i18n>Amount</label>
+                  <input type="text"
+                    class="bg-light flex-1 ft-primary-b fs14 lh-base px-4 py-3 border1.5 border-solid border-grey300 br12"
+                    placeholder="₹ 1,00,000" disabled [value]="((+perTransaction | currencyFormat: true) || 0)">
+                </div>
+                <div class="btn-link-wrapper h48 d-flex jst-center align-center">
+                  <div class="ft-primary-b fs14 lh-base grad-red-text cursor" (click)="openDialog(perTransactionComponent)"
+                    i18n>Edit</div>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex flex-column gap8">
+              <div class="d-flex flex-1 jst-space align-center gap8">
+                <div class="ft-primary-b fs20 lh-base grey900" i18n>Daily Limit</div>
+                <div class="ft-primary-sb fs12 lh-normal grey500" i18n>Cannot be greater than Weekly limit</div>
+              </div>
+              <div class="bg-grey100 d-flex align-center flex-1 gap16 p-4 br12">
+                <div class="d-flex flex-column flex-1 gap8">
+                  <label for="amount" class="ft-primary-b fs12 lh-normal grey700" i18n>Amount</label>
+                  <input type="text"
+                    class="bg-light flex-1 ft-primary-b fs14 lh-base px-4 py-3 border1.5 border-solid border-grey300 br12"
+                    placeholder="₹ 1,00,000" disabled [value]="((+dailyLimit | currencyFormat: true) || 0)">
+                  <div class="d-flex jst-space align-center flex-1">
+                    <span class="ft-primary-b fs12 lh-normal grey700" i18n>Remaining Amount</span>
+                    <span class="ft-primary-b fs14 lh-normal grey900" i18n>{{ ((+dailyLimit | currencyFormat: true) ||
+                      0)}}</span>
+                  </div>
+                </div>
+                <div class="d-flex flex-column gap8">
+                  <label for="amount" class="ft-primary-b fs12 lh-normal grey700" i18n>Count</label>
+                  <input type="text"
+                    class="input-count bg-light flex-1 ft-primary-b fs14 lh-base px-4 py-3 border1.5 border-solid border-grey300 br12"
+                    placeholder="10" disabled [value]="dailyLimitCount">
+                  <div class="d-flex jst-space align-center flex-1">
+                    <span class="ft-primary-b fs12 lh-normal grey700" i18n>Remaining Count</span>
+                    <span class="ft-primary-b fs14 lh-normal grey900" i18n> {{ dailyLimitCount }}
+                    </span>
+                  </div>
+                </div>
+                <div class="btn-link-wrapper h48 d-flex jst-center align-center">
+                  <div class="ft-primary-b fs14 lh-base grad-red-text cursor" (click)="openDialog(dailyLimitComponent)" i18n>
+                    Edit</div>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex flex-column gap8">
+              <div class="d-flex flex-1 jst-space align-center gap8">
+                <div class="ft-primary-b fs20 lh-base grey900" i18n>Weekly Limit</div>
+                <div class="ft-primary-sb fs12 lh-normal grey500" i18n>Cannot be less than Daily limit or Per
+                  transaction limit
+                </div>
+              </div>
+              <div class="bg-grey100 d-flex align-center flex-1 gap16 p-4 br12">
+                <div class="d-flex flex-column flex-1 gap8">
+                  <label for="amount" class="ft-primary-b fs12 lh-normal grey700" i18n>Amount</label>
+                  <input type="text"
+                    class="bg-light flex-1 ft-primary-b fs14 lh-base px-4 py-3 border1.5 border-solid border-grey300 br12"
+                    placeholder="₹ 6,00,000" disabled [value]="((+weeklyLimit | currencyFormat: true) || 0)">
+                  <div class="d-flex jst-space align-center flex-1">
+                    <span class="ft-primary-b fs12 lh-normal grey700" i18n>Remaining Amount</span>
+                    <span class="ft-primary-b fs14 lh-normal grey900" i18n>
+                      {{ ((+weeklyLimit | currencyFormat: true) || 0) }}
+                    </span>
+                  </div>
+                </div>
+                <div class="d-flex flex-column gap8">
+                  <label for="amount" class="ft-primary-b fs12 lh-normal grey700" i18n>Count</label>
+                  <input type="text"
+                    class="input-count bg-light flex-1 ft-primary-b fs14 lh-base px-4 py-3 border1.5 border-solid border-grey300 br12"
+                    placeholder="50" disabled [value]="weeklyLimitCount">
+                  <div class="d-flex jst-space align-center flex-1">
+                    <span class="ft-primary-b fs12 lh-normal grey700" i18n>Remaining Count</span>
+                    <span class="ft-primary-b fs14 lh-normal grey900" i18n>
+                      {{ weeklyLimitCount }} </span>
+                  </div>
+                </div>
+                <div class="btn-link-wrapper h48 d-flex jst-center align-center">
+                  <div class="ft-primary-b fs14 lh-base grad-red-text cursor" (click)="openDialog(weeklyLimitComponent)"
+                    i18n>Edit</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-info d-flex flex-column bg-grey000 border-1 border-solid border-grey200 br8 ovf-y-auto">
+          <div class="d-flex flex-column flex-1 p-4 ovf-y-auto">
+            <p class="ft-primary-b fs14 lh-base grey900 mt-0 mb-1" i18n>Note:</p>
+            <ul class="pd-bullet-list d-flex flex-column gap6 mt-0 mb-4 pl-6">
+              <li class="pd-bullet-list-item p-rel ft-primary-md fs14 lh-base grey900 m-0" i18n>Day is treated as
+                12:00:00 AM - 11:59:59 PM.Week is treated as
+                Sunday - Saturday.</li>
+              <li class="pd-bullet-list-item p-rel ft-primary-md fs14 lh-base grey900 m-0" i18n>Once the deposit limit
+                (Amount or Count)is set, you cannot increase
+                the limit (Amount or Count) for 7 days, except for reducing the limits.</li>
+              <li class="pd-bullet-list-item p-rel ft-primary-md fs14 lh-base grey900 m-0" i18n>When you set your
+                deposit limit, any deposit you have made in the
+                passed days of that week will count towards your new deposit limit. </li>
+            </ul>
+            <p class="ft-primary-md fs14 lh-base grey900 m-0" i18n><span class="ft-primary-b">Example:</span> 8L now you
+              cannot
+              deposit more than Rs. 6L and you deposited Rs 5L and changed the deposit limit to Rs. 8 L now you
+              cannot deposit more than Rs 3L till the week ends. Rs. 8L limit will be available from next week.
+            </p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- Deposit Limit FORM -->
+
+  <!-- RHS BANNER IMAGES -->
+  <div class="pd-card-advertise max-h-100 d-flex flex-column align-self-start bg-light br16 ovf-y-auto">
+    <div class="d-flex flex-column flex-1 gap16 p-4 ovf-y-auto">
+      <img class="img-ad wp100 br8" *ngFor="let rim of rhsImages"
+        [src]="assetsImagePath+'responsible-gaming/'+rim.imgSrc" alt="advertise" i18n i18n-alt />
+    </div>
+  </div>
+  <!-- RHS BANNER IMAGES -->
+</div>
+
+<!-- TOAST COMPONENT -->
+<div class="text-center" *ngIf="isShowToast">
+  <app-toast [toastValue]="toastValue" [(isShowToast)]="isShowToast"></app-toast>
+</div>
+<!-- TOAST COMPONENT -->

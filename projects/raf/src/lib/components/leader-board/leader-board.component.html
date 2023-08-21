@@ -1,0 +1,107 @@
+<div class="d-flex flex-column flex-1 gap10">
+
+  <div class="d-flex flex-1 gap16 br16 ovf-y-auto">
+    <div class="d-flex flex-column flex-1 gap10">
+      <div *ngIf="leaderboardUsersDTO.length > 0" class="d-flex gap16">
+        <div class="wp60 bg-light p-4 br16">
+          <p class="ft-primary-rg fs14 lh-base grey700 m-0">
+            <span i18n>{{leaderboardList.shortDescription}}</span>
+            <button class="pd-btn-link ml-1" type="button" (click)="openDialog()" i18n>{{leaderboardList.readMoreText}}</button>
+          </p>
+        </div>
+        <div class="d-flex flex-column flex-1 bg-light gap16 p-4 br16">
+          <div class="d-flex flex-1 gap8">
+            <div class="d-flex flex-column flex-1 gap10">
+              <p class="ft-primary-b fs12 lh-normal text-uppercase grey500 m-0" i18n>Start</p>
+              <p class="ft-primary-b fs14 lh-normal grey900 m-0" i18n>{{leaderboardList.startDate | date:'dd MMM, h:mm a'}}</p>
+            </div>
+            <span class="border-0.5 border-solid border-grey100"></span>
+            <div class="d-flex flex-column flex-1 gap10">
+              <p class="ft-primary-b fs12 lh-normal text-uppercase grey500 m-0" i18n>End</p>
+              <p class="ft-primary-b fs14 lh-normal grey900 m-0" i18n>{{leaderboardList.endDate | date:'dd MMM, h:mm a'}}</p>
+            </div>
+          </div>
+          
+          <!-- Completed -->
+          <div *ngIf="false" class="d-flex jst-center align-center bg-grey100 p-1 br32">
+            <span class="ft-primary-b fs12 lh-base grad-grey-text">Completed</span>
+          </div>
+
+          <!-- Live -->
+          <div class="d-flex jst-center align-center gap4 bg-mint-green p-1 br32">
+            <span class="wh6 br6 bg-primary-success"></span>
+            <span class="ft-primary-b fs12 lh-base primary-success" i18n>Live</span>
+          </div>
+        </div>
+      </div>
+      <!-- Month Tabs -->
+      <div *ngIf="leaderboardUsersDTO.length > 0" class="d-flex align-center h40 bg-light px-4 gap16 br8">
+        <div class="d-flex align-center flex-1 gap24">
+          <a class="month-tab ft-primary-b fs14 lh-base grey600 p-rel cursor trans-05" *ngFor="let mTab of monthTabs" [ngClass]="{'month-tab-active':selectedMonthTab===mTab}" (click)="onSelectMonthTab(mTab)" i18n>
+            {{mTab}}
+          </a>
+        </div>
+        <p class="ft-primary-sb fs12 lh-normal grey600 m-0" i18n>Last Updated: {{leaderboardList.lastUpdated | date:'h:mm a'}}</p>
+      </div>
+      <!-- Leaderboard Empty -->
+      <ng-template #emptyBlock>
+        <div class="placeholder-container d-flex flex-column jst-center align-center flex-1 bg-light gap12 p-4 br16">
+          <div class="pd-placeholder wh112 d-flex jst-center align-center bg-grey200  p-4 br50">
+            <img [src]="assetsImagePath + 'raf/placeholder-leaderboard.png'" class="br8" alt="Placeholder Leaderboard" i18n i18n-alt />
+          </div>
+          <p class="ft-primary-b fs16 grey900 m-0" i18n>No leaderboards available.</p>
+        </div>
+      </ng-template>
+
+      <!-- Month Table Data Section -->
+      <div class="d-flex flex-1 bg-light p-4 br16" *ngIf="leaderboardUsersDTO.length>0; else emptyBlock">
+        <table class="d-flex flex-column flex-1 gap8" aria-describedby="leaderboard">
+          <thead class="d-flex align-center">
+            <tr class="d-flex align-center flex-1 bg-grey100 p-2 br8">
+              <th class="d-flex align-center flex-1">
+                <span class="fs12 ft-primary-b grey700 text-uppercase" i18n>Rank</span>
+              </th>
+              <th class="d-flex align-center flex-1">
+                <span class="fs12 ft-primary-b grey700 text-uppercase" i18n>Username</span>
+              </th>
+              <th class="d-flex align-center flex-1">
+                <span class="fs12 ft-primary-b grey700 text-uppercase" i18n>Points</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody class="d-flex flex-column gap8" [ngSwitch]="selectedMonthTab">
+            <ng-container *ngSwitchCase="monthTabs[0]">
+            <tr class="d-flex jst-start align-center flex-1 bg-grey000 py-2 px-3 br8" *ngFor="let monthData of leaderboardUsersDTO">
+                <td class="d-flex align-center flex-1 fs14 ft-primary-b grey900 p-rel">
+                  <span *ngIf="monthData.rank>3; else rankLessThanThreeBlock" i18n>{{monthData.rank}}</span>
+                  <ng-template #rankLessThanThreeBlock>
+                  <span class="img-icon icon-rank1 wh24 p-abs left-n5" *ngIf="monthData.rank===1"></span>
+                  <span class="img-icon icon-rank2 wh24 p-abs left-n5" *ngIf="monthData.rank===2"></span>
+                  <span class="img-icon icon-rank3 wh24 p-abs left-n5" *ngIf="monthData.rank===3"></span>
+                  </ng-template>
+                </td>
+                <td class="d-flex align-center flex-1 fs14 ft-primary-b grey900" i18n>{{monthData.userName}}</td>
+                <td class="d-flex align-center flex-1 fs14 ft-primary-b grey900" i18n>{{monthData.pgp | currencyFormat: false | number: '1.0-0'}}</td>
+            </tr>
+          </ng-container>
+        <ng-container *ngSwitchCase="monthTabs[1]">
+        <tr class="d-flex jst-start align-center flex-1 bg-grey000 py-2 px-3 br8" *ngFor="let monthData of leaderboardUsersDTO">
+            <td class="d-flex align-center flex-1 fs14 ft-primary-b grey900" i18n>{{monthData.rank}}</td>
+            <td class="d-flex align-center flex-1 fs14 ft-primary-b grey900" i18n>{{monthData.userName}}</td>
+            <td class="d-flex align-center flex-1 fs14 ft-primary-b grey900" i18n>{{monthData.pgp | currencyFormat: false | number: '1.0-0'}}</td>
+        </tr>
+      </ng-container>
+          </tbody>      
+        </table> 
+      </div> 
+      <!-- xxxx -->
+    </div>
+    <!-- Advertise Section -->
+    <div class="d-flex flex-column align-self-start gap16 bg-light p-4 br16">
+      <img [src]="assetsImagePath + 'raf/cash-ka-dum.png'" class="img-ad wp100 br8" alt="Cash Ka Dum" i18n i18n-alt />
+      <img [src]="assetsImagePath + 'raf/khud-khelo-khud-jeeto.png'" class="img-ad wp100 br8" alt="Khud Khelo Khud Jeeto" i18n i18n-alt />
+      <img [src]="assetsImagePath + 'raf/cash-ka-dum.png'" class="img-ad wp100 br8" alt="Cash Ka Dum" i18n i18n-alt />
+    </div>
+    <!-- xxxx -->
+  </div>
+</div>

@@ -1,0 +1,33 @@
+.img-icon {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.claim-now-btn {
+    width: 91px;
+    height: 28px;
+}
+
+.caret-left {
+  background-image: url('../../assets/images/caret-left.svg');
+}
+
+.x-icon {
+  background-image: url('../../assets/images/x.svg');
+}
+
+.info-grey {
+  background-image: url('../../assets/images/info-grey.svg');
+  width: 18px;
+  height: 18px;
+}
+
+.arrow-circle-down {
+  background-image: url('../../assets/images/arrow-circle-down.svg');
+}
+
+.arrow-circle-up {
+  background-image: url('../../assets/images/arrow-circle-down.svg');
+  transform: rotateX(180deg);
+}

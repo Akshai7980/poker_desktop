@@ -1,0 +1,542 @@
+@import '../../../../../../assets/abstract/core';
+@import '../../../../../../assets/components/avatar';
+
+// Common Background Properties for switch-icons
+%bg-switch-icon {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.table-details-container {
+  .table-details-main-header {
+    .header-text {
+      width: calc(100% - 32px);
+    }
+  }
+
+  .table-details-header {
+    .table-details-options {
+      .switch-toggle {
+        .switch-toggle-icons {
+          &:nth-child(2n + 1) {
+            border-top-left-radius: 12px;
+            border-bottom-left-radius: 12px;
+            border-right: none;
+
+            .list-icon {
+              background-image: url('../../../../../../assets/images/lobby/List-dark.svg');
+
+              @extend %bg-switch-icon;
+            }
+
+            &::after {
+              content: '';
+              position: absolute;
+              right: 0;
+              height: 38px;
+              width: 1.5px;
+              background: $grey200;
+            }
+          }
+
+          &:nth-child(2n + 2) {
+            border-left: none;
+            border-top-right-radius: 12px;
+            border-bottom-right-radius: 12px;
+
+            .table-icon {
+              background-image: url('../../../../../../assets/images/lobby/game-table-black.svg');
+
+              @extend %bg-switch-icon;
+            }
+          }
+
+          &:hover,
+          &.switch-active {
+            background-color: $grey900;
+
+            &:nth-child(2n + 1) {
+              .list-icon {
+                background-image: url('../../../../../../assets/images/lobby/List-light.svg');
+              }
+            }
+
+            &:nth-child(2n + 2) {
+              .table-icon {
+                background-image: url('../../../../../../assets/images/lobby/game-table-white.svg');
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .user-stack-detail-container {
+    .user-stack-body {
+      .user-stack-body-context {
+        border-bottom: 1px solid $grey300;
+
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+
+      @include device(dxlg) {
+        // for specific device extra large
+        height: calc(100vh - 626px);
+      }
+    }
+  }
+
+  .table-details-footer {
+    position: sticky;
+    bottom: 0;
+    width: 354px;
+    height: 56px;
+    box-shadow: 0 -4px 8px rgba(0 0 0 / 10%);
+    border-bottom-left-radius: $br16;
+    border-bottom-right-radius: $br16;
+    margin-left: -8px;
+  }
+
+  .poker-table-container {
+    img {
+      object-position: top;
+    }
+
+    .poker-table {
+      height: 482px;
+
+      img {
+        object-position: top;
+      }
+
+      .poker-table-widget {
+        left: 112px;
+        top: 202px;
+        gap: 80px;
+
+        .logo-placeholder-container {
+          opacity: 0.32;
+          box-shadow: inset 0 1px 2px rgba(0 0 0 / 60%);
+        }
+      }
+    }
+
+    .poker-players {
+      .player-seating {
+        isolation: isolate;
+        filter: drop-shadow(0 1.7421px 27.873px rgba(0 0 0 / 40%));
+
+        .player-image {
+          left: calc(50% - 41.81px / 2 + 0.39px);
+          top: -34.84px;
+        }
+
+        .floating-name {
+          left: 8.71px;
+          top: -35.45px;
+        }
+
+        .floating-d {
+          bottom: -15px;
+          left: 0;
+        }
+
+        .player-cards {
+          left: 45.29px;
+          bottom: 35.53px;
+          padding: 0;
+
+          .cards {
+            box-shadow: -2px 0 3px rgba(0 0 0 / 30%);
+
+            &:nth-child(2n + 2) {
+              margin: 0 -10px;
+            }
+          }
+        }
+
+        &.player1 {
+          left: 146px;
+          top: 69px;
+        }
+
+        &.player2 {
+          left: 14px;
+          top: 158px;
+
+          .floating-d {
+            bottom: -15px;
+            left: 100%;
+          }
+        }
+
+        &.player3 {
+          left: 265px;
+          top: 158px;
+        }
+      }
+    }
+  }
+
+  // The below were used for the media query,
+  // so here the classes can't define, the values should here only
+
+  @include device(dxl) {
+    .table-details-footer {
+      width: 400px;
+    }
+  }
+
+  // The below were used for the media query,
+  // so here the classes can't define, the values should here only
+
+  @include device(dxxl) {
+    .table-details-footer {
+      width: 454px;
+      gap: 16px;
+    }
+
+    .poker-table-container {
+      .poker-players {
+        .player-seating {
+          &.player1 {
+            top: 100px;
+          }
+        }
+      }
+    }
+  }
+
+  // The below were used for the media query,
+  // so here the classes can't define, the values should here only
+
+  @include device(dxlg) {
+    .table-details-footer {
+      width: 484px;
+      gap: 16px;
+
+      button {
+        &.btn {
+          &.btn-primary,
+          &.btn-primary-outline {
+            width: 220px !important;
+          }
+        }
+      }
+    }
+
+    .poker-table-container {
+      width: 100%;
+      height: 100%;
+
+      .poker-table {
+        width: 100%;
+        height: 622px;
+
+        .poker-table-widget {
+          left: 136px;
+          top: 266px;
+          gap: 140px;
+          width: 184px;
+          height: 144px;
+
+          .average-stack-container {
+            width: 160px;
+            height: 32px;
+
+            .average-stack-count {
+              width: 172px;
+              height: 32px;
+
+              .average-stack-title {
+                font-size: $fs14; // this font style should be used, because used in media query
+                width: 94px;
+              }
+
+              .average-stack-value {
+                width: 52px;
+
+                .poker-chip {
+                  width: 18px;
+                  height: 18px;
+                }
+
+                .average-stack-count-value {
+                  font-size: $fs14; // this font style should be used, because used in media query
+                  width: 32px;
+                }
+              }
+            }
+          }
+
+          .logo-placeholder-container {
+            height: 61px;
+
+            .logo-placeholder-body {
+              .logo-placeholder {
+                height: 36px;
+              }
+
+              .logo-placeholder-text {
+                font-size: $fs16; // this font style should be used, because used in media query
+              }
+            }
+          }
+        }
+      }
+
+      .poker-players {
+        .player-seating {
+          .player-image {
+            width: 62px;
+            height: 62px;
+          }
+
+          .floating-name {
+            width: 22px;
+            height: 16px;
+
+            .floating-name-body {
+              width: 26px;
+              height: 20px;
+              font-size: $fs14; // this font style should be used, because used in media query
+            }
+          }
+
+          .floating-d {
+            bottom: -70px;
+
+            .floating-name-d {
+              width: 26px;
+              height: 26px;
+              font-size: $fs18; // this font style should be used, because used in media query
+            }
+          }
+
+          .player-cards {
+            width: 20px;
+            height: 25px;
+            left: 68px;
+            bottom: 24px;
+
+            .cards {
+              width: 20px;
+              height: 25px;
+            }
+          }
+
+          .player-details {
+            width: 80px;
+            height: 60px;
+
+            &.top-left {
+              top: 20px;
+            }
+
+            .player-details-body {
+              width: 80px;
+              height: 60px;
+
+              .player-title {
+                font-size: $fs18;
+                height: auto;
+              }
+
+              .total-money {
+                font-size: $fs18;
+                height: auto;
+              }
+            }
+          }
+
+          &.player1 {
+            left: 190px;
+            top: 96px;
+          }
+
+          &.player2 {
+            left: 30px;
+            top: 200px;
+
+            .floating-d {
+              bottom: -70px;
+            }
+          }
+
+          &.player3 {
+            left: 358px;
+            top: 200px;
+          }
+        }
+      }
+    }
+  }
+
+  // The below were used for the media query,
+  // so here the classes can't define, the values should here only
+
+  @include device(dxxlg) {
+    .table-details-footer {
+      width: 534px;
+      gap: 16px;
+    }
+
+    .poker-table-container {
+      width: 100%;
+      height: 100%;
+
+      img {
+        object-fit: cover;
+      }
+
+      .poker-table {
+        width: 100%;
+        height: 622px;
+
+        .poker-table-widget {
+          left: 136px;
+          top: 266px;
+          gap: 140px;
+          width: 184px;
+          height: 144px;
+
+          .average-stack-container {
+            width: 160px;
+            height: 32px;
+
+            .average-stack-count {
+              width: 172px;
+              height: 32px;
+
+              .average-stack-title {
+                font-size: $fs14; // this font style should be used, because used in media query
+                width: 94px;
+              }
+
+              .average-stack-value {
+                width: 52px;
+
+                .poker-chip {
+                  width: 18px;
+                  height: 18px;
+                }
+
+                .average-stack-count-value {
+                  font-size: $fs14; // this font style should be used, because used in media query
+                  width: 32px;
+                }
+              }
+            }
+          }
+
+          .logo-placeholder-container {
+            height: 61px;
+
+            .logo-placeholder-body {
+              .logo-placeholder {
+                height: 36px;
+              }
+
+              .logo-placeholder-text {
+                font-size: $fs16; // this font style should be used, because used in media query
+              }
+            }
+          }
+        }
+      }
+
+      .poker-players {
+        .player-seating {
+          .player-image {
+            width: 62px;
+            height: 62px;
+          }
+
+          .floating-name {
+            width: 22px;
+            height: 16px;
+
+            .floating-name-body {
+              width: 26px;
+              height: 20px;
+              font-size: $fs14; // this font style should be used, because used in media query
+            }
+          }
+
+          .floating-d {
+            bottom: -70px;
+
+            .floating-name-d {
+              width: 26px;
+              height: 26px;
+              font-size: $fs18; // this font style should be used, because used in media query
+            }
+          }
+
+          .player-cards {
+            width: 20px;
+            height: 25px;
+            left: 68px;
+            bottom: 24px;
+
+            .cards {
+              width: 20px;
+              height: 25px;
+            }
+          }
+
+          .player-details {
+            width: 80px;
+            height: 60px;
+
+            &.top-left {
+              top: 20px;
+            }
+
+            .player-details-body {
+              width: 80px;
+              height: 60px;
+
+              .player-title {
+                font-size: $fs18;
+                height: auto;
+              }
+
+              .total-money {
+                font-size: $fs18;
+                height: auto;
+              }
+            }
+          }
+
+          &.player1 {
+            left: 190px;
+            top: 96px;
+          }
+
+          &.player2 {
+            left: 30px;
+            top: 200px;
+
+            .floating-d {
+              bottom: -70px;
+            }
+          }
+
+          &.player3 {
+            left: 358px;
+            top: 200px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.empty {
+  height: calc(100vh - 290px);
+}

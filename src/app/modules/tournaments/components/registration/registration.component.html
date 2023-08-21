@@ -1,0 +1,857 @@
+<div class="tournament-reg d-flex align-start gap16" [ngSwitch]="tournamentsData[0].status">
+  <!-- Registration - First Common Column -->
+  <div
+    class="reg-item d-flex flex-column jst-start align-start gap16 flex-1 bg-grey100 border-1 border-solid border-grey300 br16 p-4 shadow"
+  >
+    <div class="fs16 ft-primary-b grey900" i18n>Registration</div>
+
+    <div class="prize-pool-buyin-container wp100 d-flex align-center">
+      <div
+        class="prize-pool-container p-rel wh104 d-flex jst-center align-center bg-orange500 br-left-16"
+      >
+        <div class="prize-image-widget-right-bg w52 top-right h104 bg-orange200"></div>
+        <div class="prize-image-body wh68 d-flex jst-center align-center bg-orange000 br50">
+          <div class="prize-image-icon wh44"></div>
+        </div>
+        <div class="deal-allowed w88"></div>
+      </div>
+      <div class="buyin-container p-rel d-flex jst-around align-center h104 bg-grey900 br-right-16">
+        <div class="prize-text-item d-flex flex-column align-satrt gap8">
+          <div
+            class="text-item-title d-flex align-center fs12 ft-primary-b grey400 text-upppercase"
+            i18n
+          >
+            Prize Pool
+          </div>
+          <div class="d-flex flex-column gap4">
+            <div
+              class="prize-value d-flex align-center gap6 fs14 ft-primary-md grey000 text-uppercase"
+              i18n
+            >
+              ₹ 10,00,000
+            </div>
+            <div
+              class="prize-value d-flex align-center gap6 fs14 ft-primary-md grey000 text-uppercase"
+              i18n
+            >
+              IB 2,000
+            </div>
+            <div
+              class="prize-value d-flex align-center gap6 fs14 ft-primary-md grey000 text-uppercase"
+              i18n
+            >
+              <span class="prize-ticket tool-tip bottom prize-bottom-money">
+                5
+                <span class="tooltip-inner-text">
+                  <div class="ticket-data">
+                    <div class="ticket-data-text fs12 ft-primary-rg grey000">2 SPARTTKT</div>
+                    <div class="ticket-data-text fs12 ft-primary-rg grey000">3 SPARTICKET</div>
+                  </div>
+                </span>
+              </span>
+              Tickets
+              <span class="info-icon"> </span>
+            </div>
+          </div>
+        </div>
+        <div class="prize-text-item d-flex flex-column align-satrt gap8">
+          <div
+            class="text-item-title d-flex align-center fs12 ft-primary-b grey400 text-upppercase"
+            i18n
+          >
+            Buy-In
+          </div>
+          <div class="d-flex flex-column gap4">
+            <div
+              class="prize-value d-flex align-center gap6 fs14 ft-primary-md grey000 text-uppercase"
+              i18n
+            >
+              <span class="money-icon"></span>
+              ₹ 1,030
+              <span class="info-icon tool-tip top prize-top-money text-left">
+                <span class="tooltip-inner-text">
+                  <div class="ticket-data">
+                    <div class="ticket-data-text fs12 ft-primary-rg grey000">
+                      ₹ 500 (Registration) + ₹ 500 (Bounty) + ₹ 30 (Fee)
+                    </div>
+                  </div>
+                </span>
+              </span>
+            </div>
+            <div
+              class="prize-value d-flex align-center gap6 fs14 ft-primary-md grey000 text-uppercase"
+              i18n
+            >
+              <span class="ticket-icon"></span> Ticket
+              <span class="info-icon tool-tip bottom prize-bottom-money">
+                <span class="tooltip-inner-text">
+                  <div class="ticket-data">
+                    <div class="ticket-data-text grey000">1 NPS50TICKET</div>
+                    <div class="ticket-data-text grey000">1 NPS50TKT</div>
+                  </div>
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="item-inner-box wp100 d-flex flex-column gap24 bg-light border-0.5 border-solid border-grey300 p-4 br12"
+    >
+      <div class="d-flex align-start gap20 flex-1">
+        <div class="d-flex flex-column align-start gap10 flex-1">
+          <div class="fs12 ft-primary-b grey500 text-uppercase" i18n>Entries</div>
+          <div class="d-flex flex-column align-start gap4">
+            <div class="fs14 ft-primary-b grey900" i18n>0</div>
+            <div class="fs10 ft-primary-sb grey400" i18n>Minimum 3 Required to start</div>
+          </div>
+        </div>
+        <div class="d-flex flex-column align-start gap10 flex-1">
+          <div class="fs12 ft-primary-b grey500 text-uppercase" i18n>Re-Entries</div>
+          <div class="d-flex flex-column align-start gap4">
+            <div class="fs14 ft-primary-b grey900" i18n>5 times</div>
+            <div class="fs10 ft-primary-sb grey400" i18n>Till late registration</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="item-inner-box wp100 d-flex flex-column gap24 bg-light border-0.5 border-solid border-grey300 p-4 br12"
+    >
+      <div class="d-flex align-start gap20 flex-1">
+        <div class="d-flex flex-column align-start gap10 flex-1">
+          <div class="fs12 ft-primary-b grey500 text-uppercase" i18n>Game Varient</div>
+          <div class="d-flex flex-column align-start gap4">
+            <div class="fs14 ft-primary-b grey900" i18n>Hold’em</div>
+          </div>
+        </div>
+        <div class="d-flex flex-column align-start gap10 flex-1">
+          <div class="fs12 ft-primary-b grey500 text-uppercase" i18n>Starting Stack</div>
+          <div class="d-flex flex-column align-start gap4">
+            <div class="fs14 ft-primary-b grey900" i18n>2500 chips</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex align-start gap20 flex-1">
+        <div class="d-flex flex-column align-start gap10 flex-1">
+          <div class="fs12 ft-primary-b grey500 text-uppercase" i18n>Late Registration</div>
+          <div class="d-flex flex-column align-start gap4">
+            <div class="fs14 ft-primary-b grey900" i18n>Upto 100 minutes</div>
+            <div class="fs10 ft-primary-sb grey400" i18n>Till 10th level</div>
+          </div>
+        </div>
+        <div class="d-flex flex-column align-start gap10 flex-1">
+          <div class="fs12 ft-primary-b grey500 text-uppercase" i18n>Rebuy</div>
+          <div class="d-flex flex-column align-start gap4">
+            <div class="fs14 ft-primary-b grey900" i18n>Unlimited times</div>
+            <div class="fs10 ft-primary-sb grey400" i18n>Till 10th level</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex align-start gap20 flex-1">
+        <div class="d-flex flex-column align-start gap10 flex-1">
+          <div class="fs12 ft-primary-b grey500 text-uppercase" i18n>AddOn</div>
+          <div class="d-flex flex-column align-start gap4">
+            <div class="fs14 ft-primary-b grey900" i18n>Allowed</div>
+          </div>
+        </div>
+        <div class="d-flex flex-column align-start gap10 flex-1">
+          <div class="fs12 ft-primary-b grey500 text-uppercase" i18n>Break</div>
+          <div class="d-flex flex-column align-start gap4">
+            <div class="fs14 ft-primary-b grey900" i18n>Available</div>
+            <div class="fs10 ft-primary-sb grey400" i18n>Every 25th minute,past the hour</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex align-start gap20 flex-1">
+        <div class="d-flex flex-column align-start gap10 flex-1">
+          <div class="d-flex align-center gap4 fs12 ft-primary-b grey500 text-uppercase" i18n>
+            Bubble Insurance
+            <img
+              [src]="assetsImagePath + 'profile/info-fill.svg'"
+              alt="I-icon"
+              class="i-icon wh16"
+              i18n-alt
+            />
+          </div>
+          <div class="d-flex flex-column align-start gap4">
+            <div class="fs14 ft-primary-b grey900" i18n>Yes</div>
+            <div class="d-flex align-center gap4 fs10 ft-primary-sb grey400" i18n>
+              ₹ 10,00,000 + IB 1,000 +
+              <span class="ticket-number p-rel wh16"
+                ><span class="tsf-center fs8 ft-primary-b grey000">2</span></span
+              >
+              Tickets
+            </div>
+          </div>
+        </div>
+        <div class="d-flex flex-column align-start gap10 flex-1">
+          <div class="fs12 ft-primary-b grey500 text-uppercase" i18n>Table size</div>
+          <div class="d-flex flex-column align-start gap4">
+            <div class="fs14 ft-primary-b grey900" i18n>8-Max</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Case 1-> Registration Starting In -->
+
+  <ng-container *ngSwitchCase="TOURNAMENTS_STATUS.REGISTRATION_STARTING_IN">
+    <!-- Prize -->
+    <div
+      class="reg-item d-flex flex-column jst-start align-start gap16 flex-1 bg-grey100 border-1 border-solid border-grey300 br16 p-4 shadow"
+    >
+      <div class="fs16 ft-primary-b grey900" i18n>Prize</div>
+
+      <div class="prize-pool-buyin-container wp100 d-flex align-center">
+        <div
+          class="prize-pool-container p-rel wh104 d-flex jst-center align-center bg-orange500 br-left-16"
+        >
+          <div class="prize-image-widget-right-bg w52 top-right h104 bg-orange200"></div>
+          <div class="prize-image-body wh68 d-flex jst-center align-center bg-orange000 br50">
+            <div class="prize-image-icon wh44"></div>
+          </div>
+        </div>
+        <div
+          class="buyin-container only-one-col p-rel d-flex jst-start align-center h104 bg-grey900 br-right-16 pl-4"
+        >
+          <div class="prize-text-item d-flex flex-column align-start gap4">
+            <div
+              class="text-item-title d-flex align-center fs12 ft-primary-b grey400 text-uppercase"
+              i18n
+            >
+              Prize Pool
+            </div>
+            <div
+              class="prize-value d-flex align-center gap6 fs20 ft-primary-b grey000 text-uppercase"
+              i18n
+            >
+              ₹ 10,00,000
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="item-inner-box wp100 d-flex flex-column gap24 bg-light border-0.5 border-solid border-grey300 p-4 br12"
+      >
+        <div class="d-flex align-start gap20 flex-1">
+          <div class="d-flex flex-column align-start gap10 flex-1">
+            <div class="fs12 ft-primary-b grey500 text-uppercase" i18n>Places PAid</div>
+            <div class="d-flex flex-column align-start gap4">
+              <div class="fs14 ft-primary-b grey900" i18n>10</div>
+            </div>
+          </div>
+          <div class="d-flex flex-column align-start gap10 flex-1">
+            <div class="fs12 ft-primary-b grey500 text-uppercase" i18n>NEXT PAYOUT</div>
+            <div class="d-flex flex-column align-start gap4">
+              <div class="fs14 ft-primary-b grey900" i18n>₹ 3,000</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="table-container wp100 d-flex flex-column gap12 bg-light border-0.5 border-solid border-grey300 p-2 br12"
+      >
+        <table
+          class="app-table d-flex flex-column gap8 flex-1"
+          aria-label="Prize Table"
+          i18n-aria-label
+        >
+          <thead class="app-table-head d-flex flex-column flex-1">
+            <tr class="d-flex jst-space align-center h38 bg-grey100 br8 px-4 py-3">
+              <th
+                class="d-flex align-center gap8 fs12 ft-primary-b grey600 text-uppercase cursor"
+                i18n
+              >
+                rank
+              </th>
+              <th
+                class="d-flex align-center gap8 fs12 ft-primary-b grey600 text-uppercase cursor"
+                i18n
+              >
+                prize
+              </th>
+            </tr>
+          </thead>
+          <tbody class="app-table-body d-flex flex-column gap8 flex-1">
+            <tr
+              class="h40 d-flex jst-space align-center bg-grey000 br8 py-3 px-4"
+              *ngFor="let prizeTable of prizeTableData"
+            >
+              <td class="d-flex align-center fs14 ft-primary-b grey900" i18n>
+                {{ prizeTable.rank }}
+              </td>
+              <td class="d-flex align-center fs14 ft-primary-b grey900" i18n>
+                {{ equivalentAmountToINR(prizeTable.prize) }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Rules -->
+    <div
+      class="reg-item d-flex flex-column jst-start align-start gap16 flex-1 bg-grey100 border-1 border-solid border-grey300 br16 p-4 shadow"
+    >
+      <div class="fs16 ft-primary-b grey900" i18n>Rules</div>
+
+      <div
+        class="item-inner-box wp100 d-flex flex-column gap24 bg-light border-0.5 border-solid border-grey300 p-4 br12"
+      >
+        <div class="d-flex align-start gap20 flex-1">
+          <div class="d-flex flex-column align-start gap10 flex-1">
+            <div class="fs12 ft-primary-b grey500 text-uppercase" i18n>Turn Time</div>
+            <div class="d-flex flex-column align-start gap4">
+              <div class="fs14 ft-primary-b grey900" i18n>15 Seconds</div>
+            </div>
+          </div>
+          <div class="d-flex flex-column align-start gap10 flex-1">
+            <div class="fs12 ft-primary-b grey500 text-uppercase" i18n>Time Bank</div>
+            <div class="d-flex flex-column align-start gap4">
+              <div class="fs14 ft-primary-b grey900" i18n>40 Seconds</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="item-inner-box wp100 d-flex flex-column gap24 bg-light border-0.5 border-solid border-grey300 p-4 br12"
+      >
+        <div class="d-flex flex-column align-start gap20 flex-1">
+          <div class="fs12 ft-primary-b grey500 text-uppercase" i18n>Turn Time</div>
+          <div class="fs14 ft-primary-md grey800" i18n>
+            This Tournament,you can play either or all of the
+            <span class="ft-primary-b">day A/B/C/D/E 9th Sep.</span>
+          </div>
+          <div class="fs14 ft-primary-md grey800" i18n>
+            Players are automatically seated on <span class="ft-primary-b">random tables</span> at
+            the start of the game. Again while mending the tables, players are
+            <span class="ft-primary-b">picked in random order.</span>
+          </div>
+          <div class="fs14 ft-primary-md grey800" i18n>
+            In case of <span class="ft-primary-b">disconnection</span> in paid tournaments,players
+            can
+            <span class="ft-primary-b">join any time.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <!-- Case 2-> Registration (Registration already started) -->
+  <ng-container *ngSwitchCase="TOURNAMENTS_STATUS.REGISTERING">
+    <!-- Entries -->
+    <div
+      class="reg-item d-flex flex-column jst-start align-start gap16 flex-1 bg-grey100 border-1 border-solid border-grey300 br16 p-4 shadow"
+    >
+      <div class="fs16 ft-primary-b grey900" i18n>Entries</div>
+
+      <div
+        class="wp100 d-flex flex-column gap12 flex-1 bg-light br12 p-2 border-0.5 border-solid border-grey300"
+      >
+        <div class="d-flex flex-column gap8 flex-1">
+          <form class="p-rel wp100">
+            <img
+              [src]="assetsImagePath + 'tournaments/magnifying-glass.svg'"
+              alt="magnifying-glass.svg"
+              class="search-icon p-abs left-1 wh20"
+              i18n
+              i18n-alt
+            />
+            <input
+              type="text"
+              class="form-input-placeholder wp100 h40 bg-light br8 py-3 px-4 pl-8 border-1.5 border-solid border-grey300 fs14 ft-primary-b"
+              placeholder="Search Player"
+            />
+          </form>
+
+          <table class="d-flex flex-column gap8 flex-1" aria-label="Prize Table" i18n-aria-label>
+            <thead class="d-flex flex-column flex-1">
+              <tr class="h38 d-flex jst-space align-center flex-1 bg-grey100 br8 px-4 py-3">
+                <th
+                  class="wp20 d-flex jst-start align-center gap8 fs12 ft-primary-b grey600 text-uppercase"
+                  i18n
+                >
+                  S. No.
+                </th>
+                <th
+                  class="wp50 d-flex jst-start align-center gap8 fs12 ft-primary-b grey600 text-uppercase"
+                  i18n
+                >
+                  Players
+                </th>
+                <th
+                  class="wp20 d-flex jst-start align-center gap8 fs12 ft-primary-b grey600 text-uppercase"
+                  i18n
+                >
+                  Chips
+                </th>
+              </tr>
+            </thead>
+            <tbody class="d-flex flex-column gap8 flex-1">
+              <!-- Orange Row -->
+              <tr class="h40 d-flex jst-space align-center flex-1 bg-orange000 br8 py-3 px-4">
+                <td class="wp20 d-flex jst-start align-center fs14 ft-primary-b grey900" i18n>
+                  17
+                </td>
+                <td
+                  class="wp50 d-flex jst-start align-center fs14 ft-primary-b grad-orange-text"
+                  i18n
+                >
+                  coastlineoutmost
+                </td>
+                <td class="wp20 d-flex jst-start align-center fs14 ft-primary-b grey900" i18n>
+                  2,000
+                </td>
+              </tr>
+              <!-- List Row -->
+              <tr
+                class="h40 d-flex jst-space align-center flex-1 bg-grey000 br8 py-3 px-4"
+                *ngFor="let entryTable of entryTableData"
+              >
+                <td class="wp20 d-flex jst-start align-center fs14 ft-primary-b grey900" i18n>
+                  {{ entryTable.serialNumber }}
+                </td>
+                <td class="wp50 d-flex jst-start align-center fs14 ft-primary-b grey900" i18n>
+                  {{ entryTable.players }}
+                </td>
+                <td class="wp20 d-flex jst-start align-center fs14 ft-primary-b grey900" i18n>
+                  {{
+                    entryTable.chips.toLocaleString('en-IN', {
+                      currency: 'INR',
+                      minimumFractionDigits: 0,
+                      maximumFractionDigits: 2
+                    }) || 0
+                  }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Prizes -->
+    <div
+      class="reg-item d-flex flex-column jst-start align-start gap16 flex-1 bg-grey100 border-1 border-solid border-grey300 br16 p-4 shadow"
+    >
+      <div class="fs16 ft-primary-b grey900" i18n>Prizes</div>
+
+      <div class="prize-pool-buyin-container wp100 d-flex align-center">
+        <div
+          class="prize-pool-container p-rel wh104 d-flex jst-center align-center bg-orange500 br-left-16"
+        >
+          <div class="prize-image-widget-right-bg w52 top-right h104 bg-orange200"></div>
+          <div class="prize-image-body wh68 d-flex jst-center align-center bg-orange000 br50">
+            <div class="prize-image-icon wh44"></div>
+          </div>
+        </div>
+        <div
+          class="buyin-container only-one-col p-rel d-flex jst-start align-center h104 bg-grey900 br-right-16 pl-4"
+        >
+          <div class="prize-text-item d-flex flex-column align-start gap4">
+            <div
+              class="text-item-title d-flex align-center fs12 ft-primary-b grey400 text-uppercase"
+              i18n
+            >
+              Prize Pool
+            </div>
+            <div
+              class="prize-value d-flex align-center gap6 fs20 ft-primary-b grey000 text-uppercase"
+              i18n
+            >
+              ₹ 10,00,000
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="item-inner-box wp100 d-flex flex-column gap24 bg-light border-0.5 border-solid border-grey300 p-4 br12"
+      >
+        <div class="d-flex align-start gap20 flex-1">
+          <div class="d-flex flex-column align-start gap10 flex-1">
+            <div class="fs12 ft-primary-b grey500 text-uppercase" i18n>Places PAid</div>
+            <div class="d-flex flex-column align-start gap4">
+              <div class="fs14 ft-primary-b grey900" i18n>10</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="wp100 d-flex flex-column gap12 bg-light br16 p-2">
+        <table class="d-flex flex-column gap8 flex-1" aria-label="Prize Table" i18n-aria-label>
+          <thead class="d-flex flex-column flex-1">
+            <tr class="h38 d-flex align-center flex-1 bg-grey100 br8 px-4 py-3">
+              <th
+                class="wp20 d-flex jst-start align-center gap8 fs12 ft-primary-b grey600 text-uppercase"
+                i18n
+              >
+                rank
+              </th>
+              <th
+                class="wp80 d-flex jst-start align-center gap8 fs12 ft-primary-b grey600 text-uppercase"
+                i18n
+              >
+                prize
+              </th>
+            </tr>
+          </thead>
+          <tbody class="d-flex flex-column gap8 flex-1">
+            <tr
+              class="h40 d-flex align-center flex-1 bg-grey000 br8 py-3 px-4"
+              *ngFor="let prizeTable of prizeTableData.slice(0, 6); let i = index"
+            >
+              <td class="wp20 d-flex jst-start align-center fs14 ft-primary-b grey900" i18n>
+                {{ prizeTable.rank }}
+              </td>
+              <td
+                class="wp80 d-flex jst-start align-center fs14 ft-primary-b grey900"
+                [ngClass]="{ 'grad-orange-text': i == 0 }"
+                i18n
+              >
+                {{ equivalentAmountToINR(prizeTable.prize) }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </ng-container>
+
+  <!-- Case 3-> Late Registration ( Also common for RUNNING & Observe Table Screens) -->
+  <ng-container *ngSwitchCase="TOURNAMENTS_STATUS.LATE_REGISTRATION">
+    <!-- Summary -->
+    <div
+      class="reg-item d-flex flex-column jst-start align-start gap16 flex-1 bg-grey100 border-1 border-solid border-grey300 br16 p-4 shadow"
+    >
+      <div class="fs16 ft-primary-b grey900" i18n>Summary</div>
+
+      <div class="summary-container wp100 d-flex align-center">
+        <div
+          class="summary-left p-rel wh104 d-flex jst-center align-center bg-purple500 br-left-16"
+        >
+          <div class="image-widget-right-bg w52 top-right h104 bg-purple200"></div>
+          <div class="image-body wh68 d-flex jst-center align-center bg-purple000 br50">
+            <div class="image-icon wh44"></div>
+          </div>
+        </div>
+        <div
+          class="summary-right p-rel d-flex jst-start align-center h104 bg-grey800 br-right-16 pl-4"
+        >
+          <div class="summary-grid-right bottom-right"></div>
+          <div class="summary-text-item d-flex flex-column align-start gap4">
+            <div
+              class="text-item-title d-flex align-center fs12 ft-primary-b grey400 text-uppercase"
+              i18n
+            >
+              MY Rank
+            </div>
+            <div
+              class="summary-value d-flex align-center gap6 fs24 ft-primary-b grey000 text-uppercase"
+              i18n
+            >
+              NA
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="item-inner-box wp100 d-flex flex-column gap24 bg-light border-0.5 border-solid border-grey300 p-4 br12"
+      >
+        <div class="d-flex align-start gap20 flex-1">
+          <div class="d-flex flex-column align-start gap10 flex-1">
+            <div class="fs12 ft-primary-b grey500 text-uppercase" i18n>Remaining Players</div>
+            <div class="d-flex flex-column align-start gap4">
+              <div class="fs14 ft-primary-b grey900" i18n>54/327</div>
+            </div>
+          </div>
+          <div class="d-flex flex-column align-start gap10 flex-1">
+            <div class="fs12 ft-primary-b grey500 text-uppercase" i18n>ENTRIES</div>
+            <div class="d-flex flex-column align-start gap4">
+              <div class="fs14 ft-primary-b grey900" i18n>
+                50 <span class="fs12 ft-primary-md grey500">(Registration)</span>
+              </div>
+              <div class="fs14 ft-primary-b grey900" i18n>
+                50 <span class="fs12 ft-primary-md grey500">(Registration)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex align-start gap20 flex-1">
+          <div class="d-flex flex-column align-start gap10 flex-1">
+            <div class="fs12 ft-primary-b grey500 text-uppercase" i18n>Current Blind Level</div>
+            <div class="d-flex flex-column align-start gap4">
+              <div class="fs14 ft-primary-b grey900" i18n>30</div>
+              <div class="fs10 ft-primary-sb grey400" i18n>2,000/4,000, Ante-500</div>
+            </div>
+          </div>
+          <div class="d-flex flex-column align-start gap10 flex-1">
+            <div class="fs12 ft-primary-b grey500 text-uppercase" i18n>next blind level in</div>
+            <div class="d-flex flex-column align-start gap4">
+              <div class="fs14 ft-primary-b grad-red-text" i18n>02:45</div>
+              <div class="fs10 ft-primary-sb grey400" i18n>2,000/4,000, Ante-500</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex align-start gap20 flex-1">
+          <div class="d-flex flex-column align-start gap10 flex-1">
+            <div class="fs12 ft-primary-b grey500 text-uppercase" i18n>Rebuy Count</div>
+            <div class="d-flex flex-column align-start gap4">
+              <div class="fs14 ft-primary-b grey900" i18n>14</div>
+            </div>
+          </div>
+          <div class="d-flex flex-column align-start gap10 flex-1">
+            <div class="fs12 ft-primary-b grey500 text-uppercase" i18n>Rebuy ends in</div>
+            <div class="d-flex flex-column align-start gap4">
+              <div class="fs14 ft-primary-b grad-red-text" i18n>02:45</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex align-start gap20 flex-1">
+          <div class="d-flex flex-column align-start gap10 flex-1">
+            <div class="fs12 ft-primary-b grey500 text-uppercase" i18n>Addon Count</div>
+            <div class="d-flex flex-column align-start gap4">
+              <div class="fs14 ft-primary-b grey900" i18n>14</div>
+            </div>
+          </div>
+          <div class="d-flex flex-column align-start gap10 flex-1">
+            <div class="fs12 ft-primary-b grey500 text-uppercase" i18n>Next Break In</div>
+            <div class="d-flex flex-column align-start gap4">
+              <div class="fs14 ft-primary-b grad-red-text" i18n>12:10</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex align-start gap20 flex-1">
+          <div class="d-flex flex-column align-start gap10 flex-1">
+            <div class="fs12 ft-primary-b grey500 text-uppercase" i18n>Tables Running</div>
+            <div class="d-flex flex-column align-start gap4">
+              <div class="fs14 ft-primary-b grey900" i18n>12</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="item-inner-box wp100 d-flex flex-column gap24 bg-light border-0.5 border-solid border-grey300 p-4 br12"
+      >
+        <div class="d-flex align-start gap20 flex-1">
+          <div class="d-flex flex-column align-start gap10 flex-1">
+            <div class="fs12 ft-primary-b grey500 text-uppercase" i18n>Large Stack</div>
+            <div class="d-flex flex-column align-start gap4">
+              <div class="d-flex align-center gap4 fs14 ft-primary-b grey900" i18n>
+                <img
+                  [src]="assetsImagePath + 'tournaments/large-stacks.svg'"
+                  alt="large-stacks.svg"
+                  class="wh16"
+                  i18n-alt
+                />
+                3,44,554
+              </div>
+            </div>
+          </div>
+          <div class="d-flex flex-column align-center gap10 flex-1">
+            <div class="fs12 ft-primary-b grey500 text-uppercase" i18n>Average Stack</div>
+            <div class="d-flex flex-column align-start gap4">
+              <div class="d-flex align-center gap4 fs14 ft-primary-b grey900" i18n>
+                <img
+                  [src]="assetsImagePath + 'tournaments/average-stacks.svg'"
+                  alt="average-stacks.svg"
+                  class="wh16"
+                  i18n-alt
+                />
+                1,24,544
+              </div>
+            </div>
+          </div>
+          <div class="d-flex flex-column align-end gap10 flex-1">
+            <div class="fs12 ft-primary-b grey500 text-uppercase" i18n>Small Stack</div>
+            <div class="d-flex flex-column align-start gap4">
+              <div class="d-flex align-center gap4 fs14 ft-primary-b grey900" i18n>
+                <img
+                  [src]="assetsImagePath + 'tournaments/small-stack.svg'"
+                  alt="small-stack.svg"
+                  class="wh16"
+                  i18n-alt
+                />
+                14,554
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rank -->
+    <div
+      class="reg-item d-flex flex-column jst-start align-start gap16 flex-1 bg-grey100 border-1 border-solid border-grey300 br16 p-4 shadow"
+    >
+      <div class="fs16 ft-primary-b grey900" i18n>Rank</div>
+
+      <div class="wp100 d-flex flex-column gap12 flex-1 bg-light br12 p-2">
+        <div class="d-flex flex-column gap8 flex-1">
+          <table class="d-flex flex-column gap8 flex-1" aria-label="Prize Table" i18n-aria-label>
+            <thead class="d-flex flex-column flex-1">
+              <tr class="h38 d-flex jst-space align-center flex-1 bg-grey100 br8 px-4 py-3">
+                <th
+                  class="wp15 d-flex jst-start align-center gap8 fs12 ft-primary-b grey600 text-uppercase"
+                  i18n
+                >
+                  Rank
+                </th>
+                <th
+                  class="d-flex jst-start align-center flex-1 gap8 fs12 ft-primary-b grey600 text-uppercase"
+                  i18n
+                >
+                  Players
+                </th>
+                <th
+                  class="d-flex jst-start align-center flex-1 gap8 fs12 ft-primary-b grey600 text-uppercase"
+                  i18n
+                >
+                  Chips
+                </th>
+                <th
+                  class="d-flex jst-start align-center flex-1 gap8 fs12 ft-primary-b grey600 text-uppercase"
+                  i18n
+                >
+                  Bounty
+                </th>
+              </tr>
+            </thead>
+            <thead class="p-rel d-flex flex-column flex-1">
+              <tr class="d-flex flex-column flex-1">
+                <img
+                  [src]="assetsImagePath + 'tournaments/magnifying-glass.svg'"
+                  alt="magnifying-glass.svg"
+                  class="search-icon p-abs left-1 wh20"
+                  i18n
+                  i18n-alt
+                />
+                <input
+                  type="text"
+                  class="form-input-placeholder wp100 h40 bg-light br8 py-3 px-4 pl-8 border-1.5 border-solid border-grey300 fs14 ft-primary-b"
+                  placeholder="Search Player"
+                />
+              </tr>
+            </thead>
+            <tbody class="d-flex flex-column gap8 flex-1">
+              <!-- Orange Row -->
+              <tr class="d-flex jst-space align-center flex-1 bg-orange000 br8 py-2 px-4">
+                <td
+                  class="wp15 d-flex jst-start align-center fs14 ft-primary-b grey900 lh-base"
+                  i18n
+                >
+                  17
+                </td>
+                <td
+                  class="d-flex jst-start align-center flex-1 fs14 ft-primary-b grad-orange-text lh-base"
+                  i18n
+                >
+                  Bidyut007
+                </td>
+                <td
+                  class="d-flex jst-start align-center flex-1 fs14 ft-primary-b grey900 lh-base"
+                  i18n
+                >
+                  15,000
+                </td>
+                <td
+                  class="d-flex jst-start align-center flex-1 gap4 fs14 ft-primary-b grey900 lh-base"
+                  i18n
+                >
+                  ₹ 2,889 <span class="fs12 ft-primary-sb grey500"> (2)</span>
+                </td>
+              </tr>
+              <!-- List Row -->
+              <tr
+                class="d-flex jst-space align-center flex-1 bg-grey000 br8 py-2 px-4"
+                *ngFor="let rankTable of rankTableData"
+                [ngClass]="rankTable.chips === 0 ? 'grey300' : 'grey900'"
+              >
+                <td class="wp15 d-flex jst-start align-center fs14 ft-primary-b" i18n>
+                  {{ rankTable.rank }}
+                </td>
+                <td class="d-flex jst-start align-center flex-1 fs14 ft-primary-b" i18n>
+                  <ng-container *ngIf="rankTable.players.length >= 10; else elseCase">
+                    {{ rankTable.players.slice(0, 8) + '...' }}
+                    <span class="tool-tip top flexible-width" *ngIf="rankTable.playersCount">
+                      (<span>{{ rankTable.playersCount }}</span
+                      >)
+                      <span
+                        class="tooltip-inner-text border-2 border-solid border-grey700 fs12 ft-primary-md grey000"
+                        >Re-Entry</span
+                      >
+                    </span>
+                  </ng-container>
+                  <ng-template #elseCase>{{ rankTable.players }}</ng-template>
+                </td>
+                <td class="d-flex jst-start align-center flex-1 fs14 ft-primary-b" i18n>
+                  <ng-container *ngIf="rankTable.chips !== 0; else elseChipCase">
+                    {{
+                      rankTable.chips.toLocaleString('en-IN', {
+                        currency: 'INR',
+                        minimumFractionDigits: 0,
+                        maximumFractionDigits: 2
+                      }) || 0
+                    }}
+                  </ng-container>
+                  <ng-template #elseChipCase>Eliminated</ng-template>
+                </td>
+                <td class="d-flex jst-start align-center flex-1 gap4 fs14 ft-primary-b" i18n>
+                  {{
+                    rankTable.bounty.toLocaleString('en-IN', {
+                      currency: 'INR',
+                      minimumFractionDigits: 0,
+                      maximumFractionDigits: 2
+                    }) || 0
+                  }}
+                  <span
+                    class="fs12 ft-primary-sb"
+                    [ngClass]="rankTable.chips === 0 ? 'grey300' : 'grey500'"
+                    >({{ rankTable.bountyCount }})</span
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Player Not Found -->
+          <div
+            class="d-flex flex-column jst-center align-center gap10 flex-1 fs16 ft-primary-b grey500 p-4"
+            *ngIf="false"
+          >
+            Player not found.
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="item-inner-box wp100 d-flex flex-column gap24 bg-light border-0.5 border-solid border-grey300 p-4 br12"
+      >
+        <div class="d-flex align-start gap20 flex-1">
+          <div class="d-flex flex-column align-start gap10 flex-1">
+            <div class="fs12 ft-primary-b grey500 text-uppercase" i18n>Remaining Players</div>
+            <div class="d-flex flex-column align-start gap4">
+              <div class="fs14 ft-primary-b grey900" i18n>54/327</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

@@ -1,0 +1,14 @@
+@import '../../../../../assets/abstract/core';
+@import '../../../../../assets/theme/components/custom';
+
+.copy-icon {
+  &:hover {
+    transform: scale(1.2);
+  }
+
+  img {
+    &:focus-visible {
+      outline: 0;
+    }
+  }
+}

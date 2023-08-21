@@ -1,0 +1,185 @@
+@import '../abstract/core';
+
+.cashier {
+  width: 100%;
+  height: 100%;
+
+  @include flex($direction: column);
+
+  &.cashier-half {
+    width: 50%;
+  }
+
+  .cashier-header {
+    @include card(
+      $height: 56px,
+      $background: $bg-light,
+      $borderLength: 0,
+      $borderRadius: 0,
+      $padding: 1rem,
+      $margin: 0
+    );
+
+    box-shadow: 0 2px 16px rgba(0 0 0 / 8%);
+
+    @include flex($justifyContent: space-between, $alignItems: center);
+
+    span.header-title {
+      @include text-styles($fontSize: 20px, $fontWeight: 700, $color: $grey900, $lineHeight: 24px);
+
+      i {
+        cursor: pointer;
+      }
+
+      .to-back-icon {
+        width: 24px;
+        height: 24px;
+        display: inline-block;
+        text-align: center;
+        border-radius: 8px;
+
+        &:hover {
+          background: $grey100;
+        }
+      }
+    }
+  }
+
+  .cashier-body {
+    @include flex($direction: column, $gap: 0.75rem);
+    @include card(
+      $background: $grey100,
+      $borderLength: 0,
+      $borderRadius: 0,
+      $padding: 1rem,
+      $margin: 0
+    );
+  }
+}
+
+.circle {
+  @include flex($justifyContent: center, $alignItems: center, $gap: 0.5rem);
+  @include card(
+    $width: 108px,
+    $height: 108px,
+    $background: $grey300,
+    $borderLength: 0,
+    $borderRadius: $br50,
+    $padding: 1.5rem,
+    $margin: 0
+  );
+}
+
+.g-form-group {
+  @include flex($direction: column, $gap: 0.25rem);
+
+  label {
+    @include text-styles($fontSize: $fs14, $fontWeight: 700, $color: $grey900, $lineHeight: 16.8px);
+  }
+
+  .g-form-control {
+    width: 350px;
+    height: 48px;
+    border: 1.5px solid $grey300;
+    border-radius: $br12;
+
+    @include text-styles($fontSize: 16px, $fontWeight: 700, $color: $grey700, $lineHeight: 24px);
+
+    &::placeholder {
+      $color: $grey400;
+    }
+
+    &:focus {
+      box-shadow: none;
+    }
+
+    &.ng-touched.ng-dirty.ng-invalid {
+      border-color: $primary-error;
+    }
+
+    &.ng-valid {
+      border-color: $primary-success;
+    }
+  }
+
+  .p-input-icon-right {
+    width: 100%;
+  }
+
+  .custom-right-icon {
+    @include text-styles($fontSize: $fs14, $fontWeight: 700, $color: $grey400, $lineHeight: 20px);
+
+    &.valid {
+      color: $primary-red;
+    }
+  }
+
+  .hint-text {
+    @include text-styles($fontWeight: 500, $color: $grey400, $lineHeight: 14.4px);
+
+    &.error {
+      color: $primary-red;
+    }
+  }
+
+  .address-txt {
+    @include text-styles($fontSize: $fs12, $fontWeight: 500, $color: $grey900, $lineHeight: 19.2px);
+
+    margin-left: 1.875rem;
+  }
+}
+
+.ticket-btn,
+.offer-btn {
+  @include flex($justifyContent: center, $alignItems: center);
+
+  padding: 8px 16px;
+  width: 88px;
+  height: 32px;
+  background: $bg-light;
+  border: 1.5px solid $grey300;
+  border-radius: $br8;
+  font-size: 12px;
+  font-family: $font-semi-bold;
+  color: $primary-red;
+  cursor: pointer;
+}
+
+.offer-btn {
+  width: 123px;
+  height: 40px;
+  padding: 10px 16px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  border-radius: 12px;
+
+  &:disabled {
+    color: $grey400;
+    border-color: $grey400;
+    cursor: not-allowed;
+  }
+}
+
+.ticket-box {
+  width: 16px;
+  height: 16px;
+  background-image: url('../images/common/ticket-bg-colored.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+
+  &.non-colored {
+    background-image: url('../images/common/ticket-bg-non-colored.svg');
+  }
+
+  .ticket-chip {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+
+    @include text-styles($fontSize: 8px, $fontWeight: 700, $color: $grey000, $lineHeight: 10px);
+  }
+}

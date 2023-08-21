@@ -1,0 +1,33 @@
+@import '../../../../assets/abstract/core';
+
+.otp-input {
+  width: 44px;
+  height: 44px;
+
+  &.default {
+    border: 1.5px solid $grey300;
+  }
+
+  &.error {
+    border: 1.5px solid $primary-error;
+  }
+
+  &.success {
+    border: 1.5px solid $primary-success;
+  }
+
+  &::placeholder {
+    display: flex;
+    align-items: center;
+    transform: translateY(6px);
+  }
+
+  &:focus {
+    outline: 0;
+    border: 1.5px solid $grey900;
+  }
+
+  &:focus-visible {
+    outline: 0;
+  }
+}

@@ -1,0 +1,27 @@
+@import '../../../../assets/abstract/variables';
+
+.custom-input-dropdown {
+  .custom-input-group {
+    top: 2px;
+    left: 2px;
+
+    input[type='tel'] {
+      &.custom-input {
+        width: 216px;
+        height: 40px;
+
+        &:focus,
+        &:focus-visible {
+          outline: 0;
+          border: none;
+        }
+      }
+    }
+  }
+}
+
+.error {
+  width: 283px;
+  height: 44px;
+  border: 1.5px solid $primary-error;
+}

@@ -1,0 +1,35 @@
+@import '../../../../assets/abstract/variables';
+
+.tournament-card {
+  position: absolute;
+  width: 1272px;
+  height: 208px;
+  left: 0;
+  top: 0;
+  background: $bg-light;
+  box-shadow: 0 2px 16px rgba(0 0 0 / 8%);
+  border-radius: 16px;
+  display: flex;
+}
+
+.card-avatar {
+  width: 160px;
+  height: 160px;
+  background: $grey100;
+  border-radius: 84px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 22px;
+  margin: 22px;
+}
+
+.chart-text {
+  width: 186px;
+  height: 19px;
+  font-family: $font-bold;
+  font-size: 16px;
+  color: $grey800;
+  position: absolute;
+  top: 52px;
+}

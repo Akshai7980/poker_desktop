@@ -1,0 +1,17 @@
+<div class="action-dialog d-flex flex-column jst-space gap16 p-6">
+    <div class="action-dialog-header d-flex jst-space align-center flex-1">
+      <div class="action-title fs20 ft-primary-b grey900" i18n>Info</div>
+      <div class="action-options p-rel wh24 cursor" mat-dialog-close>
+        <div class="icons-24 close-icon top-right wh24"></div>
+      </div>
+    </div>
+    <div class="action-dialog-body">
+        <span class="fs14 ft-primary-md grey900" i18n>Are you sure you want to delete this card?</span>
+    </div>
+    <div class="action-dialog-footer d-flex align-center gap16 flex-1 m-0 p-0">
+        <button type="button" class="btn-cancel w183 h48 flex-1 bg-light px-4 py-3 border-1.5 border-solid border-secondary-grey br12 cursor" (click)="onNo()" tabindex="-1">
+          <span class="btn-text fs16 ft-primary-b secondary-grey" i18n>No</span>
+        </button>
+        <button type="button" class="btn btn-primary w183 flex-1 h48" mat-button (click)="onYes()" tabindex="0"><span class="btn-text fs16 ft-primary-b primary-light" i18n>Yes</span></button>
+    </div>
+</div>

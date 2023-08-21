@@ -1,0 +1,136 @@
+<div class="action-dialog d-flex flex-col jst-space align-center gap16 mh185 p-4 wp100">
+  <div class="action-dialog-header d-flex jst-space align-center wp100">
+    <div class="fs20 ft-primary-b grey900" i18n>Late Registration</div>
+  </div>
+
+  <div class="action-dialog-body d-flex flex-column align-center gap24 wp100">
+    <div class="reg-top wp100 d-flex jst-space align-center gap20">
+      <div class="reg-top-left d-flex flex-col gap8">
+        <div class="d-flex">
+          <div
+            class="spec-div d-flex jst-center align-center br20 py-1 px-3 bg-purple000 fs10 ft-primary-sb purple600 game-variant"
+            i18n
+          >
+            Holdem
+          </div>
+        </div>
+        <span
+          class="reg-txt fs14 ft-primary-b grey900"
+          i18n
+          *ngIf="data.from == 'INSUFFICIENT_BALANCE'"
+          >1 Cr Nano Main Event Adda Satty</span
+        >
+        <span
+          class="reg-txt fs14 ft-primary-b grey900"
+          i18n
+          *ngIf="data.from == 'SUFFICIENT_BALANCE'"
+          >1 Cr Nano Main Event Adda</span
+        >
+      </div>
+      <div class="reg-top-right d-flex flex-column gap10 align-end">
+        <span class="reg-txt-secc fs12 ft-primary-b grey500 text-uppercase" i18n
+          >Tourney Balance</span
+        >
+        <span
+          class="reg-txt fs14 ft-primary-b grey900"
+          *ngIf="data.from == 'SUFFICIENT_BALANCE'"
+          i18n
+          >₹ 4,00,000</span
+        >
+        <span
+          class="reg-txt fs14 ft-primary-b grey900"
+          *ngIf="data.from == 'INSUFFICIENT_BALANCE'"
+          i18n
+          >₹ 400</span
+        >
+      </div>
+    </div>
+    <form [formGroup]="regForm" class="reg-bottom d-flex flex-col gap12 wp100">
+      <div
+        class="reg-bottom-box border-1 border-solid border-grey100 br12 p-4 d-flex flex-col gap12"
+      >
+        <div class="p-field-radiobutton">
+          <p-radioButton
+            value="money"
+            formControlName="money"
+            (onClick)="onSelectRegMoneyRadio()"
+            [(ngModel)]="selectedRegMoneyRadio"
+            inputId="money"
+            styleClass="lobbyRegRadio"
+            [disabled]="data.from == 'INSUFFICIENT_BALANCE'"
+          ></p-radioButton>
+          <label
+            class="reg-txt fs14 ft-primary-b cursor"
+            for="money"
+            i18n
+            [ngClass]="data.from == 'INSUFFICIENT_BALANCE' ? 'grey400' : 'grey900'"
+            >₹ 500 (Registration) + ₹ 500 (Bounty) + ₹ 30 (Fee)</label
+          >
+        </div>
+      </div>
+      <div
+        class="reg-bottom-box border-1 border-solid border-grey100 br12 p-4 d-flex flex-col gap12"
+        *ngIf="data.from == 'SUFFICIENT_BALANCE'"
+      >
+        <div class="p-field-radiobutton" *ngFor="let tk of tickets; let i = index">
+          <p-radioButton
+            [value]="'ticket-' + i"
+            formControlName="ticket"
+            (onClick)="onSelectRegRadio('ticket-' + i)"
+            [(ngModel)]="selectedRegRadio"
+            [inputId]="'ticket-' + i"
+          ></p-radioButton>
+          <label class="reg-txt fs14 ft-primary-b grey900 cursor" [for]="'ticket-' + i" i18n>
+            <img
+              [src]="assetsImagePath + '/common/ticket-bg-colored.svg'"
+              alt="ticket"
+              class="iconImg"
+              i18n-alt
+            />
+            {{ tk }}
+          </label>
+        </div>
+      </div>
+      <span
+        class="info-text fs14 ft-primary-md grey900"
+        *ngIf="data.from == 'INSUFFICIENT_BALANCE'"
+        i18n
+        >Insufficient account balance.</span
+      >
+    </form>
+  </div>
+  <div class="action-dialog-footer d-flex align-center h48 p-0 m-0 wp100" mat-dialog-actions>
+    <button
+      type="button"
+      class="btn btn-primary-outline w183 h48"
+      mat-button
+      mat-dialog-close
+      trackEvents
+      id="lobby-tournament-registration-cancel-btn"
+    >
+      Cancel
+    </button>
+    <button
+      type="button"
+      class="btn btn-primary w183 h48"
+      mat-button
+      cdkFocusInitial
+      *ngIf="data.from == 'SUFFICIENT_BALANCE'"
+      tabindex="0"
+      i18n
+    >
+      Register
+    </button>
+    <button
+      type="button"
+      class="btn btn-success w183 h48"
+      mat-button
+      cdkFocusInitial
+      *ngIf="data.from == 'INSUFFICIENT_BALANCE'"
+      tabindex="0"
+      i18n
+    >
+      Add Cash
+    </button>
+  </div>
+</div>

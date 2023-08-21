@@ -1,0 +1,11 @@
+<form [formGroup]="form">
+  <div class="d-flex jst-space align-center gap8">
+    <div *ngFor="let input of formInput;  index as i">
+      <input #formRow class="otp-input form-input-placeholder w48 h48 ft-primary-b fs14 lh-normal grey900 text-center border-1.5 border-solid br12"
+        placeholder="_" type="tel" [id]="input" [formControlName]="input" maxlength="1"
+        [ngClass]="isErrorFlag == undefined ? 'border-grey300' : isErrorFlag == true ? 'border-primary-error' : 'border-primary-success'" autocompleteOff
+        (keyup)="keyUpEvent($event, i)" numbersOnly (paste)="onPaste($event)" i18n-placeholder>
+    </div>
+  </div>
+  <span #focusId></span>
+</form>

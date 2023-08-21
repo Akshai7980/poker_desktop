@@ -1,0 +1,36 @@
+@import '../../../../../assets/abstract/core';
+
+.tournament-status {
+  @include card(
+    $width: auto,
+    $height: 26px,
+    $background: $grey800,
+    $borderLength: 0,
+    $borderRadius: 9999px,
+    $padding: 6px 10px,
+    $margin: 0
+  );
+
+  min-width: 66px;
+  letter-spacing: 0.02em;
+}
+
+.tournament-card {
+  width: 382px;
+
+  .countdown {
+    .countdown-body {
+      .timer-counting-button {
+        justify-content: center;
+
+        button.btn.btn-reminder {
+          padding: 8px 0;
+        }
+      }
+    }
+  }
+}
+
+.btn.btn-primary {
+  width: 160px;
+}

@@ -1,0 +1,8 @@
+@import '../../../../../assets/abstract/core';
+
+.reg-txt {
+  &.disabled {
+    color: $grey400;
+    pointer-events: none;
+  }
+}

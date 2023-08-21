@@ -1,0 +1,85 @@
+@import '../../../../../../assets/abstract/core';
+
+table {
+  &.table {
+    thead {
+      &.table2-header-container {
+        tr {
+          &.table2-header {
+            th {
+              &.avg-stack-header-text {
+                // For Table th these widths were for single time purpose, so have to be declared in scss file
+                &:nth-child(3n + 1) {
+                  width: 145px;
+                }
+
+                &:nth-child(3n + 2) {
+                  width: 103px;
+                }
+
+                &:nth-child(3n + 3) {
+                  width: 70px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    tbody {
+      &.table2-body-container {
+        height: calc(100vh - 465px);
+
+        tr {
+          &.table2-data {
+            border-bottom: 1px solid $grey200;
+
+            &.table2-data-clicked {
+              &::after {
+                // Psuedo ELEMENTS
+                content: '';
+                position: absolute;
+
+                @include triangle(14px, $grey200, right);
+
+                right: -14px;
+              }
+            }
+
+            &:last-child {
+              border-bottom-left-radius: $br8;
+              border-bottom-right-radius: $br8;
+            }
+
+            &:only-child {
+              border-radius: 0;
+            }
+
+            td {
+              &.table2-data-text {
+                // For Table td these widths were for single time purpose, so have to be declared in scss file
+                &:nth-child(3n + 1) {
+                  width: 145px;
+                }
+
+                &:nth-child(3n + 2) {
+                  width: 103px;
+                }
+
+                &:nth-child(3n + 3) {
+                  width: 70px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.avg-stacks-table {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}

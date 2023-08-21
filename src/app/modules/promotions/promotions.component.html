@@ -1,0 +1,42 @@
+<div class="promotions">
+  <div class="main-title">
+    <img [src]="assetsImagePath + '/promotions/megaphone.svg'" alt="megaphone" i18n i18n-alt />
+    <span i18n>Promotions</span>
+  </div>
+  <p-carousel
+    [value]="promotionCrousels"
+    [numVisible]="1"
+    [numScroll]="1"
+    [autoplayInterval]="2500"
+    [showNavigators]="false"
+    indicatorStyleClass="custom-indicator"
+    [style]="{ 'max-width': '1272px' }"
+  >
+    <ng-template let-promo pTemplate="item">
+      <img
+        [src]="assetsImagePath + 'rewards/' + promo.imageSrc"
+        alt="promotions"
+        style="width: 100%"
+        i18n
+        i18n-alt
+      />
+    </ng-template>
+  </p-carousel>
+  <div class="box-container">
+    <div class="box" *ngFor="let promo of promotions">
+      <img
+        [src]="assetsImagePath + '/promotions/card-images/' + promo.imageSrc"
+        alt="card-images"
+        i18n
+        i18n-alt
+      />
+      <div class="text-container">
+        <span class="title" i18n>Daily free tournaments</span>
+        <div class="bottom-text-container">
+          <span class="subtitle" i18n>Play to win ₹5000 with just ₹100 fee</span>
+          <span class="learn-more" (click)="openPromotionDialog()" i18n>Learn More</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

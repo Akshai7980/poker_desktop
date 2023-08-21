@@ -1,0 +1,85 @@
+<div class="theme-preview-dialog d-flex flex-column flex-1">
+  <div
+    class="theme-preview-dialog-body p-rel flex-1"
+    [ngStyle]="
+      background == 'settings/tourney-theme-preview.svg'
+        ? {
+            'background-image': 'url(' + assetsImagePath + background + ')',
+            'background-position': 'center top',
+            'background-size': 'cover'
+          }
+        : {
+            'background-image': 'url(' + background + ')'
+          }
+    "
+  >
+    <button
+      class="back-btn btn-back d-flex jst-center align-center bg-grey700 p-abs p-4 border-0 br12 cursor z-2"
+      mat-dialog-close
+    >
+      <div class="icons-24 arrow-left wh24"></div>
+    </button>
+    <div
+      class="theme-table-dialog-preview p-abs wp100 hp100"
+      [ngStyle]="
+        tableImg == 'settings/tourney-table-preview.svg'
+          ? {
+              'background-image': 'url(' + assetsImagePath + tableImg + ')',
+              'background-position': 'center top 48px'
+            }
+          : {
+              'background-image': 'url(' + tableImg + ')'
+            }
+      "
+    >
+      <div
+        class="watermark p-abs d-flex flex-column jst-center align-center gap8"
+        [ngStyle]="
+          tableImg == 'settings/tourney-table-preview.svg'
+            ? {
+                'margin-top': '0'
+              }
+            : {
+                'margin-top': '-22px'
+              }
+        "
+      >
+        <img [src]="themePath + 'Adda52LogoDark.svg'" alt="logo" i18n i18n-alt />
+        <span class="ft-primary-b fs18 lh-normal green900" i18n>Holdem - 100/200</span>
+      </div>
+      <div
+        class="playing-card-preview h72 p-abs d-flex jst-space align-center"
+        [ngClass]="selectedCardName"
+        [ngStyle]="
+          tableImg == 'settings/tourney-table-preview.svg'
+            ? {
+                'margin-top': '-8px'
+              }
+            : {
+                'margin-top': '-30px'
+              }
+        "
+      >
+        <div class="playing-card-front p-rel">
+          <div class="game-cards c front-first" [ngClass]="selectedCardName">
+            <div class="card-face" i18n>A</div>
+            <div class="card-suite mid"></div>
+            <div class="card-suite btm"></div>
+          </div>
+          <div class="game-cards d front-second" [ngClass]="selectedCardName">
+            <div class="card-face" i18n>A</div>
+            <div class="card-suite mid"></div>
+            <div class="card-suite btm"></div>
+          </div>
+        </div>
+        <div class="playing-card-back p-rel">
+          <div class="back-card p-abs back-first" [ngClass]="selectedBackCard"></div>
+          <div class="back-card p-abs back-second" [ngClass]="selectedBackCard"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="theme-preview-dialog-footer d-flex jst-center align-center bg-dark p-4">
+    <span class="ft-primary-b fs16 lh-normal light" i18n>This is a Preview.</span>
+  </div>
+</div>

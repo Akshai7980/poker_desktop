@@ -1,0 +1,13 @@
+<div class="container-fluid">
+  <form [formGroup]="form">
+    <div class="otp-input-container d-flex gap12">
+      <div *ngFor="let input of formInput;  index as i">
+        <input #formRow class="otp-input text-center br12 fs16 ft-primary-b grey700" placeholder="-" type="tel" [id]="input" [formControlName]="input"
+          maxlength="1" [ngClass]="isErrorFlag == undefined ? 'default' : isErrorFlag == true ? 'error' : 'success'"
+          (keyup)="keyUpEvent($event, i)" autocompleteOff numbersOnly (paste)="onPaste($event)" i18n-placeholder>
+      </div>
+
+    </div>
+    <span #focusid></span>
+  </form>
+</div>

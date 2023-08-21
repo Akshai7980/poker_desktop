@@ -1,0 +1,34 @@
+<div class="hh-page-container d-flex flex-column wp100 hp100 bg-grey200 p-4 gap12 ovf-y-auto">
+  <div class="hh-page-title d-flex align-center h48 py-2 gap8">
+    <img [src]="assetsImagePath + 'hand-history/Clockicon.svg'" alt="clock" i18n i18n-alt />
+    <span class="ft-primary-b fs20 grey900" i18n>Hand History</span>
+  </div>
+
+  <div class="hh-page-tab-navbar d-flex p-0 gap12">
+    <a
+      class="hh-page-tab-nav flex-center h40 bg-light ft-primary-b fs14 grey900 px-4 py-2 border-1.5 border-solid border-grey300 br12 text-decoration-none"
+      [routerLink]="['cash-games']"
+      routerLinkActive="active"
+      i18n
+      >Cash Games</a
+    >
+    <a
+      class="hh-page-tab-nav flex-center h40 bg-light ft-primary-b fs14 grey900 px-4 py-2 border-1.5 border-solid border-grey300 br12 text-decoration-none"
+      [routerLink]="['tournaments']"
+      routerLinkActive="active"
+      i18n
+      >Tournaments</a
+    >
+    <a
+      class="hh-page-tab-nav flex-center h40 bg-light ft-primary-b fs14 grey900 px-4 py-2 border-1.5 border-solid border-grey300 br12 text-decoration-none"
+      [routerLink]="['sng']"
+      routerLinkActive="active"
+      i18n
+      >SNG's</a
+    >
+  </div>
+
+  <div class="hh-page-tab-content wp100 d-flex flex-column flex-1 ovf-y-auto">
+    <router-outlet></router-outlet>
+  </div>
+</div>

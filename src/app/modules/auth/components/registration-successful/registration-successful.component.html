@@ -1,0 +1,53 @@
+<div class="registration-successful-container flex-col-jst-center w400 h520 p-rel gap32 z-2">
+  <div class="success-section-header flex-col-center wp100 gap16">
+    <div class="success-section-body flex-center wh104 p-4 bg-pink000 br24">
+      <div class="success-section-image p-rel wh72 ovf-hide">
+        <img
+          class="p-obs wp100 hp100 obj-con"
+          alt="registration"
+          [src]="assetsImagePath + 'auth/registration-success.svg'"
+          i18n
+          i18n-alt
+        />
+      </div>
+    </div>
+    <div class="start-success-context flex-col-center gap8">
+      <div class="success-text fs20 ft-primary-b primary-success" i18n>Registration Successful</div>
+      <div class="start-text fs16 ft-primary-sb grey000" i18n>Start your poker journey now!</div>
+    </div>
+  </div>
+  <div class="details-container flex-col-center bg-grey900 br16 gap12 w368 h184 p-4">
+    <div class="details-header fs16 ft-primary-sb grey000" i18n>
+      Your account has been credited with:
+    </div>
+    <div class="bonus-chips-ticket-container flex-col-center gap12 wp100">
+      <div class="bonus-info p-rel flex-col-center gap10 pb-3 wp100">
+        <div class="bonus-count fs24 ft-primary-b grad-orange-text" i18n>{{ bonus }} Bonus</div>
+        <div class="bonus-value fs16 ft-m grey300" i18n>{{ ib }} IB + {{ bb }} BB</div>
+      </div>
+      <div class="ticket-chips-info flex-row wp100 gap16">
+        <div class="ticket-chips-content flex-col-center wp48 gap6">
+          <div class="ticket-chips-value fs20 ft-primary-b grey000" i18n>{{ sngTickets }}</div>
+          <div class="ticket-chips-title fs14 ft-m grey300" i18n>
+            {{ sngTickets > 1 ? 'SNG Tickets' : 'SNG Ticket' }}
+          </div>
+        </div>
+        <div class="ticket-chips-content flex-col-center wp48 gap6">
+          <div class="ticket-chips-value fs20 ft-primary-b grey000" i18n>
+            {{
+              freeRollChips.toLocaleString('en-IN', {
+                currency: 'INR',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 2
+              })
+            }}
+          </div>
+          <div class="ticket-chips-title fs14 ft-m grey300" i18n>Free Roll Chips</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="confetti-animation p-abs wp100 hp100 ovf-hide z-1">
+  <ng-lottie [options]="options"> </ng-lottie>
+</div>

@@ -1,0 +1,92 @@
+<div class="wp100 hp100 flex-col-jst-start trans-03 ovf-hide" [ngClass]="isDualScreen ? 'expanded' : ''">
+  <div class="wp100 h56 flex-space bg-light shadow p-4">
+    <div class="header-title flex-center gap8" i18n>
+      <div class="back-icon flex-center wh24 p-rel cursor" (click)="onBackButtonClick()">
+        <div class="icons-24 top-left chevron-left wh24"></div>
+      </div>
+      <div class="title fs20 ft-primary-b grey900">Withheld Deposit</div>
+    </div>
+    <div class="header-options d-flex jst-end align-center wh24 p-rel cursor" (click)="close()">
+      <div class="icons-24 close-icon top-right wh24"></div>
+    </div>
+  </div>
+
+  <div class="wp100 flex-row-start flex-1 ovf-y-auto">
+
+    <div class="w414 hp100 flex-col-jst-start gap24 bg-grey100 p-4 ovf-y-scroll">
+
+      <div class="fs14 ft-primary-md grey800" i18n>
+        Withheld amount is user’s non-withdrawable deposit amount. Earn required Release Units to make the amount
+        withdrawable.
+        <span (click)="openKnowMoreLink()" class="ft-primary-b grad-red-text cursor">Know more</span>
+      </div>
+
+      <div class="flex-col-jst-start gap8">
+        <span class="fs14 ft-primary-b grey500 text-uppercase" i18n>Total Withheld Amount</span>
+        <span class="fs20 ft-primary-md grey900">₹ {{withHeldAmount?.toLocaleString("en-IN", {
+          currency: "INR",
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 2
+          }) || 0 }}</span>
+      </div>
+
+      <div class="wp100 flex-col-jst-start gap12">
+
+        <div class="wp100 flex-space bg-light br12 p-4 cursor" (click)="openReleaseUnitsPGPDialog()">
+          <div class="flex-col-jst-start gap4">
+            <span class="fs16 ft-primary-b grey800" i18n>Check Release Units (RUs)</span>
+            <span class="fs12 ft-primary-sb grey500" i18n>For every ₹ 100 wagered, You earns 6 Release Units.</span>
+          </div>
+          <button type="button" mat-button class="flex-center wh32 bg-grey100 br8 p-2 cursor outline-0 border-0">
+            <div class="icons-16 chevron-right-grey wh16"></div> 
+          </button>
+        </div>
+
+        <div class="wp100 flex-col-jst-start gap12 bg-light br16 p-4" *ngFor="let wthD of withheldList">
+          <div class="fs12 ft-primary-sb grey500" i18n>{{wthD.txn_date * 1000 | date: "dd MMM, ''yy | hh:mm a"}}</div>
+          <div class="wp100 flex-only-space gap16">
+            <div class="flex-col-jst-start gap8 flex-1">
+              <div class="fs14 ft-primary-b grey500 text-uppercase" i18n>Cash Deposit</div>
+              <div class="fs16 ft-primary-b grey900">₹ {{wthD.amount.toLocaleString("en-IN", {
+                currency: "INR",
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 2
+                }) || 0 }}</div>
+            </div>
+            <div class="flex-col-center gap8 flex-1">
+              <div class="fs14 ft-primary-b grey500 text-uppercase" i18n>Withheld</div>
+              <div class="fs16 ft-primary-b grad-orange-text">₹ {{wthD.remaningHoldAmount.toLocaleString("en-IN", {
+                currency: "INR",
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 2
+                }) || 0 }}</div>
+            </div>
+            <div class="flex-col-end gap8 flex-1">
+              <div class="fs14 ft-primary-b grey500 text-uppercase" i18n>Coupon</div>
+              <div class="fs16 ft-primary-b grey900" i18n>{{wthD.bonusCode}}</div>
+            </div>
+          </div>
+          <div class="wp100 flex-start gap8 bg-grey100 br10 p-3">
+            <div class="fs14 ft-primary-b grey500" i18n>To Release Withheld Amount</div>
+            <div class="fs12 ft-primary-b grey900" i18n>Earn {{wthD.requiredRu.toLocaleString("en-IN", {
+              currency: "INR",
+              minimumFractionDigits: 0,
+              maximumFractionDigits: 2
+              }) || 0 }} (RUs)</div>
+            <div class="icons-16 info-fill wh16 tool-tip info-tooltip cursor">
+              <span class="tooltip-inner-text border-2 border-solid border-grey700" i18n>Or {{wthD.expDate}} </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="w414 hp100 ovf-y-scroll" *ngIf="isDualScreen">
+      <app-release-units-pgps *ngIf="!isKnowMore; else knowMore" [forWithheldDepositScreen]="true"></app-release-units-pgps>
+      <ng-template #knowMore>
+        <app-know-more (backClickEmit)="this.isDualScreen = !this.isDualScreen;"></app-know-more>
+      </ng-template>
+    </div>
+  </div>
+</div>

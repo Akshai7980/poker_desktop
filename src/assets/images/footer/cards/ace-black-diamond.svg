@@ -1,0 +1,22 @@
+<svg width="86" height="78" viewBox="0 0 86 78" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g filter="url(#filter0_d_1626_233152)">
+<rect x="32" y="30" width="22" height="32" rx="4" fill="url(#pattern0)" shape-rendering="crispEdges"/>
+<rect x="32.5" y="30.5" width="21" height="31" rx="3.5" stroke="white" shape-rendering="crispEdges"/>
+</g>
+<defs>
+<filter id="filter0_d_1626_233152" x="0" y="0" width="86" height="96" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="2"/>
+<feGaussianBlur stdDeviation="16"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.4 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1626_233152"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1626_233152" result="shape"/>
+</filter>
+<pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use xlink:href="#image0_1626_233152" transform="matrix(0.0121212 0 0 0.00833333 -0.00909091 0)"/>
+</pattern>
+<image id="image0_1626_233152" width="84" height="120" xlink:href="data:image/png;base64,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"/>
+</defs>
+</svg>

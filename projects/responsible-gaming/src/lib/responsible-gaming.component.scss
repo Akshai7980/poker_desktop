@@ -1,0 +1,12 @@
+@import "../assets/styles";
+
+.rg-page-tab-navbar {
+  .rg-page-tab-nav {
+    &:hover,
+    &.active {
+      background: $bg-dark;
+      color: $grey100;
+      border-color: $grey500;
+    }
+  }
+}

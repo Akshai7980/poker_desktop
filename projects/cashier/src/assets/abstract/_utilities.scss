@@ -1,0 +1,1713 @@
+@import "./core";
+@import "./sizes";
+
+// Font Regular
+.ft-primary-rg {
+  font-family: $font-regular;
+}
+
+// Font Medium
+.ft-primary-md {
+  font-family: $font-medium;
+}
+
+// Font Semi Bold
+.ft-primary-sb {
+  font-family: $font-semi-bold;
+}
+
+// Font Bold
+.ft-primary-b {
+  font-family: $font-bold;
+}
+
+// Font Weights
+.fw500 {
+  font-weight: $fw-medium;
+}
+
+.fw600 {
+  font-weight: $fw-semi-bold
+}
+
+.fw700 {
+  font-weight: $fw-bold;
+}
+
+// Text
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-capital {
+  text-transform: capitalize;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+.text-normal {
+  text-transform: none;
+}
+
+// Text Decoration
+.text-decoration-none {
+  text-decoration: none;
+}
+
+// Text Wrapping
+.text-nowrap {
+  white-space: nowrap;
+}
+
+.text-wrap {
+  white-space: pre-line;
+}
+
+.wrap-text {
+  word-break: break-word;
+}
+
+.text-ellipsis {
+  text-overflow: ellipsis;
+}
+
+
+// Transitions
+.trans-01 {
+  transition: $trans-1s;
+}
+
+.trans-02 {
+  transition: $trans-2s;
+}
+
+.trans-03 {
+  transition: $trans-3s;
+}
+
+.trans-04 {
+  transition: $trans-4s;
+}
+
+.trans-05 {
+  transition: $trans-5s;
+}
+
+// Cursor
+.cursor {
+  cursor: pointer !important;
+}
+
+.cgrab {
+  cursor: grab;
+}
+
+.cdefault {
+  cursor: default;
+}
+
+.ctext {
+  cursor: text;
+}
+
+.cnot-allow {
+  cursor: not-allowed;
+}
+
+.ptr-evts {
+  pointer-events: none;
+}
+
+// Flex
+.d-flex {
+  display: flex;
+}
+
+.d-block {
+  display: block;
+}
+
+.d-inline-flex {
+  display: inline-flex;
+}
+
+.d-inline-block {
+  display: inline-block;
+}
+
+// TODO: Replace one of the class name with other in html file
+.flex-column,
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.jst-start {
+  justify-content: flex-start;
+}
+
+.jst-center {
+  justify-content: center;
+}
+
+.jst-end {
+  justify-content: flex-end;
+}
+
+.jst-space {
+  justify-content: space-between;
+}
+
+.jst-around {
+  justify-content: space-around;
+}
+
+.align-start {
+  align-items: flex-start;
+}
+
+// TODO: Replace one of the class name with other in html file
+.align-center,
+.align-items-center {
+  align-items: center;
+}
+
+.align-end {
+  align-items: flex-end;
+}
+
+.align-baseline {
+  align-items: baseline;
+}
+
+.align-self-stretch {
+  align-self: stretch;
+}
+
+.align-self-start {
+  align-self: flex-start;
+}
+
+// Overflow
+.ovf-x-auto {
+  overflow-x: auto;
+}
+
+.ovf-x-clip {
+  overflow-x: clip;
+}
+
+.ovf-y-auto {
+  overflow-y: auto;
+}
+
+.ovf-auto {
+  overflow: auto;
+}
+
+.ovf-hide {
+  overflow: hidden;
+}
+
+.ovf-x-scroll {
+  overflow: auto hidden;
+}
+
+.ovf-y-scroll {
+  overflow: hidden auto;
+}
+
+// Position
+.p-rel {
+  position: relative;
+}
+
+.p-abs {
+  position: absolute;
+}
+
+.p-stk {
+  position: sticky;
+}
+
+// Outline
+.outline-0 {
+  outline: 0 none;
+}
+
+// Border
+.border-0 {
+  border: 0 none;
+}
+
+// Border Width
+.border-0\.5 {
+  border-width: 0.5px;
+}
+
+.border-1 {
+  border-width: 1px;
+}
+
+.border-1\.5 {
+  border-width: 1.5px;
+}
+
+.border-2 {
+  border-width: 2px
+}
+
+// Border Style
+.border-solid {
+  border-style: solid;
+}
+
+.border-dashed {
+  border-style: dashed;
+}
+
+// Border Colors
+.border-white {
+  border-color: $bg-light;
+}
+
+.border-secondary-grey {
+  border-color: $secondary-grey;
+}
+
+.border-grey100 {
+  border-color: $grey100;
+}
+
+.border-grey200 {
+  border-color: $grey200;
+}
+
+.border-grey300 {
+  border-color: $grey300;
+}
+
+.border-grey400 {
+  border-color: $grey400;
+}
+
+.border-grey500 {
+  border-color: $grey500;
+}
+
+.border-grey700 {
+  border-color: $grey700;
+}
+
+.border-grey800 {
+  border-color: $grey800;
+}
+
+.border-primary-red {
+  border-color: $primary-red;
+}
+
+.border-orange400 {
+  border-color: $orange400;
+}
+
+.border-orange500 {
+  border-color: $orange500;
+}
+
+.border-transparent {
+  border-color: transparent;
+}
+
+.border-primary-error {
+  border-color: $primary-error;
+}
+
+.border-primary-success {
+  border-color: $primary-success;
+}
+
+// Border Radius
+.br2 {
+  border-radius: $br2;
+}
+
+.br4 {
+  border-radius: $br4;
+}
+
+.br6 {
+  border-radius: $br6;
+}
+
+.br8 {
+  border-radius: $br8;
+}
+
+.br9 {
+  border-radius: 9px;
+}
+
+.br10 {
+  border-radius: $br10;
+}
+
+.br12 {
+  border-radius: $br12;
+}
+
+.br14 {
+  border-radius: $br14;
+}
+
+.br16 {
+  border-radius: $br16;
+}
+
+.br18 {
+  border-radius: $br18;
+}
+
+.br20 {
+  border-radius: $br20;
+}
+
+.br24 {
+  border-radius: $br24;
+}
+
+.br32 {
+  border-radius: $br32;
+}
+
+// TODO: Replace one of the class name with other in html file
+.br50,
+.circle {
+  border-radius: $br50;
+}
+
+.br-pill {
+  border-radius: $br-pill;
+}
+
+// Border Radius in rem
+.br-1-5 {
+  border-radius: 1.5rem;
+}
+
+.br-0-25 {
+  border-radius: 0.25rem;
+}
+
+.br-0-8 {
+  border-radius: 0.8rem;
+}
+
+// Border Radius For Top, Left, Right, Bottom
+.br-left-16 {
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+}
+
+.br-right-16 {
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+.br-top-16 {
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+.br-btm-16 {
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+.br-left-20 {
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+}
+
+.br-right-20 {
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+.br-top-20 {
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+.br-btm-20 {
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+.br-top-32 {
+  border-top-left-radius: 32px;
+  border-top-right-radius: 32px;
+}
+
+// Image
+.obj-con {
+  object-fit: contain;
+}
+
+.obj-cov {
+  object-fit: cover;
+}
+
+// Background Images Properties
+.obj-top {
+  object-position: top;
+}
+
+.bg-text {
+  background-clip: text;
+}
+
+// Line Height
+.lh-normal {
+  line-height: normal;
+}
+
+.lh-1 {
+  line-height: 1;
+}
+
+.lh-sm {
+  line-height: 1.25;
+}
+
+.lh-base {
+  line-height: 1.5;
+}
+
+/* ---------------- TODO: Need to check if we are using all these color classes for text, background. Remove those which are not used in any of the html file. ---------------- */
+// Colors
+.primary-red {
+  color: $primary-red !important;
+}
+
+.primary-info {
+  color: $primary-info;
+}
+
+.primary-success {
+  color: $primary-success;
+}
+
+.primary-error {
+  color: $primary-error;
+}
+
+.primary-warning {
+  color: $primary-warning;
+}
+
+.secondary-grey {
+  color: $secondary-grey;
+}
+
+.primary-light,
+.light {
+  color: $bg-light !important;
+}
+
+.primary-dark {
+  color: $bg-dark;
+}
+
+.dark {
+  color: $bg-dark;
+}
+
+.transparent {
+  color: transparent;
+}
+
+// Primary Backgrounds
+
+.bg-primary-red {
+  background: $primary-red;
+}
+
+.bg-primary-info {
+  background: $primary-info;
+}
+
+.bg-primary-success {
+  background: $primary-success;
+}
+
+.bg-primary-error {
+  background: $primary-error;
+}
+
+.bg-primary-warning {
+  background: $primary-warning;
+}
+
+.bg-secondary-success {
+  background: $secondary-success;
+}
+
+.bg-secondary-grey {
+  background: $secondary-grey;
+}
+
+.bg-light {
+  background: $bg-light;
+}
+
+.bg-dark {
+  background: $bg-dark;
+}
+
+// Grey
+
+// Grey Colors
+
+.grey000 {
+  color: $grey000;
+}
+
+.grey100 {
+  color: $grey100;
+}
+
+.grey200 {
+  color: $grey200;
+}
+
+.grey300 {
+  color: $grey300;
+}
+
+.grey400 {
+  color: $grey400;
+}
+
+.grey500 {
+  color: $grey500;
+}
+
+.grey600 {
+  color: $grey600;
+}
+
+.grey700 {
+  color: $grey700;
+}
+
+.grey800 {
+  color: $grey800;
+}
+
+.grey900 {
+  color: $grey900;
+}
+
+// Purple color Variables
+
+.purple000 {
+  color: $purple000;
+}
+
+.purple100 {
+  color: $purple100;
+}
+
+.purple200 {
+  color: $purple200;
+}
+
+.purple300 {
+  color: $purple300;
+}
+
+.purple400 {
+  color: $purple400;
+}
+
+.purple500 {
+  color: $purple500;
+}
+
+.purple600 {
+  color: $purple600;
+}
+
+.purple700 {
+  color: $purple700;
+}
+
+.purple800 {
+  color: $purple800;
+}
+
+.purple900 {
+  color: $purple900;
+}
+
+// Pink color Variables
+
+.pink000 {
+  color: $pink000;
+}
+
+.pink100 {
+  color: $pink100;
+}
+
+.pink200 {
+  color: $pink200;
+}
+
+.pink300 {
+  color: $pink300;
+}
+
+.pink400 {
+  color: $pink400;
+}
+
+.pink500 {
+  color: $pink500;
+}
+
+.pink600 {
+  color: $pink600;
+}
+
+.pink700 {
+  color: $pink700;
+}
+
+.pink800 {
+  color: $pink800;
+}
+
+.pink900 {
+  color: $pink900;
+}
+
+// Green color Variables
+
+.green000 {
+  color: $green000;
+}
+
+.green100 {
+  color: $green100;
+}
+
+.green200 {
+  color: $green200;
+}
+
+.green300 {
+  color: $green300;
+}
+
+.green400 {
+  color: $green400;
+}
+
+.green500 {
+  color: $green500;
+}
+
+.green600 {
+  color: $green600;
+}
+
+.green700 {
+  color: $green700;
+}
+
+.green800 {
+  color: $green800;
+}
+
+.green900 {
+  color: $green900;
+}
+
+.mint-green {
+  color: $mint-green;
+}
+
+// Red color Variables
+
+.red000 {
+  color: $red000;
+}
+
+.red100 {
+  color: $red100;
+}
+
+.red200 {
+  color: $red200;
+}
+
+.red300 {
+  color: $red300;
+}
+
+.red400 {
+  color: $red400;
+}
+
+.red500 {
+  color: $red500;
+}
+
+.red600 {
+  color: $red600;
+}
+
+.red700 {
+  color: $red700;
+}
+
+.red800 {
+  color: $red800;
+}
+
+.red900 {
+  color: $red900;
+}
+
+// Orange color Variables
+
+.orange000 {
+  color: $orange000;
+}
+
+.orange100 {
+  color: $orange100;
+}
+
+.orange200 {
+  color: $orange200;
+}
+
+.orange300 {
+  color: $orange300;
+}
+
+.orange400 {
+  color: $orange400;
+}
+
+.orange500 {
+  color: $orange500;
+}
+
+.orange600 {
+  color: $orange600;
+}
+
+.orange700 {
+  color: $orange700;
+}
+
+.orange800 {
+  color: $orange800;
+}
+
+.orange900 {
+  color: $orange900;
+}
+
+// Blue color Variables
+
+.blue000 {
+  color: $blue000;
+}
+
+.blue100 {
+  color: $blue100;
+}
+
+.blue200 {
+  color: $blue200;
+}
+
+.blue300 {
+  color: $blue300;
+}
+
+.blue400 {
+  color: $blue400;
+}
+
+.blue500 {
+  color: $blue500;
+}
+
+.blue600 {
+  color: $blue600;
+}
+
+.blue700 {
+  color: $blue700;
+}
+
+.blue800 {
+  color: $blue800;
+}
+
+.blue900 {
+  color: $blue900;
+}
+
+// Grey Backgrounds
+
+.bg-grey000 {
+  background: $grey000;
+}
+
+.bg-grey100 {
+  background: $grey100;
+}
+
+.bg-grey200 {
+  background: $grey200;
+}
+
+.bg-grey300 {
+  background: $grey300;
+}
+
+.bg-grey400 {
+  background: $grey400;
+}
+
+.bg-grey500 {
+  background: $grey500;
+}
+
+.bg-grey600 {
+  background: $grey600;
+}
+
+.bg-grey700 {
+  background: $grey700;
+}
+
+.bg-grey800 {
+  background: $grey800;
+}
+
+.bg-grey900 {
+  background: $grey900;
+}
+
+.bg-trans {
+  background: transparent;
+}
+
+// Purple Backgrounds
+
+.bg-purple000 {
+  background: $purple000;
+}
+
+.bg-purple100 {
+  background: $purple100;
+}
+
+.bg-purple200 {
+  background: $purple200;
+}
+
+.bg-purple300 {
+  background: $purple300;
+}
+
+.bg-purple400 {
+  background: $purple400;
+}
+
+.bg-purple500 {
+  background: $purple500;
+}
+
+.bg-purple600 {
+  background: $purple600;
+}
+
+.bg-purple700 {
+  background: $purple700;
+}
+
+.bg-purple800 {
+  background: $purple800;
+}
+
+.bg-purple900 {
+  background: $purple900;
+}
+
+// Pink Backgrounds
+
+.bg-pink000 {
+  background: $pink000;
+}
+
+.bg-pink100 {
+  background: $pink100;
+}
+
+.bg-pink200 {
+  background: $pink200;
+}
+
+.bg-pink300 {
+  background: $pink300;
+}
+
+.bg-pink400 {
+  background: $pink400;
+}
+
+.bg-pink500 {
+  background: $pink500;
+}
+
+.bg-pink600 {
+  background: $pink600;
+}
+
+.bg-pink700 {
+  background: $pink700;
+}
+
+.bg-pink800 {
+  background: $pink800;
+}
+
+.bg-pink900 {
+  background: $pink900;
+}
+
+// Blue Backgrounds
+
+.bg-blue000 {
+  background: $blue000;
+}
+
+.bg-blue100 {
+  background: $blue100;
+}
+
+.bg-blue200 {
+  background: $blue200;
+}
+
+.bg-blue300 {
+  background: $blue300;
+}
+
+.bg-blue400 {
+  background: $blue400;
+}
+
+.bg-blue500 {
+  background: $blue500;
+}
+
+.bg-blue600 {
+  background: $blue600;
+}
+
+.bg-blue700 {
+  background: $blue700;
+}
+
+.bg-blue800 {
+  background: $blue800;
+}
+
+.bg-blue900 {
+  background: $blue900;
+}
+
+// Blue Backgrounds
+
+.bg-orange000 {
+  background: $orange000;
+}
+
+.bg-orange100 {
+  background: $orange100;
+}
+
+.bg-orange200 {
+  background: $orange200;
+}
+
+.bg-orange300 {
+  background: $orange300;
+}
+
+.bg-orange400 {
+  background: $orange400;
+}
+
+.bg-orange500 {
+  background: $orange500;
+}
+
+.bg-orange600 {
+  background: $orange600;
+}
+
+.bg-orange700 {
+  background: $orange700;
+}
+
+.bg-orange800 {
+  background: $orange800;
+}
+
+.bg-orange900 {
+  background: $orange900;
+}
+
+// Blue Backgrounds
+
+.bg-red000 {
+  background: $red000;
+}
+
+.bg-red100 {
+  background: $red100;
+}
+
+.bg-red200 {
+  background: $red200;
+}
+
+.bg-red300 {
+  background: $red300;
+}
+
+.bg-red400 {
+  background: $red400;
+}
+
+.bg-red500 {
+  background: $red500;
+}
+
+.bg-red600 {
+  background: $red600;
+}
+
+.bg-red700 {
+  background: $red700;
+}
+
+.bg-red800 {
+  background: $red800;
+}
+
+.bg-red900 {
+  background: $red900;
+}
+
+// Green Backgrounds
+
+.bg-green000 {
+  background: $green000;
+}
+
+.bg-green100 {
+  background: $green100;
+}
+
+.bg-green200 {
+  background: $green200;
+}
+
+.bg-green300 {
+  background: $green300;
+}
+
+.bg-green400 {
+  background: $green400;
+}
+
+.bg-green500 {
+  background: $green500;
+}
+
+.bg-green600 {
+  background: $green600;
+}
+
+.bg-green700 {
+  background: $green700;
+}
+
+.bg-green800 {
+  background: $green800;
+}
+
+.bg-green900 {
+  background: $green900;
+}
+
+// Sea Green Backgrounds
+
+.bg-sea-green000 {
+  background: $sea-green000;
+}
+
+.bg-mint-green {
+  background: $mint-green;
+}
+
+// grad text and backgrounds
+
+.grad-red-text {
+  color: transparent;
+  background: $grad-red;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.grad-orange-text {
+  color: transparent;
+  background: $grad-orange;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.grad-blue-text {
+  color: transparent;
+  background: $grad-blue;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.grad-purple-text {
+  color: transparent;
+  background: $grad-purple;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.grad-sea-green-text {
+  color: transparent;
+  background: $grad-sea-green;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.grad-pink-text {
+  color: transparent;
+  background: $grad-pink;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.grad-grey-text {
+  color: transparent;
+  background: $grad-grey;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.grad-red-bg {
+  background: $grad-red;
+}
+
+.grad-orange-bg {
+  background: $grad-orange;
+}
+
+.grad-blue-bg {
+  background: $grad-blue;
+}
+
+.grad-sea-green-bg {
+  background: $grad-sea-green;
+}
+
+.grad-purple-bg {
+  background: $grad-purple;
+}
+
+.grad-pink-bg {
+  background: $grad-pink;
+}
+
+.grad-grey-bg {
+  background: $grad-grey;
+}
+
+.bg-dark-op9 {
+  background: rgba(26 28 31 / 90%);
+}
+
+/* ---------------- TODO: Need to check if we can use separate class names instead ---------------- */
+.btm-1 {
+  bottom: 1rem;
+}
+
+.btm {
+  bottom: 0;
+}
+
+.right10 {
+  right: 10px;
+}
+
+// Position Absolute Alignment Classes
+.top-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.top-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.top-center {
+  position: absolute;
+  top: 0;
+  left: 48%;
+}
+
+.bottom-left {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.bottom-toast {
+  position: absolute;
+  bottom: 50px;
+  left: 15px;
+}
+
+.bottom-right {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.top-left-center {
+  position: absolute;
+  top: 48%;
+  left: 0;
+}
+
+.top-right-center {
+  position: absolute;
+  top: 48%;
+  right: 0;
+}
+
+.tsf-center {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+}
+
+// Flex Classes with Multiple CSS Properties
+.flex-start {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.flex-space {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-only-space {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex-around {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.flex-row-start {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.flex-row-normal {
+  display: flex;
+  flex-direction: row;
+  align-items: normal;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.flex-only-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-row-end {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-end {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.flex-only-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-col-start {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.flex-col-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flex-col-end {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.flex-col-jst-start {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.flex-col-jst-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-col-jst-end {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.flex-base {
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+}
+
+
+// Todo for max-height 
+
+.mx-h-400 {
+  max-height: 400px
+}
+
+// ----------------------------------------------------------------------------------------------------------------------------
+
+// spacing map
+$font-size-map: (
+  6: 6px,
+  8: 8px,
+  10: 10px,
+  12: 12px,
+  13: 13px,
+  14: 14px,
+  16: 16px,
+  18: 18px,
+  20: 20px,
+  22: 22px,
+  24: 24px,
+);
+
+// font size mixin
+@mixin font-size-modifier($property) {
+  @each $name,
+  $font-size in $font-size-map {
+    &#{$name} {
+      #{$property}: $font-size;
+    }
+  }
+}
+
+/* font size class */
+.fs {
+  @include font-size-modifier('font-size');
+}
+
+/* font style class */
+.fst-normal {
+  font-style: normal;
+}
+
+/* letter spacing class */
+.ls-1 {
+  letter-spacing: 0.02em;
+}
+
+
+// spacing map
+$spacing-map: (
+  0: 0,
+  1: 4px,
+  2: 8px,
+  3: 12px,
+  4: 16px,
+  5: 20px,
+  6: 24px,
+  7: 32px,
+  8: 48px,
+);
+
+// spacing mixin
+@mixin spacing-modifier($property) {
+  @each $name,
+  $space in $spacing-map {
+    &-#{$name} {
+      #{$property}: $space;
+    }
+  }
+}
+
+/* padding classes */
+.p {
+  @include spacing-modifier('padding');
+}
+
+/* padding-top classes */
+.pt,
+.py {
+  @include spacing-modifier('padding-top');
+}
+
+/* padding-bottom classes */
+.pb,
+.py {
+  @include spacing-modifier('padding-bottom');
+}
+
+/* padding-right classes */
+.pr,
+.px {
+  @include spacing-modifier('padding-right');
+}
+
+/* padding-left classes */
+.pl,
+.px {
+  @include spacing-modifier('padding-left');
+}
+
+/* margin classes */
+.m {
+  @include spacing-modifier('margin');
+}
+
+/* margin-top classes */
+.mt,
+.my {
+  @include spacing-modifier('margin-top');
+}
+
+/* margin-bottom classes */
+.mb,
+.my {
+  @include spacing-modifier('margin-bottom');
+}
+
+/* margin-right classes */
+.mr,
+.mx {
+  @include spacing-modifier('margin-right');
+}
+
+/* margin-left classes */
+.ml,
+.mx {
+  @include spacing-modifier('margin-left');
+}
+
+/* margin-top auto */
+.mt-auto,
+.my-auto {
+  margin-top: auto;
+}
+
+/* margin-bottom auto */
+.mb-auto,
+.my-auto {
+  margin-bottom: auto;
+}
+
+/* margin-right auto */
+.mr-auto,
+.mx-auto {
+  margin-right: auto;
+}
+
+/* margin-left auto */
+.ml-auto,
+.mx-auto {
+  margin-left: auto;
+}
+
+// flex/grid gap map
+$row-col-gap-map: (
+  2: 2px,
+  4: 4px,
+  6: 6px,
+  8: 8px,
+  10: 10px,
+  12: 12px,
+  16: 16px,
+  20: 20px,
+  24: 24px,
+  32: 32px,
+  48: 48px,
+  60: 60px,
+);
+
+// flex/grid gap mixin
+@mixin gap-modifier($property) {
+  @each $name,
+  $gap in $row-col-gap-map {
+    &#{$name} {
+      #{$property}: $gap;
+    }
+  }
+}
+
+/* flex/grid gap classes */
+.gap {
+  @include gap-modifier('gap');
+}
+
+// z-index map
+$z-index-map: (
+  1: 1,
+  2: 11,
+  3: 111,
+  4: 1111,
+  5: 11111,
+  6: 111111,
+  7: 1111111,
+  8: 11111111
+);
+
+// z-index mixin
+@mixin z-index-modifier {
+  @each $name,
+  $index in $z-index-map {
+    &-#{$name} {
+      z-index: $index;
+    }
+  }
+}
+
+/* z-index classes */
+.z {
+  @include z-index-modifier;
+}
+
+// Shadow
+.shadow {
+  box-shadow: 0 2px 16px rgba($color: $black, $alpha: 8%);
+}
+
+.shadow-1 {
+  box-shadow: 0 2px 16px rgba($color: $black, $alpha: 4%);
+}
+
+.shadow-n1 {
+  box-shadow: 0 -2px 8px 0 rgba($color: $black, $alpha: 10%);
+}
+
+.shadow-n2 {
+  box-shadow: 0 2px 24px 0 rgba($color: $black, $alpha: 14%);
+}
+
+// Opacity
+.opacity-0 {
+  opacity: 0;
+}
+
+.opacity-1 {
+  opacity: 1;
+}
+
+.left-1 {
+  left: 1rem;
+}
+
+.right-1 {
+  right: 1rem;
+}
+
+.bottom-1 {
+  bottom: 1rem;
+}
+
+.bottom-0 {
+  bottom: 0;
+}

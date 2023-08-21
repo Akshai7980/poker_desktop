@@ -1,0 +1,139 @@
+<form
+  [formGroup]="buyInForm"
+  class="game-table-buy-in wp100 hp100 d-flex flex-col jst-space gap16 br16 bg-dark p-4"
+>
+  <div class="ft-primary-b fs20 grey000" i18n>Buy In</div>
+
+  <div class="d-flex jst-start align-center gap8">
+    <div
+      class="game-type d-flex jst-center align-center gap10 h30 bg-grey800 py-2 px-3 ft-primary-sb fs12 grey400"
+    >
+      {{
+        data.ringVariant === 'HOLDEM'
+          ? 'Hold’em'
+          : data.ringVariant === 'OMAHA'
+          ? 'PL Omaha'
+          : data.ringVariant === 'OMAHA_5'
+          ? 'PLO 5'
+          : data.ringVariant === 'OMAHA_6'
+          ? 'PLO 6'
+          : data.ringVariant === 'PINEAPPLE_CZ'
+          ? 'Crazy Pineapple'
+          : '-'
+      }}
+    </div>
+    <div class="ft-b fs14 grey000" i18n>{{ data.roomName }}</div>
+  </div>
+
+  <div class="d-flex jst-space align-center gap16 wp100">
+    <div class="d-flex flex-col align-start gap8 wp50 br12 bg-grey900 p-2">
+      <div class="fs10 ft-primary-b grey400 text-uppercase" i18n>Blinds</div>
+      <div class="fs16 ft-primary-b grey000">
+        {{
+          data.isDecimalTable ? (data.smallBlind | toFixed : 2) : (data.smallBlind | math : 'INR')
+        }}/{{
+          data.isDecimalTable ? (data.bigBlind | toFixed : 2) : (data.bigBlind | math : 'INR')
+        }}
+      </div>
+    </div>
+    <div class="d-flex flex-col align-end gap8 wp50 br12 bg-grey900 p-2">
+      <div class="fs10 ft-primary-b grey400 text-uppercase" i18n>Available Balance</div>
+      <div class="fs16 ft-primary-b grey000">₹ {{ walletAmount }}</div>
+    </div>
+  </div>
+
+  <div class="slider-box d-flex flex-col align-start gap12 wp100">
+    <div class="slider-box-range d-flex jst-space align-center wp100">
+      <div class="slider-range-min d-flex flex-col align-start gap2">
+        <div class="fs16 ft-primary-b grey000">₹ {{ data.buyInLow ? data.buyInLow : 0 }}</div>
+        <div class="fs10 ft-primary-sb grey400" i18n>Min</div>
+      </div>
+      <div class="slider-range-max d-flex flex-col align-end gap2">
+        <div class="fs16 ft-primary-b grey000">₹ {{ data.buyInHigh ? data.buyInHigh : 0 }}</div>
+        <div class="fs10 ft-primary-sb grey400" i18n>Max</div>
+      </div>
+    </div>
+    <div class="wp100">
+      <!-- Custom Default Slider -->
+      <p-slider
+        [(ngModel)]="value"
+        [min]="data.buyInLow"
+        [max]="data.buyInHigh"
+        styleClass="game-table-slider"
+        (onChange)="handleValueChange($event)"
+      ></p-slider>
+      <!-- Custom Orange Slider -->
+      <!-- <p-slider
+        [(ngModel)]="buyIn"
+        [min]="data.buyInLow"
+        [max]="data.buyInHigh"
+        (onChange)="handleValueChange($event)"
+        styleClass="game-table-slider slider-orange"
+      ></p-slider> -->
+    </div>
+  </div>
+
+  <div class="d-flex jst-start align-center gap8">
+    <label class="input-label w89 fs12 ft-primary-md grey400">You are buying in for</label>
+    <input
+      type="tel"
+      formControlName="buyInAmount"
+      [ngClass]="isInSufficient === '2' ? 'input-error' : ''"
+      [disabled]="false"
+      class="buy-in-input w112 h48 fs14 ft-primary-b bg-grey900 primary-light br12 py-3 px-4"
+      i18n-placeholder
+      numbersOnly
+      (keyup)="onAmountInput($event)"
+    />
+    <!-- Error Messages -->
+    <div class="error-box w111 fs12 ft-primary-b primary-error" *ngIf="isInSufficient === '2'" i18n>
+      You have<br />insufficient balance
+    </div>
+    <div class="error-box w111 fs12 ft-primary-b primary-error" *ngIf="isInSufficient === '3'" i18n>
+      Please select a value from the buy in range
+    </div>
+  </div>
+  <div class="d-flex jst-space align-center gap16 wp100">
+    <button
+      type="button"
+      mat-button
+      class="btn btn-dark d-flex jst-center align-center py-2 wp50 h40"
+      mat-dialog-close
+      (click)="cancelBuyInForm()"
+    >
+      <span class="fs14 ft-primary-b primary-light" i18n>Cancel</span>
+    </button>
+
+    <div
+      class="btn-with-timer d-flex jst-start align-center wp50 h40"
+      *ngIf="isInSufficient === '1'"
+    >
+      <span
+        class="timer-cta d-flex jst-center align-center fs16 ft-primary-b primary-light"
+        [ngClass]="isInSufficient !== '1' ? 'time-out' : 'time-in'"
+      >
+        {{ minute }}:{{ second }}
+      </span>
+      <button
+        type="button"
+        mat-button
+        class="btn btn-success d-flex jst-center align-center h40"
+        [ngClass]="{ disabled: isInSufficient !== '1' }"
+        (click)="okBuyInForm()"
+      >
+        <span class="fs16 ft-primary-b primary-light" i18n>Buy In</span>
+      </button>
+    </div>
+
+    <button
+      type="button"
+      mat-button
+      class="btn btn-success d-flex jst-center align-center py-2 wp50 h40"
+      [ngClass]="{ 'btn-add': isInSufficient === '2' }"
+      mat-dialog-close
+      *ngIf="isInSufficient === '2'"
+    >
+      <span class="fs14 ft-primary-b primary-light" i18n>Add Money</span>
+    </button>
+  </div>
+</form>

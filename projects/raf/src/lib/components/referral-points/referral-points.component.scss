@@ -1,0 +1,9 @@
+@import '../../../../../../src/assets/abstract/core';
+
+.pd-tablink {
+  &.pd-tablink-active {
+    background: $bg-dark;
+    color: $bg-light;
+    border-color: $grey500;
+  }
+}

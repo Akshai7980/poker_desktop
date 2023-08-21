@@ -1,0 +1,31 @@
+@import '../../../assets/abstract/core';
+@import '../../../assets/components/common';
+
+.personal-details {
+  .form-box {
+    form {
+      .form-input {
+        input {
+          &:hover {
+            border-color: $grey300;
+          }
+
+          &:focus {
+            color: $grey700;
+            outline: inherit;
+            box-shadow: none;
+            border-color: $grey300;
+          }
+
+          &.read-only:focus {
+            color: $grey400;
+          }
+        }
+      }
+    }
+  }
+}
+
+.resend {
+  left: 67px;
+}

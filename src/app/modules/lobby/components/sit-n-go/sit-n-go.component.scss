@@ -1,0 +1,17 @@
+@import '../../../../../assets/abstract/core';
+@import '../../../../../assets/theme/components/tables';
+
+.menubar {
+  box-shadow: 0 2px 16px rgba(0 0 0 / 4%);
+  min-height: 48px;
+}
+
+.empty {
+  height: calc(100vh - 282px);
+}
+
+.table-container {
+  height: calc(100vh - 238px) !important;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}

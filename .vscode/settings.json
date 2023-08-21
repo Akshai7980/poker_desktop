@@ -1,0 +1,10 @@
+{
+    "cSpell.words": [
+        "aadhar",
+        "Holdem",
+        "ONESECOND",
+        "Rebuy"
+    ],
+    "gitblame.inlineMessageEnabled": true,
+    "gitblame.inlineMessageFormat": " ${author.name} (${time.ago})"
+}

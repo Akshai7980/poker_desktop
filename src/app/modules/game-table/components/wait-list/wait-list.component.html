@@ -1,0 +1,51 @@
+<div class="post-bb flex-only-col gap8 br12 bg-dark p-2">
+  <form [formGroup]="waitListForm" class="flex-space gap12 wp100">
+    <div class="flex-col-center gap12 wp50">
+      <button
+        type="button"
+        mat-button
+        class="btn btn-primary flex-center gap8 wp100 h40 py-2"
+        [ngClass]="{ 'btn-dark': selectedRadio }"
+      >
+        <div class="p-field-radiobutton">
+          <label for="Post BB" class="ft-primary-b fs14 primary-light cursor" i18n>{{
+            !selectedRadio
+              ? 'Join
+            Waitlist'
+              : 'Unjoin Waitlist'
+          }}</label>
+          <p-radioButton
+            value="Post BB"
+            id="radio-betSliderBigB"
+            inputId="Post BB"
+            styleClass="game-table-orange-radio"
+            formControlName="postBBRadio"
+            (onClick)="onSelectRadio($event.value)"
+            [(ngModel)]="selectedRadio"
+            i18n
+          ></p-radioButton>
+        </div>
+      </button>
+      <div class="fs14 ft-primary-sb primary-light" i18n>
+        {{
+          !selectedRadio
+            ? 'Current Waitlist Count: 3'
+            : 'You are 4th in
+        the Waitlist.'
+        }}
+      </div>
+    </div>
+    <div class="divider h69"></div>
+    <div class="flex-col-center gap12 wp50">
+      <button
+        (click)="executeSwitch()"
+        type="button"
+        mat-button
+        class="btn btn-primary flex-center wp100 h40 py-2"
+      >
+        <span class="fs14 ft-primary-b primary-light">Switch</span>
+      </button>
+      <div class="fs14 ft-primary-sb primary-light" i18n>Don’t wait. Switch!</div>
+    </div>
+  </form>
+</div>

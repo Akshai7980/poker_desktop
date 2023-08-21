@@ -1,0 +1,43 @@
+<div class="custom-dialog d-flex flex-col jst-start align-start bg-light gap24">
+  <div class="custom-dialog-header d-flex jst-space align-center wp100 p-4">
+    <div class="fs20 ft-primary-b grey900" i18n>Icons Legend</div>
+    <div class="close-btn wh24 p-rel cursor" (click)="onClose()">
+      <div class="icons-24 close-icon wh24 top-right"></div>
+    </div>
+  </div>
+  <div
+    class="custom-dialog-body d-flex flex-col jst-start align-start gap12 wp100 border-0 border-solid border-grey300 p-4"
+  >
+    <ng-container *ngIf="data.from == 'CASH_GAMES'">
+      <div class="item d-flex flex-col gap4" *ngFor="let iL of iconsLegend">
+        <div class="title d-flex align-center gap4">
+          <img [src]="assetsImagePath + 'lobby/' + iL.icon" alt="lobby" i18n i18n-alt />
+          <span class="fs16 ft-primary-b grey900" i18n>{{ iL.title }}</span>
+        </div>
+        <div class="desc fs14 ft-primary-md grey600" i18n>{{ iL.desc }}</div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="data.from == 'TOURNAMENT'">
+      <div class="item d-flex flex-col gap4" *ngFor="let iL of iconsLegendTournament">
+        <div class="title d-flex align-center gap4">
+          <img
+            [src]="assetsImagePath + 'lobby/WinTheButton.svg'"
+            alt="win the button"
+            *ngIf="iL.isIcon && iL.title == 'Win The Button'"
+            i18n
+            i18n-alt
+          />
+          <div
+            class="icon-legend d-flex jst-center align-center w28 h20 px-2 br20 bg-blue000 fs10 ft-primary-sb blue600"
+            *ngIf="!iL.isIcon"
+          >
+            {{ iL.shortCode }}
+          </div>
+          <span class="fs16 ft-primary-b grey900" i18n>{{ iL.title }}</span>
+        </div>
+        <span class="desc fs14 ft-primary-md grey600" i18n>{{ iL.desc }}</span>
+      </div>
+    </ng-container>
+  </div>
+</div>

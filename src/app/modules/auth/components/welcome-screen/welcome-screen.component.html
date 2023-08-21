@@ -1,0 +1,6 @@
+<div class="main-content flex-col-center w800 h520 bg-dark br16">
+  <app-registration-successful></app-registration-successful>
+</div>
+<div class="login-rhs-footer" *ngIf="isShowToast">
+  <app-toast [toastValue]="toastValue" [(isShowToast)]="isShowToast"></app-toast>
+</div>

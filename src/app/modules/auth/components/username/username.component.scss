@@ -1,0 +1,28 @@
+@import '../../../../../assets/abstract/core';
+
+.user-input {
+  input[type='tel'] {
+    &.error-border {
+      border: 1.5px solid $primary-error;
+    }
+  }
+}
+
+.user-check {
+  .pi {
+    font-size: $fs8;
+    color: $bg-light;
+  }
+}
+
+.user-name-container {
+  .user-name {
+    transition: background-color, color, $transition;
+
+    &:hover,
+    &.user-active {
+      background: $bg-dark;
+      color: $grey000;
+    }
+  }
+}

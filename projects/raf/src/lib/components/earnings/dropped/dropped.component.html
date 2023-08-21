@@ -1,0 +1,97 @@
+<table *ngIf="droppedEarningsList.length !== 0" aria-describedby="dropped-table">
+    <thead class="d-flex align-center flex-1">
+      <tr class="d-flex align-center flex-1 bg-grey100 p-2 br8">
+        <th class="d-flex align-center gap4 flex-1">
+          <span class="fs12 ft-primary-b grey700 text-uppercase" i18n>username</span>
+          <span class="d-flex jst-center align-center cursor"
+            (click)="sortByHeader('userName', 'string')">
+            <span *ngIf="!userNameAscend; else remarksElse" class="img-icon arrow-circle-up wh12"></span>
+            <ng-template #remarksElse><span class="img-icon arrow-circle-down wh12"></span></ng-template>
+          </span>
+        </th>
+        <th class="d-flex align-center gap4 flex-1">
+          <span class="fs12 ft-primary-b grey700 text-uppercase" i18n>name</span>
+          <span class="d-flex jst-center align-center cursor"
+            (click)="sortByHeader('fullName', 'string')">
+            <span *ngIf="!fullNameAscend; else remarksElse" class="img-icon arrow-circle-up wh12"></span>
+            <ng-template #remarksElse><span class="img-icon arrow-circle-down wh12"></span></ng-template>
+          </span>
+        </th>
+        <th class="d-flex align-center gap4 flex-1">
+          <span class="fs12 ft-primary-b grey700 text-uppercase" i18n>mobile number</span>
+        </th>
+        <th class="d-flex align-center gap4 flex-1">
+          <span class="fs12 ft-primary-b grey700 text-uppercase" i18n>registered on</span>
+          <span class="d-flex jst-center align-center cursor"
+            (click)="sortByHeader('signupTime', 'string')">
+            <span *ngIf="!signupTimeAscend; else remarksElse" class="img-icon arrow-circle-up wh12"></span>
+            <ng-template #remarksElse><span class="img-icon arrow-circle-down wh12"></span></ng-template>
+          </span>
+        </th>
+        <th class="d-flex align-center gap4 flex-1">
+          <span class="fs12 ft-primary-b grey700 text-uppercase" i18n>pgp earned</span>
+          <span class="d-flex jst-center align-center cursor"
+            (click)="sortByHeader('pgpEarned', 'number')">
+            <span *ngIf="!pgpEarnedAscend; else remarksElse" class="img-icon arrow-circle-up wh12"></span>
+            <ng-template #remarksElse><span class="img-icon arrow-circle-down wh12"></span></ng-template>
+          </span>
+        </th>
+        <th class="d-flex align-center gap4 flex-1">
+          <span class="fs12 ft-primary-b grey700 text-uppercase" i18n>hands played</span>
+          <span class="d-flex jst-center align-center cursor"
+            (click)="sortByHeader('noOfHands', 'number')">
+            <span *ngIf="!noOfHandsAscend; else remarksElse" class="img-icon arrow-circle-up wh12"></span>
+            <ng-template #remarksElse><span class="img-icon arrow-circle-down wh12"></span></ng-template>
+          </span>
+        </th>
+        <th class="d-flex align-center gap4 flex-1">
+          <span class="fs12 ft-primary-b grey700 text-uppercase" i18n>status</span>
+          <span class="d-flex jst-center align-center cursor"
+            (click)="sortByHeader('status', 'string')">
+            <span *ngIf="!statusAscend; else remarksElse" class="img-icon arrow-circle-up wh12"></span>
+            <ng-template #remarksElse><span class="img-icon arrow-circle-down wh12"></span></ng-template>
+          </span>
+        </th>
+      </tr>
+    </thead>
+    <tbody class="d-flex flex-column flex-1">
+      <tr *ngFor="let droppedData of droppedEarningsList" class="d-flex align-center flex-1 bg-light p-2">
+        <td class="d-flex jst-start align-start flex-1 gap8">
+          <div class="profile-avatar wh24 br50 border-1 border-solid border-grey300" [ngClass]="selectedAvatar">
+          </div>
+          <div class="d-flex flex-column gap4">
+            <span class="fs14 ft-primary-b grey900" i18n>{{droppedData.userName}}</span>
+            <span class="d-flex jst-center align-center bg-grey100 br16 px-2 py-1 fs10 ft-primary-sb grey500" *ngIf="droppedData.compaignName" i18n>{{droppedData.compaignName}}</span>
+          </div>
+        </td>
+        <td class="d-flex jst-start align-start flex-1 gap8 fs14 ft-primary-b grey900" i18n>{{droppedData.fullName ? droppedData.fullName : '-'}}</td>
+        <td class="d-flex jst-start align-start flex-1 gap8 fs14 ft-primary-b grey900" i18n>{{droppedData.mobile}}</td>
+        <td class="d-flex jst-start align-start flex-1 gap8 fs14 ft-primary-b grey900" i18n>{{droppedData.signupTime | date: "dd MMM, ''yy"}}</td>
+        <td class="d-flex jst-start align-start flex-1 gap8 fs14 ft-primary-b grey900" i18n>
+            <span *ngIf="droppedData.pgpEarned !== 0; else elseBlock">{{droppedData.pgpEarned}}</span>
+            <ng-template #elseBlock>-</ng-template>
+        </td>
+        <td class="d-flex jst-start align-start flex-1 gap8 fs14 ft-primary-b grey400" [ngClass]="{'grey900':droppedData.noOfHands !== 0}">
+            <span *ngIf="droppedData.noOfHands !== 0">{{droppedData.noOfHands}}/{{droppedData.maxHandsLimit}}</span>
+        </td>
+        <td class="d-flex jst-start align-start flex-1 gap8 fs14 ft-primary-b grey400" i18n>{{droppedData.status}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Earnings Dropped Empty -->
+  <div *ngIf="droppedEarningsList.length === 0" class="placeholder-container d-flex flex-column jst-center align-center flex-1 bg-grey000 gap12 p-4 br16">
+    <div class="pd-placeholder wh112 p-rel d-flex jst-center align-center bg-grey100 p-4 br50">
+      <img
+        [src]="assetsImagePath + 'raf/placeholder-user.png'"
+        class="br8"
+        alt="Placeholder Leaderboard"
+        i18n
+        i18n-alt
+      />
+      <span
+        class="pd-placeholder-status wh12 bg-primary-error p-abs border-1.5 border-solid border-white br12"
+      ></span>
+    </div>
+    <p class="ft-primary-b fs16 grey900 m-0" i18n>No active referrals</p>
+  </div>

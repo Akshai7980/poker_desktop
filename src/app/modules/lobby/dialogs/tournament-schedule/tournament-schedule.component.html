@@ -1,0 +1,95 @@
+<div class="custom-dialog d-flex flex-col jst-start align-start">
+  <div class="custom-dialog-header d-flex jst-space align-center wp100 p-4">
+    <div class="fs20 ft-primary-b grey900" i18n>Tournament Schedule</div>
+    <div class="tournament-schedule-right d-flex align-center gap10">
+      <button
+        type="button"
+        mat-button
+        trackEvents
+        id="lobby-tournament-schedule-downloadXLS-btn"
+        class="lobby-transparent-btn w121 h30"
+      >
+        <img
+          [src]="assetsImagePath + 'lobby/FileExcel.svg'"
+          class="iconImg"
+          alt="file excel"
+          i18n
+          i18n-alt
+        />
+        <span class="btn-text fs12 ft-primary-sb grey900" i18n>Download XLS</span>
+      </button>
+      <button
+        type="button"
+        mat-button
+        trackEvents
+        id="lobby-tournament-schedule-downloadPDF-btn"
+        class="lobby-transparent-btn w121 h30"
+      >
+        <img
+          [src]="assetsImagePath + 'lobby/FileRed.svg'"
+          class="iconImg"
+          alt="file red"
+          i18n
+          i18n-alt
+        />
+        <span class="btn-text fs12 ft-primary-sb grey900" i18n>Download PDF</span>
+      </button>
+      <div class="close-btn wh24 p-rel cursor" (click)="onClose()">
+        <div class="icons-24 close-icon wh24 top-right"></div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="custom-dialog-body table-height d-flex flex-col jst-start align-start gap12 wp100 border-0 border-solid border-grey300 p-4 ovf-y-scroll"
+  >
+    <div class="table-container wp100">
+      <table class="table d-flex flex-col wp100 gap10" aria-label="Schedule Table" i18n-aria-label>
+        <thead>
+          <tr class="d-flex jst-space align-center p-2 wp100 bg-grey100 grey600 br8">
+            <th
+              class="table-header-text d-flex align-center p-2 fs12 ft-primary-b gap4 text-uppercase cursor"
+              *ngFor="let ptHead of scheduleHeaders"
+              i19n
+            >
+              {{ ptHead.title }}
+              <span class="sort-icon d-flex jst-center align-center wh10 circle bg-grey800"></span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            class="table1-data d-flex jst-space align-center wp100 bg-light cursor trans-03"
+            *ngFor="let schL of scheduleList"
+          >
+            <td class="table-data-text p-2 d-flex align-center gap4">
+              <span class="fs14 ft-primary-b grey900" i18n>{{ schL.time }}</span>
+            </td>
+            <td class="table-data-text p-2 d-flex align-center gap4">
+              <span class="fs14 ft-primary-b grey900" i18n>{{ schL.frequency }}</span>
+            </td>
+            <td class="table-data-text p-2 d-flex align-center gap4">
+              <span class="fs14 ft-primary-b grey900" i18n>{{ schL.tournament }}</span>
+            </td>
+            <td class="table-data-text p-2 d-flex align-center gap4">
+              <span class="fs14 ft-primary-b grey900">₹</span>
+              <span class="fs14 ft-primary-b grey900" i18n>{{ schL.buyIn }}</span>
+            </td>
+            <td class="table-data-text p-2 d-flex align-center gap4">
+              <span class="fs14 ft-primary-b grey900" i18n>{{ schL.type }}</span>
+            </td>
+            <td class="table-data-text p-2 d-flex align-center gap4">
+              <span class="fs14 ft-primary-b grey900">₹</span>
+              <span class="fs14 ft-primary-b grey900" i18n>{{ schL.gtd }}</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="schedule-footer d-flex jst-center align-center bg-light p-2">
+      <div class="fs14 ft-primary-b grey900" i18n>
+        *FO: Freezeout, RE: Re-entry, R+A: Rebuy & Addon
+      </div>
+    </div>
+  </div>
+</div>

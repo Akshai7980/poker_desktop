@@ -1,0 +1,19 @@
+@import '../../../../../assets/abstract/core';
+
+.user-name-input {
+  .invalid-code-li {
+    position: absolute;
+    right: 5px;
+    top: 15px;
+  }
+
+  .spinner {
+    position: absolute;
+    right: 10px;
+    top: 15px;
+  }
+}
+
+.fail {
+  border: 1.5px solid $primary-error;
+}

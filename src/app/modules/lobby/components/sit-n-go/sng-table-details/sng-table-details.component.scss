@@ -1,0 +1,237 @@
+@import '../../../../../../assets/abstract/core';
+
+.sng-table-details {
+  &.empty {
+    height: calc(100vh - 296px);
+  }
+}
+
+.prize-pool-buyin-container {
+  .prize-pool-container {
+    .prize-image-body {
+      backdrop-filter: blur(1.7241px);
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: -8px;
+      right: -8px;
+
+      @include triangle(16px, $bg-light, right);
+
+      z-index: 10;
+      border-radius: $br50;
+      transform: rotate(-45deg);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      right: -8px;
+      bottom: -8px;
+
+      @include triangle(16px, $bg-light, right);
+
+      border-radius: $br50;
+      transform: rotate(45deg);
+    }
+  }
+
+  .buyin-container {
+    width: calc(100% - 104px);
+
+    .prize-text-item {
+      .prize-value {
+        .prize-ticket {
+          &::before {
+            // psuedo elements
+            content: '';
+            position: absolute;
+            left: -1px;
+            width: 3px;
+            height: 3px;
+            border-top-right-radius: $br50;
+            border-bottom-right-radius: $br50;
+            background: $grey900; // psuedo elements
+          }
+
+          &::after {
+            // psuedo elements
+            content: '';
+            position: absolute;
+            right: -1px;
+            width: 3px;
+            height: 3px;
+            border-top-left-radius: $br50;
+            border-bottom-left-radius: $br50;
+            background: $grey900; // psuedo elements
+          }
+        }
+      }
+    }
+
+    &::before {
+      // psuedo elements
+      content: '';
+      position: absolute;
+      top: -8px;
+      left: -8px;
+
+      @include triangle(16px, $bg-light, left);
+
+      z-index: 10;
+      border-radius: $br50;
+      transform: rotate(45deg); // psuedo elements
+    }
+
+    &::after {
+      // psuedo elements
+      content: '';
+      position: absolute;
+      left: -8px;
+      bottom: -8px;
+
+      @include triangle(16px, $bg-light, left);
+
+      border-radius: $br50;
+      transform: rotate(-45deg); // psuedo elements
+    }
+  }
+}
+
+.footer-fixed {
+  width: 365px;
+  box-shadow: 0 -4px 8px rgba(0 0 0 / 10%);
+  position: sticky;
+  bottom: 0;
+  margin-left: -8px;
+  border-bottom-left-radius: $br12;
+  border-bottom-right-radius: $br12;
+
+  // The below were used for the media query,
+  // so here the classes can't define, the values should here only
+
+  @include device(dxl) {
+    width: 400px;
+  }
+
+  // The below were used for the media query,
+  // so here the classes can't define, the values should here only
+
+  @include device(dxxl) {
+    width: 454px;
+  }
+
+  // The below were used for the media query,
+  // so here the classes can't define, the values should here only
+
+  @include device(dxlg) {
+    width: 484px;
+  }
+
+  // The below were used for the media query,
+  // so here the classes can't define, the values should here only
+
+  @include device(dxxlg) {
+    width: 534px;
+  }
+}
+
+table {
+  &.table {
+    tbody {
+      tr {
+        border-bottom: 0 none;
+
+        &:first-child {
+          border-top-left-radius: $br8;
+          border-top-right-radius: $br8;
+        }
+
+        &:only-child,
+        &:last-child {
+          border-bottom-left-radius: $br8;
+          border-bottom-right-radius: $br8;
+          border-bottom: 1px solid $grey200;
+        }
+      }
+    }
+
+    &.table-rank {
+      thead {
+        tr {
+          th {
+            &:nth-child(2n + 1) {
+              width: 80px; // For Table th these widths were for single time purpose, so have to be declared in scss file
+            }
+
+            &:nth-child(2n + 2) {
+              width: 246px; // For Table th these widths were for single time purpose, so have to be declared in scss file
+            }
+          }
+        }
+      }
+
+      tbody {
+        tr {
+          td {
+            &:nth-child(2n + 1) {
+              width: 80px; // For Table td these widths were for single time purpose, so have to be declared in scss file
+            }
+
+            &:nth-child(2n + 2) {
+              width: 246px; // For Table td these widths were for single time purpose, so have to be declared in scss file
+            }
+          }
+        }
+      }
+    }
+
+    &.table-blind {
+      thead {
+        tr {
+          th {
+            &:nth-child(4n + 1) {
+              width: 56px; // For Table th these widths were for single time purpose, so have to be declared in scss file
+            }
+
+            &:nth-child(4n + 2) {
+              width: 108px; // For Table th these widths were for single time purpose, so have to be declared in scss file
+            }
+
+            &:nth-child(4n + 3) {
+              width: 106px; // For Table th these widths were for single time purpose, so have to be declared in scss file
+            }
+
+            &:nth-child(4n + 4) {
+              width: 56px; // For Table th these widths were for single time purpose, so have to be declared in scss file
+            }
+          }
+        }
+      }
+
+      tbody {
+        tr {
+          td {
+            &:nth-child(4n + 1) {
+              width: 56px; // For Table td these widths were for single time purpose, so have to be declared in scss file
+            }
+
+            &:nth-child(4n + 2) {
+              width: 108px; // For Table td these widths were for single time purpose, so have to be declared in scss file
+            }
+
+            &:nth-child(4n + 3) {
+              width: 106px; // For Table td these widths were for single time purpose, so have to be declared in scss file
+            }
+
+            &:nth-child(4n + 4) {
+              width: 56px; // For Table td these widths were for single time purpose, so have to be declared in scss file
+            }
+          }
+        }
+      }
+    }
+  }
+}

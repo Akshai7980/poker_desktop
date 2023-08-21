@@ -1,0 +1,524 @@
+<div
+  class="sng-table-details p-rel d-flex flex-col align-start gap16 wp100 bg-light pt-4 px-2 pb-2 br-top-16"
+  *ngIf="!isSngTableEmpty"
+>
+  <span class="table-title fs20 ft-primary-b grey900"> {{ tableInfoViewModel.name }} </span>
+
+  <!-- Pregress Box When the Game has not yet started as required 1 more player -->
+  <div
+    class="progress-box d-flex flex-col align-start wp100 gap8 bg-grey900 br16 p-4"
+    *ngIf="tableInfoViewModel.status == 'REGISTERING'"
+  >
+    <div class="sng-text fs14 ft-primary-md grey400" i18n>
+      Starts when
+      <span class="sng-text sng-text-white light fw700">{{
+        tableInfoViewModel.maxPlayers - tableInfoViewModel.userCount
+      }}</span>
+      more player join
+    </div>
+    <div class="porgress-box-bottom wp100 d-flex align-center gap8">
+      <div class="progress-bar wp80">
+        <p-progressBar
+          [value]="tableInfoViewModel.percentage"
+          [showValue]="false"
+          styleClass="sng-progressbar"
+        ></p-progressBar>
+      </div>
+      <div class="progress-stat d-flex align-center gap4">
+        <img [src]="assetsImagePath + 'lobby/UserCircle.svg'" alt="UserCircle" i18n i18n-alt />
+        <span class="sng-text sng-text-white light fw700" i18n
+          >{{ tableInfoViewModel.userCount }}/{{ tableInfoViewModel.maxPlayers }}</span
+        >
+      </div>
+    </div>
+  </div>
+
+  <!-- Pregress Box When the Game is running -->
+  <div
+    class="progress-box d-flex flex-col align-start wp100 gap8 bg-grey900 br16 p-4"
+    *ngIf="tableInfoViewModel.status == 'RUNNING'"
+  >
+    <div class="sng-text sng-text fs14 ft-primary-md grey400">
+      <span class="sng-text light fw700" i18n>Running</span>
+    </div>
+    <div class="porgress-box-bottom wp100 d-flex align-center gap8">
+      <div class="progress-bar wp80">
+        <p-progressBar
+          [value]="tableInfoViewModel.percentage"
+          [showValue]="false"
+          styleClass="sng-progressbar running"
+        ></p-progressBar>
+      </div>
+      <div class="progress-stat d-flex align-center gap4">
+        <img [src]="assetsImagePath + 'lobby/UserCircle.svg'" alt="UserCircle" i18n i18n-alt />
+        <span class="sng-text light fw700">
+          {{ tableInfoViewModel.userCount + '/' + tableInfoViewModel.maxPlayers }}
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pregress Box When the Game is playing -->
+  <div
+    class="progress-box d-flex flex-col align-start wp100 gap8 bg-grey900 br16 p-4"
+    *ngIf="tableInfoViewModel.status == 'PLAYING'"
+  >
+    <div class="sng-text fs14 ft-primary-md grey400">
+      <span class="sng-text sng-text-white" i18n>Playing</span>
+    </div>
+    <div class="porgress-box-bottom wp100 d-flex align-center gap8">
+      <div class="progress-bar wp80">
+        <p-progressBar
+          [value]="tableInfoViewModel.percentage"
+          [showValue]="false"
+          styleClass="sng-progressbar running"
+        ></p-progressBar>
+      </div>
+      <div class="progress-stat d-flex align-center gap4">
+        <img [src]="assetsImagePath + 'lobby/UserCircle.svg'" alt="UserCircle" i18n i18n-alt />
+        <span class="sng-text light fw700">
+          {{ tableInfoViewModel.userCount + '/' + tableInfoViewModel.maxPlayers }}
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pregress Box When the Game is running -->
+  <div
+    class="progress-box d-flex flex-col align-start wp100 gap8 bg-grey900 br16 p-4"
+    *ngIf="tableInfoViewModel.status == 'FINISHED'"
+  >
+    <div class="sng-text fs14 ft-primary-md grey400">
+      <span class="sng-text light fw700" i18n>Finished</span>
+    </div>
+  </div>
+
+  <div
+    class="prize-pool-buyin-container d-flex align-center wp100"
+    *ngIf="
+      tableInfoViewModel.status == 'REGISTERING' ||
+      tableInfoViewModel.status == 'RUNNING' ||
+      tableInfoViewModel.status == 'PLAYING'
+    "
+  >
+    <div
+      class="prize-pool-container p-rel d-flex jst-center align-center wh104 bg-orange500 br-left-16"
+    >
+      <div class="prize-image-widget-right-bg top-right w52 h104 bg-orange200"></div>
+      <div class="prize-image-body d-flex jst-center align-center wh68 circle bg-orange000">
+        <div class="prize-image-icon p-rel wh44 ovf-hide">
+          <img
+            class="p-abs wp100 hp100 obj-con"
+            [src]="assetsImagePath + 'lobby/prizeCup.svg'"
+            alt="prize"
+            i18n
+            i18n-alt
+          />
+        </div>
+      </div>
+    </div>
+    <div class="buyin-container p-rel d-flex jst-around align-center h104 bg-grey900 br-right-16">
+      <div class="prize-text-item d-flex flex-col align-start gap8">
+        <div
+          class="text-item-title d-flex align-center fs12 ft-primary-b grey400 text-uppercase"
+          i18n
+        >
+          Prize Pool
+        </div>
+        <div
+          class="prize-value d-flex align-center fs14 ft-primary-md grey000 gap6 text-uppercase"
+          i18n
+        >
+          ₹
+          {{
+            tableInfoViewModel.prizePoolAmount.toLocaleString('en-IN', {
+              currency: 'INR',
+              minimumFractionDigits: 0,
+              maximumFractionDigits: 2
+            }) || 0
+          }}
+        </div>
+        <div
+          class="prize-value d-flex align-center fs14 ft-primary-md grey000 gap6 text-uppercase"
+          i18n
+        >
+          IB 2,000 +
+          <span
+            class="prize-ticket p-rel d-flex jst-center align-center w17 h15 fs10 ft-primary-b light bg-orange500 tool-tip bottom prize-bottom-right"
+          >
+            5
+            <span class="tooltip-inner-text">
+              <div
+                class="ticket-data d-flex flex-col align-start gap10 bg-grey900 text-wrap text-left"
+              >
+                <div class="ticket-data-text fs12 ft-primary-md grey000">2 SPARTTKT</div>
+                <div class="ticket-data-text fs12 ft-primary-md grey000">3 SPARTICKET</div>
+              </div>
+            </span>
+          </span>
+        </div>
+      </div>
+      <div class="prize-text-item d-flex flex-col align-start gap8">
+        <div class="text-item-title d-flex align-center fs12 ft-primary-b grey400 text-uppercase">
+          Buy-In
+        </div>
+        <div class="prize-value d-flex align-center fs14 ft-primary-md grey000 gap6 text-uppercase">
+          <span class="money-icon p-rel wh16 ovf-hide">
+            <img
+              class="p-abs wp100 hp100 obj-con"
+              [src]="assetsImagePath + 'lobby/MoneyGrey.svg'"
+              alt="money"
+              i18n
+              i18n-alt
+            />
+          </span>
+          ₹
+          {{
+            (
+              tableInfoViewModel.buyInData.amount +
+              (tableInfoViewModel.buyInData.fee ? tableInfoViewModel.buyInData.fee : 0) +
+              (tableInfoViewModel.buyInData.bounty ? tableInfoViewModel.buyInData.bounty : 0)
+            ).toLocaleString('en-IN', {
+              currency: 'INR',
+              minimumFractionDigits: 0,
+              maximumFractionDigits: 2
+            })
+          }}
+          <span class="info-icon wh16 tool-tip bottom prize-bottom-money">
+            <img
+              class="p-abs wp100 hp100 obj-con"
+              [src]="assetsImagePath + 'lobby/InfoWhite.svg'"
+              alt="info"
+              i18n
+              i18n-alt
+            />
+            <span class="tooltip-inner-text">
+              <div
+                class="ticket-data d-flex flex-col align-start gap10 bg-grey900 text-wrap text-left"
+              >
+                <div class="ticket-data-text fs12 ft-primary-md grey000">
+                  ₹ {{ tableInfoViewModel.buyInData.amount }} (Registration) + ₹
+                  {{ tableInfoViewModel.buyInData.bounty }} (Bounty) + ₹
+                  {{ tableInfoViewModel.buyInData.fee }} (Fee)
+                </div>
+              </div>
+            </span>
+          </span>
+        </div>
+        <div class="prize-value d-flex align-center fs14 ft-primary-md grey000 gap6 text-uppercase">
+          <span class="ticket-icon p-rel wh16 ovf-hide">
+            <img
+              class="p-abs wp100 hp100 obj-con"
+              [src]="assetsImagePath + 'lobby/Ticket.svg'"
+              alt="ticket"
+              i18n
+              i18n-alt
+            />
+          </span>
+          Ticket
+          <span class="info-icon wh16 tool-tip bottom prize-bottom-right">
+            <img
+              class="p-abs wp100 hp100 obj-con"
+              [src]="assetsImagePath + 'lobby/InfoWhite.svg'"
+              alt="info"
+              i18n
+              i18n-alt
+            />
+            <span class="tooltip-inner-text">
+              <div
+                class="ticket-data d-flex flex-col align-start gap10 bg-grey900 text-wrap text-left"
+              >
+                <div
+                  *ngFor="let ticket of tableInfoViewModel.availableTickets"
+                  class="ticket-data-text fs12 ft-primary-md grey000"
+                >
+                  {{ ticket.ticketName }}
+                </div>
+              </div>
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="game-box d-flex jst-space align-center wp100 bg-light br16 p-4 border-0.5 border-solid border-grey300"
+    *ngIf="
+      tableInfoViewModel.status == 'REGISTERING' ||
+      tableInfoViewModel.status == 'RUNNING' ||
+      tableInfoViewModel.status == 'PLAYING'
+    "
+  >
+    <div class="d-flex flex-col align-start gap10 wp50">
+      <span class="fs12 ft-primary-b grey500 text-uppercase" i18n>Game Varient</span>
+      <span class="fs14 ft-primary-b grey900" i18n>{{ ringVariant }}</span>
+    </div>
+    <div class="d-flex flex-col align-start gap10 wp50">
+      <span class="fs12 ft-primary-b grey500 text-uppercase" i18n>Starting Stack</span>
+      <span class="fs14 ft-primary-b grey900" i18n
+        >{{
+          tableInfoViewModel.startingStack.toLocaleString('en-IN', {
+            currency: 'INR',
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 2
+          })
+        }}
+        Chips</span
+      >
+    </div>
+  </div>
+
+  <div
+    class="table-container d-flex flex-col gap24 wp100"
+    *ngIf="tableInfoViewModel.status == 'REGISTERING'"
+  >
+    <table
+      class="table table-rank d-flex flex-col gap8 wp100"
+      aria-label="SNG Table"
+      i18n-aria-label
+    >
+      <thead class="d-flex flex-col align-start wp100 bg-grey100 br8 py-2 px-4">
+        <tr class="d-flex align-start">
+          <th class="fs12 ft-primary-b grey600 text-left text-uppercase" i18n>Rank</th>
+          <th class="fs12 ft-primary-b grey600 text-left text-uppercase" i18n>Prize</th>
+        </tr>
+      </thead>
+      <tbody class="wp100">
+        <tr
+          class="d-flex align-center py-3 px-4 border-1 border-solid border-grey200"
+          *ngFor="let player of leaderBoardViewModel.boardDetails"
+        >
+          <td class="d-flex align-center">
+            <div class="fs14 ft-primary-b grey900" i18n>
+              {{ player.rank }}
+            </div>
+          </td>
+          <td class="d-flex align-center">
+            <div class="fs14 ft-primary-b grey900" i18n>
+              ₹
+              {{
+                player.prize.toLocaleString('en-IN', {
+                  currency: 'INR',
+                  minimumFractionDigits: 0,
+                  maximumFractionDigits: 2
+                })
+              }}
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table
+      class="table table-rank d-flex flex-col gap8 wp100"
+      aria-label="SNG Table"
+      i18n-aria-label
+    >
+      <thead class="d-flex flex-col align-start wp100 bg-grey100 br8 py-2 px-4">
+        <tr class="d-flex align-start">
+          <th class="fs12 ft-primary-b grey600 text-left text-uppercase" i18n>s.no</th>
+          <th class="fs12 ft-primary-b grey600 text-left text-uppercase" i18n>players</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr
+          class="d-flex align-center py-3 px-4 border-1 border-solid border-grey200"
+          *ngFor="let player of tableInfoViewModel.players; let indexElement = index"
+        >
+          <td class="d-flex align-center">
+            <div class="fs14 ft-primary-b grey900" i18n>
+              {{ indexElement + 1 }}
+            </div>
+          </td>
+          <td class="d-flex align-center">
+            <div class="fs14 ft-primary-b grey900" i18n>
+              {{ player }}
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div
+    class="blind-box d-flex flex-col gap16 wp100"
+    *ngIf="
+      tableInfoViewModel.status == 'REGISTERING' ||
+      tableInfoViewModel.status == 'RUNNING' ||
+      tableInfoViewModel.status == 'PLAYING'
+    "
+  >
+    <div class="table-title-secondary fs16 ft-primary-b grey900" i18n>Blind Structure</div>
+    <div class="d-flex jst-space align-center wp100">
+      <div class="d-flex align-center gap16">
+        <div class="fs12 ft-primary-b grey500 text-uppercase" i18n>Blind Interval</div>
+        <div class="sng-text fs14 ft-primary-b grey900" i18n>6 Min</div>
+      </div>
+      <div class="d-flex align-center gap16">
+        <span class="fs12 ft-primary-b grey500 text-uppercase" i18n>Current Level</span>
+        <span class="sng-text fs14 ft-primary-b grey900" i18n>{{
+          tableInfoViewModel.currentBlindLevel
+        }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="table-container d-flex flex-col gap24 wp100"
+    *ngIf="
+      tableInfoViewModel.status == 'REGISTERING' ||
+      tableInfoViewModel.status == 'RUNNING' ||
+      tableInfoViewModel.status == 'PLAYING'
+    "
+  >
+    <table
+      class="table table-blind d-flex flex-col gap8 wp100"
+      aria-label="SNG Table"
+      i18n-aria-label
+    >
+      <thead class="d-flex flex-col align-start wp100 bg-grey100 br8 py-2 px-4">
+        <tr class="d-flex align-start">
+          <th
+            class="fs12 ft-primary-b grey600 text-left text-uppercase"
+            *ngFor="let ptHead of sngTableHeaders"
+            i18n
+          >
+            {{ ptHead.title }}
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr
+          class="d-flex align-center py-3 px-4 border-1 border-solid border-grey200"
+          *ngFor="let blind of blindStructureViewModel.blindStructure"
+          [ngClass]="blind.level === tableInfoViewModel.currentBlindLevel ? 'REGISTERING' : ''"
+        >
+          <td class="d-flex align-start">
+            <div class="fs14 ft-primary-b grey900" i18n>
+              {{ blind.level }}
+            </div>
+          </td>
+          <td class="d-flex align-start">
+            <div class="fs14 ft-primary-b grey900" i18n>
+              {{ blind.smallBlind }}
+            </div>
+          </td>
+          <td class="d-flex align-start">
+            <div class="fs14 ft-primary-b grey900" i18n>
+              {{ blind.bigBlind }}
+            </div>
+          </td>
+          <td class="d-flex align-start">
+            <div class="fs14 ft-primary-b grey900" i18n>
+              {{ blind.ante }}
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Show Leaderboard Table When game is finshed -->
+  <div
+    class="table-container d-flex flex-col gap24 wp100"
+    *ngIf="tableInfoViewModel.status == 'FINISHED'"
+  >
+    <table class="table-finish d-flex flex-col gap8 wp100" aria-label="SNG Table" i18n-aria-label>
+      <thead class="d-flex flex-col align-start wp100 bg-grey100 br8 py-2 px-4">
+        <tr class="d-flex align-start">
+          <th
+            class="fs12 ft-primary-b grey600 text-left text-uppercase"
+            *ngFor="let ptHead of sngLeaderBoardTableHeaders"
+          >
+            {{ ptHead.title }}
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr
+          class="d-flex align-center py-3 px-4 border-1 border-solid border-grey200"
+          *ngFor="let jSNG of leaderBoardViewModel.boardDetails"
+        >
+          <td>
+            <div class="p-rel wh24 ovf-hide" *ngIf="jSNG.icon">
+              <img
+                class="p-abs wp100 hp100 ovf-hide"
+                [src]="assetsImagePath + 'lobby/' + jSNG.icon"
+                alt="lobby"
+                i18n
+                i18n-alt
+              />
+            </div>
+            <div class="fs14 ft-primary-b grey900" *ngIf="jSNG.icon == null">-</div>
+          </td>
+          <td>
+            <div class="fs14 ft-primary-b grey900">
+              {{ jSNG.players }}
+            </div>
+          </td>
+          <td>
+            <div class="fs14 ft-primary-b grad-orange-text" *ngIf="jSNG.prize">
+              {{ jSNG.prize }}
+            </div>
+            <div class="fs14 ft-primary-b grey900" *ngIf="jSNG.prize == null">-</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="footer-fixed d-flex jst-center align-center p-4 bg-light">
+    <button
+      type="button"
+      mat-button
+      class="btn btn-primary wp100"
+      *ngIf="tableInfoViewModel.status === 'REGISTERING'"
+      (click)="openRegistrationDialog('SUFFICIENT_BALANCE', tableInfoViewModel)"
+      i18n
+    >
+      Register
+    </button>
+    <button
+      type="button"
+      mat-button
+      class="btn btn-primary wp100"
+      *ngIf="tableInfoViewModel.status === 'RUNNING'"
+      i18n
+    >
+      Observe Table
+    </button>
+    <button
+      type="button"
+      mat-button
+      class="btn btn-primary wp100"
+      *ngIf="tableInfoViewModel.status === 'PLAYING'"
+      i18n
+    >
+      Join Your Table
+    </button>
+  </div>
+</div>
+
+<!-- When No Data is available -->
+<div
+  class="sng-table-details empty p-rel d-flex flex-col jst-center align-center gap16 wp100 bg-light border-0 pt-4 px-2 pb-2 br16"
+  *ngIf="isSngTableEmpty"
+>
+  <div class="empty-table d-flex flex-col align-center gap16">
+    <div class="empty-image p-rel wh108 ovf-hide">
+      <img
+        class="p-abs wp100 hp100 obj-con"
+        alt="UserBig"
+        [src]="assetsImagePath + 'lobby/file-dynamic-clay.png'"
+        alt="clay"
+        i18n
+        i18n-alt
+      />
+    </div>
+    <span class="empty-txt fs14 ft-primry-md grey500" i18n>No Information Available</span>
+  </div>
+</div>

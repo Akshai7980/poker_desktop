@@ -1,0 +1,42 @@
+// Dropdown
+.pd-dropdown {
+  .p-dropdown.p-component {
+    width: 100%;
+    height: 2.5rem;
+    border: 2px solid $grey300;
+    border-radius: $br12;
+
+    .p-inputtext {
+      line-height: 1.5;
+      padding: 0.5rem 0.75rem;
+    }
+
+    .p-dropdown-trigger {
+      color: $grey400;
+    }
+  }
+}
+
+// Input
+.pd-input {
+  height: 2.5rem;
+  font-family: $font-bold;
+  font-size: $fs14;
+  line-height: 1.5rem;
+  padding: 0.5rem 0.75rem;
+  border: 1.5px solid $grey300;
+  border-radius: 0.75rem;
+}
+
+.pd-input-copy {
+  .pd-input {
+    padding-right: 3.75rem;
+  }
+
+  .btn-copy {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0.875rem;
+  }
+}

@@ -1,0 +1,174 @@
+<div class="p-rel d-flex flex-column flex-1 ovf-y-auto">
+  <div
+    class="card-hot-keys card-body d-flex flex-column flex-1 bg-grey000 gap16 p-4 br24 border-1 border-solid border-grey100 mb-4 ovf-y-auto"
+  >
+    <div class="d-flex flex-column">
+      <div class="d-flex jst-space align-center gap16 py-2">
+        <span class="ft-primary-b fs14 lh-normal grey800" i18n>Enable Hot keys</span>
+        <p-inputSwitch
+          class="d-flex"
+          [(ngModel)]="hotKeySettings.isHotKeysEnabled"
+          (ngModelChange)="toggleHotKeySettings()"
+        ></p-inputSwitch>
+      </div>
+      <div class="d-flex align-center gap4">
+        <span class="ft-primary-b fs12 lh-normal grey500 text-uppercase" i18n>Note:</span>
+        <span class="ft-primary-md fs12 lh-base grey600" i18n
+          >If enabled, yellow colored line will be shown in the header of focused table.</span
+        >
+      </div>
+    </div>
+    <div class="d-flex align-end gap16">
+      <div class="d-flex flex-column flex-1 gap4">
+        <label class="ft-primary-b fs14 lh-normal grey900" i18n>Action</label>
+        <p-dropdown
+          [disabled]="!hotKeySettings.isHotKeysEnabled"
+          [options]="dropDownList"
+          optionLabel="actionTxt"
+          styleClass="hot-key-dropdown align-center wp100"
+          placeholder="Select Action"
+          scrollHeight="320px"
+          appendTo="body"
+          [(ngModel)]="selectedAction"
+          (ngModelChange)="showOutput($event)"
+        ></p-dropdown>
+      </div>
+      <div class="form-hot-key-group d-flex flex-column gap4">
+        <label class="ft-primary-b fs14 lh-normal grey900" i18n>Hot Key</label>
+        <input
+          trackEvents
+          autocompleteOff
+          id="settingshotkeys-sethotkeys-input"
+          placeholder="Enter Hotkey here"
+          id="hot-key-value"
+          [disabled]="!hotKeySettings.isHotKeysEnabled"
+          class="form-input h48 ft-primary-b br8"
+          type="text"
+          [(ngModel)]="assignedKey"
+          (keydown)="onHotKeySelectionKeyDown($event)"
+          (keyup)="onHotKeySelectionKeyUp($event)"
+          i18n-placeholder
+        />
+      </div>
+      <button
+        trackEvents
+        id="settingshotkeys-add-btn"
+        class="btn-add h48"
+        [ngClass]="!enableAddBtn ? '' : 'active'"
+        (click)="setKey()"
+        [disabled]="!enableAddBtn"
+        type="button"
+        mat-button
+      >
+        <i class="pi pi-plus"></i>
+        <span i18n>Add</span>
+      </button>
+    </div>
+    <div class="table-action-wrapper d-flex flex-column flex-1 bg-light br16 ovf-y-auto">
+      <div class="flex-1 p-4 ovf-y-auto">
+        <table
+          class="table-action wp100"
+          aria-label="Hot Keys List"
+          [ngClass]="!showHotKeyList ? 'hp100' : ''"
+          i18n-aria-label
+        >
+          <thead>
+            <tr class="bg-grey100">
+              <th class="text-left p-2">
+                <span class="ft-primary-b fs12 lh-normal grey600 text-uppercase px-2" i18n
+                  >Action</span
+                >
+              </th>
+              <th class="wp20 text-center p-2">
+                <span class="ft-primary-b fs12 lh-normal grey600 text-uppercase px-2" i18n
+                  >Hotkey</span
+                >
+              </th>
+              <th class="w136 p-2"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngIf="!showHotKeyList; else list">
+              <td colspan="3">
+                <div class="d-flex flex-column jst-center align-center gap8">
+                  <img
+                    [src]="assetsImagePath + 'settings/flash-dynamic-clay.svg'"
+                    alt="flash-dynamic-clay"
+                    i18n
+                    i18n-alt
+                  />
+                  <span class="ft-primary-md fs14 lh-base grey600" i18n>No Hot Keys Assigned</span>
+                </div>
+              </td>
+            </tr>
+            <ng-template #list>
+              <ng-container *ngFor="let hotKey of hotKeySettings.hotKeysList">
+                <tr *ngIf="hotKey.character != ''">
+                  <td class="text-left">
+                    <div class="td-item d-flex align-center h48 px-4 py-2 bg-grey000">
+                      <span class="ft-primary-b fs14 lh-normal grey900" i18n>{{
+                        hotKey.actionTxt
+                      }}</span>
+                    </div>
+                  </td>
+                  <td class="wp20 text-center">
+                    <div class="td-item d-flex jst-center align-center h48 px-4 py-2 bg-grey000">
+                      <span class="ft-primary-b fs14 lh-normal grey900" i18n>{{
+                        hotKey.character
+                      }}</span>
+                    </div>
+                  </td>
+                  <td class="w136">
+                    <div class="td-item d-flex jst-end h48 px-4 py-2 bg-grey000">
+                      <button
+                        type="button"
+                        mat-button
+                        trackEvents
+                        id="settingshotkeys-remove-btn"
+                        class="btn-remove"
+                        (click)="removeHotKey(hotKey)"
+                        [disabled]="!hotKeySettings.isHotKeysEnabled"
+                      >
+                        <img
+                          [src]="assetsImagePath + 'settings/TrashSimple.svg'"
+                          alt="TrashSimple"
+                          *ngIf="hotKeySettings.isHotKeysEnabled"
+                          i18n
+                          i18n-alt
+                        />
+                        <img
+                          [src]="assetsImagePath + 'settings/TrashSimpleDisabled.svg'"
+                          alt="TrashSimpleDisabled"
+                          *ngIf="!hotKeySettings.isHotKeysEnabled"
+                          i18n
+                          i18n-alt
+                        />
+                        <span class="ft-primary-sb fs12 lh-sm light" i18n>Remove</span>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </ng-container>
+            </ng-template>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex jst-end">
+    <button
+      type="button"
+      mat-button
+      trackEvents
+      id="settingshotkeys-apply-btn"
+      [disabled]="!isChangeExists"
+      (click)="saveHotKeySettings()"
+      class="btn btn-primary"
+    >
+      <span i18n>Apply</span>
+    </button>
+  </div>
+  <div *ngIf="isShowToast">
+    <app-toast class="bottom-0" [(isShowToast)]="isShowToast" [toastValue]="toastValue"></app-toast>
+  </div>
+</div>

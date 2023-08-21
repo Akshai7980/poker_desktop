@@ -1,0 +1,155 @@
+<div class="pd-confirmation-dialog p-rel d-flex flex-column flex-1 ovf-y-auto">
+  <div class="dialog-header d-flex jst-space align-center p-4">
+    <h5 class="dialog-title ft-primary-b fs20 lh-normal grey900 m-0" i18n> Buy-in Limit </h5>
+    <div class="options wh24 p-rel cursor" (click)="onClose()">
+      <div class="icons-24 close-icon top-right wh24"></div>
+    </div>
+  </div>
+  <!-- TOURNAMENT -->
+  <div class="dialog-body d-flex flex-column flex-1 p-4 ovf-y-auto" *ngIf="data?.from == 'TOURNAMENT'; else templateSNG">
+    <ng-template #notTournamentOTPMode>
+      <ng-container [ngSwitch]="data.tournament_limit">
+        <!-- LIMIT SPECIFIC BUY-IN -->
+        <div *ngSwitchCase="'LIMIT_SPECIFIC_BUY_IN'">
+          <p class="ft-primary-md fs14 lh-normal grey900 mt-0 mb-4" i18n>
+            You have set your Tournament Buy-in limit to
+            {{ (+data.buyInLimit) | currencyFormat: false }}
+          </p>
+          <p class="ft-primary-md fs14 lh-normal grey900 mt-0 mb-4" i18n>
+            You will not be able to play on any Tournament higher than the limit
+            you imposed.
+          </p>
+          <p class="ft-primary-b fs14 lh-normal grey900 mt-0 mb-6" i18n>Do you wish to continue?</p>
+        </div>
+        <!-- LIMIT SPECIFIC BUY-IN -->
+
+        <!-- PLAY ALL TOURNAMENT -->
+        <div *ngSwitchCase="'ALL_PLAY'">
+          <p class="ft-primary-md fs14 lh-normal grey900 mt-0 mb-4" i18n>
+            You have requested to remove your Buy-in limits which will allow you
+            to play all Tournaments.
+          </p>
+          <p class="ft-primary-b fs14 lh-normal grey900 mt-0 mb-6" i18n>Do you wish to continue?</p>
+        </div>
+        <!-- PLAY ALL TOURNAMENT -->
+
+        <!-- PLAY NO TOURNAMENT -->
+        <div *ngSwitchCase="'NO_PLAY'">
+          <p class="ft-primary-md fs14 lh-normal grey900 mt-0 mb-4" i18n>
+            You have selected Restrict All which will prevent you from playing
+            all Tournaments.
+          </p>
+          <p class="ft-primary-b fs14 lh-normal grey900 mt-0 mb-6" i18n>Do you wish to continue?</p>
+        </div>
+        <!-- PLAY NO TOURNAMENT -->
+
+        <div class="d-flex align-center gap16">
+          <button type="button" mat-button class="btn btn-primary-outline flex-1" (click)="onClose()"
+            id="resp-game-tournamentBuyInLimit-no-btn" trackEvents i18n>
+            No
+          </button>
+          <button type="button" mat-button class="btn btn-primary flex-1" cdkFocusInitial (click)="onSendOtp()"
+            id="resp-game-tournamentBuyInLimit-yes-btn" trackEvents i18n>
+            Yes
+          </button>
+        </div>
+      </ng-container>
+    </ng-template>
+    <form *ngIf="isOTPMode; else notTournamentOTPMode">
+      <p class="ft-primary-md fs14 grey900 mt-0 mb-4" i18n>
+        Enter the OTP you received on <span class="ft-primary-b"> {{ maskedPhoneNumber }} </span>
+      </p>
+      <app-otp-input (data)="onOtpChange($event)" [isResetOtpForm]="isResetOtpForm"
+        [isErrorFlag]="isErrorFlag"></app-otp-input>
+      <div class="d-flex align-center gap4 pt-2 mb-6">
+        <div class="icons-20 clock wh20"></div>
+        <p class="ft-primary-b fs16 lh-normal grey900 m-0">{{ min }}:{{ sec }}</p>
+        <div class="ft-primary-b fs16 lh-base cursor"
+          [ngClass]="isDisabledResend ? 'disabled grey400' : 'grad-red-text'" (click)="clickResendOtp()" i18n>
+          Resend OTP
+        </div>
+      </div>
+      <button type="button" mat-button class="btn btn-primary wp100" [disabled]="!showOtpButton"
+        (click)="onSubmit('TOURNAMENT')" id="resp-game-tournamentBuyInLimit-otp-submit-btn" trackEvents i18n>
+        Submit
+      </button>
+    </form>
+  </div>
+
+  <!-- SNG -->
+  <ng-template #templateSNG>
+    <div class="dialog-body d-flex flex-column flex-1 p-4 ovf-y-auto">
+      <ng-template #notSngOTPMode>
+        <ng-container [ngSwitch]="data.sng_limit">
+          <!-- LIMIT SPECIFIC BUY-IN -->
+          <div *ngSwitchCase="'LIMIT_SPECIFIC_BUY_IN'">
+            <p class="ft-primary-md fs14 lh-normal grey900 mt-0 mb-4" i18n>
+              You have set your SnG Buy-in limit to
+              {{ (+data.buyInLimit) | currencyFormat: false }}
+            </p>
+            <p class="ft-primary-md fs14 lh-normal grey900 mt-0 mb-4" i18n>
+              You will not be able to play on any SnG higher than the limit you
+              imposed.
+            </p>
+            <p class="ft-primary-b fs14 lh-normal grey900 mt-0 mb-6" i18n>Do you wish to continue?</p>
+          </div>
+          <!-- LIMIT SPECIFIC BUY-IN -->
+
+          <!-- PLAY ALL -->
+          <div *ngSwitchCase="'ALL_PLAY'">
+            <p class="ft-primary-md fs14 lh-normal grey900 mt-0 mb-4" i18n>
+              You have request to remove your Buy-in limits which will allow you
+              to play all Sng.
+            </p>
+            <p class="ft-primary-b fs14 lh-normal grey900 mt-0 mb-6" i18n>Do you wish to continue?</p>
+          </div>
+          <!-- PLAY ALL -->
+
+          <!-- PLAY NO TOURNAMENT -->
+          <div *ngSwitchCase="'NO_PLAY'">
+            <p class="ft-primary-md fs14 lh-normal grey900 mt-0 mb-4" i18n>
+              You have selected Restrict All which will prevent you from playing
+              all Sng.
+            </p>
+            <p class="ft-primary-b fs14 lh-normal grey900 mt-0 mb-6" i18n>Do you wish to continue?</p>
+          </div>
+          <!-- PLAY NO TOURNAMENT -->
+
+          <div class="d-flex align-center gap16">
+            <button type="button" mat-button class="btn btn-primary-outline flex-1" (click)="onClose()"
+              id="resp-game-sitNgoBuyInLimit-no-btn" trackEvents i18n>
+              No
+            </button>
+            <button type="button" mat-button class="btn btn-primary flex-1" cdkFocusInitial (click)="onSendOtp()"
+              id="resp-game-sitNgoBuyInLimit-yes-btn" trackEvents i18n>
+              Yes
+            </button>
+          </div>
+        </ng-container>
+      </ng-template>
+      <form *ngIf="isOTPMode; else notSngOTPMode">
+        <p class="ft-primary-md fs14 grey900 mt-0 mb-4" i18n>
+          Enter the OTP you received on <span class="ft-primary-b">{{ maskedPhoneNumber }}</span>
+        </p>
+        <app-otp-input (data)="onOtpChange($event)" [isResetOtpForm]="isResetOtpForm"
+          [isErrorFlag]="isErrorFlag"></app-otp-input>
+        <div class="d-flex align-center gap4 pt-2 mb-6">
+          <div class="icons-20 clock wh20"></div>
+          <div class="ft-primary-b fs16 lh-normal grey900 m-0">{{ min }}:{{ sec }}</div>
+          <div class="ft-primary-b fs16 lh-base cursor"
+            [ngClass]="isDisabledResend ? 'disabled grey400' : 'grad-red-text'" (click)="clickResendOtp()" i18n>
+            Resend OTP
+          </div>
+        </div>
+        <button type="button" mat-button class="btn btn-primary wp100" [disabled]="!showOtpButton"
+          (click)="onSubmit('SNG')" id="resp-game-sitNgoBuyInLimit-otp-submit-btn" trackEvents i18n>
+          Submit
+        </button>
+      </form>
+    </div>
+  </ng-template>
+
+  <div *ngIf="isShowToast">
+    <app-toast [toastValue]="toastValue" [(isShowToast)]="isShowToast"></app-toast>
+  </div>
+</div>

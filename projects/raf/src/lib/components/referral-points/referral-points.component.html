@@ -1,0 +1,26 @@
+<!-- Title Row -->
+<div class="title-wrap d-flex align-center gap16">
+  <div class="d-flex align-center gap12 py-3">
+    <div class="back-icon wh24 p-rel cursor"(click)="navigateTo()">
+      <div class="icons-24 chevron-left top-right wh24"></div>
+    </div>
+    <h5 class="ft-primary-b fs20 lh-normal grey900 m-0" i18n>Referral Points</h5>
+  </div>
+</div>
+
+<div class="d-flex flex-column flex-1 gap10">
+  <!-- RAF Tabs -->
+  <nav class="pd-tabs d-flex align-center gap12">
+    <a
+      *ngFor="let lnk of links"
+      class="pd-tablink h40 bg-light grey900 ft-primary-b fs14 lh-base px-4 py-2 border-1.5 border-solid border-grey300 br12 text-capital text-decoration-none"
+      [routerLink]="lnk.path"
+      routerLinkActive="pd-tablink-active"
+      i18n
+    >
+      {{ lnk.title }}
+    </a>
+  </nav>
+  <!-- xxxx -->
+  <router-outlet></router-outlet>
+</div>

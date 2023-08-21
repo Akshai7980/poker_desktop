@@ -1,0 +1,181 @@
+@import '../../../../assets/abstract/core';
+
+svg:active {
+  filter: invert(41%) sepia(75%) saturate(6207%) hue-rotate(339deg) brightness(89%) contrast(97%);
+  cursor: pointer;
+}
+
+.side-menu {
+  flex-direction: column;
+
+  @include space;
+
+  width: 80px;
+  background: $bg-dark;
+  border-top: 1px solid $grey800;
+
+  .menu-top {
+    height: calc(100vh - 112px - 64px);
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: 0;
+    }
+  }
+
+  .menu-bottom {
+    height: 112px;
+    flex-direction: column;
+
+    @include end;
+
+    .logout-box {
+      height: 78px;
+      flex-direction: column;
+
+      @include center;
+
+      border-top: 1px solid $grey900;
+      cursor: pointer;
+
+      span {
+        font-family: $font-medium;
+        font-size: $fs11;
+        color: $grey400;
+      }
+    }
+
+    .timer-box {
+      @include center;
+
+      height: 34px;
+      gap: 4px;
+      border-top: 1px solid $grey900;
+
+      span {
+        font-family: $font-bold;
+        font-size: $fs11;
+        color: $primary-success;
+      }
+    }
+  }
+
+  .menu {
+    margin: 0.5rem 0;
+
+    .menu-link {
+      flex-direction: column;
+
+      @include center;
+
+      gap: 14px;
+      text-decoration: none;
+      width: 80px;
+      height: 60px;
+      cursor: pointer;
+      transition: $transition;
+
+      .menu-icon {
+        position: relative;
+
+        @include center;
+
+        text-align: center;
+        cursor: pointer;
+        transition: $transition;
+
+        .menu-icon-img {
+          position: absolute;
+          width: 24px;
+          height: 24px;
+          opacity: 100;
+          transition: opacity, $transition;
+        }
+
+        .menu-icon-hover {
+          position: absolute;
+          width: 24px;
+          height: 24px;
+          opacity: 0;
+          transition: opacity, $transition;
+        }
+      }
+
+      .menu-title {
+        @include row;
+
+        font-family: $font-medium;
+        font-size: $fs10;
+        text-align: center;
+        color: $grey400;
+        transition: color, font-family, $transition;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        width: 4px;
+        height: 100%;
+        background: transparent;
+        right: 0;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        transition: background-color, $transition;
+      }
+
+      &.active {
+        position: relative;
+
+        .menu-title {
+          font-family: $font-bold;
+          color: $grey000;
+        }
+
+        .menu-icon {
+          filter: invert(41%) sepia(75%) saturate(6207%) hue-rotate(339deg) brightness(89%)
+            contrast(97%);
+
+          .menu-icon-img {
+            opacity: 0;
+          }
+
+          .menu-icon-hover {
+            opacity: 100;
+          }
+        }
+
+        &::after {
+          content: '';
+          background: $grad-red;
+        }
+      }
+
+      &:hover {
+        position: relative;
+
+        .menu-title {
+          font-family: $font-bold;
+          color: $grey000;
+        }
+
+        .menu-icon {
+          // filter: invert(41%) sepia(75%) saturate(6207%) hue-rotate(339deg) brightness(89%) contrast(97%);
+
+          .menu-icon-img {
+            opacity: 0;
+          }
+
+          .menu-icon-hover {
+            opacity: 100;
+          }
+        }
+
+        &::after {
+          content: '';
+          background: $grad-red;
+        }
+      }
+    }
+  }
+}

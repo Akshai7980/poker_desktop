@@ -1,0 +1,29 @@
+<div class="post-bb wp100 flex-only-col gap8 br12 bg-primary-dark p-2">
+  <form [formGroup]="postBBForm" class="flex-space gap12">
+    <div class="text-box fs14 ft-primary-sb primary-light" i18n>
+      {{
+        selectedRadio
+          ? 'Uncheck and wait for the BB position to start the game.'
+          : 'Check post BB to start the game from next hand.'
+      }}
+    </div>
+    <button type="button" mat-button class="btn btn-dark flex-center gap8 py-2">
+      <div class="p-field-radiobutton">
+        <label for="Post BB" class="ft-primary-b fs16 primary-light cursor" i18n>Post BB</label>
+        <p-radioButton
+          value="Post BB"
+          id="radio-betSliderBigB"
+          inputId="Post BB"
+          styleClass="game-table-orange-radio"
+          formControlName="postBBRadio"
+          (onClick)="onSelectRadio($event.value)"
+          [(ngModel)]="selectedRadio"
+          i18n
+        ></p-radioButton>
+      </div>
+    </button>
+  </form>
+  <div class="fs12 ft-primary-rg grey400" *ngIf="showBottomTxt" i18n>
+    Your game will start once the dealer button passes you.
+  </div>
+</div>

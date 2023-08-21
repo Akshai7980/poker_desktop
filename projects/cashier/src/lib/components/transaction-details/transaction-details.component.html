@@ -1,0 +1,78 @@
+<div class="txn-details w414 hp100 flex-col-jst-start gap16 bg-light p-4 ovf-y-scroll">
+  <span class="txn-title fs16 ft-primary-b grey800" i18n>Transaction Details</span>
+
+  <ng-container *ngIf="
+      txnData.from == cashComponent
+    ">
+    <div class="data-card wp100 flex-col-jst-start gap16 p-4 br16 success"
+      [ngClass]="txnData.data.status == 'success' || currentStatus == 'Credited' ? 'success' : txnData.data.status == 'pending' ? 'pending' :'failed'">
+      <div class="data-card-item item1 wp100 flex-space">
+        <span class="fs16 ft-primary-b grey800" i18n *ngIf="txnData.data.type == 'deposit'">Cash Deposited</span>
+        <span class="fs16 ft-primary-b grey800" i18n *ngIf="txnData.data.type == 'withdraw'">Cash Withdrawn</span>
+        <div class="flex-start gap8">
+          <img [src]="assetsImagePath + 'cashier/arrow-up-left.svg'" alt="ArrowUpLeft" i18n i18n-alt />
+          <span class="fs16 ft-primary-sb grey900" i18n>₹ {{ txnData.data.amount | number: '1.0-2' }}</span>
+        </div>
+      </div>
+      <div class="data-card-item item2 wp100 flex-space">
+        <span class="fs14 ft-primary-b grey600 text-uppercase" i18n>TDS</span>
+        <span class="fs14 ft-primary-sb grey600" i18n>₹ {{ tdsDeducted | number: '1.0-2' }}</span>
+      </div>
+      <div class="data-card-item item3 wp100 flex-space">
+        <span class="fs14 ft-primary-b grey600 text-uppercase" i18n>Net Transferred </span>
+        <span class="fs14 ft-primary-sb grey900" i18n>₹ {{ netTransferred | number: '1.0-2'}}</span>
+      </div>
+      <div class="data-card-item item4 wp100 flex-space">
+        <span class="fs14 ft-mb grey500" i18n>Debited from Cash Balance</span>
+        <span class="status-txt fs14 ft-primary-md" i18n>{{ currentStatus }}</span>
+      </div>
+    </div>
+
+    <div class="wp100 flex-col-jst-start gap24 my-2">
+      <div class="wp100 flex-space">
+        <div class="flex-col-jst-start gap8 flex-1">
+          <span class="fs14 ft-primary-b grey500 text-uppercase" i18n>Reference ID</span>
+          <div class="flex-start gap4">
+            <span class="fs16 ft-primary-b grey900" i18n>{{ txnData.data.referenceCode }}</span>
+            <img class="cursor" (click)="copyToClipboard()" matTooltip="Click to Copy"
+              [src]="assetsImagePath + 'cashier/Copy.svg'" alt="Copy" i18n i18n-alt />
+          </div>
+        </div>
+        <div class="flex-col-jst-start gap8 flex-1">
+          <span class="fs14 ft-primary-b grey500 text-uppercase" i18n>Initiated at</span>
+          <span class="fs16 ft-primary-b grey900" i18n>{{ txnData.data.date | date: "dd MMM, ''yy | hh:mm a" }} </span>
+        </div>
+      </div>
+      <div class="wp100 flex-space">
+        <div class="flex-col-jst-start gap8 flex-1">
+          <span class="fs14 ft-primary-b grey500 text-uppercase" i18n>Payment Method</span>
+          <span class="fs16 ft-primary-b grey900" i18n>{{ txnData.data.paymentMethod }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="wp100 flex-only-space mt-4 mb-3">
+      <app-timeline [timelineArray]="txnTimeLine.customTimeLine"></app-timeline>
+      <div class="cancel h32 flex-center gap4 br8 bg-light py-2 px-3 cursor border-1.5 border-solid border-primary-red"
+        *ngIf="currentStatus === 'Request Received'" (click)="cancelRequest()">
+        <i class="pi pi-times-circle primary-red"></i>
+        <span class="fs12 ft-primary-sb grad-red-text" i18n>Cancel Request</span>
+      </div>
+    </div>
+
+    <span class="fs14 ft-primary-md orange500 lh-base" *ngIf="currentStatus === 'Request Received'" i18n>
+      * Approval request post 8:00 PM will be taken for approval on next day
+    </span>
+  </ng-container>
+
+
+  <div class="help-box wp100 h40 flex-center gap4 bg-grey100 br12 fs14 ft-primary-b py-3 px-4 mt-2"
+    (click)="openHelpDialog()">
+    <span class="grey900" i18n>Need Help?</span>
+    <span class="grad-red-text cursor" i18n>Get here</span>
+  </div>
+
+  <div *ngIf="isShowToast">
+    <app-toast [toastValue]="toastValue" [(isShowToast)]="isShowToast"></app-toast>
+  </div>
+</div>

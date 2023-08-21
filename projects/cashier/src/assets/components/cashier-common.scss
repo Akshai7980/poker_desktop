@@ -1,0 +1,649 @@
+@import "../abstract/core";
+
+.g-form-group {
+  .g-form-control {
+    &::placeholder {
+      $color: $grey400;
+    }
+
+    &:hover,
+    &:focus {
+      box-shadow: none;
+    }
+
+    &.border-primary-red:hover,
+    &.border-primary-red:focus {
+      box-shadow: none;
+      border-color: $primary-red;
+    }
+  }
+}
+
+// Thses properties are from PrimeNg Input
+// Inline styles are used below as common class cannot override
+.p-inputtext:enabled:focus,
+.p-inputtext:enabled:hover {
+  border-color: $grey300;
+}
+
+.input-error.p-inputtext:enabled:focus,
+.input-error.p-inputtext:enabled:hover {
+  border-color: $primary-error;
+}
+
+.border-primary-success.p-inputtext:enabled:focus,
+.border-primary-success.p-inputtext:enabled:hover {
+  border-color: $primary-success;
+}
+
+// Add Cash
+
+.cashier-window-container {
+  .add-cash-header {
+    height: 64px;
+
+  }
+
+  .add-cash-body {
+    .add-cash-body-container {
+      .add-cash-body-header-widget {
+        .add-cash-body-header {
+          height: 43px;
+
+        }
+
+        .add-cash-body-widget {
+          height: 152px;
+
+          .add-cash-input-text-widget {
+            height: 70px;
+
+            .add-cash-input-widget {
+              .rupee-icon {
+                width: 25px;
+                height: 48px;
+              }
+
+              input[type="text"] {
+                &.custom-input {
+                  border: 0;
+                  width: 274px;
+                  transform: translate(-5px, -1px);
+
+                  &:focus {
+                    outline: 0;
+                  }
+
+                  &:focus-visible {
+                    outline: 0;
+                  }
+                }
+              }
+            }
+
+          }
+
+          .add-cash-body-amount {
+            height: 42px;
+
+            .add-cash-amount {
+              height: 42px;
+              border: 1.5px solid $green000;
+
+              &.hot-cash {
+                @include row-start;
+
+                background: $orange000;
+                border-top-left-radius: $br12;
+                border-top-right-radius: $br12;
+                border: 1px solid transparent;
+
+                .add-hot-bg {
+                  bottom: 0;
+                  width: 70px;
+                  height: 14px;
+                  border-bottom-left-radius: $br12;
+                  border-bottom-right-radius: $br12;
+                  background: $grad-orange;
+
+                  span {
+                    &.span-img {
+                      background: url('../../../../../src/assets/images/cashier/Flame.svg') no-repeat center/cover;
+                    }
+                  }
+                }
+              }
+
+              &.selected-amount,
+              &:hover {
+                background: $mint-green;
+                border: 1.5px solid $primary-success;
+
+                &.hot-cash {
+                  background: $orange000;
+                  border: 1.5px solid $orange500;
+                }
+              }
+
+              &.hot-cash-active {
+                border: 1.5px solid $orange500;
+              }
+
+              &.selected-cash {
+                background: $green000;
+                border: 1.5px solid $primary-success;
+              }
+
+            }
+
+          }
+        }
+      }
+
+      .add-cash-body-label-input {
+        .input-label-container {
+          input[type="text"] {
+            &.custom-input {
+              width: calc(100% - 20%);
+              border: none;
+
+              &:focus {
+                outline: 0;
+              }
+
+              &:focus-visible {
+                outline: 0;
+              }
+
+              &::placeholder {
+                color: $grey400;
+              }
+            }
+          }
+        }
+
+      }
+
+      .add-cash-body-links {
+        height: 24px;
+
+        .add-cash-link-title {
+          .deposit-ticket {
+            background: url('../images/ticket-cash.svg') no-repeat center/contain;
+          }
+        }
+
+      }
+
+      .add-cash-offers-body {
+        .add-cash-input-link-offers-body {
+          .add-cash-offers-input-link {
+            input[type="text"] {
+              &.offer-input {
+                &::placeholder {
+                  font-family: $font-bold;
+                  font-size: 14px;
+                  color: $grey400;
+                }
+
+                &:focus {
+                  border: none;
+                  outline: 0;
+                }
+
+                &:focus-visible {
+                  border: none;
+                  outline: 0;
+                }
+              }
+            }
+          }
+
+          .add-cash-offer-applied-container {
+            .add-applied-header-separator {
+              height: 1px;
+            }
+          }
+        }
+
+      }
+    }
+  }
+
+  .add-cash-footer {
+    .add-cash-footer-payments {
+      .gateway {
+        background-repeat: no-repeat;
+        background-position: center;
+        z-index: 1;
+
+        &.visa-payment {
+          background-image: url('../../../../../src/assets/images/cashier/Visa.svg');
+          width: 47px;
+          height: 15px;
+        }
+
+        &.master-payment {
+          background-image: url('../../../../../src/assets/images/cashier/Master.svg');
+          width: 25px;
+          height: 15px;
+        }
+
+        &.upi-payment {
+          background-image: url('../../../../../src/assets/images/cashier/UPI.svg');
+          width: 43px;
+          height: 15px;
+        }
+
+        &.rupay-payment {
+          background-image: url('../../../../../src/assets/images/cashier/RuPay.svg');
+          width: 57px;
+          height: 15px;
+        }
+
+        &.gpay-payment {
+          background-image: url('../../../../../src/assets/images/cashier/google-pay.svg');
+          width: 38px;
+          height: 15px;
+        }
+
+        &.paytm-payment {
+          background-image: url('../../../../../src/assets/images/cashier/Paytm.svg');
+          width: 49px;
+          height: 15px;
+        }
+      }
+    }
+  }
+
+  .status-main-body {
+    .status-main-header {
+      .status-header {
+        width: 205px;
+        height: 128px;
+
+        .status-icon {
+          width: 88px;
+          height: 88px;
+
+          .status-icon-body {
+            width: 52px;
+            height: 52px;
+
+            .pi {
+              font-size: 20px;
+            }
+          }
+        }
+
+        .status-text {
+          white-space: nowrap;
+        }
+
+        &.pending-transaction {
+          .status-icon {
+            .status-icon-body {
+              .status-pending {
+                background: url('../images/pending-cash.svg') no-repeat center/contain;
+                width: 52px;
+                height: 52px;
+              }
+            }
+          }
+
+          .status-text-pending {
+            white-space: nowrap;
+          }
+
+        }
+
+        &.fail-transaction {
+          .status-icon {
+            .status-icon-body {
+              .status-failed {
+                background: url('../images/failed-cash.svg') no-repeat center/contain;
+                width: 52px;
+                height: 52px;
+              }
+            }
+          }
+
+
+          .status-text-failed {
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+
+    .status-body {
+      width: 360px;
+      height: 375px;
+
+      .status-transaction-details {
+        width: 328px;
+        height: 70px;
+
+        .status-transaction-details-content {
+          width: 304px;
+
+
+          .status-transaction-details-content-value {
+            &.success-value {
+              color: $green400 !important;
+
+              .pi {
+                font-size: 12px;
+                color: $green400 !important;
+              }
+            }
+
+
+            &.pending-value {
+              color: $orange500;
+
+              .pi {
+                font-size: 12px;
+                color: $orange500;
+              }
+            }
+
+            &.fail-value {
+              color: $red400;
+
+              .pi {
+                font-size: 12px;
+                color: $red400;
+              }
+            }
+          }
+        }
+
+        .status-transaction-details-sub-content {
+          width: 304px;
+
+
+
+          .status-transaction-details-content-sub-status {
+            &.success-value {
+              color: $green400;
+            }
+
+            &.pending-value {
+              color: $orange500;
+            }
+
+            &.fail-value {
+              color: $red400;
+            }
+          }
+        }
+      }
+
+      .reference-coupon-contianer {
+        width: 328px;
+        height: 114px;
+
+        .reference-coupon-content {
+          align-self: flex-start;
+
+          &:nth-child(4n + 1) {
+            width: 132px;
+          }
+
+          &:nth-child(4n + 2) {
+            width: 160px;
+          }
+
+          &:nth-child(4n + 3) {
+            width: 132px;
+          }
+
+          &:nth-child(4n + 4) {
+            width: 160px;
+          }
+
+
+          .reference-coupon-content-value {
+            .copy-img {
+              background: url('../images/duplicate-copy1.svg') no-repeat center/contain;
+            }
+          }
+
+        }
+      }
+
+      .status-benefits-container {
+        width: 328px;
+        height: 223px;
+
+
+        .status-benefits-content {
+          .status-context {
+            white-space: pre-line;
+
+            span {
+              &.status-day {
+                white-space: nowrap;
+              }
+            }
+          }
+        }
+      }
+
+      .deposit-offer-benefits {
+        width: 328px;
+
+
+        .deposit-coupon-benefit {
+          width: 304px;
+
+          .deposit-offer-content {
+            .deposit-ticket-coupon {
+              .ticket-cash {
+                background: url('../images/ticket-cash.svg') no-repeat center/contain;
+              }
+
+              .prize-ticket {
+                width: 16.25px;
+                height: 15.33px;
+                line-height: 15.33px;
+
+                &::before {
+                  content: '';
+                  position: absolute;
+                  left: 0;
+                  width: 3px;
+                  height: 3.5px;
+                  border-top-right-radius: 50%;
+                  border-bottom-right-radius: 50%;
+                  background: $grey800;
+                }
+
+                &::after {
+                  content: '';
+                  position: absolute;
+                  right: 0;
+                  width: 2.5px;
+                  height: 3.5px;
+                  border-top-left-radius: 50%;
+                  border-bottom-left-radius: 50%;
+                  background: $grey800;
+                }
+              }
+            }
+
+            .deposit-ticket-options {
+              .ticket-expires {
+                text-align: left;
+              }
+
+              .ticket-expires-date {
+                text-align: left;
+              }
+            }
+          }
+        }
+      }
+
+      .deposit-benefits-container {
+        width: 328px;
+
+        .deposit-benefit-content-body {
+          .deposit-benefit-content {
+            width: 92px;
+
+            .benefit-value {
+              .copy-img {
+                background: url('../images/duplicate-copy1.svg') no-repeat center/contain;
+              }
+            }
+          }
+        }
+
+      }
+    }
+
+  }
+}
+
+
+.congratulations-container {
+  width: 288px;
+  height: 242px;
+
+  .congratulations-body {
+    background: url('../images/congratulations.svg') no-repeat center/contain;
+    width: 288px;
+    height: 126px;
+
+    .ticket-cash-body {
+      width: 101.5px;
+      height: 101.5px;
+
+      .ticket-cash-image {
+        background: url('../images/final-ticket.svg') no-repeat center/contain;
+        width: 89px;
+        height: 82px;
+      }
+    }
+  }
+
+  .code-applied-success-text {
+    .code-applied-text {
+      // width: 197px;
+      height: 22px;
+      white-space: nowrap;
+    }
+  }
+}
+
+.slider-card {
+  height: 322px;
+  transition: 0.6s all ease-in;
+
+  .center-drag-line {
+    height: 20px;
+
+    .drag-line {
+      width: 64px;
+      height: 6px;
+    }
+  }
+
+  .slider-card-header {
+    .slider-offers-container {
+      width: 304px;
+    }
+  }
+
+  .seperator-line {
+    margin: auto;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: -5px;
+      top: -5px;
+      width: 10px;
+      height: 10px;
+      background: $grey200;
+      transform: rotate(45deg);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      right: -5px;
+      top: -5px;
+      width: 10px;
+      height: 10px;
+      background: $grey200;
+      transform: rotate(45deg);
+    }
+  }
+
+  .detail-points {
+    ul {
+      li {
+        color: $grey20;
+        list-style-type: disc;
+
+        &::before {
+          position: absolute;
+          height: 2px;
+          width: 2px;
+
+          @include center;
+
+          background: $grey20;
+        }
+      }
+    }
+  }
+
+}
+
+.to-back-icon {
+  &:hover {
+    background: $grey100;
+  }
+}
+
+.ellipse {
+  min-width: 5px;
+  width: 5px;
+  height: 5px;
+  border-radius: $br50;
+  background: $grey900;
+}
+
+
+.toast-message {
+  position: absolute;
+  bottom: 1rem;
+
+  &.toast-slider {
+    left: 10%;
+    width: 80%;
+  }
+}
+
+.close-btn:hover {
+  background: $grey100;
+}
+
+// Mat Button Overriding through Inline Styles 
+.btn.btn-apply-check {
+  .applied-check {
+    background: transparent;
+  }
+}
+
+.toast-above-btn {
+  margin-bottom: 5.7rem;
+}
+
+.black-line {
+  height: 5px;
+}

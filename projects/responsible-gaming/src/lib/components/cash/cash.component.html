@@ -1,0 +1,153 @@
+<div class="d-flex flex-1 gap16 ovf-y-auto">
+  <div class="flex-1 ovf-y-auto">
+    <div class="d-flex flex-column max-h-100 bg-light p-4 br16 ovf-y-auto">
+      <form [formGroup]="cashForm" class="d-flex flex-column flex-1 gap16 ovf-y-auto">
+        <div class="d-flex flex-column flex-1 bg-grey000 border-1 border-solid border-grey200 br8 ovf-y-auto">
+          <div class="d-flex flex-column flex-1 gap8 p-4 ovf-y-auto">
+            <p class="ft-primary-md fs14 lh-base grey900 mt-0 mb-4" i18n>
+              You can choose to restrict yourself for specific <span class="ft-primary-sb">Game Variants</span>. You
+              can choose the blinds of the tables from which you want to restrict yourself and the duration. Once the
+              restriction is set, you will not be able to play on those blinds until the set number of hours or days.
+            </p>
+            <div class="cash-main d-flex flex-column gap16">
+              <h5 class="ft-primary-b fs20 lh-base grey900 m-0" i18n>Select Game Variant, Blind & Duration</h5>
+              <div class="table-game-variants-wrapper wp100">
+                <table class="table-game-variants wp100" aria-label="Table Game">
+                  <thead>
+                    <tr class="bg-grey200">
+                      <th class="text-left pl-3 pr-0 py-2">
+                        <p class="ft-primary-b fs12 lh-normal grey600 text-uppercase m-0" i18n>Game Variant</p>
+                      </th>
+                      <th class="wp40 text-left pl-3 pr-0 py-2">
+                        <p class="ft-primary-b fs12 lh-normal grey600 text-uppercase m-0" i18n>BLINDS</p>
+                      </th>
+                      <th class="wp40 text-left pl-3 pr-0 py-2">
+                        <p class="ft-primary-b fs12 lh-normal grey600 text-uppercase m-0" i18n>Duration</p>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="text-left pl-3 pr-0 py-2">
+                        <p class="ft-primary-sb fs14 lh-base grey900 m-0" i18n *ngIf="gameVariants"> {{
+                          gameVariants[0].name }} </p>
+                      </td>
+                      <td class="wp40 pl-3 pr-0 py-2">
+                        <p-dropdown i18n-placeholder [options]="holdemOptions" [(ngModel)]="selectedHoldemBlind"
+                          formControlName="holdemBlinds" styleClass="wp100" placeholder="Select" appendTo="body"
+                          name="blinds" (ngModelChange)="onOptionChange('holdem', 'blind')"></p-dropdown>
+                      </td>
+                      <td class="wp40 pl-3 pr-0 py-2">
+                        <p-dropdown i18n-placeholder [options]="holdemDurations" [(ngModel)]="selectedHoldemDuration"
+                          formControlName="holdemDuration" styleClass="wp100" placeholder="Select" appendTo="body"
+                          name="blinds" [disabled]="selectedHoldemBlind === 'Play All (No Restrictions)'"
+                          (ngModelChange)="onOptionChange('holdem', 'duration')"></p-dropdown>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-left pl-3 pr-0 py-2">
+                        <p class="ft-primary-sb fs14 lh-base grey900 m-0" i18n *ngIf="gameVariants"> {{
+                          gameVariants[1].name }} </p>
+                      </td>
+                      <td class="wp40 pl-3 pr-0 py-2">
+                        <p-dropdown i18n-placeholder [options]="ploOptions" [(ngModel)]="selectedPLOBlind"
+                          formControlName="ploBlinds" styleClass="wp100" placeholder="Select"
+                          appendTo="body" name="blinds" (ngModelChange)="onOptionChange('plo', 'blind')"></p-dropdown>
+                      </td>
+                      <td class="wp40 pl-3 pr-0 py-2">
+                        <p-dropdown i18n-placeholder [options]="ploDurations" [(ngModel)]="selectedPLODuration"
+                          formControlName="ploDuration" styleClass="wp100" placeholder="Select"
+                          appendTo="body" name="blinds" [disabled]="selectedPLOBlind === 'Play All (No Restrictions)'"
+                          (ngModelChange)="onOptionChange('plo', 'duration')"></p-dropdown>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-left pl-3 pr-0 py-2">
+                        <p class="ft-primary-sb fs14 lh-base grey900 m-0" i18n *ngIf="gameVariants"> {{
+                          gameVariants[2].name }} </p>
+                      </td>
+                      <td class="wp40 pl-3 pr-0 py-2">
+                        <p-dropdown i18n-placeholder [options]="plo5Options" [(ngModel)]="selectedPLO5Blind"
+                          formControlName="plo5Blinds" styleClass="wp100" placeholder="Select"
+                          appendTo="body" name="blinds" (ngModelChange)="onOptionChange('plo5', 'blind')"></p-dropdown>
+                      </td>
+                      <td class="wp40 pl-3 pr-0 py-2">
+                        <p-dropdown i18n-placeholder [options]="plo5Durations" [(ngModel)]="selectedPLO5Duration"
+                          formControlName="plo5Duration" styleClass="wp100" placeholder="Select"
+                          appendTo="body" name="blinds" [disabled]="selectedPLO5Blind === 'Play All (No Restrictions)'"
+                          (ngModelChange)="onOptionChange('plo5', 'duration')"></p-dropdown>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-left pl-3 pr-0 py-2">
+                        <p class="ft-primary-sb fs14 lh-base grey900 m-0" i18n *ngIf="gameVariants"> {{
+                          gameVariants[3].name }} </p>
+                      </td>
+                      <td class="wp40 pl-3 pr-0 py-2">
+                        <p-dropdown i18n-placeholder [options]="plo6Options" [(ngModel)]="selectedPLO6Blind"
+                          formControlName="plo6Blinds" styleClass="wp100" placeholder="Select"
+                          appendTo="body" name="blinds" (ngModelChange)="onOptionChange('plo6', 'blind')"></p-dropdown>
+                      </td>
+                      <td class="wp40 pl-3 pr-0 py-2">
+                        <p-dropdown i18n-placeholder [options]="plo6Durations" [(ngModel)]="selectedPLO6Duration"
+                          formControlName="plo6Duration" styleClass="wp100" placeholder="Select"
+                          appendTo="body" name="blinds" [disabled]="selectedPLO6Blind === 'Play All (No Restrictions)'"
+                          (ngModelChange)="onOptionChange('plo6', 'duration')"></p-dropdown>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-left pl-3 pr-0 py-2">
+                        <p class="ft-primary-sb fs14 lh-base grey900 m-0" i18n *ngIf="gameVariants"> {{
+                          gameVariants[4].name }} </p>
+                      </td>
+                      <td class="wp40 pl-3 pr-0 py-2">
+                        <p-dropdown i18n-placeholder [options]="crazyPineOptions" [(ngModel)]="selectedCPBlind"
+                          formControlName="blinds" styleClass="wp100" placeholder="Select"
+                          appendTo="body" name="blinds" (ngModelChange)="onOptionChange('crazy', 'blind')"></p-dropdown>
+                      </td>
+                      <td class="wp40 pl-3 pr-0 py-2">
+                        <p-dropdown i18n-placeholder [options]="crazyPineDuration" [(ngModel)]="selectedCPDuration"
+                          formControlName="duration" styleClass="wp100" placeholder="Select"
+                          appendTo="body" name="blinds" [disabled]="selectedCPBlind === 'Play All (No Restrictions)'"
+                          (ngModelChange)="onOptionChange('crazy', 'duration')"></p-dropdown>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="d-flex flex-column gap6">
+              <p class="ft-primary-md fs14 lh-base grey900 m-0" i18n>
+                <span class="ft-primary-sb">Note:</span> Once the restriction limits are set, you can alter them as:
+              </p>
+              <ul class="pd-bullet-list d-flex flex-column gap6 m-0 pl-4">
+                <li class="pd-bullet-list-item p-rel ft-primary-md fs14 lh-base grey900 m-0" i18n>Blinds can be lowered
+                  from the set limit. They cannot be increased further
+                  during the restriction period.</li>
+                <li class="pd-bullet-list-item p-rel ft-primary-md fs14 lh-base grey900 m-0" i18n>Duration can be
+                  increased from the set limit. It cannot be decreased during
+                  the restriction period.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex jst-end">
+          <button type="button" mat-button class="btn btn-primary btn-lg" [disabled]="!enableSubmit"
+            (click)="onSubmit()" id="resp-game-cash-submit-btn" trackEvents>
+            <span i18n>Submit</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="pd-card-advertise max-h-100 d-flex flex-column align-self-start bg-light br16 ovf-y-auto">
+    <div class="d-flex flex-column flex-1 gap16 p-4 ovf-y-auto">
+      <img class="img-ad wp100 br8" *ngFor="let rim of rhsImages"
+        [src]="assetsImagePath+'responsible-gaming/'+rim.imgSrc" alt="advertise" i18n i18n-alt />
+    </div>
+  </div>
+</div>
+
+<div class="text-center" *ngIf="isShowToast">
+  <app-toast [toastValue]="toastValue" [(isShowToast)]="isShowToast"></app-toast>
+</div>

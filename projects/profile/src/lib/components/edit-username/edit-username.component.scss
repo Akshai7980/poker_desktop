@@ -1,0 +1,30 @@
+@import '../../../assets/abstract/core';
+@import "../../../assets/components/avatar";
+@import '../../../assets/components/common';
+
+.username-edit-container {
+  form {
+    .form-input {
+      input[type="text"] {
+        &.read-only:focus {
+          color: $grey400;
+        }
+      }
+    }
+  }
+}
+
+.suggestion-chip-container {
+  gap: 10px 4px;
+}
+
+.suggestion-chip {
+  &.user-active,
+  &:hover {
+    background: $grey900;
+
+    .suggestion-chip-text {
+      color: $grey000;
+    }
+  }
+}

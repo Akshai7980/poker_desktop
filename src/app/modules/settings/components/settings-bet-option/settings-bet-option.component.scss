@@ -1,0 +1,35 @@
+@import '../../../../../assets/abstract/core';
+
+.flop-tab-group {
+  .flop-tablink {
+    width: 164px;
+  }
+}
+
+.flop-group {
+  .flop-item {
+    &:first-child {
+      border-radius: $br12 0 0 $br12;
+    }
+
+    &:last-child {
+      border-radius: 0 $br12 $br12 0;
+    }
+  }
+}
+
+.list-bet-option {
+  .list-bet-option-item {
+    + .list-bet-option-item {
+      border-top: 1px solid $grey100;
+    }
+
+    &:first-child {
+      border-radius: $br8 $br8 0 0;
+    }
+
+    &:last-child {
+      border-radius: 0 0 $br8 $br8;
+    }
+  }
+}

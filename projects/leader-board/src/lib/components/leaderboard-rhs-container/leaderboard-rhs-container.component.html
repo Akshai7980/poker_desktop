@@ -1,0 +1,1199 @@
+<div class="leaderboard-rhs-container d-flex flex-col flex-1 ovf-y-auto">
+  <div class="leaderboard-rhs-container-widget d-flex flex-col flex-1 ovf-y-auto">
+    <div class="leaderboard-rhs-top-header d-flex align-center gap16 mt-4 mx-4"
+      *ngIf="showRank && (todayList.length !== 0 || upcomingList.length !== 0 || completedList.length !== 0)" i18n>
+      <div class="back-icon wh24 p-rel cursor" (click)="backToCgcList()">
+        <div class="icons-24 chevron-left top-right wh24"></div>
+      </div>
+      <div class="title fs20 ft-primary-b grey800 ">{{displayNameCGP}}</div>
+    </div>
+    <div class="leaderboard-group-header d-flex jst-space align-center bg-light br16 py-3 px-4 mt-4 mx-4"
+      *ngIf="additionalInfo?.isJoined === false && showJoin && showRhs">
+      <div class="leaderboard-group-content d-flex align-center ft-primary-md fs16 grey900 w430 text-wrap" i18n>
+        This is a group Leaderboard where there are multiple Leaderboard inside. You can join all Leaderboards at
+        one tap.
+      </div>
+      <div class="leaderboard-group-button d-flex jst-center align-center">
+        <button type="button" mat-button class="btn btn-primary-join" i18n (click)="onRegister()">
+          Join
+        </button>
+      </div>
+    </div>
+    <div *ngIf="showRhs" class="leaderboard-rhs-header d-flex jst-space align-center gap16 pt-4 px-4 mb-4">
+      <div class="leaderboard-rhs-left-container d-flex flex-col gap16 w292">
+        <div class="leaderboard-rhs-left-main-title p-rel d-flex flex-col gap6">
+          <div class="leaderboard-rhs-left-header-title d-flex align-center gap4 fs16 ft-primary-b grey900 pl-5" i18n>
+            {{displayName}}
+          </div>
+          <div class="leaderboard-rhs-left-header-sub-title d-flex align-center fs12 ft-primary-md grey600 pl-5" i18n>
+            {{description}}
+          </div>
+        </div>
+        <div class="leaderboard-rhs-left-content d-inline-block fs14 ft-primary-md grey700" i18n
+          *ngIf="additionalInfo !== undefined">
+          {{additionalInfo.shortDescription}} <span class="contentText fs14 ft-primary-md primary-red cursor"
+            (click)="onShowKnowMore()">Know
+            more</span>
+        </div>
+      </div>
+      <div class="leaderboard-rhs-right-container d-flex flex-col w314 h116 gap16 bg-light br16 p-4 shadow-1">
+        <div class="leaderboard-rhs-start-end-date-container d-flex align-center w282 h42 gap8">
+          <div class="leaderboard-rhs-start-date-container d-flex flex-col w133 h41 gap10">
+            <div class="leaderboard-rhs-start-date-title d-flex align-center fs12 ft-primary-b grey500 text-uppercase"
+              i18n>Start</div>
+            <div *ngIf="additionalInfo !== undefined"
+              class="leaderboard-rhs-start-date-time d-flex align-center gap4 w133 h17">
+              <div class="leaderboard-rhs-start-date fs14 ft-primary-b grey900" i18n>{{additionalInfo.promoStartDate |
+                date:'dd MMM, h:mm a':'UTC'}}
+              </div>
+            </div>
+          </div>
+          <div class="leaderboard-rhs-separator h42 border-1 border-solid border-grey100"></div>
+          <div class="leaderboard-rhs-end-date-container d-flex flex-col w133 h41 gap10">
+            <div class="leaderboard-rhs-end-date-title d-flex align-center fs12 ft-primary-b grey500 text-uppercase"
+              i18n>
+              End
+            </div>
+            <div *ngIf="additionalInfo !== undefined"
+              class="leaderboard-rhs-end-date-time d-flex align-center w133 h17 gap4">
+              <div class="leaderboard-rhs-end-date fs14 ft-primary-b grey900" i18n>{{additionalInfo.promoEndDate |
+                date:'dd MMM, h:mm a'}}</div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="leaderboard-rhs-status d-flex jst-center align-center br20 not-yet-status bg-orange000 wp100 h26 py-2 px-3"
+          *ngIf="additionalInfo?.status !== 'live' && !joinedStatus && additionalInfo?.status !== 'completed'">
+          <span class="span-text d-flex align-center fs12 ft-primary-b grad-orange-text" i18n>Yet to
+            Start</span>
+        </div>
+        <div
+          class="leaderboard-rhs-status d-flex jst-center align-center br20 joined-status bg-purple000 wp100 h26 py-2 px-3"
+          *ngIf="joinedStatus">
+          <span class="span-text d-flex align-center fs12 ft-primary-b grad-purple-text" i18n>Joined</span>
+        </div>
+        <div
+          class="leaderboard-rhs-status d-flex jst-center align-center br20 live-status bg-mint-green gap4 wp100 h26 py-2 px-3"
+          *ngIf="additionalInfo?.status === 'live' && !joinedStatus">
+          <div class="dot d-flex jst-center align-center wh8 circle bg-primary-success"></div>
+          <div class="dot-text d-flex align-center fs12 ft-primary-b primary-success" i18n>
+            Live
+          </div>
+        </div>
+        <div
+          class="leaderboard-rhs-status d-flex jst-center align-center br20 completed-status bg-grey100 wp100 h26 py-2 px-3"
+          *ngIf="additionalInfo?.status === 'completed' && !joinedStatus">
+          <span class="span-text d-flex align-center fs12 ft-primary-b grad-grey-text" i18n>Completed</span>
+        </div>
+      </div>
+    </div>
+    <div class="leaderboard-rhs-body-container d-flex flex-col flex-1 gap16 pt-4 ovf-y-auto" *ngIf="!showRank">
+      <div class="leader-board-sub-header-tabs d-flex align-center bg-light br16 p-2 mx-4 mw86 h48">
+        <ul class="d-flex align-center gap12 p-0 m-0">
+          <li
+            class="d-flex jst-center align-center gap8 h32 bg-light br12 cursor py-3 px-4 border-1.5 border-solid border-grey300"
+            [ngClass]="{'sub-tab-active': tabClick === 'today'}" (click)="onTabClick('today')">
+            <div class="tab-text fs14 ft-primary-b grey900" i18n>Today's</div>
+            <div *ngIf="todayList.length !== 0"
+              class="tab-count d-flex jst-center align-center circle wh20 fs10 ft-primary-b light bg-grey500" i18n>
+              {{todayList.length}}</div>
+          </li>
+          <li
+            class="d-flex jst-center align-center h32 gap8 bg-light br12 cursor py-3 px-4 border-1.5 border-solid border-grey300"
+            [ngClass]="{'sub-tab-active': tabClick === 'upcoming'}" (click)="onTabClick('upcoming')">
+            <div class="tab-text fs14 ft-primary-b grey900" i18n>Upcoming</div>
+            <div *ngIf="upcomingList.length !== 0"
+              class="tab-count d-flex jst-center align-center circle wh20 fs10 ft-primary-b light bg-grey500" i18n>
+              {{upcomingList.length}}</div>
+          </li>
+          <li
+            class="d-flex jst-center align-center h32 gap8 bg-light br12 cursor py-3 px-4 border-1.5 border-solid border-grey300"
+            [ngClass]="{'sub-tab-active': tabClick === 'completed'}" (click)="onTabClick('completed')">
+            <div class="tab-text fs14 ft-primary-b grey900" i18n>Completed</div>
+            <div *ngIf="completedList.length !== 0"
+              class="tab-count d-flex jst-center align-center circle wh20 fs10 ft-primary-b light bg-grey500" i18n>
+              {{completedList.length}}</div>
+          </li>
+        </ul>
+      </div>
+      <div class="d-flex flex-column flex-1 px-4 pb-4 ovf-y-auto" [ngSwitch]="tabClick">
+        <div *ngSwitchCase="'today'" class="leaderboard-cgc-container d-flex flex-col flex-1 gap16">
+          <div
+            class="leaderboard-widget d-flex flex-col p-rel gap16 bg-light br16 cursor p-4 border-2 border-solid border-transparent shadow-1"
+            *ngFor="let list of todayList"
+            (click)="openRanking(list.leagueId, list.contestType, list.displayName, list.description)">
+            <div class="leaderboard-widget-header d-flex jst-space align-center">
+              <div class="lb-header-image-title d-flex align-center gap12">
+                <div class="lb-header-image-body p-rel d-flex jst-center align-center bg-grey100 p-1 w40 h40">
+                  <img class="trophy-cup-icon wh32 p-abs hp100"
+                    [src]="list.icon ? list.icon : assetsImagePath + 'leaderboard/trophy-dynamic-premium.png'"
+                    alt="desktopBanner" i18n-alt>
+                </div>
+                <div class="lb-header-title d-flex flex-col gap6">
+                  <div class="lb-main-title fs16 ft-primary-b grey900" i18n>{{list.displayName}}</div>
+                  <div class="lb-main-sub-title fs12 ft-primary-md grey500" i18n>{{list.description}}</div>
+                </div>
+              </div>
+              <div class="lb-header-image-options wp40 d-flex jst-end align-center gap12">
+                <div *ngIf="list.status === 'live'"
+                  class="leaderboard-status d-flex jst-center align-center fs12 ft-primary-b br20 gap4 live-status bg-mint-green primary-success py-2 px-3"
+                  i18n>
+                  <span class="dot d-flex jst-center align-center wh8 circle bg-primary-success"></span> Live
+                </div>
+                <div
+                  class="leaderboard-status d-flex jst-center align-center br20 gap4 bg-orange000 yet-status py-2 px-3"
+                  *ngIf="list.status !== 'live' && list.status !== 'joined' && list.status !== 'completed'">
+                  <span class="status-text fs12 ft-primary-b grad-orange-text" i18n>Yet to Start</span>
+                </div>
+                <div
+                  class="leaderboard-status d-flex jst-center align-center br20 gap4 bg-purple000 joined-status py-2 px-3"
+                  *ngIf="list.isJoined === true">
+                  <span class="status-text fs12 ft-primary-b grad-purple-text" i18n>Joined</span>
+                </div>
+                <div *ngIf="list.status === 'completed'"
+                  class="leaderboard-status d-flex jst-center align-center br20 gap4 completed-status bg-grey100 py-2 px-3">
+                  <span class="status-text fs12 ft-primary-b grad-grey-text" i18n>Completed</span>
+                </div>
+              </div>
+            </div>
+            <div class="leaderboard-widget-sub-header d-flex jst-space align-center">
+              <div class="lb-widget-sub-header-badges d-flex align-center gap4 wp48">
+                <div class="badge-title-name d-flex align-center fs12 ft-primary-sb grey500 text-nowrap" i18n>
+                  Available on:
+                </div>
+                <div class="badges-widget d-flex align-center gap4">
+                  <ng-container *ngFor="let avialbleOn of list.availableOn">
+                    <div *ngIf="avialbleOn === 'HOLDEM'"
+                      class="badges d-flex jst-center align-center bg-purple000 br20 fs10 ft-primary-sb purple600 py-1 px-3"
+                      i18n>NLH</div>
+                    <div *ngIf="avialbleOn === 'OMAHA'"
+                      class="badges d-flex jst-center align-center bg-purple000 br20 fs10 ft-primary-sb purple600 py-1 px-3"
+                      i18n>PLO</div>
+                    <div *ngIf="avialbleOn === 'PINEAPPLE_CZ'"
+                      class="badges d-flex jst-center align-center bg-purple000 br20 fs10 ft-primary-sb purple600 py-1 px-3"
+                      i18n>CZ</div>
+                    <div *ngIf="avialbleOn === 'OMAHA_5'"
+                      class="badges d-flex jst-center align-center bg-purple000 br20 fs10 ft-primary-sb purple600 py-1 px-3"
+                      i18n>PLO5</div>
+                    <div *ngIf="avialbleOn === 'OMAHA_6'"
+                      class="badges d-flex jst-center align-center bg-purple000 br20 fs10 ft-primary-sb purple600 py-1 px-3"
+                      i18n>PLO6</div>
+                  </ng-container>
+                </div>
+              </div>
+              <div *ngIf="list.status !== 'live'"
+                class="lb-widget-sub-header-date-time d-flex jst-end align-center gap8 wp48">
+                <div *ngIf="list.startDate" class="lb-widget-sub-header-date d-flex align-center gap4">
+                  <div class="date-title fs12 ft-primary-md grey500 text-nowrap" i18n>
+                    Start:
+                  </div>
+                  <div class="date-time fs12 ft-primary-b grey900 text-nowrap" i18n>
+                    {{list.startDate | date:'dd MMM, hh:mm a'}}
+                  </div>
+                </div>
+                <div *ngIf="list.startDate && list.endDate"
+                  class="lb-widget-sub-header-date-seperator h14 border-1 border-solid border-grey500"></div>
+                <div *ngIf="list.endDate" class="lb-widget-sub-header-date d-flex align-center gap4">
+                  <div class="date-title fs12 ft-primary-md grey500 text-nowrap" i18n>
+                    End:
+                  </div>
+                  <div class="date-time fs12 ft-primary-b grey900 text-nowrap" i18n>
+                    {{list.endDate | date:'dd MMM, hh:mm a'}}
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="list.status === 'live'"
+                class="lb-widget-sub-header-date-time d-flex align-center gap8 wp48 jst-end">
+                <div *ngIf="list.endDate" class="lb-widget-sub-header-date d-flex align-center gap4">
+                  <div class="date-title fs12 ft-primary-md grey500 text-nowrap" i18n>
+                    Ends in:
+                  </div>
+                  <div class="date-time fs12 ft-primary-b grey900 text-nowrap" i18n>
+                    {{isWithin24Hours(list.endDate) ? (list.endDate | date: 'HH:mm') + 'H: ' + (list.endDate | date: 'mm') + 'm' : (differenceInDays) + '
+                    Days'}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="leaderboard-widget-body d-flex jst-space align-start bg-grey000 br12 p-3 border-1 border-solid border-grey200">
+              <div class="prize-left-container  d-flex flex-col align-start gap8 wp85">
+                <div class="prize-left-title d-flex align-center fs12 ft-primary-b grey500 text-uppercase" i18n>
+                  prize
+                </div>
+                <div class="prize-icon-text-container d-flex jst-space align-center wp100 flex-wrap gap8">
+                  <div class="prize-icon-text-context d-flex jst-start align-center gap8 wp48">
+                    <div class="prize-icon p-rel wh20 ovf-hide">
+                      <img class="p-abs wp100 hp100 obj-con" [src]=" assetsImagePath + 'leaderboard/lb-cash.svg'"
+                        alt="cash" i18n i18n-alt>
+                    </div>
+                    <div class="prize-text d-flex align-center fs14 ft-primary-b grey900" i18n>{{list.prizePool.prize |
+                      currencyFormat: true}}</div>
+                  </div>
+                  <div class="prize-icon-text-context d-flex jst-start align-center gap8 wp48">
+                    <div class="prize-ticket-text d-flex align-center gap4 fs14 ft-primary-b grey900"
+                      *ngIf="list?.prizePool?.tickets && list?.prizePool?.tickets !== 0" i18n>
+                      <span
+                        class="prize-ticket p-rel d-flex jst-center align-center w16 h15 fs10 ft-primary-b light grad-orange-bg">
+                        {{list?.prizePool?.tickets}} </span> Tickets
+                        <span class="icons-16 info-outline wh16"></span>
+                    </div>
+                  </div>
+                  <div class="prize-icon-text-context d-flex jst-start align-center gap8 wp48">
+                    <div class="prize-icon p-rel wh20 ovf-hide">
+                      <img class="p-abs wp100 hp100 obj-con" [src]=" assetsImagePath + 'leaderboard/lb-percent.svg'"
+                        alt="percent" i18n i18n-alt>
+                    </div>
+                    <div class="prize-text d-flex align-center fs14 ft-primary-b grey900" i18n>{{list.prizePool.bonus |
+                      currencyFormat: false}} Bonus</div>
+                  </div>
+                  <div class="prize-icon-text-context d-flex jst-start align-center gap8 wp48">
+                    <div class="prize-icon p-rel wh20 ovf-hide">
+                      <img class="p-abs wp100 hp100 obj-con" [src]=" assetsImagePath + 'leaderboard/lb-gift.svg'"
+                        alt="gift" i18n i18n-alt>
+                    </div>
+                    <div class="prize-text d-flex align-center fs14 ft-primary-b grey900" i18n>
+                      {{list.prizePool.other_giveaways ? list.prizePool.other_giveaways :
+                      '-'}}</div>
+                  </div>
+                  <div class="prize-icon-text-context d-flex jst-start align-center gap8 wp48">
+                    <div class="prize-icon p-rel wh20 ovf-hide">
+                      <img class="p-abs wp100 hp100 obj-con" [src]=" assetsImagePath + 'leaderboard/crown.svg'"
+                        alt="crown" i18n i18n-alt>
+                    </div>
+                    <div class="prize-text d-flex align-center fs14 ft-primary-b grey900" i18n>{{list.prizePool.crown ?
+                      (list.prizePool.crown | currencyFormat:
+                      false)
+                      :
+                      '-'}}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="place-paid-container d-flex flex-col align-end gap8 wp15">
+                <div class="place-paid-title d-flex align-center fs12 ft-primary-b grey500 text-uppercase" i18n>place
+                  paid</div>
+                <div class="place-paid-value d-flex align-center fs14 ft-primary-b grey900" i18n>{{list.placesPaid ?
+                  list.placesPaid : '-'}}</div>
+              </div>
+            </div>
+            <div
+              class="leaderboard-widget-footer d-flex jst-center align-center  rank-hand bg-orange000 py-4 px-6 br-btm-16">
+              <div class="rank-hand-container d-flex align-center gap20">
+                <div class="rank-container d-flex align-center gap8">
+                  <div *ngIf="list.leagueType === 'tpt'" class="rank-title fs13 ft-primary-sb grey500 text-uppercase"
+                    i18n>
+                    My Time
+                  </div>
+                  <div *ngIf="list.leagueType === 'mhw' || list.leagueType === 'mhp'"
+                    class="rank-title fs13 ft-primary-sb grey500 text-uppercase" i18n>
+                    My Hands
+                  </div>
+                  <div *ngIf="list.leagueType === 'fpp' || list.leagueType === 'fpp_hybrid' || list.leagueType === 'sec' || list.leagueType === 'poy'"
+                    class="rank-title fs13 ft-primary-sb grey500 text-uppercase" i18n>
+                    My Points
+                  </div>
+                  <div *ngIf="list.leagueType === 'pgp'" class="rank-title fs13 ft-primary-sb grey500 text-uppercase"
+                    i18n>
+                    My PGP
+                  </div>
+                  <div *ngIf="list.leagueType === 'vpip'" class="rank-title fs13 ft-primary-sb grey500 text-uppercase"
+                    i18n>
+                    My VPIP
+                  </div>
+                  <div class="rank-value fs14 ft-primary-b grey900" i18n>
+                    {{list.point ? (list.point | currencyFormat: false) : '-'}}
+                  </div>
+                </div>
+                <div class="rank-hand-separator h12 border-1 border-solid border-grey500"></div>
+                <div class="hand-container d-flex align-center gap8">
+                  <div class="hand-title fs13 ft-primary-sb grey500 text-uppercase" i18n>
+                    My Rank
+                  </div>
+                  <div class="hand-value fs22 ft-primary-b grad-orange-text" i18n>
+                    {{list.myRank ? list.myRank : '-'}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="leaderboard-empty d-flex flex-1 jst-center align-center" *ngIf="todayList.length === 0">
+            <div class="empty-data-container d-flex flex-col align-center gap12 wp100">
+              <div class="empty-data-image d-flex jst-center align-center circle wh112 bg-grey200">
+                <div class="empty-data-image-body p-rel wh64 ovf-hide">
+                  <img class="p-abs wp100 hp100 obj-con" [src]=" assetsImagePath + 'leaderboard/podium.svg'"
+                    alt="podium" i18n i18n-alt>
+                </div>
+              </div>
+              <div class="empty-text-container d-flex flex-col gap8">
+                <div class="empty-data-text fs16 ft-primary-b grey900" i18n>There is no Leaderboard available for today.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngSwitchCase="'upcoming'" class="leaderboard-cgc-container d-flex flex-col flex-1 gap16">
+          <div
+            class="leaderboard-widget d-flex flex-col p-rel gap16 bg-light br16 cursor p-4 border-2 border-solid border-transparent shadow-1"
+            *ngFor="let list of upcomingList"
+            (click)="openRanking(list.leagueId, list.contestType, list.displayName, list.description)">
+            <div class="leaderboard-widget-header d-flex jst-space align-center">
+              <div class="lb-header-image-title d-flex align-center gap12">
+                <div class="lb-header-image-body p-rel d-flex jst-center align-center bg-grey100 wh32 p-1 w40 h40">
+                  <img class="trophy-cup-icon wh32 p-abs hp100"
+                    [src]="list.icon ? list.icon : assetsImagePath + 'leaderboard/trophy-dynamic-premium.png'"
+                    alt="desktopBanner" i18n-alt>
+                </div>
+                <div class="lb-header-title d-flex flex-col gap6">
+                  <div class="lb-main-title fs16 ft-primary-b grey900" i18n>{{list.displayName}}</div>
+                  <div class="lb-main-sub-title fs12 ft-primary-md grey500" i18n>{{list.description}}</div>
+                </div>
+              </div>
+              <div class="lb-header-image-options wp40 d-flex jst-end align-center gap12">
+                <div *ngIf="list.status === 'live'"
+                  class="leaderboard-status d-flex jst-center align-center fs12 ft-primary-b br20 gap4 live-status bg-mint-green primary-success py-2 px-3"
+                  i18n>
+                  <span class="dot d-flex jst-center align-center wh8 circle bg-primary-success"></span> Live
+                </div>
+                <div
+                  class="leaderboard-status d-flex jst-center align-center br20 gap4 bg-orange000 yet-status py-2 px-3"
+                  *ngIf="list.status !== 'live' && list.status !== 'joined' && list.status !== 'completed'">
+                  <span class="status-text fs12 ft-primary-b grad-orange-text" i18n>Yet to Start</span>
+                </div>
+                <div
+                  class="leaderboard-status d-flex jst-center align-center br20 gap4 bg-purple000 joined-status py-2 px-3"
+                  *ngIf="list.isJoined === true">
+                  <span class="status-text fs12 ft-primary-b grad-purple-text" i18n>Joined</span>
+                </div>
+                <div *ngIf="list.status === 'completed'"
+                  class="leaderboard-status d-flex jst-center align-center br20 gap4 completed-status bg-grey100 py-2 px-3">
+                  <span class="status-text fs12 ft-primary-b grad-grey-text" i18n>Completed</span>
+                </div>
+              </div>
+            </div>
+            <div class="leaderboard-widget-sub-header d-flex jst-space align-center">
+              <div class="lb-widget-sub-header-badges d-flex align-center gap4 wp48">
+                <div class="badge-title-name d-flex align-center fs12 ft-primary-sb grey500 text-nowrap" i18n>
+                  Available on:
+                </div>
+                <div class="badges-widget d-flex align-center gap4">
+                  <ng-container *ngFor="let avialbleOn of list.availableOn">
+                    <div *ngIf="avialbleOn === 'HOLDEM'"
+                      class="badges d-flex jst-center align-center bg-purple000 br20 fs10 ft-primary-sb purple600 py-1 px-3"
+                      i18n>NLH</div>
+                    <div *ngIf="avialbleOn === 'OMAHA'"
+                      class="badges d-flex jst-center align-center bg-purple000 br20 fs10 ft-primary-sb purple600 py-1 px-3"
+                      i18n>PLO</div>
+                    <div *ngIf="avialbleOn === 'PINEAPPLE_CZ'"
+                      class="badges d-flex jst-center align-center bg-purple000 br20 fs10 ft-primary-sb purple600 py-1 px-3"
+                      i18n>CZ</div>
+                    <div *ngIf="avialbleOn === 'OMAHA_5'"
+                      class="badges d-flex jst-center align-center bg-purple000 br20 fs10 ft-primary-sb purple600 py-1 px-3"
+                      i18n>PLO5</div>
+                    <div *ngIf="avialbleOn === 'OMAHA_6'"
+                      class="badges d-flex jst-center align-center bg-purple000 br20 fs10 ft-primary-sb purple600 py-1 px-3"
+                      i18n>PLO6</div>
+                  </ng-container>
+                </div>
+              </div>
+              <div *ngIf="list.status !== 'live'"
+                class="lb-widget-sub-header-date-time d-flex jst-end align-center gap8 wp48">
+                <div *ngIf="list.startDate" class="lb-widget-sub-header-date d-flex align-center gap4">
+                  <div class="date-title fs12 ft-primary-md grey500 text-nowrap" i18n>
+                    Start:
+                  </div>
+                  <div class="date-time fs12 ft-primary-b grey900 text-nowrap" i18n>
+                    {{list.startDate | date:'dd MMM, hh:mm a'}}
+                  </div>
+                </div>
+                <div *ngIf="list.startDate && list.endDate"
+                  class="lb-widget-sub-header-date-seperator h14 border-1 border-solid border-grey500"></div>
+                <div *ngIf="list.endDate" class="lb-widget-sub-header-date d-flex align-center gap4">
+                  <div class="date-title fs12 ft-primary-md grey500 text-nowrap" i18n>
+                    End:
+                  </div>
+                  <div class="date-time fs12 ft-primary-b grey900 text-nowrap" i18n>
+                    {{list.endDate | date:'dd MMM, hh:mm a'}}
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="list.status === 'live'"
+                class="lb-widget-sub-header-date-time d-flex align-center gap8 wp48 jst-end">
+                <div *ngIf="list.endDate" class="lb-widget-sub-header-date d-flex align-center gap4">
+                  <div class="date-title fs12 ft-primary-md grey500 text-nowrap" i18n>
+                    Ends in:
+                  </div>
+                  <div class="date-time fs12 ft-primary-b grey900 text-nowrap" i18n>
+                    {{isWithin24Hours(list.endDate) ? (list.endDate | date: 'HH:mm') + 'H: ' + (list.endDate | date: 'mm') + 'm' : (differenceInDays) +
+                    '
+                    Days'}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="leaderboard-widget-body d-flex jst-space align-start bg-grey000 br12 p-3 border-1 border-solid border-grey200">
+              <div class="prize-left-container  d-flex flex-col align-start gap8 wp85">
+                <div class="prize-left-title d-flex align-center fs12 ft-primary-b grey500 text-uppercase" i18n>
+                  prize
+                </div>
+                <div class="prize-icon-text-container d-flex jst-space align-center wp100 flex-wrap gap8">
+                  <div class="prize-icon-text-context d-flex jst-start align-start gap8 wp48">
+                    <div class="prize-icon p-rel wh20 ovf-hide">
+                      <img class="p-abs wp100 hp100 obj-con" [src]=" assetsImagePath + 'leaderboard/lb-cash.svg'"
+                        alt="cash" i18n i18n-alt>
+                    </div>
+                    <div class="prize-text d-flex align-center fs14 ft-primary-b grey900" i18n>{{list.prizePool.prize |
+                      currencyFormat: true}}</div>
+                  </div>
+                  <div class="prize-icon-text-context d-flex jst-start align-start gap8 wp48">
+                    <div class="prize-ticket-text d-flex align-center gap4 fs14 ft-primary-b grey900"
+                      *ngIf="list?.prizePool?.tickets && list?.prizePool?.tickets !== 0" i18n>
+                      <span
+                        class="prize-ticket p-rel d-flex jst-center align-center w16 h15 fs10 ft-primary-b light grad-orange-bg">
+                        {{list?.prizePool?.tickets}} </span> Tickets
+                        <span class="icons-16 info-outline wh16"></span>
+                    </div>
+                  </div>
+                  <div class="prize-icon-text-context d-flex jst-start align-start gap8 wp48">
+                    <div class="prize-icon p-rel wh20 ovf-hide">
+                      <img class="p-abs wp100 hp100 obj-con" [src]=" assetsImagePath + 'leaderboard/lb-percent.svg'"
+                        alt="percent" i18n i18n-alt>
+                    </div>
+                    <div class="prize-text d-flex align-center fs14 ft-primary-b grey900" i18n>{{list.prizePool.bonus |
+                      currencyFormat: false}} Bonus</div>
+                  </div>
+                  <div class="prize-icon-text-context d-flex jst-start align-start gap8 wp48">
+                    <div class="prize-icon p-rel wh20 ovf-hide">
+                      <img class="p-abs wp100 hp100 obj-con" [src]=" assetsImagePath + 'leaderboard/gift.svg'"
+                        alt="gift" i18n i18n-alt>
+                    </div>
+                    <div class="prize-text d-flex align-center fs14 ft-primary-b grey900" i18n>
+                      {{list.prizePool.other_giveaways ? list.prizePool.other_giveaways :
+                      '-'}}</div>
+                  </div>
+                  <div class="prize-icon-text-context d-flex jst-start align-start gap8 wp48">
+                    <div class="prize-icon p-rel wh20 ovf-hide">
+                      <img class="p-abs wp100 hp100 obj-con" [src]=" assetsImagePath + 'leaderboard/crown.svg'"
+                        alt="crown" i18n i18n-alt>
+                    </div>
+                    <div class="prize-text d-flex align-center fs14 ft-primary-b grey900" i18n>{{list.prizePool.crown ?
+                      (list.prizePool.crown | currencyFormat:
+                      false)
+                      :
+                      '-'}}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="place-paid-container d-flex flex-col align-end gap8 wp15">
+                <div class="place-paid-title d-flex align-center fs12 ft-primary-b grey500 text-uppercase" i18n>place
+                  paid</div>
+                <div class="place-paid-value d-flex align-center fs14 ft-primary-b grey900" i18n>{{list.placesPaid ?
+                  list.placesPaid : '-'}}</div>
+              </div>
+            </div>
+            <div
+              class="leaderboard-widget-footer d-flex jst-center align-center  rank-hand bg-orange000 py-4 px-6 br-btm-16">
+              <div class="rank-hand-container d-flex align-center gap20">
+                <div class="rank-container d-flex align-center gap8">
+                  <div *ngIf="list.leagueType === 'tpt'" class="rank-title fs13 ft-primary-sb grey500 text-uppercase"
+                    i18n>
+                    My Time
+                  </div>
+                  <div *ngIf="list.leagueType === 'mhw' || list.leagueType === 'mhp'"
+                    class="rank-title fs13 ft-primary-sb grey500 text-uppercase" i18n>
+                    My Hands
+                  </div>
+                  <div *ngIf="list.leagueType === 'fpp' || list.leagueType === 'fpp_hybrid' || list.leagueType === 'sec' || list.leagueType === 'poy'"
+                    class="rank-title fs13 ft-primary-sb grey500 text-uppercase" i18n>
+                    My Points
+                  </div>
+                  <div *ngIf="list.leagueType === 'pgp'" class="rank-title fs13 ft-primary-sb grey500 text-uppercase"
+                    i18n>
+                    My PGP
+                  </div>
+                  <div *ngIf="list.leagueType === 'vpip'" class="rank-title fs13 ft-primary-sb grey500 text-uppercase"
+                    i18n>
+                    My VPIP
+                  </div>
+                  <div class="rank-value fs14 ft-primary-b grey900" i18n>
+                    {{list.point ? (list.point | currencyFormat: false) : '-'}}
+                  </div>
+                </div>
+                <div class="rank-hand-separator h12 border-1 border-solid border-grey500"></div>
+                <div class="hand-container d-flex align-center gap8">
+                  <div class="hand-title fs13 ft-primary-sb grey500 text-uppercase" i18n>
+                    My Rank
+                  </div>
+                  <div class="hand-value fs22 ft-primary-b grad-orange-text" i18n>
+                    {{list.myRank ? list.myRank : '-'}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="leaderboard-empty d-flex flex-1 jst-center align-center" *ngIf="upcomingList.length === 0">
+            <div class="empty-data-container d-flex flex-col align-center gap12 wp100">
+              <div class="empty-data-image d-flex jst-center align-center circle wh112 bg-grey200">
+                <div class="empty-data-image-body p-rel wh64 ovf-hide">
+                  <img class="p-abs wp100 hp100 obj-con" [src]=" assetsImagePath + 'leaderboard/podium.svg'"
+                    alt="podium" i18n i18n-alt>
+                </div>
+              </div>
+              <div class="empty-text-container d-flex flex-col gap8">
+                <div class="empty-data-text fs16 ft-primary-b grey900" i18n>There is no upcoming Leaderboard.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngSwitchCase="'completed'" class="leaderboard-cgc-container d-flex flex-col flex-1 gap16">
+          <div
+            class="leaderboard-widget d-flex flex-col p-rel gap16 bg-light br16 cursor p-4 border-2 border-solid border-transparent shadow-1"
+            *ngFor="let list of completedList"
+            (click)="openRanking(list.leagueId, list.contestType, list.displayName, list.description)">
+            <div class="leaderboard-widget-header d-flex jst-space align-center">
+              <div class="lb-header-image-title d-flex align-center gap12">
+                <div class="lb-header-image-body p-rel d-flex jst-center align-center bg-grey100 wh32 p-1 w40 h40">
+                  <img class="trophy-cup-icon wh32 p-abs hp100"
+                    [src]="list.icon ? list.icon : assetsImagePath + 'leaderboard/trophy-dynamic-premium.png'"
+                    alt="desktopBanner" i18n-alt>
+                </div>
+                <div class="lb-header-title d-flex flex-col gap6">
+                  <div class="lb-main-title fs16 ft-primary-b grey900" i18n>{{list.displayName}}</div>
+                  <div class="lb-main-sub-title fs12 ft-primary-md grey500" i18n>{{list.description}}</div>
+                </div>
+              </div>
+              <div class="lb-header-image-options wp40 d-flex jst-end align-center gap12">
+                <div *ngIf="list.status === 'live'"
+                  class="leaderboard-status d-flex jst-center align-center fs12 ft-primary-b br20 gap4 live-status bg-mint-green primary-success py-2 px-3"
+                  i18n>
+                  <span class="dot d-flex jst-center align-center wh8 circle bg-primary-success"></span> Live
+                </div>
+                <div
+                  class="leaderboard-status d-flex jst-center align-center br20 gap4 bg-orange000 yet-status py-2 px-3"
+                  *ngIf="list.status !== 'live' && list.status !== 'joined' && list.status !== 'completed'">
+                  <span class="status-text fs12 ft-primary-b grad-orange-text" i18n>Yet to Start</span>
+                </div>
+                <div
+                  class="leaderboard-status d-flex jst-center align-center br20 gap4 bg-purple000 joined-status py-2 px-3"
+                  *ngIf="list.isJoined === true">
+                  <span class="status-text fs12 ft-primary-b grad-purple-text" i18n>Joined</span>
+                </div>
+                <div *ngIf="list.status === 'completed'"
+                  class="leaderboard-status d-flex jst-center align-center br20 gap4 completed-status bg-grey100 py-2 px-3">
+                  <span class="status-text fs12 ft-primary-b grad-grey-text" i18n>Completed</span>
+                </div>
+              </div>
+            </div>
+            <div class="leaderboard-widget-sub-header d-flex jst-space align-center">
+              <div class="lb-widget-sub-header-badges d-flex align-center gap4 wp48">
+                <div class="badge-title-name d-flex align-center fs12 ft-primary-sb grey500 text-nowrap" i18n>
+                  Available on:
+                </div>
+                <div class="badges-widget d-flex align-center gap4">
+                  <ng-container *ngFor="let avialbleOn of list.availableOn">
+                    <div *ngIf="avialbleOn === 'HOLDEM'"
+                      class="badges d-flex jst-center align-center bg-purple000 br20 fs10 ft-primary-sb purple600 py-1 px-3"
+                      i18n>NLH</div>
+                    <div *ngIf="avialbleOn === 'OMAHA'"
+                      class="badges d-flex jst-center align-center bg-purple000 br20 fs10 ft-primary-sb purple600 py-1 px-3"
+                      i18n>PLO</div>
+                    <div *ngIf="avialbleOn === 'PINEAPPLE_CZ'"
+                      class="badges d-flex jst-center align-center bg-purple000 br20 fs10 ft-primary-sb purple600 py-1 px-3"
+                      i18n>CZ</div>
+                    <div *ngIf="avialbleOn === 'OMAHA_5'"
+                      class="badges d-flex jst-center align-center bg-purple000 br20 fs10 ft-primary-sb purple600 py-1 px-3"
+                      i18n>PLO5</div>
+                    <div *ngIf="avialbleOn === 'OMAHA_6'"
+                      class="badges d-flex jst-center align-center bg-purple000 br20 fs10 ft-primary-sb purple600 py-1 px-3"
+                      i18n>PLO6</div>
+                  </ng-container>
+                </div>
+              </div>
+              <div *ngIf="list.status !== 'live'"
+                class="lb-widget-sub-header-date-time d-flex jst-end align-center gap8 wp48">
+                <div *ngIf="list.startDate" class="lb-widget-sub-header-date d-flex align-center gap4">
+                  <div class="date-title fs12 ft-primary-md grey500 text-nowrap" i18n>
+                    Start:
+                  </div>
+                  <div class="date-time fs12 ft-primary-b grey900 text-nowrap" i18n>
+                    {{list.startDate | date:'dd MMM, hh:mm a'}}
+                  </div>
+                </div>
+                <div *ngIf="list.startDate && list.endDate"
+                  class="lb-widget-sub-header-date-seperator h14 border-1 border-solid border-grey500"></div>
+                <div *ngIf="list.endDate" class="lb-widget-sub-header-date d-flex align-center gap4">
+                  <div class="date-title fs12 ft-primary-md grey500 text-nowrap" i18n>
+                    End:
+                  </div>
+                  <div class="date-time fs12 ft-primary-b grey900 text-nowrap" i18n>
+                    {{list.endDate | date:'dd MMM, hh:mm a'}}
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="list.status === 'live'"
+                class="lb-widget-sub-header-date-time d-flex align-center gap8 wp48 jst-end">
+                <div *ngIf="list.endDate" class="lb-widget-sub-header-date d-flex align-center gap4">
+                  <div class="date-title fs12 ft-primary-md grey500 text-nowrap" i18n>
+                    Ends in:
+                  </div>
+                  <div class="date-time fs12 ft-primary-b grey900 text-nowrap" i18n>
+                    {{isWithin24Hours(list.endDate) ? (list.endDate | date: 'HH:mm') + 'H: ' + (list.endDate | date: 'mm') + 'm' : (differenceInDays) +
+                    '
+                    Days'}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="leaderboard-widget-body d-flex jst-space align-start bg-grey000 br12 p-3 border-1 border-solid border-grey200">
+              <div class="prize-left-container  d-flex flex-col align-start gap8 wp85">
+                <div class="prize-left-title d-flex align-center fs12 ft-primary-b grey500 text-uppercase" i18n>
+                  prize
+                </div>
+                <div class="prize-icon-text-container d-flex jst-space align-center wp100 flex-wrap gap8">
+                  <div class="prize-icon-text-context d-flex jst-start align-center gap8 wp48">
+                    <div class="prize-icon p-rel wh20 ovf-hide">
+                      <img class="p-abs wp100 hp100 obj-con" [src]=" assetsImagePath + 'leaderboard/lb-cash.svg'"
+                        alt="cash" i18n i18n-alt>
+                    </div>
+                    <div class="prize-text d-flex align-center fs14 ft-primary-b grey900" i18n>{{list.prizePool.prize |
+                      currencyFormat: true}}</div>
+                  </div>
+                  <div class="prize-icon-text-context d-flex jst-start align-center gap8 wp48">
+                    <div class="prize-ticket-text d-flex align-center gap4 fs14 ft-primary-b grey900"
+                      *ngIf="list?.prizePool?.tickets && list?.prizePool?.tickets !== 0" i18n>
+                      <span
+                        class="prize-ticket p-rel d-flex jst-center align-center w16 h15 fs10 ft-primary-b light grad-orange-bg">
+                        {{list?.prizePool?.tickets}} </span> Tickets
+                        <span class="icons-16 info-outline wh16"></span>
+                    </div>
+                  </div>
+                  <div class="prize-icon-text-context d-flex jst-start align-center gap8 wp48">
+                    <div class="prize-icon p-rel wh20 ovf-hide">
+                      <img class="p-abs wp100 hp100 obj-con" [src]=" assetsImagePath + 'leaderboard/lb-percent.svg'"
+                        alt="percent" i18n i18n-alt>
+                    </div>
+                    <div class="prize-text d-flex align-center fs14 ft-primary-b grey900" i18n>{{list.prizePool.bonus |
+                      currencyFormat: false}} Bonus</div>
+                  </div>
+                  <div class="prize-icon-text-context d-flex jst-start align-center gap8 wp48">
+                    <div class="prize-icon p-rel wh20 ovf-hide">
+                      <img class="p-abs wp100 hp100 obj-con" [src]=" assetsImagePath + 'leaderboard/lb-gift.svg'"
+                        alt="gift" i18n i18n-alt>
+                    </div>
+                    <div class="prize-text d-flex align-center fs14 ft-primary-b grey900" i18n>
+                      {{list.prizePool.other_giveaways ? list.prizePool.other_giveaways :
+                      '-'}}</div>
+                  </div>
+                  <div class="prize-icon-text-context d-flex jst-start align-center gap8 wp48">
+                    <div class="prize-icon p-rel wh20 ovf-hide">
+                      <img class="p-abs wp100 hp100 obj-con" [src]=" assetsImagePath + 'leaderboard/crown.svg'"
+                        alt="crown" i18n i18n-alt>
+                    </div>
+                    <div class="prize-text d-flex align-center fs14 ft-primary-b grey900" i18n>{{list.prizePool.crown ?
+                      (list.prizePool.crown | currencyFormat:
+                      false)
+                      :
+                      '-'}}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="place-paid-container d-flex flex-col align-end gap8 wp15">
+                <div class="place-paid-title d-flex align-center fs12 ft-primary-b grey500 text-uppercase" i18n>place
+                  paid</div>
+                <div class="place-paid-value d-flex align-center fs14 ft-primary-b grey900" i18n>{{list.placesPaid ?
+                  list.placesPaid : '-'}}</div>
+              </div>
+            </div>
+            <div
+              class="leaderboard-widget-footer d-flex jst-center align-center  rank-hand bg-orange000 py-4 px-6 br-btm-16">
+              <div class="rank-hand-container d-flex align-center gap20">
+                <div class="rank-container d-flex align-center gap8">
+                  <div *ngIf="list.leagueType === 'tpt'" class="rank-title fs13 ft-primary-sb grey500 text-uppercase"
+                    i18n>
+                    My Time
+                  </div>
+                  <div *ngIf="list.leagueType === 'mhw' || list.leagueType === 'mhp'"
+                    class="rank-title fs13 ft-primary-sb grey500 text-uppercase" i18n>
+                    My Hands
+                  </div>
+                  <div *ngIf="list.leagueType === 'fpp' || list.leagueType === 'fpp_hybrid' || list.leagueType === 'sec' || list.leagueType === 'poy'"
+                    class="rank-title fs13 ft-primary-sb grey500 text-uppercase" i18n>
+                    My Points
+                  </div>
+                  <div *ngIf="list.leagueType === 'pgp'" class="rank-title fs13 ft-primary-sb grey500 text-uppercase"
+                    i18n>
+                    My PGP
+                  </div>
+                  <div *ngIf="list.leagueType === 'vpip'" class="rank-title fs13 ft-primary-sb grey500 text-uppercase"
+                    i18n>
+                    My VPIP
+                  </div>
+                  <div class="rank-value fs14 ft-primary-b grey900" i18n>
+                    {{list.point ? (list.point | currencyFormat: false) : '-'}}
+                  </div>
+                </div>
+                <div class="rank-hand-separator h12 border-1 border-solid border-grey500"></div>
+                <div class="hand-container d-flex align-center gap8">
+                  <div class="hand-title fs13 ft-primary-sb grey500 text-uppercase" i18n>
+                    My Rank
+                  </div>
+                  <div class="hand-value fs22 ft-primary-b grad-orange-text" i18n>
+                    {{list.myRank ? list.myRank : '-'}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="leaderboard-empty d-flex flex-1 jst-center align-center" *ngIf="completedList.length === 0">
+            <div class="empty-data-container d-flex flex-col align-center gap12 wp100">
+              <div class="empty-data-image d-flex jst-center align-center circle wh112 bg-grey200">
+                <div class="empty-data-image-body p-rel wh64 ovf-hide">
+                  <img class="p-abs wp100 hp100 obj-con" [src]=" assetsImagePath + 'leaderboard/podium.svg'"
+                    alt="podium" i18n i18n-alt>
+                </div>
+              </div>
+              <div class="empty-text-container d-flex flex-col gap8">
+                <div class="empty-data-text fs16 ft-primary-b grey900" i18n>There is no completed Leaderboard.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="leaderboard-rhs-container-widget d-flex flex-col flex-1 gap12 ovf-y-auto" *ngIf="showRank">
+      <div class="leaderboard-rhs-tabs-updated-table d-flex flex-col flex-1 gap16 wp100 ovf-y-auto">
+        <div class="leaderboard-rhs-tabs-updated d-flex jst-space align-center bg-light br8 py-0 px-4 h40 mx-4">
+          <div class="leaderboard-rhs-tabs d-inline-block mw51">
+            <ul class="d-flex align-center gap24 p-0 m-0">
+              <li class="p-rel d-flex align-center cursor" [ngClass]="{'tabs-active' : tabsClick === 'ranking'}"
+                (click)="tabsClick = 'ranking'">
+                <a class="d-flex align-center fs14 ft-primary-b grey600" i18n>Ranking</a>
+              </li>
+              <li class="p-rel d-flex align-center cursor" [ngClass]="{'tabs-active' : tabsClick === 'prize'}"
+                (click)="tabsClick = 'prize'">
+                <a class="d-flex align-center fs14 ft-primary-b grey600" i18n>Prize Structure</a>
+              </li>
+            </ul>
+          </div>
+          <div class="leaderboard-rhs-updated d-flex align-center fs12 ft-primary-sb grey600" i18n
+            *ngIf="additionalInfo !== undefined && additionalInfo?.lastUpdateDate">
+            Last Updated: {{additionalInfo.lastUpdateDate | date:'h:mm a'}}
+          </div>
+        </div>
+        <div
+          class="leaderboard-rhs-prize-placepaid d-flex jst-space bg-light br12 border-1 border-solid border-grey200 mx-4"
+          *ngIf="tabsClick === 'prize' && rankingList[0]?.priceStructure?.rankData !== undefined">
+          <div class="leaderboard-rhs-prize d-flex flex-col align-start gap8 p-3">
+            <div class="leaderboard-rhs-prize-title fs12 ft-primary-b grey500 text-uppercase">
+              prize
+            </div>
+            <div class="leaderboard-rhs-prize-content d-flex flex-wrap wp100 align-start gap8">
+              <div class="leaderboard-rhs-prize-icon-value wp48 d-flex align-center gap8">
+                <div class="leaderboard-rhs-prize-icon p-rel d-flex jst-center align-center wh20 ovf-hide">
+                  <div class="cash-prize-icon p-rel wh20 ovf-hide">
+                    <img class="p-abs wp100 hp100 onj-con" [src]=" assetsImagePath + 'leaderboard/lb-cash.svg'"
+                      alt="cash" i18n i18n-alt>
+                  </div>
+                </div>
+                <div class="leaderboard-rhs-prize-value fs14 ft-primary-b grey900" i18n>
+                  {{rankingList[0].priceStructure.total.totalPrizePool.prize | currencyFormat: true}}
+                </div>
+              </div>
+              <div class="leaderboard-rhs-prize-icon-value wp48 d-flex align-center gap8">
+                <div class="prize-ticket-text d-flex align-center gap4 fs14 ft-primary-b grey900"
+                  *ngIf="rankingList[0].priceStructure.total.totalPrizePool.tickets && rankingList[0].priceStructure.total.totalPrizePool.tickets !== 0"
+                  i18n>
+                  <span
+                    class="prize-ticket p-rel d-flex jst-center align-center w16 h15 fs10 ft-primary-b light grad-orange-bg">
+                    {{rankingList[0].priceStructure.total.totalPrizePool.tickets}} </span> Tickets
+                    <span class="icons-16 info-outline wh16"></span>
+                </div>
+              </div>
+              <div class="leaderboard-rhs-prize-icon-value wp48 d-flex align-center gap8">
+                <div class="leaderboard-rhs-prize-icon p-rel d-flex jst-center align-center wh20 ovf-hide">
+                  <div class="cash-percentage-icon p-rel wh20 ovf-hide">
+                    <img class="p-abs wp100 hp100 onj-con" [src]=" assetsImagePath + 'leaderboard/lb-percent.svg'"
+                      alt="percent" i18n i18n-alt>
+                  </div>
+                </div>
+                <div class="leaderboard-rhs-prize-value fs14 ft-primary-b grey900" i18n>
+                  {{rankingList[0].priceStructure.total.totalPrizePool.bonus | currencyFormat: false}} Bonus
+                </div>
+              </div>
+              <div class="leaderboard-rhs-prize-icon-value wp48 d-flex align-center gap8">
+                <div class="leaderboard-rhs-prize-icon p-rel d-flex jst-center align-center wh20 ovf-hide">
+                  <div class="cash-prize-icon p-rel wh20 ovf-hide">
+                    <img class="p-abs wp100 hp100 onj-con" [src]=" assetsImagePath + 'leaderboard/crown.svg'" alt="cash"
+                      i18n i18n-alt>
+                  </div>
+                </div>
+                <div class="leaderboard-rhs-prize-value fs14 ft-primary-b grey900" i18n>
+                  {{rankingList[0].priceStructure.total.totalPrizePool.crown | currencyFormat: false}}
+                </div>
+              </div>
+              <div *ngIf="rankingList[0]?.priceStructure?.total?.totalPrizePool?.other_giveaways" class="leaderboard-rhs-prize-icon-value wp48 d-flex align-center gap8">
+                <div class="prize-icon p-rel wh20 ovf-hide">
+                    <img class="p-abs wp100 hp100 obj-con"
+                        [src]=" assetsImagePath + 'leaderboard/lb-gift.svg'" alt="gift" i18n i18n-alt>
+                </div>
+                <div class="prize-text d-flex align-center fs14 ft-primary-b grey900" i18n>
+                    {{rankingList[0].priceStructure.total.totalPrizePool.other_giveaways ? rankingList[0].priceStructure.total.totalPrizePool.other_giveaways : '-'}}</div>
+            </div>
+            </div>
+          </div>
+          <div class="leaderboard-rhs-place-paid d-flex flex-col align-end gap8 p-3 wp15">
+            <div class="leaderboard-rhs-place-title fs12 ft-primary-b grey500 text-uppercase" i18n>
+              place paid
+            </div>
+            <div class="leaderboard-rhs-place-value fs14 ft-primary-b grey900" i18n>
+              {{rankingList[0].priceStructure.total.placesPaid}}
+            </div>
+          </div>
+        </div>
+        <div [ngSwitch]="tabsClick" class="leaderboard-rhs-table d-flex flex-col flex-1 pb-4 px-4 ovf-y-auto">
+          <div class="d-flex flex-col flex-1 ovf-y-auto" *ngSwitchCase="'ranking'">
+            <div class="leaderboard-rhs-table-container bg-light d-flex flex-col flex-1 br16 p-4 shadow-1 ovf-y-auto">
+              <div class="leaderboard-rhs-table-widget d-flex flex-col flex-1 ovf-y-scroll completed-height gap8">
+                <div
+                  class="award-winner-container wp100 p-rel d-flex jst-center align-center grad-purple-bg br8 py-4 px-0"
+                  *ngIf="firstThreeRanks.length !== 0">
+                  <div class="award-winner-container-bg bottom-left h31 z-1  wp100 bg-purple300 br-btm-8"></div>
+                  <div class="awards-winner-widget d-flex jst-center align-end gap60">
+                    <div class="winner-widget d-flex flex-col align-center gap8 second-winner"
+                      *ngIf="firstThreeRanks[1]?.rank === 2">
+                      <div class="winner-name d-flex align-center fs14 ft-primary-b light" i18n>
+                        {{firstThreeRanks[1].userName}}</div>
+                      <div class="winner-amount d-flex align-center fs14 ft-primary-b orange200" i18n>
+                        {{firstThreeRanks[1].prizePool.real | currencyFormat: true}}
+                      </div>
+                      <div *ngIf="firstThreeRanks[1]?.prizePool?.tickets !== 0" class="ft-primary-b orange200"> +
+                      </div>
+                      <div *ngIf="firstThreeRanks[1]?.prizePool?.tickets !== 0"
+                        class="prize-ticket p-rel d-flex jst-center align-center w16 h15 fs10 ft-primary-b light grad-orange-bg">
+                        {{firstThreeRanks[1].prizePool.tickets}}</div>
+                      <div *ngIf="firstThreeRanks[1]?.prizePool?.tickets !== 0" class="fs14 ft-primary-b orange200">
+                        Tickets</div>
+                      <div
+                        class="winner-hands d-flex jst-center align-center w81 h26 gap4 br20 bg-purple400 fs12 ft-primary-b text-nowrap light py-2 px-3"
+                        i18n>{{firstThreeRanks[1].points}} hands</div>
+                      <div class="winner-award p-rel wh75 ovf-hide z-1">
+                        <img class="p-abs wp100 hp100 obj-con" [src]=" assetsImagePath + 'leaderboard/second.svg'"
+                          alt="second" i18n i18n-alt>
+                      </div>
+                    </div>
+                    <div class="winner-widget d-flex flex-col align-center gap8 first-winner"
+                      *ngIf="firstThreeRanks[0]?.rank === 1">
+                      <div class="winner-name d-flex align-center fs14 ft-primary-b light" i18n>
+                        {{firstThreeRanks[0].userName}}</div>
+                      <div class="winner-amount d-flex align-center gap6" i18n>
+                        <div class="amount-value d-flex align-center fs14 ft-primary-sb orange200">
+                          {{firstThreeRanks[0].prizePool.real | currencyFormat: true}}</div>
+                        <div *ngIf="firstThreeRanks[0]?.prizePool?.tickets !== 0" class="ft-primary-b orange200">
+                          +
+                        </div>
+                        <div *ngIf="firstThreeRanks[0]?.prizePool?.tickets !== 0"
+                          class="prize-ticket p-rel d-flex jst-center align-center w16 h15 fs10 ft-primary-b light bg-orange200">
+                          {{firstThreeRanks[0].prizePool.tickets}}</div>
+                        <div *ngIf="firstThreeRanks[0]?.prizePool?.tickets !== 0" class="fs14 ft-primary-b orange200">
+                          Tickets</div>
+                      </div>
+                      <div
+                        class="winner-hands d-flex jst-center align-center w81 h26 gap4 br20 bg-purple400 fs12 ft-primary-b text-nowrap light py-2 px-3"
+                        i18n>{{firstThreeRanks[0].points}} hands</div>
+                      <div class="winner-award p-rel wh103 ovf-hide z-1">
+                        <img class="p-abs wp100 hp100 obj-con" [src]=" assetsImagePath + 'leaderboard/first.svg'"
+                          alt="first" i18n i18n-alt>
+                      </div>
+                    </div>
+                    <div class="winner-widget d-flex flex-col align-center gap8 third-winner"
+                      *ngIf="firstThreeRanks[2]?.rank === 3">
+                      <div class="winner-name d-flex align-center fs14 ft-primary-b light" i18n>
+                        {{firstThreeRanks[2].userName}}</div>
+                      <div class="winner-amount d-flex align-center fs14 ft-primary-b orange200" i18n>
+                        {{firstThreeRanks[2].prizePool.real | currencyFormat: true}}
+                      </div>
+                      <div *ngIf="firstThreeRanks[2]?.prizePool?.tickets !== 0" class="ft-primary-b orange200"> +
+                      </div>
+                      <div *ngIf="firstThreeRanks[2]?.prizePool?.tickets !== 0" class="prizeTicket">
+                        {{firstThreeRanks[2].prizePool.tickets}}</div>
+                      <div *ngIf="firstThreeRanks[2]?.prizePool?.tickets !== 0" i18n
+                        class="fs14 ft-primary-b orange200">Tickets</div>
+                      <div
+                        class="winner-hands d-flex jst-center align-center w81 h26 gap4 br20 bg-purple400 fs12 ft-primary-b text-nowrap light py-2 px-3"
+                        i18n>{{firstThreeRanks[2].points}} hands</div>
+                      <div class="winner-award p-rel wh75 ovf-hide z-1">
+                        <img class="p-abs wp100 hp100 obj-con" [src]=" assetsImagePath + 'leaderboard/third.svg'"
+                          alt="third" i18n i18n-alt>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <table class="table table-rank wp100 d-flex flex-col gap8" aria-label="Rank Table" i18n-aria-label>
+                  <thead class="d-flex flex-col gap8 br8 bg-grey100 mb-2 py-3 px-4">
+                    <tr class="d-flex align-center">
+                      <th class="d-flex jst-start align-center fs12 ft-primary-b text-uppercase grey600" i18n>Rank</th>
+                      <th class="d-flex jst-start align-center fs12 ft-primary-b text-uppercase grey600" i18n>Players
+                      </th>
+                      <th class="d-flex jst-start align-center fs12 ft-primary-b text-uppercase grey600" i18n>
+                        {{headerValue}}
+                        <div class="i-icon p-rel tool-tip bottom wh16 leader-tooltip pl-1" alt="i-icon">
+                          <img class="p-abs wp100 hp100 obj-con" [src]=" assetsImagePath + 'leaderboard/info-fill.svg'"
+                            alt="i-icon" i18n-alt>
+                          <span class="tooltip-inner-text">{{headerInfo}}</span>
+                        </div>
+                      </th>
+                      <th class="d-flex jst-start align-center fs12 ft-primary-b text-uppercase grey600" i18n>Prize</th>
+                    </tr>
+                  </thead>
+                  <tbody *ngIf="!showEmptyleaderBoard" class="d-flex flex-col gap8 br8">
+                    <tr *ngFor="let rankList of pendingRanks" class="d-flex align-center bg-grey000 br8 py-2 px-4">
+                      <td class="fs12 ft-primary-b grey900" i18n>{{rankList?.rank}}</td>
+                      <td class="fs12 ft-primary-b grey900" i18n>{{rankList?.userName}}</td>
+                      <td class="fs12 ft-primary-b grey900" i18n>{{rankList?.points ? rankList?.points : '-'}}</td>
+                      <td>{{!rankList?.prizePool ? '-':''}}
+                        <div class="prize-ticket-widget d-flex flex-col align-start gap4">
+                          <div *ngIf="rankList?.prizePool?.real && rankList?.prizePool?.real !== 0"
+                            class="prize-widget d-flex align-center fs14 ft-primary-b grey900" i18n>
+                            {{rankList?.prizePool?.real | currencyFormat: true}}
+                          </div>
+
+                          <div *ngIf="rankList?.prizePool?.ib && rankList?.prizePool?.ib !== 0"
+                            class="prize-widget d-flex align-center fs14 ft-primary-b grey900" i18n>
+                            IB {{rankList?.prizePool?.ib | currencyFormat: false}}
+                          </div>
+
+                          <div *ngIf="rankList?.prizePool?.tb && rankList?.prizePool?.tb !== 0"
+                            class="prize-widget d-flex align-center fs14 ft-primary-b grey900" i18n>
+                            TB {{rankList?.prizePool?.tb | currencyFormat: false }}
+                          </div>
+
+                          <div *ngIf="rankList?.prizePool?.bb && rankList?.prizePool?.bb !== 0"
+                            class="prize-widget d-flex align-center fs14 ft-primary-b grey900" i18n>
+                            BB {{rankList?.prizePool?.bb | currencyFormat: false}}
+                          </div>
+
+                          <div class="prize-ticket-text d-flex align-center gap4 fs14 ft-primary-b grey900"
+                            *ngIf="rankList?.prizePool?.tickets && rankList?.prizePool?.tickets !== 0" i18n>
+                            <span
+                              class="prize-ticket p-rel d-flex jst-center align-center w16 h15 fs10 ft-primary-b light grad-orange-bg">
+                              {{rankList?.prizePool?.tickets}} </span> Tickets
+                              <span class="icons-16 info-outline wh16"></span>
+                          </div>
+
+                          <div *ngIf="rankList?.prizePool?.crown && rankList?.prizePool?.crown !== 0"
+                            class="prize-widget d-flex align-center fs14 ft-primary-b grey900" i18n>
+                            {{rankList?.prizePool?.crown | currencyFormat: true}}
+                          </div>
+
+                          <div
+                            *ngIf="rankList?.prizePool?.other_giveaways && rankList?.prizePool?.other_giveaways !== 0"
+                            class="prize-widget d-flex align-center fs14 ft-primary-b grey900" i18n>
+                            <span class="other-giveaway-image"></span>
+                            <span> {{rankList?.prizePool?.other_giveaways | currencyFormat: false}} </span>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                  <tbody *ngIf="showEmptyleaderBoard" class="d-flex flex-col gap8 br8">
+                    <tr class="empty-row d-flex align-center bg-orange000 br8 py-2 px-4">
+                      <td class="fs12 ft-primary-b orange500">-</td>
+                      <td class="fs12 ft-primary-b orange500" i18n>{{userName}}</td>
+                      <td class="fs12 ft-primary-b orange500">-</td>
+                      <td class="fs12 ft-primary-b orange500">-</td>
+                    </tr>
+                    <tr>
+                      <div *ngIf="additionalInfo.status !== 'live' && additionalInfo.status !== 'completed'"
+                        class="empty-data-container d-flex flex-col align-center gap12 wp100">
+                        <div class="empty-data-image d-flex jst-center align-center circle wh112 bg-grey200">
+                          <div class="empty-data-image-body p-rel wh64 ovf-hide">
+                            <img class="p-abs wp100 hp100 obj-con" [src]=" assetsImagePath + 'leaderboard/podium.svg'"
+                              alt="podium" i18n i18n-alt>
+                          </div>
+                        </div>
+                        <div class="empty-text-container d-flex flex-col align-center gap8">
+                          <div class="empty-data-text fs16 ft-primary-b grey900" i18n>Leaderboard has not started.</div>
+                          <div class="empty-data-sub-text fs14 ft-primary-md grey900" i18n>Leaderboard will starts in
+                            <span class="fs14 ft-primary-md grad-orange-text"> {{remainingTime}}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex flex-col flex-1 ovf-y-auto" *ngSwitchCase="'prize'">
+            <div class="leaderboard-rhs-table-container bg-light d-flex flex-col flex-1 br16 shadow-1 ovf-y-auto"
+              *ngIf="rankingList[0]?.priceStructure?.variableRankData !== undefined">
+              <div class="leaderboard-rhs-table-widget d-flex flex-col flex-1 br16 ovf-y-auto">
+                <div class="d-flex flex-col max-h-100 p-4 ovf-y-scroll">
+                  <table aria-describedby="prize-table" class="table table-rank table-prize-leader">
+                    <thead class="d-flex flex-col gap8 br8 bg-grey100 mb-2 py-3 px-4">
+                      <tr class="d-flex align-center">
+                        <th class="d-flex jst-start align-center fs12 ft-primary-b text-uppercase grey600" i18n>RANK
+                        </th>
+                        <th class="d-flex jst-start align-center fs12 ft-primary-b text-uppercase grey600" i18n>PRIZE %
+                        </th>
+                        <th class="d-flex jst-start align-center fs12 ft-primary-b text-uppercase grey600" i18n>MaxCap
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody class="individual-height d-flex flex-col gap8 br8" *ngIf="!showEmptyPrizeRow">
+                      <tr class="d-flex align-center bg-grey000 br8 py-2 px-4" *ngFor="let ranks of variableRankData">
+                        <td class="fs12 ft-primary-b grey900" i18n>{{ranks?.rank}}</td>
+                        <td class="fs12 ft-primary-b grey900" i18n>{{ranks?.prizePercent}} %</td>
+                        <td class="fs12 ft-primary-b grey900" i18n>{{ranks?.maxCap | currencyFormat: true }}</td>
+                      </tr>
+                    </tbody>
+
+                    <tbody class="d-flex flex-col gap8 br8" *ngIf="showEmptyPrizeRow">
+                      <tr class="empty-row d-flex align-center bg-orange000 br8 py-2 px-4">
+                        <td class="fs12 ft-primary-b orange500">-</td>
+                        <td class="fs12 ft-primary-b orange500" i18n>{{userName}}</td>
+                        <td class="fs12 ft-primary-b orange500">-</td>
+                        <td class="fs12 ft-primary-b orange500">-</td>
+                      </tr>
+                      <tr>
+                        <div *ngIf="additionalInfo.status !== 'live' && additionalInfo.status !== 'completed'"
+                          class="empty-data-container d-flex flex-col align-center gap12 wp100">
+                          <div class="empty-data-image d-flex jst-center align-center circle wh112 bg-grey200">
+                            <div class="empty-data-image-body p-rel wh64 ovf-hide">
+                              <img class="p-abs wp100 hp100 obj-con" [src]=" assetsImagePath + 'leaderboard/podium.svg'"
+                                alt="podium" i18n i18n-alt>
+                            </div>
+                          </div>
+                          <div class="empty-text-container d-flex flex-col gap8">
+                            <div class="empty-data-text fs16 ft-primary-b grey900" i18n>Leaderboard has not started.
+                            </div>
+                            <div class="empty-data-sub-text fs14 ft-primary-md grey900" i18n>Leaderboard will starts in
+                              <span class="fs14 ft-primary-md grad-orange-text"> {{remainingTime}}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="leaderboard-rhs-table-container bg-light d-flex flex-col flex-1 br16 shadow-1 ovf-y-auto"
+              *ngIf="rankingList[0]?.priceStructure?.rankData !== undefined">
+              <div class="leaderboard-rhs-table-widget table-wrapper p-rel d-flex flex-col flex-1 br16 ovf-y-auto">
+                <div class="d-flex flex-col flex-1 p-4 ovf-y-scroll">
+                  <table aria-describedby="rank-table" class="table table-rank table-width wp100">
+                    <thead class="d-flex flex-col gap8 br8 bg-grey100 mb-2 py-3 px-4">
+                      <tr class="d-flex align-center">
+                        <th class="d-flex jst-start align-center fs12 ft-primary-b text-uppercase grey600" i18n>RANK
+                        </th>
+                        <th class="d-flex jst-start align-center fs12 ft-primary-b text-uppercase grey600" i18n>PRIZE
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody class="individual-height d-flex flex-col gap8 br8"
+                      *ngIf="rankingList[0]?.priceStructure?.rankData !== undefined">
+                      <tr class="d-flex align-center bg-grey000 br8 py-2 px-4" *ngFor="let info of prizeInfo">
+                        <td class="fs12 ft-primary-b grey900">{{info?.rank}}</td>
+                        <td>
+                          <div class="prize-ticket-widget d-flex flex-col gap2">
+                            <div *ngIf="info?.real !== 0"
+                              class="prize-widget d-flex align-center fs14 ft-primary-b grey900" i18n>
+                              {{info?.real | currencyFormat: true}}
+                            </div>
+
+                            <div *ngIf="info?.ib !== 0"
+                              class="prize-widget d-flex align-center fs14 ft-primary-b grey900" i18n>
+                              IB {{info?.ib | currencyFormat: false}}
+                            </div>
+
+                            <div *ngIf="info?.tb !== 0"
+                              class="prize-widget d-flex align-center fs14 ft-primary-b grey900" i18n>
+                              TB {{info?.tb | currencyFormat: false }}
+                            </div>
+
+                            <div class="prize-widget d-flex align-center fs14 ft-primary-b grey900" i18n>
+                              BB {{info?.bb | currencyFormat: false}}
+                            </div>
+
+                            <div class="prize-ticket-text d-flex align-center gap4 fs14 ft-primary-b grey900"
+                              *ngIf="info?.tickets !== 0" i18n>
+                              <span
+                                class="prize-ticket p-rel d-flex jst-center align-center w16 h15 fs10 ft-primary-b light grad-orange-bg">
+                                {{info?.tickets}} </span> Tickets
+                                <span class="icons-16 info-outline wh16"></span>
+                            </div>
+
+                            <div *ngIf="info?.crown !== 0"
+                              class="prize-widget d-flex align-center gap4 fs14 ft-primary-b grey900" i18n>
+                              <span class="crown-image p-rel wh20 ovf-hide">
+                                <img class="p-abs wp100 hp100 obj-con"
+                                  [src]=" assetsImagePath + 'leaderboard/crown.svg'" alt="crown" i18n-alt>
+                              </span>
+                              <span> {{info?.crown | currencyFormat: false}} </span>
+                            </div>
+
+                            <div *ngIf="info?.other_giveaways !== 0 && info?.other_giveaways !== undefined"
+                              class="prize-widget d-flex align-center fs14 ft-primary-b grey900" i18n>
+                              <span class="other-giveaway-image p-rel wh20 ovf-hide">
+                                <img class="p-abs wp100 hp100 obj-con" [src]=" assetsImagePath + 'leaderboard/gift.svg'"
+                                  alt="gift" i18n-alt>
+                              </span>
+                              <span> {{info?.other_giveaways | currencyFormat: false}} </span>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+
+                    <tbody *ngIf="rankingList[0]?.priceStructure?.rankData === undefined">
+                      <tr class="empty-row d-flex align-center bg-orange000 br8 py-2 px-4">
+                        <td class="fs12 ft-primary-b orange500">-</td>
+                        <td class="fs12 ft-primary-b orange500" i18n>{{userName}}</td>
+                        <td class="fs12 ft-primary-b orange500">-</td>
+                        <td class="fs12 ft-primary-b orange500">-</td>
+                      </tr>
+                      <tr>
+                        <div *ngIf="additionalInfo.status !== 'live' && additionalInfo.status !== 'completed'"
+                          class="empty-data-container d-flex flex-col align-center gap12 wp100">
+                          <div class="empty-data-image d-flex jst-center align-center wh112 circle bg-grey200">
+                            <div class="empty-data-image-body p-rel wh64 ovf-hide">
+                              <img class="p-abs wp100 hp100 obj-con" [src]=" assetsImagePath + 'leaderboard/podium.svg'"
+                                alt="podium" i18n i18n-alt>
+                            </div>
+                          </div>
+                          <div class="empty-text-container d-flex flex-col gap8">
+                            <div class="empty-data-text fs16 ft-primary-b grey900" i18n>Leaderboard has not started.
+                            </div>
+                            <div class="empty-data-sub-text fs14 ft-primary-md grey900" i18n>Leaderboard will starts in
+                              <span class="fs14 ft-primary-md grad-orange-text"> {{remainingTime}}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Leaderboard Completed  -->
+    <div *ngIf="isShowToast">
+      <app-toast [toastValue]="toastValue" [(isShowToast)]="isShowToast"></app-toast>
+    </div>
+  </div>
+
+  <div class="promo-content" *ngIf="additionalInfo !== undefined && isKnowMoreUrl">
+    <iframe title="knowmore" class="knowmore-container wp100 border-0 my-0 mx-auto"
+      [src]="additionalInfo.knowMoreContent"></iframe>
+  </div>
+</div>

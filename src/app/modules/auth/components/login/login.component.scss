@@ -1,0 +1,81 @@
+@import '../../../../../assets/abstract/core';
+
+.mobile-input {
+  .country-code {
+    border-width: 0;
+    border-right-width: 1.5px;
+  }
+
+  .mobile-input-tel {
+    width: calc(100% - 50px);
+
+    input[type='tel'] {
+      border: transparent;
+      background: transparent;
+
+      &:focus-visible {
+        outline: 0;
+      }
+    }
+  }
+}
+
+.form-password {
+  .password-input {
+    width: 310px;
+  }
+
+  input[type='text'].password-input {
+    font-size: $fs14;
+  }
+
+  input[type='password'].password-input {
+    background: transparent;
+    font-size: $fs22;
+    letter-spacing: 0.025em;
+
+    &::placeholder {
+      letter-spacing: normal;
+      transform: translateY(-3px);
+    }
+  }
+}
+
+.promocode-container {
+  border-color: $purple000;
+
+  .promorecived-text {
+    letter-spacing: 0.02em;
+  }
+
+  .promo-box-close {
+    width: 16px;
+    height: 16px;
+  }
+
+  .pi.pi-times {
+    font-size: 8px;
+  }
+}
+
+.login-toast-box {
+  transform: translate(0, 150px);
+}
+
+%eye-icon {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.show-eye {
+  background-image: url('../../../../../assets/images/auth/password-eye.svg');
+
+  @extend %eye-icon;
+}
+
+.hide-eye {
+  background-image: url('../../../../../assets/images/auth/password-eye-slash.svg');
+
+  @extend %eye-icon;
+}

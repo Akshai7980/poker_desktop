@@ -1,0 +1,65 @@
+<div
+  class="sub-header d-flex jst-space align-center wp100 pt-2 pr-4 pb-2 pl-2 bg-grey000 br16 border-0"
+>
+  <div class="sub-header-buttons d-flex align-center">
+    <mat-tab-group
+      [selectedIndex]="selectedIndex"
+      animationDuration="0ms"
+      class="lobby-tournament-tab"
+    >
+      <mat-tab labelClass="lobby-tournament-tab-label" *ngFor="let tmT of tournamentTabs">
+        <ng-template mat-tab-label i18n>
+          {{ tmT }}
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+  <div class="sub-header-icons d-flex jst-end align-center gap16">
+    <div class="sub-icon d-flex jst-center align-center cursor">
+      <button
+        type="button"
+        class="btn btn-my-ticket"
+        (click)="openMyTicketsAndOffersDialog()"
+        trackEvents
+        id="lobby-tournament-myTicketsOffers-btn"
+      >
+        <span class="my-tickets-text" i18n>My Tickets & Offers</span>
+      </button>
+    </div>
+    <div class="sub-icon d-flex jst-center align-center cursor">
+      <div class="calendar-icon p-rel wh20 ovf-hide" (click)="openScheduleDialog()">
+        <img
+          class="p-abs wp100 hp100 obj-con"
+          [src]="assetsImagePath + 'lobby/CalendarBlank.svg'"
+          alt="CalendarBlank"
+          class="cursor"
+          i18n
+          i18n-alt
+        />
+      </div>
+    </div>
+    <div class="sub-icon p-rel d-flex jst-center align-center cursor">
+      <!-- <div class="funnel-icon p-rel wh21 ovf-hide">
+        <img
+          class="p-abs wp100 hp100 obj-con"
+          [src]="assetsImagePath + (isFilterApplied ? 'lobby/filter-filled.svg' : 'lobby/Funnel.svg')"
+          (click)="openFilterDialog()"
+          alt="Filter"
+          class="cursor"
+          i18n
+          i18n-alt
+        />
+      </div> -->
+      <div
+        class="sub-icon p-rel d-flex wh20 jst-center align-center cursor"
+        (click)="openFilterDialog()"
+      >
+        <div class="funnel-icon funnel-border top-right wh20 opacity-1 trans-03"></div>
+        <div
+          class="funnel-icon funnel-fill top-right wh20 opacity-0 trans-03"
+          [ngClass]="{ 'opacity-1': isFilterApplied }"
+        ></div>
+      </div>
+    </div>
+  </div>
+</div>

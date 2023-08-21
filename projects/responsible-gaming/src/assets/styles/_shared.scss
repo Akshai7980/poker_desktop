@@ -1,0 +1,58 @@
+@import "../abstract/core";
+
+// Note: We haven't used these width values in any other component. 
+// If needed, we will create a new class for it in the future. 
+
+// Card Advertise
+.pd-card-advertise {
+  .img-ad {
+    max-width: 344px;
+  }
+}
+
+// Selection Group 
+.pd-selection-group {
+  width: 342px;
+}
+
+// Table
+.table-game-variants-wrapper {
+  .table-game-variants {
+    border-collapse: collapse;
+
+    thead th {
+      &:first-child {
+        border-radius: $br8 0 0 $br8;
+      }
+
+      &:last-child {
+        border-radius: 0 $br8 $br8 0;
+      }
+    }
+
+    thead th,
+    tbody td {
+      &:first-child {
+        padding-left: 16px;
+      }
+
+      &:last-child {
+        padding-right: 0;
+      }
+    }
+
+    tbody tr {
+      &:first-child {
+        td {
+          padding-top: 16px;
+        }
+      }
+
+      &:last-child {
+        td {
+          padding-bottom: 16px;
+        }
+      }
+    }
+  }
+}

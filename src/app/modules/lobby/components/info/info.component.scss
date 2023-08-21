@@ -1,0 +1,47 @@
+@import '../../../../../assets/abstract/core';
+
+.banner-area-info {
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1.5px;
+    height: 38px;
+    background: $grey300; // Psuedo Elements
+  }
+
+  &:last-child {
+    &::after {
+      content: '';
+      display: none;
+    }
+  }
+}
+
+// The below were used for the media query,
+// so here the classes can't define, the values should here only
+
+@include device(dxxl) {
+  .banner-area-container {
+    height: 235px;
+  }
+}
+
+// The below were used for the media query,
+// so here the classes can't define, the values should here only
+
+@include device(dxlg) {
+  .banner-area-container {
+    height: 250px;
+  }
+}
+
+// The below were used for the media query,
+// so here the classes can't define, the values should here only
+
+@include device(dxxlg) {
+  .banner-area-container {
+    height: 270px;
+  }
+}

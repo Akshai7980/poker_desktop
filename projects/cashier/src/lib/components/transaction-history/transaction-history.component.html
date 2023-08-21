@@ -1,0 +1,38 @@
+<div class="cashier transaction-history wp100 hp100 flex-col-jst-start trans-03 ovf-hide">
+  <div class="wp100 h56 flex-space bg-light shadow p-4">
+    <div class="header-title d-flex jst-center align-center gap8" i18n>
+      <div class="back-icon p-rel wh24 br8 cursor" (click)="backToCashier()">
+        <div class="icons-24 chevron-left top-left wh24"></div>
+      </div>
+      <div class="title fs20 ft-primary-b grey900">Transaction History</div>
+    </div>
+    <div class="d-flex p-rel jst-end align-center wh24 cursor" (click)="onBack()">
+      <div class="icons-24 close-icon top-right wh24"></div>
+    </div>
+  </div>
+  <div class="tab-container wp100 h66 flex-start gap12 bg-dark py-3 px-4">
+    <div trackEvents
+      class="tab w-auto h42 flex-center gap12 border-1.5 border-solid border-grey500 br12 trans-03 py-3 px-7 cursor"
+      *ngFor="let mTab of tabMain"
+      (click)="onSelectTabMain($event, mTab)"
+      [ngClass]="selectedTabMain == mTab?'bg-light grey900':'bg-dark grey300'"
+    >
+      <span class="tab-text fs14 ft-primary-b" i18n>{{ mTab }}</span>
+    </div>
+  </div>
+  <div class="wp100 flex-row-start flex-1 ovf-y-auto">
+    <div class="w414 hp100 flex-col-jst-start bg-light ovf-y-scroll">
+      <ng-container *ngIf="selectedTabMain == 'Cash'">
+        <app-cash (dualScreenMode)="detectedDualScreen($event)" [filter]="filterValue"></app-cash>
+      </ng-container>
+      <ng-container *ngIf="selectedTabMain == 'Bonus'">
+        <app-bonus (dualScreenMode)="detectedDualScreen($event)" [filter]="filterValue"></app-bonus>
+      </ng-container>
+    </div>
+
+    <div class="w414 hp100 p-rel" *ngIf="isDualScreen">
+      <app-transaction-details *ngIf="activeComponent===transactionDetails" [txnData]="txnData"></app-transaction-details>
+      <app-transaction-filter *ngIf="activeComponent===transactionFilter" [(value)]="filterValue" (closeFilter)="closeFilter($event)"></app-transaction-filter>
+    </div>
+  </div>
+</div>

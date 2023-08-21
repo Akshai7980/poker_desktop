@@ -1,0 +1,15 @@
+@import '../../../../../../../src/assets/abstract/core';
+@import '../../../../assets/styles/shared';
+@import '../../../../../../shared/assets/components/avatar';
+
+tbody {
+  tr {
+    border-bottom: 1px solid $grey200;
+  }
+}
+
+.btn.btn-dark {
+  .bell-icon {
+    background-image: url('../../../../assets/images/bell-ring.svg');
+  }
+}

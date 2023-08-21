@@ -1,0 +1,62 @@
+<div class="wp100 hp100 flex-col-jst-start trans-03 ovf-hide">
+  <div class="wp100 h56 flex-space bg-light shadow p-4">
+    <div class="back-title d-flex align-center gap8">
+      <div class="back-icon p-rel d-flex align-center wh24 br8">
+        <div class="icons-24 checvron-left top-right wh24 cursor trans-03" (click)="onBack()"></div>
+      </div>
+      <div class="title fs20 ft-primary-b grey900">Help</div>
+    </div>
+    <div class="d-flex jst-end align-center p-rel wh24 cursor" (click)="onClose('')">
+      <div class="icons-24 close-icon top-right chevron-left wh24"></div>
+    </div>
+  </div>
+
+  <div class="wp100 flex-row-start flex-1 ovf-y-auto">
+    <div class="w414 hp100 flex-col-jst-start gap16 bg-grey100 p-4 ovf-y-scroll">
+      <div class="chat-box p-rel flex-space wp100 bg-light br16 p-5"
+        [ngClass]="{'selected-box border-1.5 border-solid border-grey400' : (selectedBox === contactSupport.title && contactSupport.enabled && contactSupport.type !== 'call')}"
+        [ngClass]="{ 'not-disabled cursor': (contactSupport.enabled && contactSupport.type !== 'call') }"
+        (click)="contactSupport.enabled && clickRightNext(contactSupport)"
+        *ngFor="let contactSupport of contactSupportList">
+        <div class="flex-center gap16">
+          <img [src]="assetsImagePath + contactSupport.image" alt="help" class="helpIcon" i18n i18n-alt />
+          <div class="flex-col-jst-start gap6">
+            <span class="fs14 ft-primary-b grey800" i18n>{{contactSupport.title}}</span>
+            <span class="fs12 ft-primary-sb grey500" i18n>{{contactSupport.timings}} |
+              {{contactSupport.dayTypes}}</span>
+          </div>
+        </div>
+        <ng-container *ngIf="contactSupport.enabled">
+          <img class="wh24" [src]="assetsImagePath+'/contact-us/caret-right-grey.svg'" alt="caret-right-grey"
+            *ngIf="contactSupport.type !== 'call' && contactSupport?.title !== selectedBox" i18n i18n-alt>
+        </ng-container>
+      </div>
+      <span class="fs16 ft-primary-b grey800" i18n>Email Us</span>
+      <ng-container *ngFor="let enquiryCategory of enquiryCategoryList?.list">
+        <div class="email-box p-rel flex-space wp100 bg-light br16 p-5 cursor"
+          [ngClass]="{'selected-box border-1.5 border-solid border-grey400' : selectedBox==enquiryCategory.name}"
+          (click)="openGeneralEnquires(enquiryCategory)">
+          <div class="flex-center gap16">
+            <img [src]="assetsImagePath + 'contact-us/mail.svg'" alt="help" class="helpIcon" i18n i18n-alt />
+            <div class="flex-col-jst-start gap6">
+              <span class="fs14 ft-primary-b grey800" i18n>{{enquiryCategory.name }}</span>
+              <span class="fs12 ft-primary-sb grey500" i18n>{{enquiryCategory.email}}</span>
+            </div>
+          </div>
+          <ng-container>
+            <img class="wh24" *ngIf="enquiryCategory?.name !== selectedBox"
+              [src]="assetsImagePath+'/contact-us/caret-right-grey.svg'" alt="caret-right-grey" i18n i18n-alt>
+          </ng-container>
+        </div>
+      </ng-container>
+    </div>
+    <div class="w414 hp100 flex-col-jst-start gap16 ovf-y-scroll">
+      <div class="wp100 hp100 gap12 flex-col-jst-start">
+        <app-chat-with-us *ngIf="openSubchildPage === 'chat'" [inputData]="'chat'"
+          class="wp100 hp100"></app-chat-with-us>
+        <app-general-enquires *ngIf="openSubchildPage === 'generalenq'" [inputData]="selectedEnqCategoryItem"
+          class="wp100 hp100"></app-general-enquires>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,63 @@
+<div class="wp100 hp100 flex-col-jst-start ovf-hide">
+  <div class="wp100 h56 flex-space bg-light shadow p-4">
+    <div class="header-title d-flex jst-center align-center gap8" i18n>
+      <div class="back-icon d-flex jst-center align-center p-rel wh24 cursor" mat-dialog-close>
+        <div class="icons-24 close-icon top-right wh24"></div>
+      </div>
+      <div class="title fs20 ft-primary-b grey900">Terms & Conditions</div>
+    </div>
+    <div class="title d-flex jst-end align-center wh24 cursor" mat-dialog-close>
+      <div class="icons-24 close-icon wh24"></div>
+    </div>
+  </div>
+  <div class="wp100 flex-col-jst-start flex-1 gap12 bg-grey100 p-4 ovf-y-auto">
+    <div class="flex-col-jst-start gap16">
+      <div class="flex-base gap4 fs14 ft-primary-sb grey800 ls-1" *ngFor="let tp of termsPoints" i18n>
+        <span class="ellipse"></span>{{ tp }}
+      </div>
+    </div>
+
+    <div class="wp100 flex-col-jst-start gap12 my-4">
+
+      <span class="fs16 ft-primary-b grey900" i18n>FAQ's</span>
+
+      <div class="flex-col-jst-start gap16">
+
+        <p-panel [toggleable]="true" expandIcon="pi pi-chevron-down" collapseIcon="pi pi-chevron-up"
+          styleClass="cashier-tnc-panel" [collapsed]="true">
+          <ng-template pTemplate="header" i18n>{{panel1.header}}</ng-template>
+
+          <ng-template pTemplate="content">
+
+            <p-accordion [multiple]="true" styleClass="cashier-tnc-accordion" expandIcon="pi pi-plus-circle"
+              collapseIcon="pi pi-minus-circle">
+              <p-accordionTab *ngFor="let acd of panel1.accordionData">
+                <ng-template pTemplate="header" i18n>{{acd.title}}</ng-template>
+                <ng-template pTemplate="content" i18n>{{acd.body}}</ng-template>
+              </p-accordionTab>
+
+            </p-accordion>
+          </ng-template>
+        </p-panel>
+
+        <p-panel [toggleable]="true" expandIcon="pi pi-chevron-down" collapseIcon="pi pi-chevron-up"
+          styleClass="cashier-tnc-panel" [collapsed]="true">
+          <ng-template pTemplate="header" i18n>{{panel2.header}}</ng-template>
+
+          <ng-template pTemplate="content">
+
+            <p-accordion [multiple]="true" styleClass="cashier-tnc-accordion" expandIcon="pi pi-plus-circle"
+              collapseIcon="pi pi-minus-circle">
+              <p-accordionTab *ngFor="let acd of panel2.accordionData">
+                <ng-template pTemplate="header" i18n>{{acd.title}}</ng-template>
+                <ng-template pTemplate="content" i18n>{{acd.body}}</ng-template>
+              </p-accordionTab>
+
+            </p-accordion>
+          </ng-template>
+        </p-panel>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<div
+  *ngIf="isVisible"
+  class="notification d-flex wp100 jst-space align-center gap8 px-4 py-3 z-3 bg-primary-warning"
+  [ngClass]="
+    data.severity === 'error'
+      ? 'error'
+      : data.severity === 'success'
+      ? 'success'
+      : data.severity === 'info'
+      ? 'info'
+      : 'pending'
+  "
+>
+  <div class="notification-icon-title d-flex align-center gap16">
+    <div class="notification-icon d-flex jst-center align-center wh35 circle">
+      <div *ngIf="data.severity === 'error'" class="d-flex">
+        <img [src]="assetsImagePath + 'megaphone.svg'" alt="error" i18n i18n-alt />
+      </div>
+
+      <div *ngIf="data.severity === 'success'" class="d-flex">
+        <img [src]="assetsImagePath + 'toast/success-icon.svg'" alt="success" i18n i18n-alt />
+      </div>
+
+      <div *ngIf="data.severity === 'info'" class="d-flex p-rel wh20 ovf-hide">
+        <img
+          class="p-abs wp100 hp100 obj-con"
+          [src]="assetsImagePath + 'megaphone.svg'"
+          alt="info"
+          i18n
+          i18n-alt
+        />
+      </div>
+    </div>
+
+    <div class="notification-title fs14 ft-primary-b light wrap-text text-left">
+      {{ data.message }}
+    </div>
+  </div>
+
+  <div class="notification-options wh24 p-rel cursor" (click)="close()">
+    <div class="icons-24 close-icon-white wh24"></div>
+  </div>
+</div>

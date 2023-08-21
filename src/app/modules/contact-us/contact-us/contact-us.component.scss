@@ -1,0 +1,53 @@
+@import '../../../../assets/abstract/core';
+
+.card-container-widget {
+  .email-support-container {
+    .email-container {
+      .email-card-container {
+        .email-card {
+          height: 77px;
+
+          .email-text {
+            width: calc(100% - 24px - 24px - 16px - 16px);
+          }
+
+          &:hover {
+            border-color: $grey200;
+          }
+        }
+      }
+    }
+
+    .support-container {
+      width: calc(100% - 40%);
+
+      .support-card-container {
+        .support-card {
+          height: 108px;
+
+          .support-text {
+            width: calc(100% - 24px - 24px - 16px - 16px);
+          }
+
+          &.not-disabled:hover {
+            border-color: $grey200;
+          }
+        }
+      }
+    }
+  }
+
+  .address-card-container {
+    .address-card-widget {
+      .address-card {
+        .address-text {
+          width: calc(100% - 24px - 24px - 16px - 16px);
+        }
+      }
+    }
+  }
+}
+
+.copy-content:hover {
+  transform: scale(0.96);
+}

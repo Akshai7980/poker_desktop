@@ -1,0 +1,177 @@
+@import '../../../assets/abstract/core';
+
+.hh-page-tab-navbar {
+  .hh-page-tab-nav {
+    &.active {
+      background: $bg-dark;
+      color: $grey100;
+      border-color: $grey500;
+    }
+  }
+}
+
+.hh-placeholder-container {
+  min-height: 24rem;
+}
+
+.mat-flat-button.hh-placeholder-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $grey800;
+  width: 24rem;
+  height: 3rem;
+  font-family: $font-bold;
+  font-size: 1rem;
+  color: $bg-light;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.75rem;
+}
+
+.hh-form {
+  width: calc(100% - 47.85% - 16px);
+}
+
+.card-selection {
+  .primary-btn {
+    width: 16.75rem;
+    height: 3rem;
+  }
+}
+
+.card-selection-item {
+  p-dropdown.p-element .p-dropdown {
+    width: 15.5rem;
+
+    .p-inputtext {
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
+.card-reports {
+  .card-body {
+    .list-report-item {
+      .list-report-item-action {
+        width: 6rem;
+        height: 2rem;
+
+        .list-report-item-button {
+          background: linear-gradient(135deg, #ff9b55 0%, #da4f23 100%);
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+      }
+    }
+  }
+}
+
+.mat-flat-button.list-report-item-button {
+  font-family: $font-semi-bold;
+  font-size: 0.75rem;
+  line-height: normal;
+  color: $grey900;
+  padding: 0;
+  min-width: auto;
+  background-color: transparent;
+}
+
+.custom-hands-input {
+  width: 10.25rem;
+  height: 3rem;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::placeholder {
+    font-family: $font-medium;
+    font-size: $fs14;
+    line-height: normal;
+    color: $grey400;
+  }
+}
+
+.p-progress-spinner-circle {
+  stroke: #ff9b55 !important;
+  animation: none !important;
+}
+
+.p-progress-spinner-svg {
+  margin: 0.125rem 0 0 !important;
+}
+
+.duration-button-group {
+  .duration-button {
+    height: 2.5rem;
+
+    &.active {
+      border-color: $grey500;
+    }
+  }
+
+  .datepicker {
+    display: flex;
+    align-items: center;
+  }
+
+  .mat-form-field.custom-datepicker {
+    display: flex;
+    width: 14.75rem;
+
+    .mat-icon-button {
+      width: auto;
+      height: auto;
+      padding-top: 2px;
+    }
+  }
+
+  .mat-form-field-wrapper {
+    display: flex;
+    width: 100%;
+  }
+
+  .mat-form-field-flex {
+    display: flex;
+  }
+
+  .mat-form-field-type-mat-date-range-input .mat-form-field-infix {
+    align-self: center;
+  }
+
+  .mat-form-field-label-wrapper {
+    top: 0;
+    padding-top: 0;
+  }
+
+  .mat-form-field-appearance-outline .mat-form-field-label {
+    top: 50%;
+    margin-top: 0;
+    transform: translateY(-50%);
+  }
+
+  .mat-date-range-input-start-wrapper .mat-date-range-input-inner {
+    top: 3px;
+  }
+
+  .mat-button-wrapper {
+    .mat-icon {
+      display: flex;
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .mat-form-field.custom-datepicker.mat-form-field-appearance-outline
+    .mat-form-field-infix
+    .mat-date-range-input {
+    margin-top: 0;
+  }
+
+  .mat-form-field.custom-datepicker .mat-date-range-input-separator {
+    font-family: $font-bold;
+    color: $bg-dark;
+    margin-right: 12px;
+  }
+}

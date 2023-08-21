@@ -1,0 +1,76 @@
+<div class="top-nav-menu d-block wp100">
+  <ul class="nav-menu d-flex align-center h40 gap10 p-0 m-0">
+    <li
+      class="nav-item d-flex jst-center align-center h40 br12 cursor py-3 px-4 bg-light border-1.5 border-solid border-grey300"
+      [ngClass]="cashGamesBtnClicked ? 'nav-active' : ''"
+      (click)="onOptionsSelected(1)"
+    >
+      <a class="nav-link d-flex jst-center align-center gap8">
+        <div class="nav-icon p-rel wh20 ovf-hide">
+          <img
+            class="p-abs wp100 hp100 obj-con"
+            [src]="assetsImagePath + 'lobby/money.svg'"
+            alt="Cash Games"
+            i18n
+            i18n-alt
+          />
+        </div>
+        <div class="nav-text fs14 ft-primary-b grey900" i18n>Cash Games</div>
+      </a>
+    </li>
+    <li
+      class="nav-item d-flex jst-center align-center h40 br12 cursor py-3 px-4 bg-light"
+      [ngClass]="tournamentsBtnClicked ? 'nav-active' : ''"
+      (click)="onOptionsSelected(2)"
+    >
+      <a class="nav-link d-flex jst-center align-center gap8">
+        <div class="nav-icon p-rel wh20 ovf-hide">
+          <img
+            class="p-abs wp100 hp100 obj-con"
+            [src]="assetsImagePath + 'lobby/trophy.svg'"
+            alt="Tournaments"
+            i18n
+            i18n-alt
+          />
+        </div>
+        <div class="nav-text fs14 ft-primary-b grey900" i18n>Tournaments</div>
+      </a>
+    </li>
+    <li
+      class="nav-item d-flex jst-center align-center h40 br12 cursor py-3 px-4 bg-light"
+      [ngClass]="sitAndGoBtnClicked ? 'nav-active' : ''"
+      (click)="onOptionsSelected(3)"
+    >
+      <a class="nav-link d-flex jst-center align-center gap8">
+        <div class="nav-icon p-rel wh20 ovf-hide">
+          <img
+            class="p-abs wp100 hp100 obj-con"
+            [src]="assetsImagePath + 'lobby/flash.svg'"
+            alt="Sit & Go"
+            i18n
+            i18n-alt
+          />
+        </div>
+        <div class="nav-text fs14 ft-primary-b grey900" i18n>Sit & Go</div>
+      </a>
+    </li>
+    <li
+      class="nav-item d-flex jst-center align-center h40 br12 cursor py-3 px-4 bg-light"
+      [ngClass]="privateTablesBtnClicked ? 'nav-active' : ''"
+      (click)="onOptionsSelected(4)"
+    >
+      <a class="nav-link d-flex jst-center align-center gap8">
+        <div class="nav-icon p-rel wh20 ovf-hide">
+          <img
+            class="p-abs wp100 hp100 obj-con"
+            [src]="assetsImagePath + 'lobby/armchair.svg'"
+            alt="Private Table"
+            i18n
+            i18n-alt
+          />
+        </div>
+        <div class="nav-text fs14 ft-primary-b grey900" i18n>Private Table</div>
+      </a>
+    </li>
+  </ul>
+</div>

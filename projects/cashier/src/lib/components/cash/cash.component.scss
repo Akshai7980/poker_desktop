@@ -1,0 +1,28 @@
+@import '../../../assets/components/cashier-common';
+@import '../../../assets/abstract/utilities';
+
+.cash {
+  .cash-txn-item {
+    .cash-item-bottom {
+      .status-box {
+        .status {
+          min-width: 54px;
+        }
+      }
+    }
+
+    &.active {
+      border-color: $grey400;
+
+      &::after {
+        content: '';
+        position: absolute;
+
+        @include triangle(14px, $grey400, right);
+
+        right: -14px;
+        top: 44%;
+      }
+    }
+  }
+}

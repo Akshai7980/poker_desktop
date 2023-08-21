@@ -1,0 +1,186 @@
+<div class="wp100 hp100 flex-col-jst-start gap0 ovf-hide">
+  <div class="wp100 h56 flex-space bg-light shadow p-4">
+    <div class="header-title fs20 ft-primary-b grey900" i18n>Cashier</div>
+    <div class="close-icon-img p-rel d-flex jst-end wh24 align-center wp100">
+      <div class="icons-24 close-icon top-right wh24 cursor trans-03" (click)="closeDialog()"></div>
+    </div>
+  </div>
+  <div class="wp100 flex-col-jst-start flex-1 gap12 bg-grey100 p-4 ovf-y-auto">
+
+    <div class="total-box flex-col-jst-start gap8 ft-primary-b">
+      <span class="fs14 grey500 text-uppercase" i18n>Total Balance (Cash+Bonus)</span>
+      <span class="fs20 grey900">₹ {{cashierData?.total.toLocaleString("en-IN", {
+        currency: "INR",
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 2
+        }) || 0}}</span>
+    </div>
+
+    <div class="cash wp100 flex-col-jst-start gap0">
+      <div class="wp100 h52 flex-space gap0 bg-grey800 br-top-16 p-4">
+        <div class="flex-row-normal gap8">
+          <span class="fs14 ft-primary-b grey300 text-uppercase" i18n>Cash</span>
+          <span class="fs16 ft-primary-md primary-light">₹ {{cashierData?.realChips.toLocaleString("en-IN", {
+            currency: "INR",
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 2
+            })|| 0}}</span>
+        </div>
+        <div class="cursor d-flex align-center gap4" (click)="openTransactionHistoryDialog('Cash')"
+          id="cashier-transaction-history-btn" trackEvents>
+          <div class="fs14 ft-primary-b grey000" i18n>Transaction History</div>
+          <div class="icons-16 chevron-right-white wh16 cursor"></div>
+        </div>
+      </div>
+      <div class="wp100 flex-col-start gap16 bg-light br-btm-16 p-4">
+        <div class="wp100 flex-space gap0">
+          <div class="flex-col-jst-start gap8">
+            <span class="fs14 ft-primary-b grey500 text-uppercase" i18n>Deposit</span>
+            <span class="fs16 ft-primary-b grey900">₹ {{cashierData?.depositAmt.toLocaleString("en-IN", {
+              currency: "INR",
+              minimumFractionDigits: 0,
+              maximumFractionDigits: 2
+              })|| 0}}</span>
+          </div>
+          <div>
+            <button type="button" mat-button matRipple class="btn btn-success" (click)="openAddCashDialog()">
+              <span class="fs14 ft-primary-b primary-light" i18n> Add Cash</span>
+            </button>
+          </div>
+        </div>
+        <div class="wp100 flex-space gap0">
+          <div class="flex-col-jst-start gap8">
+            <span class="fs14 ft-primary-b grey500 text-uppercase" i18n>Withdrawable</span>
+            <span class="fs16 ft-primary-b grey900">₹ {{cashierData?.withdrawlAmt.toLocaleString("en-IN", {
+              currency: "INR",
+              minimumFractionDigits: 0,
+              maximumFractionDigits: 2
+              })|| 0}}</span>
+          </div>
+          <div>
+            <button type="button" mat-button matRipple class="btn btn-primary w120" (click)="openWithdrawDialog()">
+              <span class="fs14 ft-primary-b primary-light" i18n> Withdraw</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wp100 flex-col-jst-start gap0">
+      <div class="wp100 h52 flex-space gap0 bg-grey600 br-top-16 p-4">
+        <div class="d-flex align-center gap8">
+          <span class="fs14 ft-primary-b grey200 text-uppercase" i18n>Bonuses</span>
+          <div class="d-flex align-center gap4">
+            <div class="fs16 ft-primary-b primary-light">{{cashierData?.totalbonus.toLocaleString("en-IN", {
+              minimumFractionDigits: 0,
+              maximumFractionDigits: 2
+              })|| 0}}</div>
+            <div class="icons-16 info-light-grey cursor wh16" id="cashier-bonuses-info-icon" (click)="openBonusesDialog()" trackEvents></div>
+          </div>
+        </div>
+        <div class="cursor d-flex align-center gap4" (click)="openTransactionHistoryDialog('Bonus')"
+          id="cashier-bonuses-history-btn" trackEvents>
+          <div class="right-text fs14 ft-primary-b grey000" i18n>History</div>
+          <div class="icons-16 chevron-right-white wh16 cursor"></div>
+        </div>
+      </div>
+      <div class="wp100 flex-col-start gap16 bg-light br-btm-16 p-4">
+        <div class="wp100 flex-space">
+          <div class="flex-col-jst-start gap8">
+            <span class="fs14 ft-primary-b grey500 text-uppercase" i18n>Instant</span>
+            <div class="flex-start gap6">
+              <div
+                class="bonus-circle wh24 d-flex jst-center align-center grad-orange-bg br24 fs12 ft-primary-b primary-light ls-1"
+                i18n>IB</div><span class="fs16 ft-primary-b grey900">{{cashierData?.ib.toLocaleString("en-IN", {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 2
+                })|| 0}}</span>
+            </div>
+          </div>
+          <div class="flex-col-jst-start gap8">
+            <span class="fs14 ft-primary-b grey500 text-uppercase" i18n>Tourney</span>
+            <div class="flex-start gap6">
+              <div
+                class="bonus-circle wh24 d-flex jst-center align-center grad-orange-bg br24 fs12 ft-primary-b primary-light ls-1"
+                i18n>TB</div><span class="fs16 ft-primary-b grey900">{{cashierData?.tbChips.toLocaleString("en-IN", {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 2
+                })|| 0}}</span>
+            </div>
+          </div>
+          <div class="flex-col-jst-start gap8">
+            <span class="fs14 ft-primary-b grey500 text-uppercase" i18n>Booster</span>
+            <div class="flex-start gap6">
+              <div
+                class="bonus-circle wh24 d-flex jst-center align-center grad-orange-bg br24 fs12 ft-primary-b primary-light ls-1"
+                i18n>BB</div><span class="fs16 ft-primary-b grey900">{{cashierData?.booster.toLocaleString("en-IN", {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 2
+                })|| 0}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wp100 bg-light br16 bdr0-5-grey300 p-4">
+      <div class="flex-space">
+        <div class="flex-col-start gap10">
+          <div class="flex-row gap4">
+            <span class="fs14 ft-primary-b grey500 text-uppercase" i18n>Free chips</span>
+            <img [src]="assetsImagePath + 'profile/info-fill.svg'" alt="info" class="infoIcon cursor wh16"
+              (click)="openBonusesDialog()" id="cashier-freeroll-info-icon" trackEvents i18n i18n-alt>
+          </div>
+          <span class="fs16 ft-primary-b grey900">{{cashierData?.freeroll.toLocaleString("en-IN", {
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 2
+            })|| 0}}</span>
+        </div>
+        <button type="button" mat-button matRipple
+          class="btn btn-outline-light w120 h40 bg-light px-4 py-2 border-2 border-solid border-grey300 br12"
+          (click)="openCongratulationsDialog()" *ngIf="!claimButtonCLicked" id="cashier-free-chips-claim-btn"
+          trackEvents><span class="fs14 ft-primary-b grad-red-text lh-normal">Claim</span></button>
+        <div class="claim-box flex-center w160 h26 bg-orange000 br12 py-2 px-2" *ngIf="claimButtonCLicked">
+          <span class="fs12 ft-primary-b grey900" i18n>Claim in&nbsp;:&nbsp;</span>
+          <span class="claim-time fs12 ft-primary-b orange400"> {{ remainingHoursFormat }} </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="wp100 flex-col-jst-start gap12 bg-light br16 bdr0-5-grey300 p-4">
+      <div class="wp100 flex-space br12 p-4 bg-grey100 cursor" (click)="openReleaseUnitsPgpsDialog()">
+        <div class="flex-col-jst-start gap4">
+          <span class="fs16 ft-primary-b grey800" i18n>Release Units & PGPs</span>
+          <span class="fs12 ft-primary-sb grey500" i18n>Check your Release Units & PGPs</span>
+        </div>
+        <button class="d-flex jst-center align-center wh32 bg-light br12 cursor outline-0 border-0">
+          <div class="icons-16 chevron-right-grey wh16 cursor"></div>
+        </button>
+      </div>
+      <div class="wp100 flex-space br12 p-4 bg-grey100 cursor" (click)="openTicketsAndOffersDialog()">
+        <div class="flex-col-jst-start gap4">
+          <span class="fs16 ft-primary-b grey800" i18n>My Tickets & Offers</span>
+          <span class="fs12 ft-primary-sb grey500" i18n>Use Tickets to Join Tournaments for free</span>
+        </div>
+        <button type="button" mat-button class="d-flex jst-center align-center wh32 bg-light br12 cursor outline-0 border-0">
+          <div class="icons-16 chevron-right-grey wh16 cursor"></div>
+        </button>
+      </div>
+      <div class="wp100 flex-space br12 p-4 bg-grey100 cursor" (click)="openRedeemVoucherScratchCardDialog()"
+        id="cashier-redeem-scratch-card-btn" trackEvents>
+        <div class="flex-col-jst-start gap4">
+          <span class="fs16 ft-primary-b grey800" i18n>Redeem Voucher/Scratch Card</span>
+          <span class="fs12 ft-primary-sb grey500" i18n>Redeem gift card/voucher</span>
+        </div>
+        <button type="button" mat-button class="d-flex jst-center align-center wh32 bg-light br12 cursor outline-0 border-0">
+          <div class="icons-16 chevron-right-grey wh16 cursor"></div>
+        </button>
+      </div>
+    </div>
+
+  </div>
+  <div *ngIf="isShowToast">
+    <app-toast [toastValue]="toastValue" [(isShowToast)]="isShowToast"></app-toast>
+  </div>
+
+</div>

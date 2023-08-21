@@ -1,0 +1,83 @@
+@import "../../../assets/components/cashier-common";
+@import '../../../assets/abstract/utilities';
+
+// As we are not getting any ticket data from backend for any credentials, unable to work on ticket styles utilization  
+.ticket {
+  .ticket-top {
+    .ticket-code {
+      border: 1px dashed $orange400;
+    }
+  }
+
+  &.expired {
+    .ticket-top {
+      .ticket-code {
+        border: 1px dashed $grey500;
+      }
+    }
+  }
+}
+
+.offer {
+  &.greyish {
+    filter: grayscale(100%);
+  }
+
+  .offer-body {
+    .offer-body-bottom {
+      .price-and-off {
+        .percent-off {
+          &.purchased {
+            background: $grad-grey;
+          }
+
+          &.sold-out {
+            background: $grad-grey;
+            opacity: 0.6;
+          }
+        }
+      }
+    }
+  }
+
+  .offer-footer {
+    border-top: 1px solid $grey100;
+  }
+}
+
+.strike-out {
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}
+
+.tab-container {
+  .tab {
+    min-width: 96px;
+  }
+}
+
+.btn-offer {  
+  filter: brightness(100%);
+  transition: filter 0.15s ease-in-out;
+
+  &:hover {
+    filter: brightness(90%);
+    transition: filter 0.15s ease-in-out;
+  }
+  
+  &:disabled {
+    border-color: $grey400;
+    pointer-events: auto;
+  }
+}
+
+.ticket-box {
+  background-image: url("../../../../../../src/assets/images/cashier/ticket-bg-colored.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  &.non-colored {
+    background-image: url("../../../../../../src/assets/images/cashier/ticket-bg-non-colored.svg");
+  }
+}

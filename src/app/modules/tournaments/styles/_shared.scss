@@ -1,0 +1,95 @@
+@import '../../../../assets/abstract/core';
+
+.btn.btn-dark {
+  width: 160px;
+  padding: 12px 24px;
+  border-radius: $br12;
+}
+
+.prev-btn,
+.next-btn {
+  position: fixed;
+  top: 45%;
+
+  &.mat-button {
+    background: $grey300;
+    border-radius: $br50;
+
+    .prev-arrow,
+    .next-arrow {
+      width: 0;
+      height: 0;
+      border-left: 7.5px solid transparent;
+      border-right: 7.5px solid transparent;
+      border-bottom: 7.5px solid $grey900;
+    }
+
+    .next-arrow {
+      transform: rotate(90deg);
+      left: 0.75rem;
+    }
+
+    .prev-arrow {
+      transform: rotate(-90deg);
+      right: 0.75rem;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+
+      .prev-arrow,
+      .next-arrow {
+        border-bottom-color: $grey400;
+      }
+    }
+
+    &:hover {
+      background: $bg-light;
+    }
+  }
+}
+
+.next-btn {
+  right: -32px;
+}
+
+.prev-btn {
+  left: -32px;
+}
+
+.border-grad-red-bg-light {
+  background: linear-gradient($bg-light, $bg-light) padding-box, $grad-red border-box;
+}
+
+.btn-unregister {
+  &:hover {
+    background: linear-gradient($grey000, $grey000) padding-box, $grad-red border-box;
+  }
+}
+
+.ticket-number {
+  background: url('../../../../assets/images/common/ticket-bg-colored.svg') no-repeat center/cover;
+
+  &.prizes {
+    -webkit-text-fill-color: $grey000;
+  }
+}
+
+// To override common styles
+.prize-pool-buyin-container .buyin-container.prizes {
+  justify-content: flex-start;
+}
+
+.expand-icon:hover {
+  transform: scale(1.2);
+}
+
+.prizes-structures {
+  .prizes-item {
+    width: 33.3%;
+
+    table.prize-structure-table {
+      width: 160%;
+    }
+  }
+}

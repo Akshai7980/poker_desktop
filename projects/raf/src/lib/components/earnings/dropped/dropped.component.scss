@@ -1,0 +1,9 @@
+@import '../../../../../../../src/assets/abstract/core';
+@import '../../../../assets/styles/shared';
+@import '../../../../../../shared/assets/components/avatar';
+
+tbody {
+  tr {
+    border-bottom: 1px solid $grey200;
+  }
+}

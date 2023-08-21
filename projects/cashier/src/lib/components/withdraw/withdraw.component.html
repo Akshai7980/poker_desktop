@@ -1,0 +1,112 @@
+<div class="withdraw p-rel wp100 hp100 d-flex flex-column trans-03 ovf-hide">
+  <div class="wp100 h56 d-flex jst-space align-center bg-light shadow p-4">
+    <div class="header-title d-flex jst-center align-center gap8" i18n>
+      <div class="back-icon wh24 p-rel cursor" (click)="backToCashier()">
+        <div class="icons-24 chevron-left wh24"></div>
+      </div>
+      <div class="title fs20 ft-primary-b grey900">Withdraw</div>
+    </div>
+    <div class="header-options d-flex jst-end align-center p-rel wh24 cursor" (click)="isKycPending ? dialog.closeAll() : onClose()">
+      <div class="icons-24 close-icon top-left wh24"></div> 
+    </div>
+  </div>
+
+  <div class="wp100 d-flex flex-1 ovf-y-auto">
+    <div class="w414 hp100 d-flex flex-column bg-grey100 p-4 ovf-y-scroll">
+      <form [formGroup]="withdrawForm" class="wdrForm wp100 hp100 d-flex flex-column flex-space">
+        <div class="withdraw-box wp100 d-flex flex-column bg-light br16">
+          <div class="box-top wp100 d-flex jst-space bg-grey800 br-top-16 p-4 cursor">
+            <div class="box-top-l d-flex align-center gap8">
+              <span class="fs14 ft-primary-b grey300 text-uppercase" i18n>Withdrawable Balance</span>
+              <span class="fs16 ft-primary-md primary-light" i18n>
+                {{ withdrawBalance | currencyFormat: true }}
+              </span>
+            </div>
+            <div class="box-top-r d-flex align-center gap8" (click)="openTransactionHistoryDialog('Cash')">
+              <div class="fs14 ft-primary-b grey000" i18n>History</div>
+              <div class="icons-16 chevron-right-white wh16 cursor"></div>
+            </div>
+          </div>
+          <div class="box-top second wp100 d-flex jst-space bg-grey800 p-4 cursor"
+            (click)="openWithheldDepositDialog()">
+            <div class="box-top-l d-flex align-center gap8">
+              <span class="fs14 ft-primary-b grey300 text-uppercase" i18n>Withheld Deposit</span>
+              <span class="fs16 ft-primary-md primary-light" i18n> {{ withHeldAmount | currencyFormat: true }}</span>
+            </div>
+            <div class="box-top-r d-flex align-center gap8">
+              <div class="icons-16 chevron-right-white wh16 cursor"></div>
+            </div>
+          </div>
+          <div class="box-middle wp100 bg-light p-4">
+            <div class="g-form-group d-flex flex-column gap4">
+              <span class="p-input-icon-right wp100" i18n>
+
+                <i class="custom-right-icon fs14 ft-primary-b grey400 fst-normal" (click)="calculateTDS()" [ngClass]="
+                withdrawForm.controls['enteredAmount'].valid && !disabledTds
+                      ? 'valid-icon cursor'
+                      : 'not-allowed cnot-allow ptr-evts'
+                  " *ngIf="!calculateTDSClicked">Calculate TDS</i>
+
+                <i class="custom-right-icon fs14 ft-primary-b fst-normal cursor"
+                [ngClass]="{'valid-icon' : calculateTDSClicked}" (click)="onClickEdit()" *ngIf="calculateTDSClicked">Edit</i>
+
+                <input type="text" pInputText formControlName="enteredAmount" placeholder="₹ Enter Amount" maxlength="12"
+                  class="g-form-control wp100 h48 border-1.5 border-solid br12 fs16 ft-primary-b" numbersOnly
+                  autocompleteOff (input)="onVerifyAmount($event)"
+                  onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                  [ngClass]="{'grey900 input-error':showErrorMsg, 'grey900 border-grey300':!showErrorMsg && !calculateTDSClicked,'grey400 border-grey300' : calculateTDSClicked } "
+                  id="withdraw-enteramount-input" trackEvents i18n-placeholder [readOnly]="calculateTDSClicked" />
+              </span>
+              <span class="fs12 ft-primary-sb grey500" *ngIf="!showCalculatedTds && !showErrorMsg" i18n>Minimum withdrawal amount {{ data.cashierInitData.minRedeemAmt | currencyFormat: true }} </span>
+              <span class="fs12 ft-primary-md primary-red" *ngIf="showErrorMsg" i18n>Amount should be less than or
+                equal to {{ withdrawBalance | currencyFormat: true }} </span>
+            </div>
+            <div class="calculated-tds-box wp100 d-flex flex-column gap12 mt-4" *ngIf="showCalculatedTds">
+              <div class="tds wp100 d-flex jst-space align-center">
+                <span class="fs14 ft-primary-b grey600" i18n>TDS</span>
+                <span class="fs14 ft-primary-b grey600" i18n> {{ withTdsAmounts.tds | currencyFormat: true }} </span>
+              </div>
+              <div class="net-amount wp100 d-flex jst-space align-center">
+                <span class="fs14 ft-primary-b grey600 text-uppercase" i18n>Net Transferable amount</span>
+                <span class="fs16 ft-primary-b grey900" i18n> {{ withTdsAmounts.redeemAmt | currencyFormat: true
+                  }}</span>
+              </div>
+            </div>
+          </div>
+          <div class="box-bottom wp100 d-flex jst-space bg-grey000 p-4 br-btm-16 cursor">
+            <span class="fs12 ft-primary-sb grey500" i18n>Withdraw up to {{ nonTaxable | currencyFormat: true }} without
+              any TDS.</span>
+          </div>
+        </div>
+
+        <div class="wp100 d-flex flex-column jst-end align-center gap16" *ngIf="!isKycPending">
+          <div class="fs14 ft-primary-b grey500" i18n>
+            Read more about our <span class="grad-red-text cursor"
+              (click)="openInNewWindow('withdrawal')">Withdrawal</span> &
+            <span class="grad-red-text cursor" (click)="openInNewWindow('tds')">TDS</span> Policy
+          </div>
+          <button type="submit" mat-button matRipple class="btn btn-primary wp100 h48 gap4" (click)="onClickWithdraw()"
+            [disabled]="!enableWithdrawButton" id="withdraw-withdraw-btn" trackEvents>
+            <span class="fs16 ft-primary-b primary-light" i18n>Withdraw</span>
+            <span class="fs16 ft-primary-b primary-light"
+              *ngIf="!withdrawForm.get('enteredAmount')?.errors?.['required']" i18n>
+              {{
+              calculateTDSClicked ? ( withTdsAmounts.redeemAmt ?
+              (withTdsAmounts.redeemAmt | currencyFormat : true) : withdrawForm.get('enteredAmount')?.value ) :
+              withdrawForm.get('enteredAmount')?.value }} </span>
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div class="p-rel w414 hp100 d-flex flex-column bg-trans p-4 ovf-y-scroll" *ngIf="isDualScreen">
+      <app-withdrawal-methods [bankListData]="defaultBank"></app-withdrawal-methods>
+
+      <div *ngIf="isShowToast">
+        <app-toast [toastValue]="toastValue" [(isShowToast)]="isShowToast"></app-toast>
+      </div>
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,475 @@
+<div class="cash-container p-rel hp100">
+    <div *ngIf="!showViewOfferSection" class="add-cash-parent p-rel hp100 ovf-hide">
+        <div class="cashier-window-container wp100 d-flex flex-column hp100 p-rel bg-dark">
+            <div class="add-cash-header wp100 d-flex jst-start align-center gap8 p-4">
+                <div class="add-cash-title d-flex jst-start align-center gap8 fs20 ft-primary-b primary-light" i18n>
+                    Add Cash
+                </div>
+            </div>
+            <div class="add-cash-body wp100 hp100 d-flex flex-column bg-grey100 br-top-32 p-0 ovf-hide">
+                <div class="add-cash-body-container wp100 hp100 d-flex flex-column gap16 p-4 ovf-y-scroll">
+                    <div class="add-cash-body-header-widget d-flex flex-column">
+                        <div class="add-cash-body-header wp100 d-flex align-center gap8 bg-grey800 br-top-16 py-3 px-2">
+                            <div class="add-cash-body-header-title d-flex align-center fs12 ft-primary-b grey300 text-uppercase"
+                                i18n>
+                                Current Balance:
+                            </div>
+                            <div class="add-cash-body-header-value d-flex align-center fs16 ft-primary-b primary-light text-uppercase"
+                                (click)="viewStatus()">
+                                ₹ {{totalAmount.toLocaleString("en-IN", {
+                                minimumFractionDigits: 0,
+                                maximumFractionDigits: 2
+                                })|| 0}}
+                            </div>
+                        </div>
+                        <div class="add-cash-body-widget wp100 d-flex flex-column gap16 bg-light br-btm-16 p-3">
+                            <div class="add-cash-input-text-widget wp100 d-flex flex-column gap8">
+                                <form [formGroup]="addCashForm">
+                                    <div
+                                        class="add-cash-input-widget d-flex align-center br12 border-0.5 border-solid border-grey300">
+                                        <div
+                                            class="rupee-icon d-flex jst-center align-center fs16 ft-primary-b grey900 h48">
+                                            ₹
+                                        </div>
+                                        <input type="text"
+                                            class="custom-input h48 bg-trans br12 fs16 ft-primary-b grey900"
+                                            placeholder="Enter Amount" i18n-placeholder (keyup)="onAmountChange($event)"
+                                            formControlName="enteredAmount" maxlength="8" numbersOnly pattern="[0-9]+"
+                                            autocompleteOff
+                                            onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                                            id="addcash-enteramount-input" trackEvents>
+                                    </div>
+                                </form>
+                                <div class="add-cash-text-widget fs12 ft-primary-rg grey400" i18n>
+                                    Add any amount between <span class="ft-primary-b">₹ 50 to ₹ 5L</span>
+                                </div>
+                            </div>
+                            <div class="add-cash-body-amount wp100 d-flex align-center gap8">
+                                <div class="add-cash-amount p-rel d-flex jst-center align-center flex-1 bg-mint-green br12 fs14 ft-primary-sb grey900 cursor trans-03-in py-1 px-2"
+                                    [ngClass]="{ 'hot-cash' : amount.hot==true, 'selected-amount' : selectedAmountBox === i  }"
+                                    *ngFor="let amount of purchaseAmountOptionsList;let i =index"
+                                    (click)="onClickAmount(amount.value,i)">
+                                    {{ amount.value | currencyFormat }}
+                                    <div *ngIf="amount.hot===true"
+                                        class="add-hot-bg p-abs wp100 d-flex jst-center align-center gap2 bg-grad-orange fs8 ft-primary-sb primary-light ls-1"
+                                        i18n>
+                                        <span class="span-img wh8"></span> Hot
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="add-cash-body-links wp100 d-flex flex-space align-center gap8 p-0">
+                        <div class="add-cash-link-title d-flex align-center gap8 fs16 ft-primary-b grey800" i18n>
+                            <span class="deposit-ticket wh24"></span> Use Deposit Code
+                        </div>
+                        <div class="add-cash-link d-flex align-center gap4 cursor"
+                            (click)="viewOffers(appliedCode)" i18n>
+                            <div class="cash-link-text fs14 ft-primary-b grad-red-text ">View Offers</div>
+                            <div class="icons-20 chevron-right-grad-red wh20"></div>
+                        </div>
+                    </div>
+                    <div
+                        class="add-cash-offers-body wp100 d-flex flex-column gap12 bg-light br16 border-0.5 border-solid border-grey300 p-3">
+                        <form [formGroup]="addDepositForm">
+                            <div *ngIf="!applied">
+                                <div class="add-cash-input-link-offers-body d-flex flex-column gap12">
+                                    <div class="add-cash-offers-input-link wp100 h48 d-flex flex-space align-center gap12 bg-light br12 border-0.5 border-solid py-3 px-4"
+                                        [ngClass]="invalidError?'input-error':'border-grey300'">
+                                        <input type="text" class="offer-input wp80 bg-trans fs14 ft-primary-b border-0"
+                                            placeholder="Enter code here" (keyup)="enterCode($event)"
+                                            [(ngModel)]="enteredCode" autocompleteOff alphanumericOnly
+                                            formControlName="enteredCode" i18n-placeholder
+                                            id="addcash-entercodehere-input" trackEvents>
+                                        <div class="add-cash-offers-link d-flex align-center fs14 ft-primary-b"
+                                            [ngClass]="addDepositForm.valid && !applyClicked && !invalidError ? 'primary-red cursor': 'grey400 cdefault ptr-evts'"
+                                            (click)="applyDepositCode('enterCode')" i18n>
+                                            Apply
+                                        </div>
+                                    </div>
+                                    <span *ngIf="invalidError" class="error-message p-rel fs12 f-sb primary-error" i18n>
+                                        Invalid Code </span>
+                                    <div class="add-cash-offers-body-container d-flex flex-column gap12">
+                                        <div class="add-cash-offers-container wp100 d-flex flex-column gap12 bg-light br12 border-0.5 border-solid border-grey300 p-3"
+                                            *ngFor="let yourCode of yourOffers?.slice(0,2)">
+                                            <div class="offers-button-detail d-flex flex-column gap12">
+                                                <div class="offers-button d-flex jst-space align-center gap8">
+                                                    <button type="button"
+                                                        class="btn btn-dashed-offer dashed-deposit cdefault"
+                                                        id="addcash-bonuscode-btn" trackEvents>
+                                                        <span
+                                                            class="fs14 ft-primary-b grad-orange-text">{{yourCode?.bonusCode}}</span>
+                                                    </button>
+                                                    <button matRipple type="button" class="btn btn-apply"
+                                                        (click)="applyDepositCode(yourCode.bonusCode, yourCode.promotion_text, yourCode.msg, yourCode.offerText)"
+                                                        i18n id="addcash-apply-btn" trackEvents>
+                                                        <span class="btn-apply-text">Apply</span>
+                                                    </button>
+                                                </div>
+                                                <div class="offers-detail fs12 ft-primary-sb grey500">
+                                                    *{{yourCode?.offerText}} <span
+                                                        class="detailLink ft-primary-b grad-red-text cursor"
+                                                        (click)="showModal(yourCode.bonusCode, yourCode.offerText, yourCode.msg, yourCode.promotion_text); sidedatasts='viewDetails'"
+                                                        i18n>View
+                                                        Details</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div *ngIf="applied">
+                                <div class="add-cash-input-link-offers-body d-flex flex-column gap12">
+                                    <div
+                                        class="add-cash-offer-applied-container wp100 d-flex flex-column align-start gap12 br16">
+                                        <div class="add-cash-applied-header wp100 d-flex flex-column align-start gap6">
+                                            <div class="add-applied-header wp100 d-flex jst-space align-center gap8">
+                                                <div class="add-applied-title d-flex align-center gap4">
+                                                    <div class="applied-check p-rel wh16 d-flex jst-center align-center">
+                                                        <div class="img-check-mark top-right img-active wh16"></div>
+                                                    </div>
+                                                    <div class="applied-text fs14 ft-primary-md grey900 ls-1 text-capital"
+                                                        i18n>
+                                                        Code
+                                                    </div>
+                                                    <div class="applied-code fs14 ft-primary-b grad-orange-text ls-1 text-uppercase"
+                                                        i18n>
+                                                        {{appliedCode}}
+                                                    </div>
+                                                    <div class="applied-text fs14 ft-primary-md grey900 ls-1 text-capital"
+                                                        i18n>
+                                                        Applied!
+                                                    </div>
+                                                </div>
+                                                <div class="add-applied-options wh20 d-flex jst-center align-center cursor"
+                                                    (click)="changeCode()">
+                                                    <div class="icons-20 close-grey2 wh20"></div>
+                                                </div>
+                                            </div>
+                                            <div class="add-applied-header-text wp100 fs12 ft-primary-md grey500" i18n>
+                                                {{appliedPromotionTxt}}
+                                            </div>
+                                        </div>
+                                        <div class="add-applied-header-separator wp100 bg-grey300"></div>
+                                        <div class="add-applied-footer wp100 d-flex jst-space align-center gap16">
+                                            <div class="add-applied-footer-link fs14 ft-primary-b grad-red-text cursor"
+                                                (click)="viewOffers(appliedCode)" i18n>
+                                                Change</div>
+                                            <div class="add-applied-footer-link d-flex align-center gap4 cursor"
+                                                (click)="showModal(appliedCode, appliedOfferTxt, appliedMsg, appliedPromotionTxt); sidedatasts='viewDetails'"
+                                                i18n>
+                                                <div class="cash-link-text fs14 ft-primary-b grad-red-text ">View Details</div>
+                                                <div class="icons-20 chevron-right-grad-red wh20"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="add-cash-footer wp100 d-flex flex-column gap12 bg-light py-3 px-4 shadow-n1">
+                <div class="add-cash-footer-button d-flex jst-center align-center">
+                    <button matRipple type="button" [disabled]="disableAddMoney" class="btn btn-success success-lg wp100"
+                        (click)="onAddCash()" i18n id="addcash-enteramount-btn" trackEvents>
+                        Add {{addCashForm.controls['enteredAmount'].value ?
+                        '₹ ' + addCashForm.controls['enteredAmount'].value :
+                        ''}}
+                    </button>
+                </div>
+                <div class="add-cash-footer-payments d-flex jst-center align-center gap10">
+                    <div class="gateway visa-payment"></div>
+                    <div class="gateway master-payment"></div>
+                    <div class="gateway upi-payment"></div>
+                    <div class="gateway rupay-payment"></div>
+                    <div class="gateway gpay-payment"></div>
+                    <div class="gateway paytm-payment"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slider-modal">
+            <div class="slider-card update-card bg-light br-top-20 ovf-hide" *ngIf="showNotAllowed">
+                <div class="hp100 d-flex flex-column gap24 pt-3 pb-4 px-4 ovf-y-scroll">
+                    <div class="center-drag-line d-flex jst-center align-center cursor" (click)="closeModal()">
+                        <div class="drag-line br20 bg-grey200"></div>
+                    </div>
+                    <div class="d-flex flex-column gap32">
+                        <div class="fs20 ft-primary-b grey800" i18n>Info</div>
+                        <div class="fs14 ft-primary-md-grey900" [innerHTML]="invalidMessage"></div>
+                        <button matRipple class="btn btn-primary wp100" i18n>
+                            <span class="fs16 ft-primary-b primary-light" (click)="gotoUpdate()">Update</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slider-modal">
+            <div class="slider-card d-flex flex-column bg-light br-top-20 ovf-hide" *ngIf="sidedatasts==='viewDetails'">
+                <div class="hp100 d-flex flex-column gap24 py-3 px-4 ovf-y-scroll">
+                    <div class="center-drag-line d-flex jst-center align-center cursor" (click)="closeModal()">
+                        <div class="drag-line br20 bg-grey200"></div>
+                    </div>
+                    <div class="slider-card-header d-flex jst-center align-center mb-1">
+                        <div
+                            class="slider-offers-container wp100 d-flex flex-column gap12 bg-light br12 border-0.5 border-solid border-grey300 p-3">
+                            <div class="slider-offers-button d-flex jst-space align-center">
+                                <button type="button" class="btn btn-dashed-offer dashed-deposit" i18n
+                                    id="addcash-viewbonus-btn" trackEvents>
+                                    <span class="span-text">{{viewBonusCode}}</span>
+                                </button>
+                                <button
+                                    *ngIf="(appliedCode?.toLowerCase()===viewBonusCode?.toLowerCase() && applied) ? showApply : !showApply"
+                                    matRipple type="button" class="btn btn-apply"
+                                    (click)="closeModal();applyDepositCode(viewBonusCode, viewPromotionTxt, viewMsg, viewOfferTxt)"
+                                    i18n id="addcash-apply-btn" trackEvents>
+                                    <span class="btn-apply-text">Apply</span>
+                                </button>
+                                <button
+                                    *ngIf="(appliedCode?.toLowerCase()===viewBonusCode?.toLowerCase() && applied) ? !showApply : showApply"
+                                    type="button" class="btn btn-apply-check cdefault p-2" i18n id="addcash-applied-btn"
+                                    trackEvents>
+                                    <div class="applied-check wh16 p-rel d-flex jst-center align-center">
+                                        <div class="img-check-mark top-right img-active wh16"></div>
+                                    </div>
+                                    <div class="btn-apply-text">
+                                        Applied
+                                    </div>
+                                </button>
+                            </div>
+                            <div class="slider-offers-detail d-flex align-center gap4 fs12 ft-primary-sb grey500" i18n>
+                                *{{viewOfferTxt}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="seperator-line wp100 p-rel border-1.5 border-solid border-grey200">
+                        <div class="offer-details-text tsf-center w278 d-flex jst-center align-center bg-grey100 br20 p-2 fs12 ft-primary-b grey900"
+                            i18n>
+                            Offer Details
+                        </div>
+                    </div>
+                    <div class="detail-points wp100 d-flex jst-center align-center mt-1 px-4">
+                        <ul class="wp100 d-flex flex-column gap10 p-0">
+                            <li class="p-rel fs14 ft-primary-sb grey900" i18n [innerHTML]="viewMsg"></li>
+                        </ul>
+                    </div>
+                    <div class="detail-footer d-flex align-center fs12 ft-primary-md grey900" i18n>
+                        <span class="bold-text ft-primary-b">Term & Conditions:</span> Withdrawal Criteria-2.5x RU
+                    </div>
+                </div>
+                <div class="wp100 h32 d-flex align-center jst-center">
+                    <div class="black-line w136 bg-dark br8"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="showViewOfferSection" class="add-cash-parent p-rel hp100 ovf-hide">
+        <div class="cashier-window-container wp100 d-flex flex-column hp100 p-rel bg-dark">
+            <div class="add-cash-header wp100 d-flex jst-start align-center gap8 p-4">
+                <div class="add-cash-title d-flex jst-start align-center gap8" i18n>
+                    <div class="icons-24 chevron-right-light-grey wh24 cursor" (click)="backTo()"></div>
+                    <div class="deposit-text fs20 ft-primary-b light">Deposit Code/Offers</div>
+                </div>
+            </div>
+            <div class="add-cash-body deposit-body wp100 hp100 d-flex flex-column bg-grey100 br-top-32 p-0 ovf-hide">
+                <div class="add-cash-body-container wp100 hp100 d-flex flex-column gap16 p-4 ovf-y-scroll">
+                    <form [formGroup]="addDepositForms">
+                        <div class="add-cash-body-label-input d-flex flex-column gap12 bg-light br16 p-3">
+                            <label class="label-title d-flex align-center fs12 ft-primary-sb grey500" i18n>Enter Deposit
+                                Code</label>
+                            <div class="input-label-container d-flex jst-space align-center bg-light br12 border-0.5 border-solid pr-4"
+                                [ngClass]="invalidError?'input-error':'border-grey300'">
+                                <input type="text" class="custom-input h48 bg-trans pl-3 fs14 ft-primary-b grey900"
+                                    placeholder="Enter code here" (keyup)="enterCode($event)" [(ngModel)]="enteredCode"
+                                    formControlName="enteredCode" alphanumericOnly autocompleteOff i18n-placeholder
+                                    id="addcash-entercode-input" trackEvents>
+                                <div class="apply-text wp20 d-flex jst-end align-center fs14 ft-primary-b"
+                                    [ngClass]="addDepositForms.valid && !applyClicked && !invalidError?'primary-red cursor':'grey400 cdefault ptr-evts'"
+                                    (click)="applyDepositCode('offerList')" i18n>
+                                    Apply
+                                </div>
+                            </div>
+                            <span *ngIf="invalidError" class="error-message fs12 ft-primary-sb primary-error" i18n>
+                                Invalid Code </span>
+                        </div>
+                    </form>
+                    <div class="add-cash-body-links wp100 d-flex flex-space align-center gap8 p-0">
+                        <div class="add-cash-link-title d-flex align-center gap8 fs16 ft-primary-b grey800" i18n>
+                            <span class="deposit-ticket wh24"></span> Deposit Code for You/Offers
+                        </div>
+                    </div>
+                    <div
+                        class="add-cash-offers-body deposit-offers wp100 d-flex flex-column gap12 bg-trans br16 p-0 border-0">
+                        <div class="add-cash-input-link-offers-body d-flex flex-column gap12">
+                            <div class="add-cash-offers-body-container d-flex flex-column gap12">
+                                <div class="add-cash-offers-container wp100 d-flex flex-column gap12 bg-light br12 border-0.5 border-solid border-grey300 p-3"
+                                    *ngFor="let yourOffer of yourOffers">
+                                    <div class="offers-button-detail d-flex flex-column gap4">
+                                        <div class="offers-button d-flex jst-space align-center gap8">
+                                            <button type="button" class="btn btn-dashed-offer dashed-deposit cdefault"
+                                                id="addcash-bonuscode-btn" trackEvents>
+                                                <span class="span-text" i18n>{{yourOffer.bonusCode}}</span>
+                                            </button>
+                                            <button
+                                                *ngIf="changeAppliedCode?.toLowerCase()===yourOffer?.bonusCode?.toLowerCase() ? showApply : !showApply"
+                                                matRipple type="button" class="btn btn-apply"
+                                                (click)="applyDepositCode(yourOffer.bonusCode, yourOffer.promotion_text, yourOffer.msg, yourOffer.offerText)"
+                                                i18n id="addcash-apply-btn" trackEvents>
+                                                <span class="btn-apply-text">Apply</span>
+                                            </button>
+
+                                            <button
+                                                *ngIf="changeAppliedCode?.toLowerCase() === yourOffer?.bonusCode?.toLowerCase()"
+                                                type="button" class="btn btn-apply-check cdefault p-2" i18n
+                                                id="addcash-applied2-btn" trackEvents>
+                                                <div class="applied-check wh16 p-rel d-flex jst-center align-center">
+                                                    <div class="img-check-mark top-right img-active wh16"></div>
+                                                </div>
+                                                <div class="btn-apply-text">
+                                                    Applied
+                                                </div>
+                                            </button>
+                                        </div>
+                                        <div class="offers-detail fs12 ft-primary-sb grey500"
+                                            (click)="showModal(yourOffer.bonusCode, yourOffer.offerText, yourOffer.msg, yourOffers.promotion_text); sidedatasts='viewDetails'"
+                                            i18n>
+                                            *{{yourOffer.offerText}} <span
+                                                class="detail-link ft-primary-b grad-red-text cursor">View
+                                                Details</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="add-cash-body-links wp100 d-flex flex-space align-center gap8 p-0">
+                            <div class="add-cash-link-title d-flex align-center gap8 fs16 ft-primary-b grey800"
+                                *ngIf="allOffers.length > 0" i18n>
+                                <span class="deposit-ticket wh24"></span> All Deposit Code
+                            </div>
+                        </div>
+                        <div
+                            class="add-cash-offers-body deposit-offers wp100 d-flex flex-column gap12 bg-trans br16 p-0 border-0">
+                            <div class="add-cash-input-link-offers-body d-flex flex-column gap12">
+                                <div class="add-cash-offers-body-container d-flex flex-column gap12">
+                                    <div class="add-cash-offers-container wp100 d-flex flex-column gap12 bg-light br12 border-0.5 border-solid border-grey300 p-3"
+                                        *ngFor="let allOffer of allOffers">
+                                        <div class="offers-button-detail d-flex flex-column gap4">
+                                            <div class="offers-button d-flex jst-space align-center gap8">
+                                                <button type="button"
+                                                    class="btn btn-dashed-offer dashed-alldeposit cdefault"
+                                                    id="addcash-bonuscode2-btn" trackEvents>
+                                                    <span class="span-text" i18n>{{allOffer.bonusCode}}</span>
+                                                </button>
+                                                <button matRipple type="button" class="btn btn-apply"
+                                                    *ngIf="changeAppliedCode?.toLowerCase() === allOffer?.bonusCode?.toLowerCase() ? showApply : !showApply"
+                                                    (click)="applyDepositCode(allOffer.bonusCode, allOffer.promotion_text, allOffer.msg, allOffer.offerText)"
+                                                    i18n id="addcash-apply2-btn" trackEvents>
+                                                    <span class="btn-apply-text">Apply</span>
+                                                </button>
+                                                <button
+                                                    *ngIf="changeAppliedCode?.toLowerCase() === allOffer?.bonusCode?.toLowerCase()"
+                                                    type="button" class="btn btn-apply-check cdefault p-2" i18n
+                                                    id="addcash-applied2-btn" trackEvents>
+                                                    <div class="applied-check wh16 p-rel d-flex jst-center align-center">
+                                                        <div class="img-check-mark top-right img-active wh16"></div>
+                                                    </div>
+                                                    <div class="btn-apply-text">
+                                                        Applied
+                                                    </div>
+                                                </button>
+                                            </div>
+                                            <div class="offers-detail fs12 ft-primary-sb grey500"
+                                                (click)="showModal(allOffer.bonusCode, allOffer.offerText, allOffer.msg, allOffers.promotion_text); sidedatasts='viewDetails'"
+                                                i18n>
+                                                *{{allOffer.offerText}} <span
+                                                    class="detail-link ft-primary-b grad-red-text cursor">View
+                                                    Details</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="add-cash-footer deposit-footer wp100 h40 d-flex flex-column gap12 bg-light py-3 px-4 shadow-n1">
+                    <div class="add-cash-footer-payments d-flex jst-center align-center gap10">
+                        <div class="gateway visa-payment"></div>
+                        <div class="gateway master-payment"></div>
+                        <div class="gateway upi-payment"></div>
+                        <div class="gateway rupay-payment"></div>
+                        <div class="gateway gpay-payment"></div>
+                        <div class="gateway paytm-payment"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slider-modal">
+            <div class="slider-card d-flex flex-column bg-light br-top-20 ovf-hide" *ngIf="sidedatasts=='viewDetails'">
+                <div class="hp100 d-flex flex-column gap24 py-3 px-4 ovf-y-scroll">
+                    <div class="center-drag-line d-flex jst-center align-center cursor" (click)="closeModal()">
+                        <div class="drag-line br20 bg-grey200"></div>
+                    </div>
+                    <div class="slider-card-header d-flex jst-center align-center mb-1">
+                        <div
+                            class="slider-offers-container wp100 d-flex flex-column gap12 bg-light br12 border-0.5 border-solid border-grey300 p-3">
+                            <div class="slider-offers-button d-flex jst-space align-center">
+                                <button type="button" class="btn btn-dashed-offer dashed-deposit" i18n
+                                    id="addcash-viewbonuscode-btn" trackEvents>
+                                    <span class="span-text">{{viewBonusCode}}</span>
+                                </button>
+                                <button
+                                    *ngIf="(appliedCode?.toLowerCase() === viewBonusCode?.toLowerCase() && applied) ? showApply : !showApply"
+                                    matRipple type="button" class="btn btn-apply"
+                                    (click)="closeModal();applyDepositCode(viewBonusCode, viewPromotionTxt, viewMsg, viewOfferTxt);"
+                                    i18n id="addcash-apply3-btn" trackEvents>
+                                    <span class="btn-apply-text">Apply</span>
+                                </button>
+                                <button
+                                    *ngIf="(appliedCode?.toLowerCase() === viewBonusCode?.toLowerCase() && applied) ? !showApply : showApply"
+                                    type="button" class="btn btn-apply-check cdefault p-2" i18n
+                                    id="addcash-applied3-btn" trackEvents>
+                                    <div class="applied-check wh16 p-rel d-flex jst-center align-center">
+                                        <div class="img-check-mark top-right img-active wh16"></div>
+                                    </div>
+                                    <div class="btn-apply-text">
+                                        Applied
+                                    </div>
+                                </button>
+                            </div>
+                            <div class="slider-offers-detail d-flex align-center gap4 fs12 ft-primary-sb grey500" i18n>
+                                *{{viewOfferTxt}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="seperator-line wp100 p-rel border-1.5 border-solid border-grey200">
+                        <div class="offer-details-text tsf-center w278 d-flex jst-center align-center bg-grey100 br20 p-2 fs12 ft-primary-b grey900"
+                            i18n>
+                            Offer Details
+                        </div>
+                    </div>
+                    <div class="detail-points wp100 d-flex jst-center align-center mt-1 px-4">
+                        <ul class="wp100 d-flex flex-column gap10 p-0">
+                            <li class="p-rel fs14 ft-primary-sb grey900" [innerHTML]="viewMsg" i18n></li>
+                        </ul>
+                    </div>
+                    <div class="detail-footer d-flex align-center fs12 ft-primary-md grey900" i18n>
+                        <span class="bold-text ft-primary-b">Term & Conditions:</span> Withdrawal Criteria-2.5x RU
+                    </div>
+                </div>
+                <div class="wp100 h32 d-flex align-center jst-center">
+                    <div class="black-line w136 bg-dark br8"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="parent-add-cash-toast" *ngIf="isShowToast">
+        <app-toast [toastValue]="toastValue" [(isShowToast)]="isShowToast" [ngClass]="showViewOfferSection?'mb-7':'toast-above-btn'"></app-toast>
+    </div>

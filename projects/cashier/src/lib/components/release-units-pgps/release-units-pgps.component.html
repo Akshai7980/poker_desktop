@@ -1,0 +1,90 @@
+<div class="wp100 hp100 flex-col-jst-start ovf-hide">
+  <div class="wp100 h56 flex-space bg-light shadow p-4" *ngIf="!forWithheldDepositScreen">
+    <div class="d-flex jst-center align-center gap8" i18n>
+      <div class="to-back-icon flex-center p-rel wh24 br8 cursor" (click)="backToCashier()">
+        <div class="icons-24 chevron-left top-right wh24"></div>
+      </div>
+      <div class="title fs20 ft-primary-b grey900">Release Units & PGPs</div>
+    </div>
+    <div class="d-flex jst-end align-center p-rel wh24 cursor" (click)="onBack()">
+      <div class="icons-24 close-icon top-right wh24"></div>
+    </div>
+  </div>
+
+  <div class="wp100 flex-col-jst-start gap24 flex-1 bg-grey100 p-4 ovf-y-auto"
+    [ngClass]="{'bg-trans hp100':forWithheldDepositScreen}">
+
+    <span class="fs16 ft-primary-b grey800" i18n>Check Your Release Units & PGPs</span>
+
+    <form [formGroup]="form" class="wp100 flex-col-jst-start gap16">
+      <div class="wp100 flex-col-jst-start gap4">
+        <label for="Select Date Range" class="fs12 ft-primary-b grey500" i18n>Select Date Range</label>
+        <mat-form-field appearance="outline" class="date-range-picker" [floatLabel]="'never'" (click)="openDatePicker()">
+          <label *ngIf="!isMatLabelHidden" (click)="openDatePicker()" i18n>Select Range</label>
+          <mat-date-range-input class="custom-input-separator" [formGroup]="form" [rangePicker]="picker"  [max]="maxDate"
+            [min]="sixMonthsAgo">
+            <input trackEvents id="cashgames-startdate-input" matStartDate readonly autocompleteOff formControlName="startDate"
+              (dateChange)="getHistory()">
+            <div class="custom-separator"></div>
+            <input trackEvents id="cashgames-enddate-input" matEndDate readonly autocompleteOff formControlName="endDate"
+              (dateChange)="getHistory()">
+          </mat-date-range-input>
+          <mat-datepicker-toggle class="date-pick" matIconSuffix [for]="picker">
+            <mat-icon matDatepickerToggleIcon>
+              <img [src]="assetsImagePath + 'hand-history/CalendarBlank.svg'" alt="calendar-blank" i18n i18n-alt>
+            </mat-icon>
+          </mat-datepicker-toggle>
+          <mat-date-range-picker #picker (closed)="checkIsDateSelected()"></mat-date-range-picker>
+        </mat-form-field>
+      </div>
+      <button type="submit" mat-button matRipple class="btn btn-primary wp100 h48" [disabled]="isBtnDisable"
+        (click)="getReleaseUnits()" id="releaseunitspgps-go-btn" trackEvents>
+        <span class="fs16 ft-primary-b primary-light" tabindex="0" i18n>
+          Go
+        </span>
+      </button>
+    </form>
+
+    <div class="wp100 br16 px-4 bg-light bdr0-5-grey300" *ngIf="showAccumulation">
+      <div class="wp100 flex-space bg-purple000 p-4 my-4 br16">
+        <span class="fs16 ft-primary-b grey800" i18n>Release Unit Accumulated</span>
+        <span class="fs16 ft-primary-b grad-purple-text">{{(releaseUnites?.totalReleaseUnit | currencyFormat: false) || 0}}</span>
+      </div>
+      <div class="wp100 flex-space bg-purple000 p-4 my-4 br16">
+        <span class="fs16 ft-primary-b grey800" i18n>PGP Accumulated</span>
+        <span class="fs16 ft-primary-b grad-purple-text">{{(releaseUnites?.totalPgpUnit | currencyFormat: false) || 0}}</span>
+      </div>
+    </div>
+
+    <div class="wp100 flex-col-jst-start gap12 my-4">
+
+      <span class="fs16 ft-primary-b grey800" i18n>FAQ's</span>
+
+      <div class="flex-col-jst-start gap16">
+
+        <div *ngFor="let pL of faqList; let i = index">
+          <p-panel
+            [toggleable]="true"
+            expandIcon="pi pi-chevron-down"
+            collapseIcon="pi pi-chevron-up"
+            styleClass="cashier-tnc-panel"
+            [collapsed]="openFAQIndex !== i"
+            (click)="openFAQIndex = i === openFAQIndex ? -1 : i"
+          >
+            <ng-template pTemplate="header" i18n>{{ pL?.title }}</ng-template>
+
+            <ng-template pTemplate="content">
+              <div class="contents fs14 ft-primary-md grey800" [innerHTML]="pL?.answer"></div>
+            </ng-template>
+          </p-panel>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="isShowToast">
+    <app-toast [toastValue]="toastValue" [(isShowToast)]="isShowToast"></app-toast>
+  </div>
+</div>

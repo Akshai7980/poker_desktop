@@ -1,0 +1,21 @@
+@import '../../../../../assets/abstract/core';
+
+.lobby-sub-header-section {
+  .section-1 {
+    height: calc(100vh - 300px);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+
+    &.empty {
+      max-height: 764px;
+    }
+
+    .section1-lhs {
+      width: calc(100% - 35%);
+    }
+
+    .section1-rhs {
+      width: 35%;
+    }
+  }
+}

@@ -1,0 +1,534 @@
+@import '../../abstract/core';
+
+.invalid-fields {
+  border-color: red !important;
+  border-width: 1.5px !important;
+}
+
+.form-input {
+  padding: 14px 16px;
+  border: 1.5px solid $grey300;
+}
+
+input[type='text'],
+[type='password'],
+[type='tel'] {
+  &::placeholder {
+    color: $grey400;
+  }
+}
+
+.profile-header {
+  width: 414px;
+  height: 56px;
+}
+
+.close-btn-icon {
+  .close-btn {
+    &:hover {
+      background: $grey100;
+
+      .pi {
+        color: $grey900;
+      }
+    }
+  }
+
+  &.auth-close {
+    .close-btn {
+      &:hover {
+        background: $grey300;
+      }
+    }
+  }
+}
+
+// OTP Timer
+
+// Tooltip CSS
+
+.tool-tip {
+  position: relative;
+  text-align: center;
+
+  &.text-left {
+    text-align: left;
+  }
+
+  &:hover,
+  &.show-tooltip {
+    .tooltip-inner-text {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0) translateX(-50%);
+    }
+  }
+
+  .tooltip-inner-text {
+    background: $bg-light;
+    color: $bg-dark;
+    display: block;
+    min-width: 50px;
+    max-width: 500px;
+    margin-bottom: 5px;
+    opacity: 0;
+    padding: 6px 15px;
+    border-radius: 5px;
+    pointer-events: none;
+    position: absolute;
+    white-space: nowrap;
+    left: 50%;
+    bottom: 100%;
+    font-size: 14px;
+    font-family: $font-bold;
+    line-height: normal;
+    z-index: 1050;
+    transform: translateY(10px) translateX(-50%);
+    transition: $trans-3s;
+    box-shadow: 2px 2px 6px rgba(0 0 0 / 28%);
+
+    &.tooltip_width {
+      width: 250px;
+      word-wrap: break-all !important;
+      white-space: normal;
+      z-index: 1050 !important;
+      transform: skew(-30deg) !important;
+      left: -77px !important;
+      text-align: left;
+    }
+
+    &::after {
+      @include triangle(10px, $bg-dark, up);
+
+      bottom: -5px;
+      content: '';
+      height: 0;
+      left: 50%;
+      margin-left: -5px;
+      position: absolute;
+      width: 0;
+
+      &.tooltip-list-view {
+        display: flex;
+        align-content: center;
+
+        span {
+          display: block;
+          text-align: center;
+          margin: 0 5px;
+          align-self: center;
+        }
+      }
+    }
+  }
+
+  &.info-tooltip {
+    .tooltip-inner-text {
+      width: 191px;
+      white-space: pre-line;
+      text-align: left;
+
+      &::after {
+        @include triangle(18px, $grey700, up);
+
+        bottom: -18px;
+        left: 87%;
+        transform: rotate(180deg);
+      }
+    }
+
+    &:hover,
+    &.show-tooltip {
+      .tooltip-inner-text {
+        transform: translateY(-12%) translateX(-170px);
+        width: 191px;
+        min-width: 0;
+        white-space: pre-line;
+        border-radius: $br12;
+        padding: 12px;
+        background: $grey900;
+        font-size: $fs12;
+        font-family: $font-medium;
+        color: $grey000;
+        text-align: left;
+
+        &::after {
+          @include triangle(18px, $grey700, up);
+
+          bottom: -18px;
+          left: 87%;
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }
+
+  &.bottom {
+    .tooltip-inner-text {
+      bottom: auto;
+      top: 100%;
+      margin-bottom: 0;
+      margin-top: 5px;
+
+      &::after {
+        bottom: auto;
+        bottom: 26px;
+        border-bottom: solid #000 5px;
+        border-top: none;
+      }
+    }
+
+    &:hover,
+    &.show-tooltip {
+      .tooltip-inner-text {
+        transform: translateY(0%) translateX(-50%);
+      }
+    }
+
+    &.tournament-name {
+      .tooltip-inner-text {
+        border-radius: 6px;
+        max-width: 500px;
+        left: 0;
+        font-family: $font-regular;
+        border: 1px solid $grey200;
+        transform: translateY(10px) translateX(0%);
+
+        &::after {
+          bottom: 30px;
+        }
+      }
+
+      &:hover,
+      &.show-tooltip {
+        .tooltip-inner-text {
+          transform: translateY(0%) translateX(0%);
+        }
+      }
+    }
+
+    &.prize-bottom-right {
+      text-align: left;
+
+      .tooltip-inner-text {
+        border: 2px solid $grey700;
+        background: $grey900;
+        border-radius: $br12;
+        padding: 12px;
+        transform: translateY(0%) translateX(0);
+        min-width: 120px;
+
+        &::after {
+          top: -7px;
+          border-bottom: solid $grey700 5px;
+          border-top: none;
+          left: unset;
+          right: 20%;
+        }
+      }
+
+      &:hover,
+      &.show-tooltip {
+        .tooltip-inner-text {
+          transform: translateY(0%) translateX(-90px);
+        }
+      }
+    }
+
+    &.prize-bottom-money {
+      text-align: left;
+
+      .tooltip-inner-text {
+        width: 220px;
+        border: 2px solid $grey700;
+        background: $grey900;
+        border-radius: $br12;
+        padding: 12px;
+        transform: translateY(0%) translateX(-91%);
+
+        &::after {
+          top: -7px;
+          border-bottom: solid $grey700 5px;
+          border-top: none;
+          left: unset;
+          right: 7%;
+        }
+      }
+
+      &:hover,
+      &.show-tooltip {
+        .tooltip-inner-text {
+          transform: translateY(0%) translateX(-91%);
+        }
+      }
+
+      &.my-tickets {
+        &:hover {
+          .tooltip-inner-text {
+            transition-property: transform;
+            transform: translateY(0%) translateX(-90%);
+            width: 180px;
+          }
+        }
+      }
+    }
+
+    &.leader-tooltip {
+      text-align: left;
+
+      .tooltip-inner-text {
+        border: 2px solid $grey700;
+        background: $grey900;
+        border-radius: $br12;
+        padding: 12px;
+        font-size: $fs12;
+        font-family: $font-medium;
+        color: $grey000;
+        text-transform: capitalize;
+        letter-spacing: 0.02em;
+        white-space: normal;
+        min-width: 250px;
+        max-width: max-content;
+
+        &::after {
+          top: -9px;
+          border-right: 9px solid transparent;
+          border-bottom: 9px solid $grey700;
+          border-left: 9px solid transparent;
+          border-top: none;
+          left: 47%;
+        }
+      }
+
+      &:hover,
+      &.show-tooltip {
+        .tooltip-inner-text {
+          transform: translateY(5%) translateX(-47%);
+        }
+      }
+    }
+
+    &.game-info {
+      text-align: unset;
+
+      .tooltip-inner-text {
+        bottom: auto;
+        top: 100%;
+        margin-top: 0;
+        width: 25.875rem;
+        height: 17.75rem;
+        background: rgba(79 84 92 / 95%);
+        border: 2px solid $grey700;
+        border-radius: 1.5rem;
+        padding: 0;
+        transform: translateY(30%) translateX(-85%);
+
+        &::after {
+          top: -28px;
+          right: 11%;
+          bottom: 0;
+          left: unset;
+          border-bottom: solid $grey700 14px;
+          border-top: solid transparent 14px;
+          border-left: solid transparent 14px;
+          border-right: solid transparent 14px;
+        }
+      }
+
+      &:hover,
+      &.show-tooltip {
+        .tooltip-inner-text {
+          transform: translateY(5%) translateX(-85%);
+        }
+      }
+
+      @include device(smg) {
+        .tooltip-inner-text {
+          width: 17.875rem;
+          height: 11.75rem;
+        }
+      }
+    }
+
+    &.star-bottom {
+      .tooltip-inner-text {
+        font-size: $fs12;
+        font-family: $font-medium;
+        color: $grey900;
+        border-radius: $br6;
+        min-width: 0;
+        transform: translateY(0%) translateX(0%);
+        transition: min-width, $trans-3s;
+
+        &::after {
+          display: none;
+        }
+      }
+
+      &:hover {
+        .tooltip-inner-text {
+          min-width: 50px;
+          transform: translateY(0%) translateX(-5%);
+        }
+      }
+    }
+  }
+
+  &.left {
+    .tooltip-inner-text {
+      inset: 50% 100% 0 0;
+      margin-right: 5px;
+      transform: translateY(-50%) translateX(10px);
+
+      &::after {
+        @include triangle(10px, $bg-dark, up);
+
+        bottom: 28%;
+        left: 100%;
+        margin: 0;
+      }
+    }
+
+    &:hover,
+    &.show-tooltip {
+      .tooltip-inner-text {
+        transform: translateY(-50%) translateX(0);
+      }
+    }
+
+    &.top-left {
+      .tooltip-inner-text {
+        &.top-left-text {
+          min-width: 170px;
+          text-align: left;
+          white-space: normal;
+
+          &::after {
+            bottom: -7%;
+            left: 97%;
+            transform: rotate(40deg);
+          }
+        }
+      }
+
+      &:hover {
+        .tooltip-inner-text {
+          &.top-left-text {
+            transform: translateY(-120%) translateX(6%);
+          }
+        }
+      }
+    }
+
+    &.bottom-left {
+      .tooltip-inner-text {
+        &.bottom-left-text {
+          min-width: 170px;
+          text-align: left;
+          white-space: normal;
+          right: 70%;
+          top: 50%;
+          transform: translateY(0%) translateX(0) !important;
+
+          &::after {
+            top: -7%;
+            left: 97%;
+            transform: rotate(-43deg);
+          }
+        }
+      }
+
+      &:hover {
+        .tooltip-inner-text {
+          &.bottom-left-text {
+            transform: translateY(-120%) translateX(6%);
+          }
+        }
+      }
+    }
+  }
+
+  &.right {
+    .tooltip-inner-text {
+      inset: 50% auto auto 100%;
+      margin-bottom: 0;
+      margin-left: 5px;
+      transform: translateY(-50%) translateX(10px);
+
+      &::after {
+        @include triangle(10px, $bg-dark, left);
+
+        bottom: 28%;
+        left: auto;
+        right: 100%;
+        margin: 0;
+      }
+    }
+
+    &:hover,
+    &.show-tooltip {
+      .tooltip-inner-text {
+        transform: translateY(-50%) translateX(10px);
+      }
+    }
+  }
+
+  &.top {
+    &.prize-top-money {
+      .tooltip-inner-text {
+        width: 220px;
+        border: 2px solid $grey700;
+        background: $grey900;
+        border-radius: $br12;
+        padding: 12px;
+        white-space: pre-line;
+      }
+    }
+
+    // For tooltip common utility classes are not applicable
+    // So inline properties are used below
+    &.flexible-width {
+      .tooltip-inner-text {
+        border: 2px solid $grey700;
+        background: $grey900;
+        border-radius: $br12;
+        padding: 12px;
+        font-size: $fs12;
+        font-family: $font-medium;
+        color: $grey000;
+        left: 30%;
+
+        &::after {
+          border-bottom-color: $grey700;
+          border-width: 9px;
+          bottom: -18px;
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }
+}
+
+// App Form Styles
+.app-form-group {
+  .app-form-control {
+    @include flex($alignItems: center, $gap: 1rem);
+
+    padding: 10px 16px;
+    height: 40px;
+    background: $bg-light;
+    border: 1.5px solid $grey300;
+    border-radius: $br8;
+
+    &:hover,
+    &:focus {
+      outline: none;
+    }
+
+    &::placeholder {
+      font-size: 14px;
+      font-family: $font-bold;
+      color: $grey400;
+    }
+  }
+}

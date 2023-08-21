@@ -1,0 +1,264 @@
+<div class="pvt-table d-flex flex-col p-rel gap12 wp100">
+  <div
+    class="menubar d-flex jst-space align-center bg-grey000 border-0 border-solid border-grey300 br16 py-3 px-2 wp100"
+  >
+    <div class="menubar-item d-flex align-center gap8">
+      <div class="menubar-left-img p-rel wh24 ovf-hide">
+        <img
+          class="p-abs wp100 hp100 obj-con"
+          [src]="assetsImagePath + 'lobby/Cards.svg'"
+          class="iconImg"
+          i18n
+          i18n-alt
+          alt="Cards"
+        />
+      </div>
+      <div class="menubar-left-text fs14 ft-primary-md grey900" i18n>
+        Play with your <span class="fs14 ft-primary-b grey900">friends</span> now
+      </div>
+    </div>
+    <div class="menubar-item">
+      <form
+        class="custom-input-btn-box d-flex align-center br8 border-1.5 border-solid border-grey300 w316 h44"
+        [formGroup]="joinTableForm"
+        [ngClass]="isShowError ? 'invalid input-error' : ''"
+      >
+        <input
+          type="text"
+          class="p-3 fs14 h44 ft-primary-b grey900 bg-trans border-0"
+          placeholder="Enter Code Here"
+          formControlName="tableCode"
+          maxlength="11"
+          i18n-placeholder
+          autocompleteOff
+          alphanumericOnly
+          (keyup)="onChangejoinText($event)"
+        />
+        <button
+          type="button"
+          mat-button
+          class="btn btn-primary join-table br8"
+          [disabled]="isbtnDisable"
+          trackEvents
+          id="lobby-privateTable-join-btn"
+          (click)="submit()"
+          i18n
+        >
+          Join
+        </button>
+      </form>
+    </div>
+    <div class="menubar-item">
+      <button
+        type="button"
+        mat-button
+        class="btn btn-primary gap4 btn-width"
+        (click)="openCreateTableDialog()"
+        trackEvents
+        id="lobby-privateTable-createTable-btn"
+      >
+        <i class="pi pi-plus"></i> Create Table
+      </button>
+    </div>
+  </div>
+
+  <div
+    class="table-container p-rel d-flex flex-col bg-light p-2 br16 wp100 ovf-y-scroll"
+    *ngIf="isShowTable"
+  >
+    <table class="table wp100 d-flex flex-col gap10" aria-label="Private Table" i18n-aria-label>
+      <thead>
+        <tr class="table1-header d-flex jst-space align-center p-2 wp100 bg-grey100 grey600 br8">
+          <th
+            class="table-header-private-text d-flex align-center p-2 fs12 ft-primary-b gap4 text-uppercase cursor"
+            *ngFor="let ptHead of pvtTableHeaders"
+          >
+            <div class="sorting-text fs12 ft-primary-b text-uppercase cursor grey600">
+              {{ ptHead.title }}
+            </div>
+            <div
+              class="sorting-icon d-flex jst-center align-center p-rel wh12 ovf-hide cursor"
+              *ngIf="ptHead.isIcon"
+            >
+              <div
+                class="sort-icon sort-up top-right wh12"
+                (click)="sort(ptHead)"
+                *ngIf="ptHead.isAscend"
+              ></div>
+              <div
+                class="sort-icon top-right wh12"
+                (click)="sort(ptHead)"
+                *ngIf="!ptHead.isAscend"
+              ></div>
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody class="private-table d-flex flex-col" *ngIf="createdTable">
+        <tr class="recommendations d-flex align-center wp100 p-2 bg-orange000">
+          <td colspan="6" class="recommendation-text fs12 ft-primary-b orange900 text-capital" i18n>
+            Created Table
+          </td>
+        </tr>
+        <ng-container class="table1-data-container wp100">
+          <tr
+            class="table1-private-data p-rel d-flex jst-space align-center wp100 bg-light cursor trans-03"
+            *ngFor="let cT of createdTable"
+            (click)="getRhsData(cT)"
+            [ngClass]="cT?.isSelected ? 'table-data-clicked' : 'table1-private-data'"
+          >
+            <td class="table-private-data-text p-2 d-flex flex-col gap4">
+              <div
+                class="private-data-text d-flex align-center gap4 fs14 ft-primary-b grey900 text-nowrap"
+                i18n
+              >
+                <span
+                  class="d-flex jst-center align-center br20 py-1 px-3 bg-purple000 fs10 ft-primary-sb purple600"
+                >
+                  {{ cT.rv === 'HOLDEM' ? "Hold'em" : 'PL Omaha' }}
+                </span>
+                {{ cT.own }}
+              </div>
+            </td>
+            <td class="table-private-data-text p-2 d-flex flex-col gap4">
+              <div class="private-data-text d-flex align-center gap4">
+                <div class="fs14 ft-primary-b grey900">₹ {{ cT.sbbb }}</div>
+              </div>
+            </td>
+            <td class="table-private-data-text p-2 d-flex flex-col gap4">
+              <div class="private-data-text d-flex align-center gap4">
+                <div class="user-icon p-rel ovf-hide">
+                  <img
+                    class="p-abs wp100 hp100 obj-con"
+                    [src]="assetsImagePath + 'lobby/users.svg'"
+                    alt="prize"
+                    i18n
+                    i18n-alt
+                  />
+                </div>
+                <div class="text fs14 ft-primary-b green900">{{ cT.jnd }}/{{ cT.mxp }}</div>
+              </div>
+            </td>
+            <td class="table-private-data-text p-2 d-flex flex-col gap4">
+              <div class="private-data-text d-flex align-center gap4">
+                <div class="fs14 ft-primary-b grey900">₹ {{ cT.blbh }}</div>
+              </div>
+            </td>
+            <td class="table-private-data-text p-2 d-flex flex-col gap4">
+              <div class="private-data-text d-flex align-center gap4">
+                <div class="fs14 ft-primary-b grey900">{{ getDateformate(cT.ed) }}</div>
+              </div>
+            </td>
+            <td class="table-private-data-text p-2 d-flex flex-col gap4">
+              <div class="private-data-text d-flex align-center gap4">
+                <div class="share-icon p-rel wh16 ovf-hide cursor" (click)="openInviteDialog(cT)">
+                  <img
+                    class="p-abs wp100 hp100 obj-con"
+                    [src]="assetsImagePath + 'lobby/share.svg'"
+                    alt="share"
+                    i18n
+                    i18n-alt
+                  />
+                </div>
+              </div>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+      <tbody class="private-table d-flex flex-col" *ngIf="!!joinedTable && joinedTable.length > 0">
+        <tr class="recommendations d-flex align-center wp100 p-2 bg-orange000">
+          <td colspan="6" class="recommendation-text fs12 ft-primary-b orange900 text-capital" i18n>
+            Joined Table
+          </td>
+        </tr>
+        <ng-container class="table1-data-container wp100">
+          <tr
+            class="table1-private-data p-rel d-flex jst-space align-center wp100 bg-light cursor trans-03"
+            *ngFor="let jT of joinedTable"
+            (click)="getRhsData(jT)"
+            [ngClass]="jT?.isSelected ? 'table-data-clicked' : 'table1-private-data'"
+          >
+            <td class="table-private-data-text p-2 d-flex flex-col gap4">
+              <div
+                class="private-data-text d-flex align-center gap4 fs14 ft-primary-b grey900 text-nowrap"
+                i18n
+              >
+                <span
+                  class="d-flex jst-center align-center br20 py-1 px-3 bg-purple000 fs10 ft-primary-sb purple600"
+                >
+                  {{ jT.rv === 'HOLDEM' ? "Hold'em" : 'PL Omaha' }}
+                </span>
+                {{ jT.own }}
+              </div>
+            </td>
+            <td class="table-private-data-text p-2 d-flex flex-col gap4">
+              <div class="private-data-text d-flex flex-col gap4">
+                <div class="fs14 ft-primary-b grey900">₹ {{ jT.sbbb }}</div>
+              </div>
+            </td>
+            <td class="table-private-data-text p-2 d-flex flex-col gap4">
+              <div class="private-data-text">
+                <div class="user-icon p-rel ovf-hide">
+                  <img
+                    class="p-abs wp100 hp100 obj-con"
+                    [src]="assetsImagePath + 'lobby/users.svg'"
+                    alt="prize"
+                    i18n
+                    i18n-alt
+                  />
+                </div>
+                <div class="text fs14 ft-primary-b grey900">{{ jT.jnd }}/{{ jT.mxp }}</div>
+              </div>
+            </td>
+            <td class="table-private-data-text p-2 d-flex flex-col gap4">
+              <div class="private-data-text d-flex flex-col gap4">
+                <div class="fs14 ft-primary-b grey900">₹ {{ jT.blbh }}</div>
+              </div>
+            </td>
+            <td class="table-private-data-text p-2 d-flex flex-col gap4">
+              <div class="private-data-text d-flex flex-col gap4">
+                <div class="fs14 ft-primary-b grey900">{{ getDateformate(jT.ed) }}</div>
+              </div>
+            </td>
+            <td class="table-private-data-text p-2 d-flex flex-col gap4"></td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="isShowToast">
+    <app-toast [toastValue]="toastValue" [(isShowToast)]="isShowToast"></app-toast>
+  </div>
+  <!-- No Created or Joined Table -->
+
+  <div
+    class="table-container p-rel d-flex flex-col jst-center align-center bg-light p-2 br16 empty wp100"
+    *ngIf="!isShowTable"
+  >
+    <div class="no-created-or-joined-table d-flex flex-col jst-center align-center gap20 wp100">
+      <div class="e-top d-flex flex-col jst-center align-center gap12">
+        <div class="empty-table-body p-rel wh96 circle ovf-hide bg-grey100">
+          <img
+            class="p-abs wp100 hp100 obj-con"
+            [src]="assetsImagePath + 'lobby/woman-img.svg'"
+            alt="woman-img"
+            i18n
+            i18n-alt
+          />
+        </div>
+        <div class="fs16 ft-primary-b grey600" i18n>You haven’t created or joined tables</div>
+      </div>
+      <button
+        type="button"
+        mat-button
+        class="btn btn-primary gap12"
+        trackEvents
+        id="lobby-privateTable-createTable-btn"
+        (click)="openCreateTableDialog()"
+        i18n
+      >
+        <i class="pi pi-plus-circle"></i> Create Table
+      </button>
+    </div>
+  </div>
+</div>

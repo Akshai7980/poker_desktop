@@ -1,0 +1,299 @@
+<div class="action-dialog d-flex flex-col jst-space align-center gap16 mh185 p-4 wp100">
+  <div class="action-dialog-header d-flex jst-space align-center wp100">
+    <div class="fs20 ft-primary-b grey900" i18n>Registration</div>
+  </div>
+
+  <ng-container *ngIf="data.component == 'SIT_AND_GO'">
+    <div class="action-dialog-body d-flex flex-col align-center gap24 wp100">
+      <div class="reg-top wp100 d-flex jst-space align-center">
+        <div class="reg-top-left d-flex flex-col gap8">
+          <div
+            class="d-flex jst-center align-center br20 py-1 px-3 bg-purple000 fs10 ft-primary-sb purple600"
+            i18n
+          >
+            Hold'em
+          </div>
+          <span class="reg-txt fs14 ft-primary-b grey900" i18n> {{ data.details.name }} </span>
+        </div>
+
+        <div class="reg-top-right d-flex flex-col gap4 align-end">
+          <span class="reg-txt-sec fs12 ft-primary-b grey500 text-uppercase" i18n>sng balance</span>
+          <span class="reg-txt fs14 ft-primary-b grey900" i18n>
+            ₹
+            {{
+              data.details.userBalance.toLocaleString('en-IN', {
+                currency: 'INR',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 2
+              }) || 0
+            }}
+          </span>
+        </div>
+      </div>
+
+      <form class="reg-bottom d-flex flex-col gap10 wp100">
+        <div
+          class="reg-bottom-box border-1 border-solid border-grey100 br12 p-4 d-flex flex-col gap12"
+          *ngIf="!regTicketOptionDisabled"
+        >
+          <div class="p-field-radiobutton">
+            <p-radioButton
+              [disabled]="regMoneyOptionDisabled"
+              value="money"
+              (onClick)="onSelectRegMoneyRadio()"
+              [(ngModel)]="selectedRegMoneyRadio"
+              [ngModelOptions]="{ standalone: true }"
+              inputId="money"
+            ></p-radioButton>
+            <label
+              [ngClass]="regMoneyOptionDisabled ? 'disabled' : ''"
+              class="reg-txt fs14 ft-primary-b grey900 cursor"
+              for="money"
+              i18n
+              >₹ {{ registrationAmount }} (Registration) + ₹ {{ fee }} (Fee)</label
+            >
+          </div>
+        </div>
+
+        <div class="info-text fs14 ft-primary-md grey900" *ngIf="regMoneyOptionDisabled" i18n>
+          Insufficient account balance.
+        </div>
+        <div
+          class="reg-bottom-box border-1 border-solid border-grey100 br12 p-4 d-flex flex-col gap12"
+          *ngIf="data.details.hasTicket"
+        >
+          <div class="p-field-radiobutton" *ngFor="let tk of tickets; let i = index">
+            <p-radioButton
+              [disabled]="regTicketOptionDisabled"
+              [value]="'ticket-' + i"
+              (onClick)="onSelectRegRadio('ticket-' + i)"
+              [(ngModel)]="selectedRegRadio"
+              [ngModelOptions]="{ standalone: true }"
+              [inputId]="'ticket-' + i"
+            ></p-radioButton>
+            <label
+              class="reg-txt fs14 ft-primary-b grey900 cursor text-uppercase cursor"
+              [for]="'ticket-' + i"
+              i18n
+            >
+              <img
+                [src]="assetsImagePath + 'lobby/TicketOrange.svg'"
+                alt="ticket"
+                class="iconImg"
+                i18n-alt
+              />
+              {{ tk }}
+            </label>
+          </div>
+        </div>
+
+        <div
+          class="reg-bottom-box border-1 border-solid border-grey100 br12 p-4 d-flex flex-col gap12"
+          *ngIf="regTicketOptionDisabled"
+        >
+          <div class="p-field-radiobutton" *ngFor="let tk of tickets; let i = index">
+            <p-radioButton
+              [disabled]="regTicketOptionDisabled"
+              [value]="'ticket-' + i"
+              (onClick)="onSelectRegRadio('ticket-' + i)"
+              [(ngModel)]="selectedRegRadio"
+              [ngModelOptions]="{ standalone: true }"
+              [inputId]="'ticket-' + i"
+            ></p-radioButton>
+            <label
+              [ngClass]="regTicketOptionDisabled ? 'disabled' : ''"
+              class="reg-txt fs14 ft-primary-b grey900 cursor text-uppercase cursor"
+              [for]="'ticket-' + i"
+              i18n
+            >
+              <img
+                [src]="assetsImagePath + 'lobby/TicketOrange.svg'"
+                alt="ticket"
+                class="iconImg"
+                i18n-alt
+              />
+              {{ tk }}
+            </label>
+          </div>
+        </div>
+
+        <span class="info-text fs14 ft-primary-md grey900" *ngIf="regTicketOptionDisabled" i18n
+          >You do not have the ticket to play this SnG.</span
+        >
+      </form>
+    </div>
+
+    <div class="action-dialog-footer d-flex align-center h48 p-0 m-0 wp100" mat-dialog-actions>
+      <button
+        type="button"
+        class="btn btn-primary-outline w183 h40"
+        mat-button
+        mat-dialog-close
+        trackEvents
+        id="lobby-sitNgo-registration-cancel-btn"
+        i18n
+      >
+        Cancel
+      </button>
+      <button
+        type="button"
+        class="btn btn-primary w183 h40"
+        mat-button
+        cdkFocusInitial
+        trackEvents
+        id="lobby-sitNgo-registration-register-btn"
+        *ngIf="!showAddCashBtn"
+        [ngClass]="regTicketOptionDisabled ? 'disabled' : ''"
+        (click)="onClickRegister()"
+        tabindex="0"
+        i18n
+      >
+        Register
+      </button>
+      <button
+        type="button"
+        class="btn btn-success w183 h40"
+        mat-button
+        cdkFocusInitial
+        trackEvents
+        id="lobby-sitNgo-registration-addCash-btn"
+        *ngIf="showAddCashBtn"
+        tabindex="0"
+        i18n
+      >
+        Add Cash
+      </button>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="data.component == 'TOURNAMENTS'">
+    <div class="action-dialog-body d-flex flex-col align-center gap24 wp100">
+      <div class="reg-top wp100 d-flex jst-space align-center">
+        <div class="reg-top-left d-flex flex-col gap8">
+          <div
+            class="spec-div d-flex jst-center align-center br20 py-1 px-3 bg-purple000 fs10 ft-primary-sb purple600 game-variant"
+            i18n
+          >
+            Holdem
+          </div>
+          <span
+            class="reg-txt fs14 ft-primary-b grey900"
+            i18n
+            *ngIf="data.from == 'SUFFCIENT_BALANCE'"
+            >1 Cr Nano Main Event Adda Satty</span
+          >
+          <span
+            class="reg-txt fs14 ft-primary-b grey900"
+            i18n
+            *ngIf="data.from == 'INSUFFCIENT_BALANCE'"
+            >1 Cr Nano Main Event Adda ...</span
+          >
+        </div>
+        <div class="reg-top-right d-flex flex-col gap4 align-end">
+          <span class="reg-txt-seccfs12 ft-primary-b grey500 text-uppercase" i18n
+            >Tourney Balance</span
+          >
+          <span
+            class="reg-txt fs14 ft-primary-b grey900"
+            *ngIf="data.from == 'SUFFICIENT_BALANCE'"
+            i18n
+            >₹ 4,00,000</span
+          >
+          <span
+            class="reg-txt fs14 ft-primary-b grey900"
+            *ngIf="data.from == 'INSUFFICIENT_BALANCE'"
+            i18n
+            >₹ 400</span
+          >
+        </div>
+      </div>
+      <form [formGroup]="regForm" class="reg-bottom d-flex flex-col gap10 wp100">
+        <div
+          class="reg-bottom-box border-1 border-solid border-grey100 br12 p-4 d-flex flex-col gap12"
+        >
+          <div class="p-field-radiobutton">
+            <p-radioButton
+              value="money"
+              formControlName="money"
+              (onClick)="onSelectRegMoneyRadio()"
+              [(ngModel)]="selectedRegMoneyRadio"
+              inputId="money"
+              styleClass="lobbyRegRadio"
+            ></p-radioButton>
+            <label class="reg-txt fs14 ft-primary-b grey900 cursor" for="money" i18n
+              >₹ 500 (Registration) + ₹ 500 (Bounty) + ₹ 30 (Fee)</label
+            >
+          </div>
+        </div>
+        <span
+          class="info-text fs14 ft-primary-md grey900"
+          *ngIf="data.from == 'INSUFFICIENT_BALANCE'"
+          i18n
+          >Insufficient account balance.</span
+        >
+        <div class="reg-bottom-box">
+          <div class="p-field-radiobutton" *ngFor="let tk of tickets; let i = index">
+            <p-radioButton
+              [value]="'ticket-' + i"
+              formControlName="ticket"
+              (onClick)="onSelectRegRadio('ticket-' + i)"
+              [(ngModel)]="selectedRegRadio"
+              [inputId]="'ticket-' + i"
+            ></p-radioButton>
+            <label class="reg-txt text-uppercase cursor" [for]="'ticket-' + i" i18n>
+              <img
+                [src]="assetsImagePath + 'lobby/TicketOrange.svg'"
+                alt="ticket"
+                class="iconImg"
+                i18n-alt
+              />
+              {{ tk }}
+            </label>
+          </div>
+        </div>
+        <span class="info-text fs14 ft-primary-md grey900" i18n
+          >You do not have the ticket to play this tournament.</span
+        >
+        <span class="info-text fs14 ft-primary-md grey900" i18n>Insufficient chips balance.</span>
+      </form>
+    </div>
+    <div class="action-dialog-footer d-flex align-center h48 p-0 m-0 wp100" mat-dialog-actions>
+      <button
+        type="button"
+        class="btn btn-primary-outline w183 h40"
+        mat-button
+        mat-dialog-close
+        trackEvents
+        id="lobby-tournament-registration-cancel-btn"
+      >
+        Cancel
+      </button>
+      <button
+        type="button"
+        class="btn btn-primary w183 h40"
+        mat-button
+        cdkFocusInitial
+        *ngIf="!showAddCashBtn"
+        trackEvents
+        id="lobby-tournament-registration-register-btn"
+        tabindex="0"
+        i18n
+      >
+        Register
+      </button>
+      <button
+        type="button"
+        class="btn btn-success w183 h40"
+        mat-button
+        cdkFocusInitial
+        *ngIf="showAddCashBtn"
+        trackEvents
+        id="lobby-tournament-registration-addCash-btn"
+        tabindex="0"
+        i18n
+      >
+        Add Cash
+      </button>
+    </div>
+  </ng-container>
+</div>

@@ -1,0 +1,534 @@
+@import '../../../../../../assets/abstract/core';
+@import '../../../../../../assets/theme/components/tables';
+
+.table-details-container {
+  .table-details-header {
+    .table-details-options {
+      .switch-toggle {
+        .switch-toggle-icons {
+          &:nth-child(2n + 1) {
+            position: relative;
+            border-right: none;
+            border-top-left-radius: $br12;
+            border-bottom-left-radius: $br12;
+
+            &::after {
+              content: '';
+              position: absolute;
+              right: 0;
+              height: 38px;
+              width: 1.5px;
+              background: $grey200;
+            }
+          }
+
+          &:nth-child(2n + 2) {
+            border-left: none;
+            border-top-right-radius: $br12;
+            border-bottom-right-radius: $br12;
+          }
+
+          &.switch-active {
+            background-color: $grey900;
+          }
+        }
+      }
+    }
+  }
+
+  .user-stack-detail-container {
+    .user-stack-body {
+      .user-stack-body-context {
+        border-bottom: 1px solid $grey300;
+
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+
+      @include device(dxlg) {
+        // for specific device extra large
+        height: calc(100vh - 716px);
+      }
+    }
+  }
+
+  .table-details-footer {
+    width: 372px;
+    height: 56px;
+    box-shadow: 0 -4px 8px rgba(0 0 0 / 10%);
+    border-bottom-left-radius: $br16;
+    border-bottom-right-radius: $br16;
+    position: sticky;
+    bottom: 0;
+    margin-left: -8px;
+
+    // The below were used for the media query,
+    // so here the classes can't define, the values should here only
+
+    @include device(dxl) {
+      width: 400px;
+    }
+
+    // The below were used for the media query,
+    // so here the classes can't define, the values should here only
+
+    @include device(dxxl) {
+      width: 454px;
+    }
+
+    // The below were used for the media query,
+    // so here the classes can't define, the values should here only
+
+    @include device(dxlg) {
+      width: 484px;
+      gap: 16px;
+
+      button {
+        &.btn {
+          &.btn-primary,
+          &.btn-primary-outline {
+            width: 220px !important;
+          }
+        }
+      }
+    }
+
+    // The below were used for the media query,
+    // so here the classes can't define, the values should here only
+
+    @include device(dxxlg) {
+      width: 534px;
+    }
+  }
+
+  .poker-table-container {
+    img {
+      object-position: top;
+    }
+
+    .poker-table {
+      height: 482px;
+
+      img {
+        object-position: top;
+      }
+
+      .poker-table-widget {
+        left: 112px;
+        top: 202px;
+        gap: 80px;
+
+        .logo-placeholder-container {
+          opacity: 0.32;
+          box-shadow: inset 0 1px 2px rgba(0 0 0 / 60%);
+        }
+      }
+    }
+
+    .poker-players {
+      .player-seating {
+        isolation: isolate;
+        filter: drop-shadow(0 1.7421px 27.873px rgba(0 0 0 / 40%));
+
+        .player-image {
+          left: calc(50% - 41.81px / 2 + 0.39px);
+          top: -35px;
+        }
+
+        .floating-name {
+          left: 8.71px;
+          top: -35px;
+        }
+
+        .player-cards {
+          left: 45px;
+          bottom: 36px;
+
+          .cards {
+            box-shadow: -2px 0 3px rgba(0 0 0 / 30%);
+
+            &:nth-child(2n + 2) {
+              margin: 0 -10px;
+            }
+          }
+        }
+
+        .player-details {
+          left: 0;
+          top: 4px;
+          padding: 0;
+        }
+
+        &.player1 {
+          left: 146px;
+          top: 69px;
+        }
+
+        &.player2 {
+          left: 14px;
+          top: 158px;
+        }
+
+        &.player3 {
+          left: 275px;
+          top: 158px;
+        }
+      }
+    }
+
+    // The below were used for the media query,
+    // so here the classes can't define, the values should here only
+
+    @include device(dxl) {
+      width: 362px;
+    }
+
+    // The below were used for the media query,
+    // so here the classes can't define, the values should here only
+
+    @include device(dxxl) {
+      width: 402px;
+
+      .poker-table {
+        width: 400px;
+
+        img {
+          margin-left: 10px;
+        }
+      }
+
+      .poker-table-widget {
+        top: 242px !important;
+        left: 150px !important;
+      }
+
+      .poker-players {
+        .player-seating {
+          &.player1 {
+            left: 166px;
+          }
+
+          &.player2 {
+            top: 180px;
+            left: 34px;
+          }
+
+          &.player3 {
+            top: 180px;
+            left: 305px;
+          }
+        }
+      }
+    }
+
+    // The below were used for the media query,
+    // so here the classes can't define, the values should here only
+
+    @include device(dxlg) {
+      width: 100%;
+      height: 100%;
+
+      .poker-table {
+        width: 100%;
+        height: 622px;
+
+        .poker-table-widget {
+          left: 136px;
+          top: 266px;
+          gap: 140px;
+          width: 184px;
+          height: 144px;
+
+          .average-stack-container {
+            width: 160px;
+            height: 32px;
+
+            .average-stack-count {
+              width: 172px;
+              height: 32px;
+
+              .average-stack-title {
+                font-size: $fs14; // this font style should be used, because used in media query
+                width: 94px;
+              }
+
+              .average-stack-value {
+                width: 52px;
+
+                .poker-chip {
+                  width: 18px;
+                  height: 18px;
+                }
+
+                .average-stack-count-value {
+                  font-size: $fs14; // this font style should be used, because used in media query
+                  width: 32px;
+                }
+              }
+            }
+          }
+
+          .logo-placeholder-container {
+            height: 61px;
+
+            .logo-placeholder-body {
+              .logo-placeholder {
+                height: 36px;
+              }
+
+              .logo-placeholder-text {
+                font-size: $fs16; // this font style should be used, because used in media query
+              }
+            }
+          }
+        }
+      }
+
+      .poker-players {
+        .player-seating {
+          .player-image {
+            width: 62px;
+            height: 62px;
+          }
+
+          .floating-name {
+            width: 22px;
+            height: 16px;
+
+            .floating-name-body {
+              width: 26px;
+              height: 20px;
+              font-size: $fs14; // this font style should be used, because used in media query
+            }
+          }
+
+          .floating-d {
+            bottom: -70px;
+
+            .floating-name-d {
+              width: 26px;
+              height: 26px;
+              font-size: $fs18; // this font style should be used, because used in media query
+            }
+          }
+
+          .player-cards {
+            width: 20px;
+            height: 25px;
+            left: 68px;
+            bottom: 24px;
+
+            .cards {
+              width: 20px;
+              height: 25px;
+            }
+          }
+
+          .player-details {
+            width: 80px;
+            height: 60px;
+
+            &.top-left {
+              top: 20px;
+            }
+
+            .player-details-body {
+              width: 80px;
+              height: 60px;
+
+              .player-title {
+                font-size: $fs18;
+                height: auto;
+              }
+
+              .total-money {
+                font-size: $fs18;
+                height: auto;
+              }
+            }
+          }
+
+          &.player1 {
+            left: 190px;
+            top: 96px;
+          }
+
+          &.player2 {
+            left: 30px;
+            top: 200px;
+
+            .floating-d {
+              bottom: -70px;
+            }
+          }
+
+          &.player3 {
+            left: 358px;
+            top: 200px;
+          }
+        }
+      }
+    }
+
+    // The below were used for the media query,
+    // so here the classes can't define, the values should here only
+
+    @include device(dxxlg) {
+      width: 100%;
+      height: 100%;
+
+      .poker-table {
+        width: 100%;
+        height: 622px;
+
+        .poker-table-widget {
+          left: 136px;
+          top: 266px;
+          gap: 140px;
+          width: 184px;
+          height: 144px;
+
+          .average-stack-container {
+            width: 160px;
+            height: 32px;
+
+            .average-stack-count {
+              width: 172px;
+              height: 32px;
+
+              .average-stack-title {
+                font-size: $fs14; // this font style should be used, because used in media query
+                width: 94px;
+              }
+
+              .average-stack-value {
+                width: 52px;
+
+                .poker-chip {
+                  width: 18px;
+                  height: 18px;
+                }
+
+                .average-stack-count-value {
+                  font-size: $fs14; // this font style should be used, because used in media query
+                  width: 32px;
+                }
+              }
+            }
+          }
+
+          .logo-placeholder-container {
+            height: 61px;
+
+            .logo-placeholder-body {
+              .logo-placeholder {
+                height: 36px;
+              }
+
+              .logo-placeholder-text {
+                font-size: $fs16; // this font style should be used, because used in media query
+              }
+            }
+          }
+        }
+      }
+
+      .poker-players {
+        .player-seating {
+          .player-image {
+            width: 62px;
+            height: 62px;
+          }
+
+          .floating-name {
+            width: 22px;
+            height: 16px;
+
+            .floating-name-body {
+              width: 26px;
+              height: 20px;
+              font-size: $fs14; // this font style should be used, because used in media query
+            }
+          }
+
+          .floating-d {
+            bottom: -70px;
+
+            .floating-name-d {
+              width: 26px;
+              height: 26px;
+              font-size: $fs18; // this font style should be used, because used in media query
+            }
+          }
+
+          .player-cards {
+            width: 20px;
+            height: 25px;
+            left: 68px;
+            bottom: 24px;
+
+            .cards {
+              width: 20px;
+              height: 25px;
+            }
+          }
+
+          .player-details {
+            width: 80px;
+            height: 60px;
+
+            &.top-left {
+              top: 20px;
+            }
+
+            .player-details-body {
+              width: 80px;
+              height: 60px;
+
+              .player-title {
+                font-size: $fs18;
+                height: auto;
+              }
+
+              .total-money {
+                font-size: $fs18;
+                height: auto;
+              }
+            }
+          }
+
+          &.player1 {
+            left: 190px;
+            top: 96px;
+          }
+
+          &.player2 {
+            left: 30px;
+            top: 200px;
+
+            .floating-d {
+              bottom: -70px;
+            }
+          }
+
+          &.player3 {
+            left: 358px;
+            top: 200px;
+          }
+        }
+      }
+    }
+  }
+
+  &.table-details-empty {
+    min-height: 328px;
+
+    // The below were used for the media query,
+    // so here the classes can't define, the values should here only
+
+    @include device(dxlg) {
+      height: calc(100vh - 352px);
+    }
+  }
+}

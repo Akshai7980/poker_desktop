@@ -1,0 +1,218 @@
+<div class="d-flex flex-column flex-column flex-1 gap0 ovf-y-auto">
+  <div class="d-flex jst-space align-center bg-light gap8 p-4 shadow">
+    <span class="flex-1 fs20 ft-primary-b grey900" i18n>Know More</span>
+    <div class="close-icon-img p-rel d-flex jst-end wh24 align-center">
+      <div class="icons-24 close-icon top-right wh24 cursor trans-03" (click)="onClose()"></div>
+    </div>
+  </div>
+  <div
+    class="d-flex flex-column flex-1 gap24 p-4 ovf-y-auto"
+    *ngIf="data.from !== 'LEADERBOARD'; else forLeaderboardBlock"
+  >
+    <div class="d-flex flex-column gap16">
+      <div class="fs16 ft-primary-b grey900" i18n>Terms & conditions</div>
+      <div class="pd-bullet-list-content" [innerHTML]="knowMoreData" i18n></div>
+    </div>
+    <div class="d-flex flex-column gap16">
+      <p-panel
+        [toggleable]="true"
+        expandIcon="pi pi-chevron-down"
+        collapseIcon="pi pi-chevron-up"
+        styleClass="pd-accordion-panel"
+        [collapsed]="false"
+      >
+        <ng-template pTemplate="header" i18n>FAQ's</ng-template>
+        <ng-template pTemplate="content">
+          <p-accordion
+            [multiple]="true"
+            styleClass="pd-accordion faq-accordion"
+            expandIcon="pi pi-plus-circle"
+            collapseIcon="pi pi-minus-circle"
+          >
+            <p-accordionTab *ngFor="let faq of faqList">
+              <ng-template pTemplate="header" i18n>{{ faq.title }}</ng-template>
+              <ng-template pTemplate="content" i18n>
+                <div [innerHTML]="faq.answer"></div>
+              </ng-template>
+            </p-accordionTab>
+          </p-accordion>
+        </ng-template>
+      </p-panel>
+    </div>
+  </div>
+
+  <ng-template #forLeaderboardBlock>
+    <div class="d-flex flex-column flex-1 gap16 p-4 ovf-y-auto">
+      <div class="d-flex flex-column gap10">
+        <p class="fs14 ft-primary-md grey900 m-0" i18n>
+          Friends are precious, because they are your ticket to the world’s most premier Poker
+          tournament - WPT Prime India!
+        </p>
+        <p class="fs14 ft-primary-md grey900 m-0" i18n>
+          Join the path to victory, fame, and glory with nothing but a request from your friends.
+          With the all-new RAF 2.0 leaderboard, you can win a WPT Package worth ₹60,000* including
+          WPT Mini Main Event ticket, flight reimbursement, and a 3N/4D stay in Goa!
+        </p>
+        <p class="fs14 ft-primary-md grey900 m-0" i18n>
+          Hurry, the leaderboard ends on 31st March. Refer NOW!
+        </p>
+      </div>
+      <div class="d-flex flex-column gap16">
+        <p class="fs16 ft-primary-b grey900 m-0" i18n>How to win?</p>
+        <p class="fs14 ft-primary-md grey900 m-0" i18n>
+          Quite simple! Ask your referrals to keep playing on the cash tables to earn PGP (Poker
+          Game Points). The referrer with the highest number of points (earned from the referees’
+          PGPs) will win the WPT package. The runner-ups will be rewarded Instant Bonus as per the
+          prize structure below:
+        </p>
+        <table class="pd-table pd-table-bordered text-center grey900">
+          <thead class="ft-primary-b fs16">
+            <tr>
+              <th>Rank</th>
+              <th>Winner Prize</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody class="ft-primary-md fs14">
+            <tr>
+              <td>1</td>
+              <td>WPT Mini Ticket & Goa trip</td>
+              <td>Approx prize amount 60000</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>15000</td>
+              <td>IB</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>10000</td>
+              <td>IB</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>7500</td>
+              <td>IB</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>5000</td>
+              <td>IB</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>3000</td>
+              <td>IB</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>2500</td>
+              <td>IB</td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>1500</td>
+              <td>IB</td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>1000</td>
+              <td>IB</td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>500</td>
+              <td>IB</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="d-flex flex-column gap16">
+        <p class="fs16 ft-primary-b grey900 m-0" i18n>Leaderboard Terms & Conditions</p>
+        <ul class="pd-bullet-list d-flex flex-column gap8">
+          <li class="pd-bullet-list-item p-rel">
+            <p class="fs14 ft-primary-md grey900 m-0" i18n>
+              The leaderboard contest will run from 1st March - 31st March, 2023.
+            </p>
+          </li>
+          <li class="pd-bullet-list-item p-rel">
+            <p class="fs14 ft-primary-md grey900 m-0" i18n>
+              The referrers have to earn a minimum 20 Poker Game Points (PGPs) to enter in the RAF
+              2.0 leaderboard.
+            </p>
+          </li>
+          <li class="pd-bullet-list-item p-rel">
+            <p class="fs14 ft-primary-md grey900 m-0" i18n>
+              The winners will be decided on the basis of PGPs displayed in the monthly leaderboard.
+            </p>
+          </li>
+          <li class="pd-bullet-list-item p-rel">
+            <p class="fs14 ft-primary-md grey900 m-0" i18n>
+              The leaderboard topper will get the WPT Mini Main Event Ticket + Goa package
+              (including Hotel stay, returning flight, airport pick-up & drop) and the remaining (9)
+              leaderboard toppers will get instant bonus as reward.
+            </p>
+          </li>
+          <li class="pd-bullet-list-item p-rel">
+            <p class="fs14 ft-primary-md grey900 m-0" i18n>
+              Contest winners will be announced on the leaderboard at the end of the month.
+            </p>
+          </li>
+          <li class="pd-bullet-list-item p-rel">
+            <p class="fs14 ft-primary-md grey900 m-0" i18n>
+              The winners will have to connect with the adda52 support team by verifying their email
+              address and mobile number to claim the rewards.
+            </p>
+          </li>
+          <li class="pd-bullet-list-item p-rel">
+            <p class="fs14 ft-primary-md grey900 m-0" i18n>
+              Adda52 reserves the right to cancel/ modify/suspend the RAF 2.0 Leaderboard any time
+              at its sole discretion. Our decision is final on all matters relating to the awarding
+              of the bonus and shall not be subject to review or appeal by any entrant or any third
+              party.
+            </p>
+          </li>
+          <li class="pd-bullet-list-item p-rel">
+            <p class="fs14 ft-primary-md grey900 m-0" i18n>
+              Flight tickets up to ₹15000 are included in the package and the winner has to book
+              their flight on their own and later on, can claim for reimbursement for the same from
+              adda52.
+            </p>
+          </li>
+          <li class="pd-bullet-list-item p-rel">
+            <p class="fs14 ft-primary-md grey900 m-0" i18n>
+              Adda52 may ask you for a government approved identity proof to claim the offer. Only
+              the leaderboard winner (topper) can claim the WPT Mini Main Event ticket & the Goa
+              stay package and these rewards can’t be reimbursed or refunded under any
+              circumstances.
+            </p>
+          </li>
+          <li class="pd-bullet-list-item p-rel">
+            <p class="fs14 ft-primary-md grey900 m-0" i18n>
+              Adda52 reserves the right to cancel, postpone, change or suspend the Refer & Earn
+              offer at its sole discretion and at any time. Our decision is final on all matters
+              relating to the awarding of the bonus and shall not be subject to review or appeal by
+              an entrant or any third party. Adda52.com reserves the right to modify or end this
+              promotion at any time without giving any prior notice to players.
+            </p>
+          </li>
+          <li class="pd-bullet-list-item p-rel">
+            <p class="fs14 ft-primary-md grey900 m-0" i18n>
+              By entering into the Refer & Earn Program, each player unreservedly agrees to these
+              terms and conditions which govern the Program and the awarding of the bonus.
+            </p>
+          </li>
+          <li class="pd-bullet-list-item p-rel">
+            <p class="fs14 ft-primary-md grey900 m-0" i18n>
+              The leaderboard package cannot be converted into any other Adda52 currency, except the
+              one mentioned in the terms.
+            </p>
+          </li>
+          <li class="pd-bullet-list-item p-rel">
+            <p class="fs14 ft-primary-md grey900 m-0" i18n>If the referrer gets blocked due to some or any suspicious activities, he/she shall not be awarded from the leaderboard prizes.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </ng-template>
+</div>

@@ -1,0 +1,42 @@
+<div class="main-contain flex-row-start">
+  <app-side-banner></app-side-banner>
+  <div class="login-rhs-container flex-only-col gap16 wp100 p-4">
+    <div class="close-icon-img p-rel d-flex jst-end align-center wp100">
+      <div class="icons-24 close-icon-bg p-rel wh24 cursor trans-03" mat-dialog-close>
+        <span class="top-right opacity-0 trans-03"></span>
+      </div>
+    </div>
+    <div class="login-rhs-header flex-only-col gap24 wp100">
+      <div class="login-rhs-header-title flex-row gap4 m-0">
+        <div class="back-arrow p-rel wh24 cursor" mat-dialog-close>
+          <div class="icons-24 chevron-left top-left wh24"></div>
+        </div>
+        <div class="main-title fs20 ft-primary-b grey800" i18n>Multi Accounting</div>
+      </div>
+      <div class="suspended-image-body flex-center wp100">
+        <div class="suspended-img flex-center wh72 circle bg-pink000">
+          <div class="suspended-img-body p-rel flex-center wh36 ovf-hide">
+            <img
+              class="p-abs wp100 hp100 obj-con"
+              [src]="assetsImagePath + 'auth/suspended.svg'"
+              alt="suspended"
+              i18n
+              i18n-alt
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="wp100 flex-col-center gap8 bg-grey000 br16 border-1 border-solid border-grey200 py-5 px-4"
+      >
+        <h2 class="fs20 ft-primary-b primary-error m-0" i18n>Multi Accounting</h2>
+        <div class="fs14 ft-primary-b grey800 text-center lh-base" i18n>
+          <p class="m-0">
+            The limit for the number of registration from single device has been reached.
+          </p>
+          <p class="m-0">Please Login/Signup using another device.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

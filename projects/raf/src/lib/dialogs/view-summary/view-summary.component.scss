@@ -1,0 +1,31 @@
+@import '../../../../../../src/assets/abstract/core';
+@import '../../../assets/styles/shared';
+
+.cash-icon {
+  background-image: url('../../../assets/images/cash-icon.svg');
+}
+
+.ticket-icon {
+  background-image: url('../../../assets/images/ticket-icon.svg');
+}
+
+.circle-wavy-icon {
+  background-image: url('../../../assets/images/circle-wavy.svg');
+}
+
+.gift-icon {
+  background-image: url('../../../assets/images/gift-icon.svg');
+}
+
+.crown-icon {
+  background-image: url('../../../assets/images/crown-icon.svg');
+}
+
+.ticket-chip {
+  background-image: url('../../../assets/images/ticket-chip.svg');
+}
+
+.payout-item{
+  border-width: 0;
+  border-bottom-width: 0.5px;
+}

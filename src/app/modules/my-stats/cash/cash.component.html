@@ -1,0 +1,180 @@
+<div class="main-container">
+  <div class="sub-tab-container">
+    <ul class="sub-header nav">
+      <li class="nav-item" i18n>All</li>
+      <li class="nav-item" i18n>Hold’em</li>
+      <li class="nav-item" i18n>PL Omaha</li>
+      <li class="nav-item" i18n>Omaha Hi Lo</li>
+      <li class="nav-item" i18n>Hold’em ++</li>
+      <li class="nav-item" i18n>5 Card PLO</li>
+    </ul>
+  </div>
+
+  <div class="body-container">
+    <div class="chart-small">
+      <div class="chart-box"></div>
+    </div>
+    <div class="chart-small">
+      <div class="chart-box"></div>
+    </div>
+    <div class="chart-small">
+      <div class="chart-box"></div>
+    </div>
+    <div class="chart-small">
+      <div class="chart-box"></div>
+    </div>
+    <div class="chart-small">
+      <div class="chart-box"></div>
+    </div>
+    <div class="chart-small">
+      <div class="chart-box"></div>
+    </div>
+    <div class="chart-small">
+      <div class="chart-box"></div>
+    </div>
+    <div class="chart-small">
+      <div class="chart-box"></div>
+    </div>
+    <div class="chart-small">
+      <div class="chart-box"></div>
+    </div>
+    <div class="chart-small">
+      <div class="chart-box"></div>
+    </div>
+  </div>
+  <div class="add-container">
+    <div class="left-add-banner">
+      <div class="add-img-container">
+        <img src="../../../../assets/images/my-stats/table_img.png" alt="table" i18n i18n-alt />
+      </div>
+
+      <div class="persons-container">
+        <div class="user-chip align-left">
+          <div class="name-chip" i18n>O</div>
+          <div class="add-text">
+            <div class="add-percentage" i18n>7(43%)</div>
+            <div class="add-discription" i18n>others</div>
+          </div>
+        </div>
+        <div class="user-chip align-right">
+          <div class="name-chip" i18n>O</div>
+          <div class="add-text">
+            <div class="add-percentage" i18n>7(43%)</div>
+            <div class="add-discription" i18n>others</div>
+          </div>
+        </div>
+      </div>
+      <div class="persons-container">
+        <div class="user-chip align-left align-bottom">
+          <div class="name-chip" i18n>O</div>
+          <div class="add-text">
+            <div class="add-percentage" i18n>7(43%)</div>
+            <div class="add-discription" i18n>others</div>
+          </div>
+        </div>
+        <div class="user-chip align-right align-bottom">
+          <div class="name-chip" i18n>O</div>
+          <div class="add-text">
+            <div class="add-percentage" i18n>7(43%)</div>
+            <div class="add-discription" i18n>others</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-container">
+        <div class="card">
+          <img [src]="assetsImagePath + '/my-stats/card.png'" alt="card" i18n i18n-alt />
+        </div>
+        <div class="card">
+          <img [src]="assetsImagePath + '/my-stats/card.png'" alt="card" i18n i18n-alt />
+        </div>
+        <div class="card">
+          <img [src]="assetsImagePath + '/my-stats/card.png'" alt="card" i18n i18n-alt />
+        </div>
+      </div>
+      <div class="suggestion-text">
+        <div class="suggestion-text-header" i18n>Flops Seen</div>
+        <div class="suggestion-text-points" i18n>44</div>
+      </div>
+    </div>
+    <div class="right-add-banner">
+      <div class="add-timer-header" i18n>Total Play Time</div>
+      <div class="add-timer-text" i18n>14d : 24h : 13m</div>
+      <div class="add-timer-btn">
+        <button class="add-btn" i18n>Longest Session 12h : 35m</button>
+      </div>
+
+      <div class="cards-img-container">
+        <img [src]="assetsImagePath + '/my-stats/cards.png'" alt="cards" i18n i18n-alt />
+      </div>
+
+      <div class="shadow1">
+        <img
+          style="height: 190px"
+          [src]="assetsImagePath + '/my-stats/shadow-circle.png'"
+          alt="shadow-circle"
+          i18n
+          i18n-alt
+        />
+      </div>
+      <div class="shadow2">
+        <img
+          style="height: 160px"
+          [src]="assetsImagePath + '/my-stats/shadow-circle.png'"
+          alt="shadow-circle"
+          i18n
+          i18n-alt
+        />
+      </div>
+    </div>
+  </div>
+  <div class="money-bag-container">
+    <div class="mony-bag-img">
+      <img
+        [src]="assetsImagePath + '/my-stats/money-bag-dynamic-color.png'"
+        alt="money-bag-dynamic-color"
+        i18n
+        i18n-alt
+      />
+    </div>
+    <div>
+      <div class="money-bag-num" i18n>₹ 12,000</div>
+      <div class="money-bag-text" i18n>Biggest Pot Won</div>
+    </div>
+  </div>
+  <div class="side-container">
+    <div class="chart1">
+      <mat-progress-spinner
+        class="example-margin"
+        [color]="getColor(50)"
+        [mode]="'determinate'"
+        [value]="value"
+        [diameter]="360"
+        strokeWidth="20"
+      >
+      </mat-progress-spinner>
+    </div>
+    <div class="chart2">
+      <mat-progress-spinner
+        class="example-margin"
+        [color]="getColor(50)"
+        [mode]="'determinate'"
+        [value]="value"
+        [diameter]="311"
+        strokeWidth="20"
+      >
+      </mat-progress-spinner>
+    </div>
+    <div class="chart3">
+      <mat-progress-spinner
+        class="example-margin"
+        [color]="getColor(50)"
+        [mode]="'determinate'"
+        [value]="value"
+        [diameter]="260"
+        strokeWidth="20"
+      >
+      </mat-progress-spinner>
+    </div>
+  </div>
+</div>

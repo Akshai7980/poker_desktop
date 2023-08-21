@@ -1,0 +1,114 @@
+<div class="main-contain flex-row-start">
+  <app-side-banner></app-side-banner>
+  <div class="login-rhs-container flex-only-col gap16 wp100 p-4">
+    <div class="close-icon-img p-rel d-flex jst-end align-center wp100">
+      <div class="icons-24 close-icon-bg p-rel wh24 cursor trans-03" (click)="onClose()">
+        <span class="top-right opacity-0 trans-03"></span>
+      </div>
+    </div>
+    <div
+      class="login-rhs-header flex-only-col gap24 wp100"
+      *ngIf="isAccountTemparyBlocked; else isAccountTemparyBlockedShow"
+    >
+      <div class="login-rhs-header-title flex-row gap10" i18n>
+        <div class="back-arrow p-rel wh20 cursor" (click)="onBackArrowSelect()">
+          <div class="icons-24 chevron-left wh24"></div>
+        </div>
+        <div class="text fs20 ft-primary-b grey800 text-capital"></div>
+        Account Suspended
+      </div>
+      <div class="suspended-image-body flex-center wp100">
+        <div class="suspended-img flex-center wh72 circle bg-pink000">
+          <div class="suspended-img-body p-rel flex-center wh36 ovf-hide">
+            <img
+              class="p-abs wp100 hp100 obj-con"
+              [src]="assetsImagePath + 'auth/suspended.svg'"
+              alt="suspended"
+              i18n
+              i18n-alt
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="suspended-blocked-container wp100 flex-col-center gap8 bg-grey000 p-5 border-1 border-solid border-grey200 br16"
+      >
+        <div class="fs20 ft-primary-b primary-error" i18n>Account Suspended</div>
+        <div class="fs14 ft-primary-b grey800" i18n>
+          Your account has been temporarily suspended!
+        </div>
+      </div>
+      <div class="contact-info fs14 ft-primary-b grey900 wp100" i18n>
+        Please contact us at
+        <a href="tel:1800-572-0611" class="fs14 ft-primary-b grad-red-text cursor">1800-572-0611</a>
+        for more information
+      </div>
+    </div>
+    <ng-template #isAccountTemparyBlockedShow>
+      <div class="login-rhs-header p-rel flex-col-start gap24 wp100">
+        <div class="login-rhs-header-title d-flex align-center gap10">
+          <div class="back-icon p-rel wh24 ovf-hide cursor" (click)="onBackArrowSelect()">
+            <img
+              class="p-abs wp100 hp100 obj-con"
+              [src]="assetsImagePath + 'auth/chevron-left.svg'"
+              alt="left"
+              i18n
+              i18n-alt
+            />
+          </div>
+          <div class="title-text fs20 ft-primary-b text-capital grey800">Account Blocked</div>
+        </div>
+        <div class="suspended-image-body flex-center wp100">
+          <div class="suspended-img flex-center wh72 circle bg-pink000">
+            <div class="suspended-img-body p-rel flex-center wh36 ovf-hide">
+              <img
+                class="p-abs wp100 hp100 obj-con"
+                [src]="assetsImagePath + 'auth/suspended.svg'"
+                alt="suspended"
+                i18n
+                i18n-alt
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="suspended-blocked-container wp100 flex-col-center gap8 bg-grey000 p-5 border-1 border-solid border-grey200 br16"
+        >
+          <div class="fs20 ft-primary-b primary-error" i18n>Account Blocked</div>
+          <div class="fs14 ft-primary-b grey800" i18n>Your account has been blocked!</div>
+        </div>
+        <div class="contact-info fs14 ft-primary-b grey900 wp100" i18n>
+          Please contact us at
+          <a href="tel:1800-572-0611" class="fs14 ft-primary-b grad-red-text cursor"
+            >1800-572-0611</a
+          >
+          for more information
+        </div>
+        <div
+          class="raise-alert-text flex-center fs14 ft-primary-b green500 wp100"
+          *ngIf="disputeRaised"
+          i18n
+        >
+          Dispute has already been raised.
+        </div>
+        <div class="btn-container">
+          <button
+            type="button"
+            mat-button
+            class="btn btn-primary"
+            (click)="raiseDispute()"
+            *ngIf="!disputeRaised"
+            id="accountblocked-raisedispute-btn"
+            trackEvents
+            i18n
+          >
+            Raise Dispute
+          </button>
+        </div>
+        <div class="login-toaster" *ngIf="isShowToast">
+          <app-toast [toastValue]="toastValue" [(isShowToast)]="isShowToast"></app-toast>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>

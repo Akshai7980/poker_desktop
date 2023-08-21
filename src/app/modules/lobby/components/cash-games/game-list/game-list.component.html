@@ -1,0 +1,365 @@
+<div
+  class="game-list-container d-flex flex-col align-start gap8 wp100 ovf-y-scroll pr-1"
+  *ngIf="cashGamesList?.length"
+>
+  <table
+    class="table d-flex flex-col wp100 gap10"
+    *ngIf="!isFavoriteSelected"
+    aria-label="Favorite Table"
+    i18n-aria-label
+  >
+    <thead>
+      <tr class="table1-header d-flex jst-space align-center p-2 wp100 bg-grey100 br8">
+        <th class="table-header-text d-flex align-center p-2 gap4" i18n>
+          <div class="sorting-text fs12 ft-primary-b text-uppercase cursor grey600">Name</div>
+          <div class="sorting-icon d-flex jst-center align-center p-rel wh12 ovf-hide cursor">
+            <div
+              class="sort-icon sort-up top-right p-rel wh12"
+              (click)="sortByRingVariant('remarks', 'string')"
+              *ngIf="!remarksAscend; else remarksElse"
+            ></div>
+            <ng-template #remarksElse>
+              <div
+                class="sort-icon top-right wh12"
+                (click)="sortByRingVariant('remarks', 'string')"
+              ></div>
+            </ng-template>
+          </div>
+        </th>
+        <th class="table-header-text d-flex align-center p-2 gap4" i18n>
+          <div class="sorting-text fs12 ft-primary-b text-uppercase cursor grey600">Blinds</div>
+          <div class="sorting-icon d-flex jst-center align-center p-rel wh12 ovf-hide cursor">
+            <div
+              class="sort-icon sort-up top-right p-rel wh12"
+              (click)="sortByRingVariant('blinds', 'string')"
+              *ngIf="!blindsAscend; else blindsElse"
+            ></div>
+            <ng-template #blindsElse>
+              <div
+                class="sort-icon top-right wh12"
+                (click)="sortByRingVariant('blinds', 'string')"
+              ></div>
+            </ng-template>
+          </div>
+        </th>
+        <th class="table-header-text d-flex align-center p-2 gap4" i18n>
+          <div class="sorting-text fs12 ft-primary-b text-uppercase cursor grey600">Min Buy-IN</div>
+          <div class="sorting-icon d-flex jst-center align-center p-rel wh12 ovf-hide cursor">
+            <div
+              class="sort-icon sort-up top-right p-rel wh12"
+              (click)="sortByRingVariant('minBuyIn', 'number')"
+              *ngIf="!minBuyInAscend; else minBuyInElse"
+            ></div>
+            <ng-template #minBuyInElse>
+              <div
+                class="sort-icon top-right wh12"
+                (click)="sortByRingVariant('minBuyIn', 'number')"
+              ></div>
+            </ng-template>
+          </div>
+        </th>
+        <th class="table-header-text d-flex align-center p-2 gap4" i18n>
+          <div class="sorting-text fs12 ft-primary-b text-uppercase cursor grey600">Players</div>
+          <div class="sorting-icon d-flex jst-center align-center p-rel wh12 ovf-hide cursor">
+            <div
+              class="sort-icon sort-up top-right p-rel wh12"
+              (click)="sortByRingVariant('userCount', 'number')"
+              *ngIf="!userCountAscend; else userCountElse"
+            ></div>
+            <ng-template #userCountElse>
+              <div
+                class="sort-icon top-right wh12"
+                (click)="sortByRingVariant('userCount', 'number')"
+              ></div>
+            </ng-template>
+          </div>
+        </th>
+        <th class="table-header-text d-flex align-center p-2 gap4" i18n>
+          <div class="sorting-text fs12 ft-primary-b text-uppercase cursor grey600">Tables</div>
+          <div class="sorting-icon d-flex jst-center align-center p-rel wh12 ovf-hide cursor">
+            <div
+              class="sort-icon sort-up top-right p-rel wh12"
+              (click)="sortByRingVariant('tableCount', 'number')"
+              *ngIf="!tableCountAscend; else tableCountElse"
+            ></div>
+            <ng-template #tableCountElse>
+              <div
+                class="sort-icon top-right wh12"
+                (click)="sortByRingVariant('tableCount', 'number')"
+              ></div>
+            </ng-template>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody class="d-flex flex-col br8" *ngIf="isRecommendedAvailable">
+      <tr class="recommendations d-flex align-center wp100 p-2 bg-orange000">
+        <td colspan="5" class="recommendation-text fs12 ft-primary-b orange900 text-capital" i18n>
+          Recommended For You
+        </td>
+      </tr>
+      <ng-container class="table1-data-container wp100" *ngFor="let game of cashGamesList">
+        <tr
+          class="table1-data d-flex jst-space align-center wp100 bg-light cursor trans-03"
+          *ngIf="game.isRecommended"
+          [ngClass]="game.isSelected ? 'table-data-clicked' : 'table1-data'"
+          (click)="showGameTables(game, 'cashGamesList')"
+        >
+          <td class="table-data-text p-2 d-flex flex-col gap4">
+            <div class="data-icon d-flex align-center gap4">
+              <div
+                class="fav-star-icon wh16 cursor trans-03 tool-tip bottom star-bottom"
+                [ngClass]="game.isFavorite ? 'star-fill' : 'star-icon'"
+                (click)="toggleFavorite(game.id, game.isFavorite)"
+                *ngIf="isShowFavIcon"
+              >
+                <span class="tooltip-inner-text" *ngIf="game.isFavorite">Unmark as favourite</span>
+                <span class="tooltip-inner-text" *ngIf="!game.isFavorite">Mark as favourite</span>
+              </div>
+
+              <div class="data-text fs14 ft-primary-md grey900 text-nowrap text-ellipsis ovf-hide">
+                {{ game.remarks }}
+              </div>
+            </div>
+            <div
+              *ngIf="game.isRP"
+              class="recently-played d-flex jst-center align-center px-2 gap4 bg-green000 br20 text-capital fs10 ft-primary-sb primary-success"
+              i18n
+            >
+              recently played
+            </div>
+          </td>
+          <td class="table-data-text p-2 d-flex align-center fs14 ft-primary-sb grey900">
+            {{ game.blinds }}
+          </td>
+          <td class="table-data-text p-2 d-flex align-center gap4 fs14 ft-primary-sb grey900">
+            <span class="fs14 ft-primary-b grey900">₹</span>
+            {{ game.minBuyIn | number : '1.0-2' }}
+          </td>
+          <td class="table-data-text p-2 d-flex align-center gap4">
+            <div class="users-icon p-rel ovf-hide">
+              <img
+                class="p-abs wp100 hp100 obj-con"
+                [src]="assetsImagePath + 'lobby/users.svg'"
+                alt="users-icon"
+                i18n
+                i18n-alt
+              />
+            </div>
+            <div class="users-count d-flex align-center fs14 ft-primary-sb grey900">
+              {{ game.userCount }}
+            </div>
+          </td>
+          <td class="table-data-text p-2 d-flex align-center fs14 ft-primary-sb grey900">
+            {{ game.tableCount }}
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+    <tbody class="d-flex flex-col br8">
+      <tr
+        class="recommendations d-flex align-center wp100 p-2 bg-orange000"
+        *ngIf="cashGamesList.length"
+      >
+        <td colspan="5" class="recommendation-text fs12 ft-primary-b orange900 text-capital" i18n>
+          All Rooms
+        </td>
+      </tr>
+      <ng-container class="table1-data-container wp100" *ngFor="let game of cashGamesList">
+        <tr
+          class="table1-data p-rel d-flex jst-space align-center wp100 bg-light cursor trans-03"
+          *ngIf="!game.isRecommended"
+          [ngClass]="game.isSelected ? 'table-data-clicked' : 'table1-data'"
+          (click)="showGameTables(game, 'cashGamesList')"
+        >
+          <td class="table-data-text p-2">
+            <div class="data-icon d-flex align-center gap4">
+              <div
+                class="fav-star-icon wh16 cursor trans-03 tool-tip bottom star-bottom"
+                [ngClass]="game.isFavorite ? 'star-fill' : 'star-icon'"
+                (click)="toggleFavorite(game.id, game.isFavorite)"
+                *ngIf="isShowFavIcon"
+              >
+                <span class="tooltip-inner-text" *ngIf="game.isFavorite">Unmark as favourite</span>
+                <span class="tooltip-inner-text" *ngIf="!game.isFavorite">Mark as favourite</span>
+              </div>
+              <div class="data-text fs14 ft-primary-md grey900 text-nowrap text-ellipsis ovf-hide">
+                {{ game.remarks }}
+              </div>
+            </div>
+          </td>
+          <td class="table-data-text p-2 fs14 ft-primary-sb grey900">
+            {{ game.blinds }}
+          </td>
+          <td class="table-data-text p-2 d-flex align-center gap4 fs14 ft-primary-sb grey900">
+            <span class="fs14 ft-primary-b grey900">₹</span>
+            {{ game.minBuyIn }}
+          </td>
+          <td class="table-data-text p-2 d-flex align-center gap4">
+            <div class="users-icon p-rel ovf-hide">
+              <img
+                class="p-abs wp100 hp100 obj-con"
+                [src]="assetsImagePath + 'lobby/users.svg'"
+                alt="users-icon"
+                i18n
+                i18n-alt
+              />
+            </div>
+            <div class="users-count fs14 ft-primary-sb grey900" i18n>
+              {{ game.userCount }}
+            </div>
+          </td>
+          <td class="table-data-text p-2 fs14 ft-primary-sb grey900">
+            {{ game.tableCount }}
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+  <table
+    *ngIf="isFavoriteSelected && fav.length > 0"
+    class="table d-flex flex-col wp100 gap10"
+    aria-label="Favorite Table"
+    i18n-aria-label
+  >
+    <thead>
+      <tr class="table1-header d-flex jst-space align-center p-2 wp100 bg-grey100 grey600 br8">
+        <th class="table-header-text d-flex align-center p-2 gap4" i18n>
+          <div class="sorting-text fs12 ft-primary-b text-uppercase cursor grey600">Name</div>
+          <div class="sorting-icon d-flex jst-center align-center p-rel wh12 ovf-hide cursor">
+            <div
+              class="sort-icon sort-up top-right p-rel wh12"
+              (click)="sortByRingVariant('remarks', 'string')"
+              *ngIf="!remarksAscend; else remarksElse"
+            ></div>
+            <ng-template #remarksElse>
+              <div
+                class="sort-icon top-right wh12"
+                (click)="sortByRingVariant('remarks', 'string')"
+              ></div>
+            </ng-template>
+          </div>
+        </th>
+        <th class="table-header-text d-flex align-center p-2 gap4" i18n>
+          <div class="sorting-text fs12 ft-primary-b text-uppercase cursor grey600">Blinds</div>
+          <div class="sorting-icon d-flex jst-center align-center p-rel wh12 ovf-hide cursor">
+            <div
+              class="sort-icon sort-up top-right p-rel wh12"
+              (click)="sortByRingVariant('blinds', 'string')"
+              *ngIf="!blindsAscend; else blindsElse"
+            ></div>
+            <ng-template #blindsElse>
+              <div
+                class="sort-icon top-right wh12"
+                (click)="sortByRingVariant('blinds', 'string')"
+              ></div>
+            </ng-template>
+          </div>
+        </th>
+        <th class="table-header-text d-flex align-center p-2 gap4" i18n>
+          <div class="sorting-text fs12 ft-primary-b text-uppercase cursor grey600">Min Buy-IN</div>
+          <div class="sorting-icon d-flex jst-center align-center p-rel wh12 ovf-hide cursor">
+            <div
+              class="sort-icon sort-up top-right p-rel wh12"
+              (click)="sortByRingVariant('minBuyIn', 'number')"
+              *ngIf="!minBuyInAscend; else minBuyInElse"
+            ></div>
+            <ng-template #minBuyInElse>
+              <div
+                class="sort-icon top-right wh12"
+                (click)="sortByRingVariant('minBuyIn', 'number')"
+              ></div>
+            </ng-template>
+          </div>
+        </th>
+        <th class="table-header-text d-flex align-center p-2 gap4" i18n>
+          <div class="sorting-text fs12 ft-primary-b text-uppercase cursor grey600">Players</div>
+          <div class="sorting-icon d-flex jst-center align-center p-rel wh12 ovf-hide cursor">
+            <div
+              class="sort-icon sort-up top-right p-rel wh12"
+              (click)="sortByRingVariant('userCount', 'number')"
+              *ngIf="!userCountAscend; else userCountElse"
+            ></div>
+            <ng-template #userCountElse>
+              <div
+                class="sort-icon top-right wh12"
+                (click)="sortByRingVariant('userCount', 'number')"
+              ></div>
+            </ng-template>
+          </div>
+        </th>
+        <th class="table-header-text d-flex align-center p-2 gap4" i18n>
+          <div class="sorting-text fs12 ft-primary-b text-uppercase cursor grey600">Tables</div>
+          <div class="sorting-icon d-flex jst-center align-center p-rel wh12 ovf-hide cursor">
+            <div
+              class="sort-icon sort-up top-right p-rel wh12"
+              (click)="sortByRingVariant('tableCount', 'number')"
+              *ngIf="!tableCountAscend; else tableCountElse"
+            ></div>
+            <ng-template #tableCountElse>
+              <div
+                class="sort-icon top-right wh12"
+                (click)="sortByRingVariant('tableCount', 'number')"
+              ></div>
+            </ng-template>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody class="d-flex flex-col br8 border-1 border-solid border-grey200">
+      <tr class="recommendations d-flex align-center wp100 p-2 bg-orange000">
+        <td colspan="5" class="recommendation-text fs12 ft-primary-b orange900 text-capital" i18n>
+          Favorite Rooms
+        </td>
+      </tr>
+      <ng-container class="table1-data-container wp100">
+        <tr
+          class="table1-data d-flex jst-space align-center wp100 bg-light cursor trans-03"
+          *ngFor="let game of fav"
+          [ngClass]="game.isSelected ? 'table-data-clicked' : 'table1-data'"
+          (click)="showGameTables(game, 'fav')"
+        >
+          <td class="table-data-text p-2" i18n>
+            <div class="data-icon d-flex align-center gap4">
+              <div
+                class="fav-star-icon wh16 cursor trans-03 tool-tip bottom star-bottom"
+                [ngClass]="game.isFavorite ? 'star-fill' : 'star-icon'"
+                (click)="toggleFavorite(game.id, game.isFavorite)"
+              >
+                <span class="tooltip-inner-text" *ngIf="game.isFavorite">Unmark as favourite</span>
+                <span class="tooltip-inner-text" *ngIf="!game.isFavorite">Mark as favourite</span>
+              </div>
+              <div class="data-text fs14 ft-primary-md grey900 text-nowrap text-ellipsis ovf-hide">
+                {{ game.remarks }}
+              </div>
+            </div>
+          </td>
+          <td class="table-data-text p-2 fs14 ft-primary-sb grey900">
+            {{ game.blinds }}
+          </td>
+          <td class="table-data-text p-2 d-flex align-center gap4 fs14 ft-primary-sb grey900">
+            <span class="fs14 ft-primary-b grey900">₹</span>
+            {{ game.minBuyIn }}
+          </td>
+          <td class="table-data-text p-2 d-flex align-center gap4">
+            <div class="users-icon p-rel ovf-hide">
+              <img
+                class="p-abs wp100 hp100 obj-con"
+                [src]="assetsImagePath + 'lobby/users.svg'"
+                alt="users-icon"
+                i18n
+                i18n-alt
+              />
+            </div>
+            <div class="users-count fs14 ft-primary-sb grey900" i18n>
+              {{ game.userCount }}
+            </div>
+          </td>
+          <td class="table-data-text p-2 fs14 ft-primary-sb grey900">
+            {{ game.tableCount }}
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>

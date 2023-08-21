@@ -1,0 +1,213 @@
+<div class="p-rel d-flex flex-column gap16 ovf-y-auto">
+  <div class="card card-settings bg-grey000 border-1 border-solid border-grey100 br16">
+    <div class="card-header d-flex align-center bg-grey100 gap8 px-3 py-4">
+      <mat-checkbox
+        class="checkbox"
+        id="checkAutoBuyIn"
+        [(ngModel)]="isAutoBuyInFlag"
+        value="20"
+        (change)="autoBuyInInput()"
+      ></mat-checkbox>
+      <p class="ft-primary-b fs14 lh-normal grey800 m-0" i18n>Auto Buy-In</p>
+    </div>
+    <div class="card-body d-flex px-7 py-2">
+      <div class="d-flex align-center gap8 px-2 py-1">
+        <input
+          appInputNumberOnly
+          trackEvents
+          autocompleteOff
+          id="byinpreferences-autobyinbigblinds-input"
+          [readonly]="!isAutoBuyInFlag"
+          [(ngModel)]="autoBuyInValue"
+          type="text"
+          placeholder="Enter"
+          class="form-input w72 h40 ft-primary-b fs14 lh-sm py-2 br12"
+          (blur)="defaultAutoBuyInValue()"
+          (input)="preventText($event)"
+          (ngModelChange)="onSettingsChange('fromBuyinpref')"
+          maxlength="3"
+          [ngClass]="{ disabled: !isAutoBuyInFlag }"
+          i18n-placeholder
+        />
+        <span class="ft-primary-md fs14 lh-normal grey400" i18n>Big Blinds</span>
+      </div>
+    </div>
+  </div>
+  <div
+    class="card card-settings d-flex flex-column flex-1 bg-grey000 border-1 border-solid border-grey100 br16 ovf-y-auto"
+  >
+    <div class="card-header d-flex align-center bg-grey100 gap8 px-3 py-4">
+      <mat-checkbox
+        class="checkbox"
+        [(ngModel)]="isAutoRebuyFlag"
+        (change)="autoReBuyInInput()"
+      ></mat-checkbox>
+      <p class="ft-primary-b fs14 lh-normal grey800 m-0" i18n>Auto Top Up</p>
+    </div>
+    <div class="card-body d-flex flex-column flex-1 gap4 px-7 py-2 ovf-y-auto">
+      <div class="d-flex flex-column gap8 px-2 py-2" [ngClass]="{ disabled: !isAutoRebuyFlag }">
+        <p class="ft-primary-b fs14 lh-normal grey800 mt-0 mb-2" i18n>Auto Top Up When</p>
+        <div class="d-flex flex-column">
+          <div class="py-3">
+            <div class="p-field-radiobutton">
+              <p-radioButton
+                value="OutofChips"
+                inputId="Out Of Chips"
+                value="0"
+                [(ngModel)]="autoRebuyFlag"
+                (click)="clearRebuyInput()"
+              ></p-radioButton>
+              <label class="ft-primary-md fs14 lh-normal grey800" for="Out Of Chips" i18n
+                >Out of Chips</label
+              >
+            </div>
+          </div>
+          <div class="py-3">
+            <div class="p-field-radiobutton">
+              <p-radioButton
+                value="lessThenBB"
+                inputId="less Then BB"
+                value="1"
+                [(ngModel)]="autoRebuyFlag"
+                (click)="defaultRebuyInput()"
+              ></p-radioButton>
+              <label class="ft-primary-md fs14 lh-normal grey800" for="less Then BB"
+                >Less than</label
+              >
+              <input
+                appInputNumberOnly
+                trackEvents
+                id="byinpreferences-autotopupbigblinds-input"
+                type="text"
+                value="23"
+                placeholder="Enter"
+                class="form-input w72 h40 ft-primary-b fs14 lh-sm py-2 br12"
+                [ngClass]="{ disabled: autoRebuyFlag !== '1' }"
+                [readonly]="!isAutoRebuyFlag || autoRebuyFlag !== '1'"
+                type="text"
+                [(ngModel)]="autoRebuyValue"
+                (blur)="defaultAutoRebuyValue()"
+                (input)="preventText($event)"
+                (input)="onSettingsChange('fromBuyinpref')"
+                maxlength="3"
+                autocompleteOff
+              />
+              <span class="ft-primary-md fs14 lh-normal grey800" i18n>Big Blinds</span>
+            </div>
+          </div>
+          <div class="py-3">
+            <div class="p-field-radiobutton">
+              <p-radioButton
+                value="lessThenIntialAmount"
+                value="2"
+                [(ngModel)]="autoRebuyFlag"
+                (click)="clearRebuyInput()"
+                inputId="Less than initial buy-in amount"
+              ></p-radioButton>
+              <label
+                class="ft-primary-md fs14 lh-normal grey800"
+                for="Less than initial buy-in amount"
+                i18n
+                >Less than initial buy-in amount</label
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex flex-column gap8 px-2 py-2" [ngClass]="{ disabled: !isAutoRebuyFlag }">
+        <p class="ft-primary-b fs14 lh-normal grey800 mt-0 mb-2" i18n>Add Chips to</p>
+        <div class="d-flex flex-column">
+          <div class="py-3">
+            <div class="p-field-radiobutton">
+              <p-radioButton
+                value="tableMinimum"
+                value="0"
+                [(ngModel)]="addChipsFlag"
+                (click)="clearAddChipsInput()"
+                inputId="Table Minimum"
+              ></p-radioButton>
+              <label class="ft-primary-md fs14 lh-normal grey800" for="Table Minimum" i18n
+                >Table Minimum</label
+              >
+            </div>
+          </div>
+          <div class="py-3">
+            <div class="p-field-radiobutton">
+              <p-radioButton
+                value="tableMaximum"
+                value="1"
+                [(ngModel)]="addChipsFlag"
+                (click)="clearAddChipsInput()"
+                inputId="Table Maximum"
+              ></p-radioButton>
+              <label class="ft-primary-md fs14 lh-normal grey800" for="Table Maximum" i18n
+                >Table Maximum</label
+              >
+            </div>
+          </div>
+          <div class="py-3">
+            <div class="p-field-radiobutton">
+              <p-radioButton
+                value="intialByInAmount"
+                value="2"
+                [(ngModel)]="addChipsFlag"
+                (click)="clearAddChipsInput()"
+                inputId="Initial buy-in amount"
+              ></p-radioButton>
+              <label class="ft-primary-md fs14 lh-normal grey800" for="Initial buy-in amount" i18n
+                >Initial buy-in amount</label
+              >
+            </div>
+          </div>
+          <div class="py-3">
+            <div class="p-field-radiobutton">
+              <p-radioButton
+                value="addChipsBB"
+                value="3"
+                [(ngModel)]="addChipsFlag"
+                (click)="defaultAddChipsInput()"
+                inputId="addChipsBB"
+              ></p-radioButton>
+              <label for="addChipsBB">
+                <input
+                  appInputNumberOnly
+                  trackEvents
+                  id="byinpreferences-addchipstobigblinds-input"
+                  type="text"
+                  value="13"
+                  placeholder="Enter"
+                  [ngClass]="{ disabled: addChipsFlag !== '3' }"
+                  [readonly]="!isAutoRebuyFlag || addChipsFlag !== '3'"
+                  type="text"
+                  [(ngModel)]="addChipsValue"
+                  (blur)="defaultAddChipsValue()"
+                  (input)="preventText($event)"
+                  (input)="onSettingsChange('fromBuyinpref')"
+                  maxlength="3"
+                  class="form-input w72 h40 ft-primary-b fs14 lh-sm py-2 br12"
+                  autocompleteOff
+                />
+              </label>
+              <span class="ft-primary-md fs14 lh-normal grey800" i18n>Big Blinds</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex jst-end">
+    <button
+      trackEvents
+      id="byinpreferences-apply-btn"
+      type="submit"
+      class="btn btn-primary"
+      (click)="changeBuyInPreferences(); onSave()"
+      [disabled]="isDisableBtn"
+    >
+      <span i18n>Apply</span>
+    </button>
+  </div>
+  <div class="mb-4" *ngIf="isShowToast">
+    <app-toast [(isShowToast)]="isShowToast" [toastValue]="toastValue"></app-toast>
+  </div>
+</div>

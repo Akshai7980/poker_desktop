@@ -1,0 +1,201 @@
+@import '../abstract/core';
+
+// Common Backgound Properties
+
+%avatar-bg-properties {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: $bg-light;
+  border-radius: $br16;
+}
+
+// Common Avatar Values for Aavatar Selection
+%avatar-values {
+  &.avatar1 {
+    background-position: 0 0;
+  }
+
+  &.avatar2 {
+    background-position: 2.5% 100%;
+  }
+
+  &.avatar3 {
+    background-position: 5.1% 100%;
+  }
+
+  &.avatar4 {
+    background-position: 7.7% 100%;
+  }
+
+  &.avatar5 {
+    background-position: 10.3% 100%;
+  }
+
+  &.avatar6 {
+    background-position: 12.8% 100%;
+  }
+
+  &.avatar7 {
+    background-position: 15.4% 100%;
+  }
+
+  &.avatar8 {
+    background-position: 17.9% 100%;
+  }
+
+  &.avatar9 {
+    background-position: 20.5% 100%;
+  }
+
+  &.avatar10 {
+    background-position: 23% 100%;
+  }
+
+  &.avatar11 {
+    background-position: 25.6% 100%;
+  }
+
+  &.avatar12 {
+    background-position: 28.2% 100%;
+  }
+
+  &.avatar13 {
+    background-position: 30.8% 100%;
+  }
+
+  &.avatar14 {
+    background-position: 33.3% 100%;
+  }
+
+  &.avatar15 {
+    background-position: 35.9% 100%;
+  }
+
+  &.avatar16 {
+    background-position: 38.4% 100%;
+  }
+
+  &.avatar17 {
+    background-position: 41% 100%;
+  }
+
+  &.avatar18 {
+    background-position: 43.5% 100%;
+  }
+
+  &.avatar19 {
+    background-position: 46.1% 100%;
+  }
+
+  &.avatar20 {
+    background-position: 48.7% 100%;
+  }
+
+  &.avatar21 {
+    background-position: 51.3% 100%;
+  }
+
+  &.avatar22 {
+    background-position: 53.8% 100%;
+  }
+
+  &.avatar23 {
+    background-position: 56.4% 100%;
+  }
+
+  &.avatar24 {
+    background-position: 59% 100%;
+  }
+
+  &.avatar25 {
+    background-position: 61.5% 100%;
+  }
+
+  &.avatar26 {
+    background-position: 64.1% 100%;
+  }
+
+  &.no-transition {
+    transition: unset;
+  }
+}
+
+.avatar-image-container {
+  .avatar-image-widget {
+    isolation: isolate;
+
+    .images-widget {
+      .avatar-image {
+        background-image: url('../images/avtar.png');
+        transition: width, height, $trans-3s;
+
+        @extend %avatar-bg-properties;
+
+        &:nth-child(5n + 1) {
+          width: 52px;
+          height: 52px;
+        }
+
+        &:nth-child(5n + 2) {
+          width: 64px;
+          height: 64px;
+        }
+
+        &:nth-child(5n + 3) {
+          width: 84px;
+          height: 84px;
+          border: 4px solid $primary-red;
+          filter: drop-shadow(0 2px 16px rgba(0 0 0 / 8%));
+          border-radius: $br20;
+        }
+
+        &:nth-child(5n + 4) {
+          width: 64px;
+          height: 64px;
+          border: 1px solid $grey300;
+        }
+
+        &:nth-child(5n + 5) {
+          width: 52px;
+          height: 52px;
+          border: 1px solid $grey300;
+        }
+
+        @extend %avatar-values;
+      }
+    }
+
+    .avatar-prev-button,
+    .avatar-next-button {
+      position: absolute;
+      width: 90px !important;
+      height: 52px;
+      top: 16px;
+      transform: matrix(-1, 0, 0, 1, 0, 0);
+    }
+
+    .avatar-prev-button {
+      left: 0;
+      padding: 10px 6px 10px 10px;
+      background: linear-gradient(90deg, rgba(255 233 239 / 0%) 0%, #ffe9ef 69.23%);
+    }
+
+    .avatar-next-button {
+      right: 0;
+      padding: 10px 10px 10px 6px;
+      background: linear-gradient(-90deg, rgba(255 233 239 / 0%) 0%, #ffe9ef 69.23%);
+    }
+  }
+}
+
+.user-avatar,
+.profile-avatar {
+  background-image: url('../images/avtar.png');
+
+  @extend %avatar-bg-properties;
+
+  width: 100%;
+  height: 100%;
+
+  @extend %avatar-values;
+}

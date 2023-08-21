@@ -1,0 +1,41 @@
+<div class="txn-filter w414 flex-col-jst-start gap16 bg-light p-4 ovf-y-scroll">
+  <div class="header-title d-flex jst-start align-start gap8">
+    <div class="back-icon p-rel wh24 cursor" (click)="close()">
+      <div class="icons-24 chevron-left top-left wh24"></div>
+    </div>
+    <div class="fs20 ft-primary-b grey900" i18n>Filters</div>
+  </div>
+  <div class="wp100 flex-col-jst-start gap8">
+    <span class="fs16 ft-primary-b grey800" i18n>Duration</span>
+    <form class="wp100 flex-only-space flex-wrap" [formGroup]="txnFilterForm">
+      <div class="wp50 flex-start gap8">
+        <p-radioButton value="Last 7 Days" formControlName="Last7Days" (onClick)="onSelectRadio($event)"
+          [(ngModel)]="radio" inputId="Last 7 Days"></p-radioButton>
+        <label class="fs16 ft-primary-md grey500 cursor" for="Last 7 Days" i18n [ngClass]="radio=='Last 7 Days'?'grey900':''">Last 7 Days</label>
+      </div>
+      <div class="wp50 flex-start gap8">
+        <p-radioButton value="Last 15 Days" formControlName="Last15Days" (onClick)="onSelectRadio($event)"
+          [(ngModel)]="radio" inputId="Last 15 Days"></p-radioButton>
+        <label class="fs16 ft-primary-md grey500 cursor" for="Last 15 Days" i18n [ngClass]="radio=='Last 15 Days'?'grey900':''">Last 15 Days</label>
+      </div>
+      <div class="wp50 flex-start gap8 my-4">
+        <p-radioButton value="Last 30 Days" formControlName="Last30Days" (onClick)="onSelectRadio($event)"
+          [(ngModel)]="radio" inputId="Last 30 Days"></p-radioButton>
+        <label class="fs16 ft-primary-md grey500 cursor" for="Last 30 Days" i18n [ngClass]="radio=='Last 30 Days'?'grey900':''">Last 30 Days</label>
+      </div>
+      <div class="wp50 flex-start gap8 my-4">
+        <p-radioButton value="Current FY" formControlName="CurrentFY" (onClick)="onSelectRadio($event)"
+          [(ngModel)]="radio" inputId="Current FY"></p-radioButton>
+        <label class="fs16 ft-primary-md grey500 cursor" for="Current FY" i18n [ngClass]="radio=='Current FY'?'grey900':''">Current FY</label>
+      </div>
+      <div class="wp50 flex-start gap8">
+        <p-radioButton value="Last FY" formControlName="LastFY" (onClick)="onSelectRadio($event)" [(ngModel)]="radio"
+          inputId="Last FY"></p-radioButton>
+        <label class="fs16 ft-primary-md grey500 cursor" for="Last FY" i18n [ngClass]="radio=='Last FY'?'grey900':''">Last FY</label>
+      </div>
+      <button type="button" mat-button matRipple class="btn btn-primary wp100 h48 mt-5" (click)="onFilterApply()" i18n id="transactionfilter-Apply-btn" trackEvents>
+        <span class="fs16 ft-primary-b primary-light">Apply</span>
+      </button>
+    </form>
+  </div>
+</div>

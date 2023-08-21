@@ -1,0 +1,277 @@
+<div class="prizes-structures d-flex align-start gap16">
+  <!-- Prize Structure -->
+  <div
+    class="prizes-item d-flex flex-column jst-start align-start gap16 flex-1 bg-grey100 border-1 border-solid border-grey300 br16 p-4 shadow"
+  >
+    <div class="wp100 d-flex jst-space align-center">
+      <div class="fs16 ft-primary-b grey900" i18n>Prize Structure</div>
+      <img
+        class="cursor expand-icon trans-03"
+        [src]="assetsImagePath + 'tournaments/arrows-out-simple.svg'"
+        alt="arrows-out-simple"
+        i18n-alt
+      />
+    </div>
+
+    <div class="wp100 d-flex flex-column gap12 flex-1 bg-light br12 p-2">
+      <div class="d-flex flex-column gap8 flex-1 ovf-x-scroll">
+        <table
+          class="prize-structure-table d-flex flex-column gap8"
+          aria-label="Prize Table"
+          i18n-aria-label
+        >
+          <thead class="d-flex flex-column flex-1">
+            <tr class="h38 d-flex jst-space align-center flex-1 bg-grey100 br8 px-4 py-2">
+              <th
+                class="w112 d-flex jst-start align-center fs12 ft-primary-b grey600 text-uppercase lh-base text-left"
+                i18n
+              >
+                registered players
+              </th>
+              <th
+                class="w80 d-flex jst-center align-center fs12 ft-primary-b grey600 text-uppercase lh-base"
+                i18n
+              >
+                3-14<br />(%)
+              </th>
+              <th
+                class="w80 d-flex jst-center align-center fs12 ft-primary-b grey600 text-uppercase lh-base"
+                i18n
+              >
+                15-24<br />(%)
+              </th>
+              <th
+                class="w80 d-flex jst-center align-center fs12 ft-primary-b grey600 text-uppercase lh-base"
+                i18n
+              >
+                25-34<br />(%)
+              </th>
+              <th
+                class="w80 d-flex jst-center align-center fs12 ft-primary-b grey600 text-uppercase lh-base"
+                i18n
+              >
+                35-44<br />(%)
+              </th>
+              <th
+                class="w80 d-flex jst-center align-center fs12 ft-primary-b grey600 text-uppercase lh-base"
+                i18n
+              >
+                45-64<br />(%)
+              </th>
+              <th
+                class="w80 d-flex jst-center align-center fs12 ft-primary-b grey600 text-uppercase lh-base"
+                i18n
+              >
+                45-64<br />(%)
+              </th>
+              <th
+                class="w80 d-flex jst-center align-center fs12 ft-primary-b grey600 text-uppercase lh-base"
+                i18n
+              >
+                45-64<br />(%)
+              </th>
+              <th
+                class="w80 d-flex jst-center align-center fs12 ft-primary-b grey600 text-uppercase lh-base"
+                i18n
+              >
+                45-64<br />(%)
+              </th>
+              <th
+                class="w80 d-flex jst-center align-center fs12 ft-primary-b grey600 text-uppercase lh-base"
+                i18n
+              >
+                45-64<br />(%)
+              </th>
+            </tr>
+          </thead>
+          <tbody class="d-flex flex-column gap12 flex-1">
+            <!-- List Row -->
+            <tr
+              class="d-flex jst-space align-center flex-1 bg-grey000 grey900 br8 py-2 px-4"
+              *ngFor="let psList of prizeStructureList"
+            >
+              <td class="w112 d-flex jst-start align-center fs14 ft-primary-b lh-base" i18n>
+                {{ psList.registeredPlayers }}
+              </td>
+              <td class="w80 d-flex jst-center align-center fs14 ft-primary-b lh-base" i18n>
+                {{ psList.range1 }}
+              </td>
+              <td class="w80 d-flex jst-center align-center fs14 ft-primary-b lh-base" i18n>
+                {{ psList.range2 }}
+              </td>
+              <td class="w80 d-flex jst-center align-center fs14 ft-primary-b lh-base" i18n>
+                {{ psList.range3 }}
+              </td>
+              <td class="w80 d-flex jst-center align-center fs14 ft-primary-b lh-base" i18n>
+                {{ psList.range4 }}
+              </td>
+              <td class="w80 d-flex jst-center align-center fs14 ft-primary-b lh-base" i18n>
+                {{ psList.range5 }}
+              </td>
+              <td class="w80 d-flex jst-center align-center fs14 ft-primary-b lh-base" i18n>
+                {{ psList.range5 }}
+              </td>
+              <td class="w80 d-flex jst-center align-center fs14 ft-primary-b lh-base" i18n>
+                {{ psList.range5 }}
+              </td>
+              <td class="w80 d-flex jst-center align-center fs14 ft-primary-b lh-base" i18n>
+                {{ psList.range5 }}
+              </td>
+              <td class="w80 d-flex jst-center align-center fs14 ft-primary-b lh-base" i18n>
+                {{ psList.range5 }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Blind Structure -->
+  <div
+    class="prizes-item d-flex flex-column jst-start align-start gap16 flex-1 bg-grey100 border-1 border-solid border-grey300 br16 p-4 shadow"
+  >
+    <div class="fs16 ft-primary-b grey900" i18n>Blind Structure</div>
+
+    <div
+      class="item-inner-box wp100 d-flex flex-column gap24 bg-light border-0.5 border-solid border-grey300 p-4 br12"
+    >
+      <div class="d-flex align-start gap20 flex-1">
+        <div class="d-flex flex-column align-start gap10 flex-1">
+          <div class="fs12 ft-primary-b grey500 text-uppercase" i18n>Blind Interval</div>
+          <div class="d-flex flex-column align-start gap4">
+            <div class="fs14 ft-primary-b grey900" i18n>6 Minutes</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wp100 d-flex flex-column gap12 flex-1 bg-light br12 p-2">
+      <div class="d-flex flex-column gap8 flex-1">
+        <table class="d-flex flex-column gap8 flex-1" aria-label="Prize Table" i18n-aria-label>
+          <thead class="d-flex flex-column flex-1">
+            <tr class="h38 d-flex jst-space align-center flex-1 bg-grey100 br8 px-4 py-2">
+              <th
+                class="d-flex jst-start align-center gap8 flex-1 fs12 ft-primary-b grey600 text-uppercase lh-base"
+                i18n
+              >
+                Level
+              </th>
+              <th
+                class="wp30 d-flex jst-center align-center gap8 fs12 ft-primary-b grey600 text-uppercase lh-base"
+                i18n
+              >
+                Small Blind
+              </th>
+              <th
+                class="wp30 d-flex jst-center align-center gap8 fs12 ft-primary-b grey600 text-uppercase lh-base"
+                i18n
+              >
+                Big Blind
+              </th>
+              <th
+                class="d-flex jst-end align-center flex-1 gap8 fs12 ft-primary-b grey600 text-uppercase lh-base"
+                i18n
+              >
+                Ante
+              </th>
+            </tr>
+          </thead>
+          <tbody class="d-flex flex-column gap8 flex-1">
+            <!-- List Row -->
+            <tr
+              class="d-flex jst-space align-center flex-1 bg-grey000 grey900 br8 py-2 px-4"
+              *ngFor="let bsList of blindStructureList; let i = index"
+            >
+              <td class="d-flex jst-start align-center flex-1 fs14 ft-primary-b lh-base" i18n>
+                {{ bsList.level }}
+              </td>
+              <td class="wp30 d-flex jst-center align-center fs14 ft-primary-b lh-base" i18n>
+                {{ bsList.smallBind }}
+              </td>
+              <td class="wp30 d-flex jst-center align-center fs14 ft-primary-b lh-base" i18n>
+                {{ bsList.bigBlind }}
+              </td>
+              <td class="d-flex jst-end align-center flex-1 fs14 ft-primary-b lh-base" i18n>
+                {{ bsList.ante }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rebuy Info  -->
+
+  <div
+    class="prizes-item d-flex flex-column jst-start align-start gap16 flex-1 bg-grey100 border-1 border-solid border-grey300 br16 p-4 shadow"
+  >
+    <div class="fs16 ft-primary-b grey900" i18n>Rebuy Info</div>
+
+    <div
+      class="item-inner-box wp100 d-flex flex-column gap24 bg-light border-0.5 border-solid border-grey300 p-4 br12"
+    >
+      <div class="d-flex align-start gap20 flex-1">
+        <div class="d-flex flex-column align-start gap10 flex-1">
+          <div class="fs12 ft-primary-b grey500 text-uppercase" i18n>Rebuy Time</div>
+          <div class="d-flex flex-column align-start gap4">
+            <div class="fs14 ft-primary-b grey900" i18n>Available</div>
+            <div class="fs10 ft-primary-sb grey400" i18n>1st 54 min. till 12th level</div>
+          </div>
+        </div>
+        <div class="d-flex flex-column align-start gap10 flex-1">
+          <div class="fs12 ft-primary-b grey500 text-uppercase" i18n>Rebuy Threshold</div>
+          <div class="d-flex flex-column align-start gap4">
+            <div class="fs14 ft-primary-b grey900" i18n>800 Chips</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex align-start gap20 flex-1">
+        <div class="d-flex flex-column align-start gap10 flex-1">
+          <div class="fs12 ft-primary-b grey500 text-uppercase" i18n>Rebuy STACK</div>
+          <div class="d-flex flex-column align-start gap4">
+            <div class="fs14 ft-primary-b grey900" i18n>250 Chips</div>
+            <div class="fs10 ft-primary-sb grey400" i18n>1st 54 min. till 12th level</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="item-inner-box wp100 d-flex flex-column gap24 bg-light border-0.5 border-solid border-grey300 p-4 br12"
+    >
+      <div class="d-flex align-start gap20 flex-1">
+        <div class="d-flex flex-column align-start gap10 flex-1">
+          <div class="fs12 ft-primary-b grey500 text-uppercase" i18n>Addon</div>
+          <div class="d-flex flex-column align-start gap4">
+            <div class="fs14 ft-primary-b grey900" i18n>Allowed</div>
+          </div>
+        </div>
+        <div class="d-flex flex-column align-start gap10 flex-1">
+          <div class="fs12 ft-primary-b grey500 text-uppercase" i18n>Addon Duration</div>
+          <div class="d-flex flex-column align-start gap4">
+            <div class="fs14 ft-primary-b grey900" i18n>5 Mins</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex align-start gap20 flex-1">
+        <div class="d-flex flex-column align-start gap10 flex-1">
+          <div class="fs12 ft-primary-b grey500 text-uppercase" i18n>Addon Stack</div>
+          <div class="d-flex flex-column align-start gap4">
+            <div class="fs14 ft-primary-b grey900" i18n>10,000 Chips</div>
+          </div>
+        </div>
+        <div class="d-flex flex-column align-start gap10 flex-1">
+          <div class="fs12 ft-primary-b grey500 text-uppercase" i18n>Addons Start Time</div>
+          <div class="d-flex flex-column align-start gap4">
+            <div class="fs14 ft-primary-b grey900" i18n>Available</div>
+            <div class="fs10 ft-primary-sb grey400" i18n>After Rebuy period ends</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+<div class="congratulations flex-col-center gap24 p-rel p-4 ovf-hide z-2">
+  <div class="wh104 flex-center gap8 bg-pink000 br50 p-6">
+    <img
+      [src]="assetsImagePath + 'cashier/gift-dynamic-color.svg'"
+      alt="gift-dynamic-color"
+      i18n
+      i18n-alt
+    />
+  </div>
+  <div class="flex-col-center gap8 h50">
+    <span class="fs24 ft-primary-b grad-pink-text" i18n>Congratulation!</span>
+    <span class="fs16 ft-primary-sb grey400" i18n>You have Received</span>
+  </div>
+  <div class="w278 flex-center gap16 bg-blue000 br16 p-4" *ngIf="data.from == 'REDEEM_VOUCHER'">
+    <div class="flex-col-center gap10 text-uppercase">
+      <span class="fs12 ft-primary-b grey500" i18n>Cash</span>
+      <span class="fs24 ft-primary-b grad-blue-text"
+        >₹
+        {{
+          data?.details?.pokerBalance.toLocaleString('en-IN', {
+            currency: 'INR',
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 2
+          }) || 0
+        }}
+      </span>
+    </div>
+    <div class="d-flex jst-center align-center wh32 cursor">
+      <div class="icons-24 plus-blue wh32"></div>
+    </div>
+    <div class="flex-col-center gap10 text-uppercase">
+      <span class="fs12 ft-primary-b grey500" i18n>Instant Bonus</span>
+      <span class="fs24 ft-primary-b grad-blue-text"
+        >₹
+        {{
+          data?.details?.bonusAmount.toLocaleString('en-IN', {
+            currency: 'INR',
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 2
+          }) || 0
+        }}</span
+      >
+    </div>
+  </div>
+  <div
+    class="w155 flex-center gap16 bg-blue000 br16 p-4"
+    *ngIf="data.from == 'CASHIER' && data.cause == 'CLAIM_FREE_CHIPS'"
+  >
+    <div class="flex-col-center gap10 text-uppercase">
+      <span class="fs12 ft-primary-b grey500" i18n>Free Chips</span>
+      <span class="fs24 ft-primary-b grad-blue-text">
+        {{
+          data?.chipsCount
+            ? data.chipsCount?.toLocaleString('en-IN', {
+                currency: 'INR',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 2
+              }) || 0
+            : 0
+        }}
+      </span>
+    </div>
+  </div>
+</div>
+<div class="confetti-animation p-abs wp100 hp100 ovf-hide z-1">
+  <ng-lottie [options]="options"> </ng-lottie>
+</div>

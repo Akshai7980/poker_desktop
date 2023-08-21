@@ -1,0 +1,47 @@
+@import '../../../../../assets/abstract/core';
+
+.game-table-buy-in {
+  border: 1.5px solid $grey800;
+}
+
+.game-type {
+  border-radius: 40px;
+  min-width: 67px;
+}
+
+input.buy-in-input {
+  border: 1.5px solid $grey700;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:disabled {
+    color: $grey500;
+  }
+
+  &.input-error {
+    border-color: $primary-error;
+  }
+}
+
+button.btn {
+  &.btn-success {
+    width: calc(100% - 54px);
+    border-radius: 0 $br12 $br12 0;
+  }
+
+  &.btn-add {
+    border-radius: $br12;
+  }
+}
+
+.error-box {
+  line-height: 14.4px;
+}
+
+.btn-with-timer .timer-cta {
+  &.time-out {
+    background: $grey500;
+  }
+}

@@ -1,0 +1,378 @@
+@import '../../../../../assets/abstract/core';
+
+.start-date-container {
+  &::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 0;
+    height: 100%;
+    border: 1px solid $grey700;
+  }
+}
+
+.leaderboard-container-tabs-updated {
+  ul {
+    li {
+      padding: 6px 12px;
+
+      &:hover,
+      &.tab-active {
+        background: $bg-light;
+        color: $grey900;
+      }
+    }
+  }
+}
+
+.leaderboard-container {
+  max-height: 400px;
+}
+
+.leaderbody-body-text {
+  height: 400px;
+  overflow-y: auto;
+}
+
+.leaderboard-header-title {
+  i {
+    font-size: 15px;
+  }
+}
+
+.empty-container {
+  height: 400px;
+
+  .empty-image-container {
+    .empty-image-body {
+      .empty-image {
+        background-image: url('../../../../../assets/images/game-table/empty-image.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        width: 64px;
+        height: 64px;
+      }
+    }
+  }
+}
+
+table {
+  &.table {
+    &.table-leader-rank {
+      thead {
+        tr {
+          background: $grey900;
+          padding: 12px 16px;
+          border-radius: $br8;
+          text-align: left;
+          width: 100%;
+
+          th {
+            font-size: $fs12;
+            font-family: $font-bold;
+            color: $grey400;
+            text-transform: $text-uppercase;
+
+            &:nth-child(4n + 1) {
+              width: 49px;
+            }
+
+            &:nth-child(4n + 2) {
+              width: 92px;
+            }
+
+            &:nth-child(4n + 3) {
+              width: 85px;
+            }
+
+            &:nth-child(4n + 4) {
+              width: 124px;
+            }
+          }
+        }
+      }
+
+      tbody {
+        tr {
+          background: $grey800;
+          padding: 12px 16px;
+          border-radius: $br8;
+          width: 100%;
+
+          td {
+            font-size: $fs14;
+            font-family: $font-bold;
+            color: $grey100;
+
+            .td-title {
+              display: inline-block;
+              text-overflow: ellipsis;
+              overflow: hidden;
+              white-space: nowrap;
+              width: 92px;
+              text-transform: capitalize;
+            }
+
+            &:nth-child(4n + 1) {
+              width: 49px;
+            }
+
+            &:nth-child(4n + 2) {
+              width: 92px;
+            }
+
+            &:nth-child(4n + 3) {
+              width: 85px;
+            }
+
+            &:nth-child(4n + 4) {
+              width: 124px;
+            }
+          }
+
+          &.current-user {
+            background: $orange000;
+            padding: 8px 16px;
+
+            td {
+              color: $grey800;
+            }
+          }
+
+          &.first,
+          &.second,
+          &.third {
+            padding: 8px 16px;
+
+            td {
+              color: $grey100;
+
+              .first-award {
+                background-image: url('../../../../../assets/images/game-table/first-prize.svg');
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: contain;
+                width: 24px;
+                height: 24px;
+              }
+
+              .second-award {
+                background-image: url('../../../../../assets/images/game-table/second-prize.svg');
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: contain;
+                width: 24px;
+                height: 24px;
+              }
+
+              .third-award {
+                background-image: url('../../../../../assets/images/game-table/third-prize.svg');
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: contain;
+                width: 24px;
+                height: 24px;
+              }
+
+              .prize-ticket {
+                width: 16.25px;
+                height: 15.33px;
+
+                &::before {
+                  content: '';
+                  position: absolute;
+                  left: 0;
+                  width: 3px;
+                  height: 3px;
+                  border-top-right-radius: 50%;
+                  border-bottom-right-radius: 50%;
+                  background: $grad-warning;
+                }
+
+                &::after {
+                  content: '';
+                  position: absolute;
+                  right: 0;
+                  width: 3px;
+                  height: 3px;
+                  border-top-left-radius: 50%;
+                  border-bottom-left-radius: 50%;
+                  background: $grad-warning;
+                }
+              }
+            }
+          }
+
+          &.first {
+            background: $grad-warning;
+            border-left: 2px solid $primary-warning;
+            border-right: 2px solid $primary-warning;
+          }
+
+          &.second {
+            background: $grad-grey-blue;
+            border-left: 2px solid $grey400;
+            border-right: 2px solid $grey400;
+          }
+
+          &.third {
+            background: $grad-brown;
+            border-left: 2px solid $orange600;
+            border-right: 2px solid $orange600;
+          }
+        }
+      }
+    }
+
+    &.table-leader-prize {
+      thead {
+        tr {
+          background: $grey900;
+          padding: 12px 16px;
+          border-radius: $br8;
+          text-align: left;
+          width: 100%;
+
+          th {
+            font-size: $fs12;
+            font-family: $font-bold;
+            color: $grey400;
+            text-transform: $text-uppercase;
+            width: 175px;
+          }
+        }
+      }
+
+      tbody {
+        tr {
+          background: $bg-dark;
+          padding: 12px 16px;
+          border-radius: $br8;
+          width: 100%;
+
+          td {
+            font-size: $fs14;
+            font-family: $font-bold;
+            color: $grey100;
+            width: 175px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.prize-info {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: 16px;
+  height: 16px;
+}
+
+.prize-pool-buyin-container {
+  .prize-pool-container {
+    .prize-image-widget-right-bg {
+      width: 52px;
+      height: 104px;
+    }
+
+    .prize-image-body {
+      backdrop-filter: blur(1.7241px);
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: -8px;
+      right: -8px;
+
+      @include triangle(16px, $bg-dark, right);
+
+      z-index: 10;
+      border-radius: $br50;
+      transform: rotate(-45deg);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      right: -8px;
+      bottom: -8px;
+
+      @include triangle(16px, $bg-dark, right);
+
+      border-radius: $br50;
+      transform: rotate(45deg);
+    }
+  }
+
+  .buyin-container {
+    width: calc(100% - 104px);
+    height: 104px;
+    align-items: flex-start;
+
+    .prize-text-item {
+      .prize-ticket {
+        position: relative;
+
+        @include center;
+
+        width: 17px;
+        height: 15px;
+        font-size: 10px;
+        font-family: $font-bold;
+        color: $bg-light;
+        background: $orange500;
+
+        &::before {
+          content: '';
+          position: absolute;
+          left: -1px;
+          width: 3px;
+          height: 3px;
+          border-top-right-radius: $br50;
+          border-bottom-right-radius: $br50;
+          background: $grey900;
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          right: -1px;
+          width: 3px;
+          height: 3px;
+          border-top-left-radius: $br50;
+          border-bottom-left-radius: $br50;
+          background: $grey900;
+        }
+      }
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: -8px;
+      left: -8px;
+
+      @include triangle(16px, $bg-dark, left);
+
+      z-index: 10;
+      border-radius: $br50;
+      transform: rotate(45deg);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: -8px;
+      bottom: -8px;
+
+      @include triangle(16px, $bg-dark, left);
+
+      border-radius: $br50;
+      transform: rotate(-45deg);
+    }
+  }
+}
